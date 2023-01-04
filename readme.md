@@ -1,1 +1,1 @@
-Git is a distributed version control system.
+CUG小萌新个人代码垃圾堆
