@@ -2,7 +2,7 @@
  * @Author: ChanningTong Channing_TongCN@outlook.com
  * @Date: 2023-03-14 19:07:11
  * @LastEditors: ChanningTong Channing_TongCN@outlook.com
- * @LastEditTime: 2023-03-14 19:08:35
+ * @LastEditTime: 2023-03-14 20:01:15
  * @FilePath: \CUG\Practice1\4.cpp
  * @Description: 
  * @
@@ -20,8 +20,11 @@ int main(){
     cout<<"I generate a number just now.Can you catch it?It ranges 0 to 99"<<endl;
     cin>>Guess;
     while (Guess!=num){
-        cout<<"Pity!Not the number."<<endl;
+        cout << "Pity!Not the number.";
+        if (Guess<num) cout<<"Try a larger one."<<endl;
+        if (Guess>num) cout<<"Try a smaller one."<<endl;
         cin>>Guess;
     }
+    cout<<"You are right!"<<endl;
     return 0;
 }
