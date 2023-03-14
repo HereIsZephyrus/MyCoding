@@ -1,5 +1,8 @@
 {
     "editor.language.brackets": [
     
-    ]
+    ],
+    "files.associations": {
+        "iostream": "cpp"
+    }
 }
