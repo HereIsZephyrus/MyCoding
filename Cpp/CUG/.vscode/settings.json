@@ -4,6 +4,9 @@
     ],
     "files.associations": {
         "iostream": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "string": "cpp",
+        "map": "cpp",
+        "stack": "cpp"
     }
 }
