@@ -7,6 +7,7 @@
         "utility": "cpp",
         "string": "cpp",
         "map": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "istream": "cpp"
     }
 }
