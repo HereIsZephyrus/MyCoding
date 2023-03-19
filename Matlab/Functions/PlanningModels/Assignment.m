@@ -1,6 +1,6 @@
-function [opt_chosen,opt_fval]=Assignment(goal)
+function [opt_chosen,opt_fval]=Assignment(Goal)
 %指派问题,goal为目标函数的系数矩阵
-[n,m]=size(goal);
+[n,m]=size(Goal);
 %不等式约束矩阵的构建——对被指派人的约束
 A=zeros(n,n*m); 
 b=ones(n,1);
@@ -16,6 +16,6 @@ intcon=ones(n*m,1);
 lb=zeros(n*m,1);
 ub=ones(n*m,1);
 %求解
-[opt_chosen,opt_fval]=intlinprog(goal,intcon,A,b,Aeq,beq,lb,ub);
+[opt_chosen,opt_fval]=intlinprog(Goal,intcon,A,b,Aeq,beq,lb,ub);
 opt_chosen=reshape(opt_chosen,[5,5]);
 end

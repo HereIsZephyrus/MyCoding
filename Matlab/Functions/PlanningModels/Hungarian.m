@@ -1,4 +1,4 @@
-function [matching, max_matching] = hungarian_algorithm(adj_matrix)
+function [matching, max_matching] = Hungarian(adj_matrix)
 % adj_matrix: 二分图邻接矩阵，0表示未连接，1表示连接
 
     % 初始化变量

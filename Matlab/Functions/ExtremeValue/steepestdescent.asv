@@ -1,3 +1,5 @@
+%二分求步长建立最速下降法,f为函数句柄
+function [fval, grad]=steepestdescent(f)
 % Define objective function
 f = @(x) (4*x(1) + 6*x(2) - 2*x(1)^2 - 2*x(1)*x(2) - 2*x(2)^2);
 
