@@ -13,7 +13,7 @@ for k=1:group
     plot(I_tmp,U_tmp,'b*');
 
     %插值拟合
-    x=linspace(10,I(k),100);
+    x=linspace(10,I(k),1000);
     %pp=csape(I_tmp,U_tmp);
     %y=ppval(pp,x);
     p=1;
@@ -32,6 +32,8 @@ for k=1:group
     %绘图
     s=num2str(Is(k))+"mA"+"     "+num2str(U0(k))+"V";
     title(s);
+    xlabel("I(mA)");
+    ylabel("U(V)");
     axis([10,Is(k)+5,0,U0(k)+0.5]);
     legend("数据点","多项式拟合","线性插值","Location","southwest");
     hold off

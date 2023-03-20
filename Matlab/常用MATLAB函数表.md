@@ -23,4 +23,5 @@
 |                      regress | 多元线性回归                                                 |
 |                      rcoplot | 对残差和置信区间画图                                         |
 |                  fgoalattain | 多目标规划                                                   |
+|                  lsqcurvefit | 非线性回归分析                                               |
 

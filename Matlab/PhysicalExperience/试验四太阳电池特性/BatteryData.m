@@ -57,6 +57,6 @@ clear opts
 R=1000*U./I;
 Is=[45,35,25,15]';
 U0=[2.05,2.01,1.99,1.92]';
-
+P=U.*I;
 %% 导出数据至mat
 save BatteryData.mat
