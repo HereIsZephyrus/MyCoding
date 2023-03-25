@@ -2,7 +2,7 @@ function [Solution,Sum]=SA(Initial_Solution,range,begin_heat,end_heat,MarkovLeng
     % 模拟退火算法Simulated annealing
     % range为1*2系数向量标注样本上下限,heat为温度控制,MarkovLength为迭代次数,Rate为温度衰减函数
     % begin_heat--1;    end_heat--0.1^30;
-    rand('state',sum(clock));
+    rng("shuffle");
     Solution=Initial_Solution;
     Heat=begin_heat;
     for layer=1:MarkovLength
