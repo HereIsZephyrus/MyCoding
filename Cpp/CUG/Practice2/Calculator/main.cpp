@@ -112,13 +112,17 @@ long long Solve(string expr){
 
     return Num.top();
 }
+
 int main(){
     cin>>Expr;
-    Expr='('+Expr+')';//在表达式两端加上括号用于简化处理
-    if (!Valid(Expr))
-        cout<<"It is not a valid expression!"<<endl;
-    else
-        cout<<Solve(Expr)<<endl;//求解运算符
+    while (!(Expr.length()==1 && Expr[0]=='0')){
+        Expr='('+Expr+')';//在表达式两端加上括号用于简化处理
+        if (!Valid(Expr))
+            cout<<"It is not a valid expression!"<<endl;
+        else
+            cout<<Solve(Expr)<<endl;//求解运算符
+        cin>>Expr;
+    }
     cin.get();
     cin.get();
     return 0;
