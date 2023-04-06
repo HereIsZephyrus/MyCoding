@@ -1,3 +1,12 @@
+---
+name: Bug report
+about: 报告一个代码库中的一个出乎意料的结果
+---
+
+
+
+
+
 # Bug report
 
 ### 错误描述
