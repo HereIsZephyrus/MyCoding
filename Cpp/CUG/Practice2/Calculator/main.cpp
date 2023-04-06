@@ -8,7 +8,6 @@
  * @将表达式转换为后缀表达式并求解
  * @Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
  */
-#pragma once
 #include <iostream>
 #include <cstring>
 #include <string>

@@ -8,7 +8,6 @@
  * @日历计算器,根据2000年1月1日是星期六计算出当月1号是星期几
  * @Copyright (c) 2023 by ChanningTong, All Rights Reserved.
  */
-#pragma once
 #include<iostream>
 #include "Calender.h"
 #include "Calender.cpp"

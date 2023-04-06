@@ -1,14 +1,15 @@
-/*** 
+/***
  * @Author: ChanningTong Channing_TongCN@outlook.com
  * @Date: 2023-03-14 19:42:19
  * @LastEditors: ChanningTong Channing_TongCN@outlook.com
  * @LastEditTime: 2023-03-14 20:37:16
  * @FilePath: \CUG\Practice2\Calender\Calender.h
- * @Description: 
+ * @Description:
  * @To Seek the day
  * @To generate the table based on the true time;
- * @Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
+ * @Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
  */
+#pragma once
 #include<iostream>
 using namespace std;
 

@@ -8,6 +8,7 @@
  * @
  * @Copyright (c) 2023 by ChanningTong, All Rights Reserved.
  */
+#pragma once
 #include<iostream>
 #include<cstring>
 #include<string>
