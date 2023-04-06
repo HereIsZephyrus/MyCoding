@@ -2,12 +2,13 @@
  * @Author: ChanningTong Channing_TongCN@outlook.com
  * @Date: 2023-03-14 20:47:11
  * @LastEditors: ChanningTong Channing_TongCN@outlook.com
- * @LastEditTime: 2023-03-15 08:23:02
- * @FilePath: \CUG\Practice2\Calender\main.cpp
+ * @LastEditTime: 2023-04-06 14:09:59
+ * @FilePath: \Calender\main.cpp
  * @Description:
  * @日历计算器,根据2000年1月1日是星期六计算出当月1号是星期几
- * @Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
+ * @Copyright (c) 2023 by ChanningTong, All Rights Reserved.
  */
+#pragma once
 #include<iostream>
 #include "Calender.h"
 #include "Calender.cpp"
