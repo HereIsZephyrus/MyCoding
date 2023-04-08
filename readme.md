@@ -10,7 +10,7 @@
 
 #### 近期的主线任务
 
-1. - [ ] Matlab 画图
+1. - [x] Matlab 画图
    - [ ] LaTeX入门+Coding Standard建立
 2. - [ ] 抢救分析学
    - [ ] 抢救英语作业
