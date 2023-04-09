@@ -2,6 +2,22 @@
 
 [MATLAB科学绘图](https://www.zhihu.com/column/c_1320394579787788288)
 
+# Grid
+
+## peaks
+
+峰值曲面
+
+## mesh
+
+网格面
+
+## surf
+
+曲面
+
+# Categroy
+
 ## Scatter map
 
 1. scatter
