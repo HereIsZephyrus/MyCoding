@@ -1,6 +1,6 @@
 clc;clear;close all;
 load cleared_Series.mat
-n=length(ind);
+n=length(ind_edge);
 p=0.95;
 for i=1:n
     Data=Series_var{i};

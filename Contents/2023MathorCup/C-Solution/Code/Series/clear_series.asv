@@ -10,7 +10,7 @@ for len=1:length(ind)
     tmp_Series_var{len}=Time_var(ind(len),:);
 end
 edges=0;
-ind_edge=[];
+series_ind=[];
 for i=1:len
     %{
     tmp_ind=[];
@@ -24,13 +24,11 @@ for i=1:len
     Med=median(tmp_Series_var{i});
     tmp=[];
     MAD=2*c*median(abs(tmp_Series_var{i}-Med));
-    %{
     if (i==145)
         disp(MAD);
         disp(Med);
         %system("pause");
     end
-    %}
     for j=1:length(tmp_Series_var{i})
         if (tmp_Series_var{i}(j)<=Med+MAD && tmp_Series_var{i}(j)>=Med-MAD)
             tmp=[tmp,tmp_Series_var{i}(j)];
@@ -38,26 +36,22 @@ for i=1:len
     end
     %tmp = rmoutliers(Series_var{i},'gesd'); 
     clear c MAD j Med
-    %{
     if (i==145)
         %disp(tmp);
         %disp(Series_var{i});e");
         setdiff(tmp_Series_var{i},tmp)
         %system("pause");
     end
-    %}
     Min=min(tmp);%第i条的最小值
     %tmp_ind=find(tmp>(Min+bias));%下标
     tmp_ind=find(tmp>(max(tmp)*0.03));%下标
     tmp=tmp(tmp_ind);
-    %{
     if (i==145)
         %disp(tmp);
         %disp(Series_var{i});
         setdiff(tmp_Series_var{i},tmp)
         %system("pause");
     end
-    %}
     %{
     TF=isoutlier(tmp);
     ind_TF=find(TF);
@@ -73,26 +67,25 @@ for i=1:len
     Series_var{i}=res;
     %}
     if (length(tmp)>=5)
-        edges=edges+1;
-        Series_var{edges} = tmp; 
-        ind_edge(edges)=ind(i);
-    end    
+        Series_var{i} = tmp; 
+    end
+    
+    
     clear tmp_ind Min tmp 
     clear TF ind_TF k res res_ind
 end
 clear i j bias
 %% 去噪
-for i=1:edges
-    for j=3:length(Series_var{i})-2
-        Series_var{i}(j)=mean(Series_var{i}(j-2:j+2));
+for i=1:len
+    for j=3:length(tmp_Series_var{i})-2
+        tmp_Series_var{i}(j)=mean(tmp_Series_var{i}(j-2:j+2));
     end
-    Series_var{i}(1)=mean(Series_var{i}(1:1+2));
-    Series_var{i}(2)=mean(Series_var{i}(1:2+2));
-    Series_var{i}(end)=mean(Series_var{i}(end-2:end));
-    Series_var{i}(end-1)=mean(Series_var{i}(end-3:end));
+    tmp_Series_var{i}(1)=mean(tmp_Series_var{i}(1:1+2));
+    tmp_Series_var{i}(2)=mean(tmp_Series_var{i}(1:2+2));
+    tmp_Series_var{i}(end)=mean(tmp_Series_var{i}(end-2:end));
+    tmp_Series_var{i}(end-1)=mean(tmp_Series_var{i}(end-3:end));
 end
 
-clear i j
-save("cleared_Series.mat","Series_var","ind_edge");
+save("cleared_Series.mat","tmp_Series_var","ind");
 
 clear ans

@@ -12,7 +12,7 @@ Count=cell(1,7);%七类
 crisis=120;
 time=size(Time_var,2);
 for i=1:num_connect
-    IsTemp(i)=(Time_total(i)<=10) || ((nnz(Time_var(i,:))<=3));
+    IsTemp(i)=(Time_total(i)<=10) || ((nnz(Time_var(i,:))<=10));
     if (IsTemp(i)==1)
         Count{2}(end+1)=i;
     end
@@ -50,8 +50,8 @@ clear i j
 %对正常节点再细分
 tmp=[];
 for i=Count{1}
-    delta=mean(Time_var(i,end-crisis+1:end))/median(Time_var(i,crisis+1:end-crisis+1));
-    if (log(delta)<-1 || max(Time_var(i,end-crisis+1:end))<10)
+    delta=mean(Time_var(i,end-crisis+1:end))/mean(Time_var(i,crisis+1:end-crisis+1));
+    if (log(delta)<-0.1 || max(Time_var(i,end-crisis+1:end))<10)
         Count{6}(end+1)=i;
     else
         if (log(delta)>1)
@@ -63,5 +63,5 @@ for i=Count{1}
 end
 Count{1}=tmp;
 clear i tmp delta
-
+save Cate.mat Count
 clear ans time crisis IsTemp

@@ -6,6 +6,8 @@ x(1)=0;
 for j=2:10000
     x(j)=0.8*x(j-1)+elps(j)-0.4*elps(j-1); %生成样本点
 end
+
+
 y=(x-mean(x));%中心化
 gama0=var(x);%方差
 L=10;
