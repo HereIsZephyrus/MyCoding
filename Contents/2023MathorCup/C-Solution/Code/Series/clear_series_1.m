@@ -21,9 +21,6 @@ for i=1:len
         end
     end
     %}
-    tmp_ind=find(tmp_Series_var{i}>3);%下标
-    tmp_Series_var{i}=tmp_Series_var{i}(tmp_ind);
-
     c=-1/(sqrt(2)*erfcinv(3/2));
     Med=median(tmp_Series_var{i});
     tmp=[];
@@ -50,10 +47,10 @@ for i=1:len
         %system("pause");
     end
     %}
+    Min=min(tmp);%第i条的最小值
+    %tmp_ind=find(tmp>(Min+bias));%下标
     tmp_ind=find(tmp>(max(tmp)*0.03));%下标
     tmp=tmp(tmp_ind);
-    %tmp_ind=find(tmp>(Min+bias));%下标
-    
     %{
     if (i==145)
         %disp(tmp);
@@ -78,6 +75,10 @@ for i=1:len
     %}
         
     if (length(tmp)>=5)
+        if (ind(i)==33 || ind(i)==61 || ind(i)==711)
+            p=p+1;
+            result{p}=tmp;
+        end
         edges=edges+1;
         Series_var{edges} = tmp; 
         ind_edge(edges)=ind(i);
@@ -87,11 +88,13 @@ for i=1:len
 end
 clear i j bias
 %% 去噪
+figure(1);
+hold on
+for i=1:p
+    subplot(3,1,i);
+    plot(1:length(result{i}),result{i},'b-');
+end
 for i=1:edges
-    if (ind(i)==33 || ind(i)==61 || ind(i)==729)
-        p=p+1;
-        result{p}=Series_var{i};
-    end
     for j=3:length(Series_var{i})-2
         Series_var{i}(j)=mean(Series_var{i}(j-2:j+2));
     end
@@ -99,15 +102,13 @@ for i=1:edges
     Series_var{i}(2)=mean(Series_var{i}(1:2+2));
     Series_var{i}(end)=mean(Series_var{i}(end-2:end));
     Series_var{i}(end-1)=mean(Series_var{i}(end-3:end));
-    
 end
-clear i
-
+%for i=1:p
+%    subplot(3,1,i);
+%    plot(1:length(result{i}),result{i},'r*');
+%end
+hold off
 clear i j p
 save("cleared_Series.mat","Series_var","ind_edge");
-save("Problem1.mat","result");
-clear ans
 
-function str=Node(node)
-    str=strcat("DC",num2str(node));
-end
+clear ans
