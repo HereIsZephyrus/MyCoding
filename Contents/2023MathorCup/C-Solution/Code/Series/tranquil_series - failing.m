@@ -1,6 +1,6 @@
 clc;clear;close all;
-%delete(gcp('nocreate'));
-%p=parpool(12);
+delete(gcp('nocreate'));
+p=parpool(12);
 load cleared_Series.mat
 load DanielResult.mat
 %load dd_cleared.mat
@@ -35,8 +35,17 @@ for ind=1:length(Flat)
         len=len-len_proving;
         for j=1:len_proving
             len=len+1;
+            try
+            model = arima(5,0,1);
+            fit = estimate(model,tmp_data(len-len_block:len-1)');
+            %fit = estimate(model,tmp_data');
+            fore = forecast(fit,1);
+            tmp_data(len)=fore;
+            %[a,b]=Smoothing(tmp_data,0.3);
+            %tmp_data(len)=a+b;
+            catch
                 tmp_data(len)=Average(tmp_data,len_block);
-
+            end
         end
         
         err(ind_node)=abs(mean((tmp_data(len-len_proving:len)-Data(len-len_proving:len))./Data(len-len_proving:len)));
@@ -107,7 +116,17 @@ for ind=1:length(unFlat)
         tmp_data=Data(1:len-len_proving);
         len=len-len_proving;
         for j=1:len_proving
+            try
+            model = arima(5,0,1);
+            fit = estimate(model,tmp_data(len-len_block:len-1)');
+            %fit = estimate(model,tmp_data');
+            fore = forecast(fit,1);
+            tmp_data(len)=fore;
+            %[a,b]=Smoothing(tmp_data,0.3);
+            %tmp_data(len)=a+b;
+            catch
                 tmp_data(len)=Average(tmp_data,len_block);
+            end
         end
         err(ind_node)=abs(mean((tmp_data(len-len_proving:len)-Data(len-len_proving:len))./Data(len-len_proving:len)));
         tmp_data=Data;

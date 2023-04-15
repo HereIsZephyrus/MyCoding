@@ -5,7 +5,6 @@ len_pre=31;%预测长度
 Predict=zeros(3,len_pre);
 err=zeros(1,3);
 figure(2);
-clear Year Month Day
 path(1,1)=14;path(1,2)=10;
 path(2,1)=20;path(2,2)=35;
 path(3,1)=25;path(3,2)=62;
@@ -51,7 +50,7 @@ for i=1:3
         xlim([datetime("2022-11-12") datetime("2023-01-31")]);
         ylabel("货量");
         legend("历史数据","预测数据");
-        title(strcat(Node(path(i,1)),' to ',Node(path(i,2)),'2023年1月预测结果'));
+        title(strcat(Node(path(i,1)),' to ',Node(path(i,2)),'2023年1月预测结果'),strcat("相对误差为",num2str(err(i)*100),"%"));
         %datetick('x','mm-dd');    
     hold off
     clear len a b

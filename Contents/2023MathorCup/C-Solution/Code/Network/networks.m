@@ -1,20 +1,27 @@
 clc;clear;close all;
+delete(gcp('nocreate'));
 load Series.mat
+p=parpool(12);
+%reverse_end=Time_start;
+%reverse_start=Time_end;
 
 n=length(Gragh);
 ind_start=1;
 while(ind_start<2)
     ind_end=During(ind_start,Date,n);
-    Matrix=makeAdj(Gragh(ind_start:ind_end,:),num);
-    [starts,ends]=checkterm(Matrix,num);
-    Painting(Matrix,starts);
+    forword_Matrix=makeAdj(Gragh(ind_start:ind_end,:),num);
+    reversed_Matrix=forword_Matrix';
+    [starts,ends]=checkterm(forword_Matrix,num);
+    Painting(forword_Matrix,starts);
     
     ind_start=ind_end+1;
 end
-clear ind_start ind_end
+delete(p);
+clear ind_start ind_end ans
 
 function Matrix=makeAdj(edges,num)
     Matrix=zeros(num);
+    reversed=zeros(num);
     num_connect=0;
     n=length(edges);
     for i=1:n
@@ -26,18 +33,19 @@ function Matrix=makeAdj(edges,num)
 end
 function [starts,ends]=checkterm(Matrix,num)   
     num_start=0;
+    starts=[];ends=[];
     for i=1:num
-        if (any(Matrix(:,i))==0)%i点没有出度
+        if (any(Matrix(:,i))==0 && any(Matrix(i,:))>0)%i点没有入度
             num_start=num_start+1;
-            starts(1,num_start)=i;
+            starts(num_start)=i;
         end
     end
     clear i
     num_end=0;
     for i=1:num
-        if (any(Matrix(i,:))==0)%i点没有入度
+        if (any(Matrix(i,:))==0 && any(Matrix(:,i))>0)%i点没有出度
             num_end=num_end+1;
-            ends(1,num_end)=i;
+            ends(num_end)=i;
         end
     end
 end
@@ -46,11 +54,11 @@ function Painting(Matrix,starts)
     nodes=[];%已经处理完的点
     hold on
     Fig=figure(1);
-    tmp_node=starts;%正在处理的点
     bias=0.2;
     boarden=2;
 %% 处理初始点
     Layers=1;
+    tmp_node=starts;%正在处理的点
     num(Layers)=length(tmp_node);%正在处理的点的数量
     inter(Layers)=ymax/num(Layers);%图像上的间隔
     for i=1:length(tmp_node)%打上初始点
@@ -62,6 +70,17 @@ function Painting(Matrix,starts)
     end
     next_node=[];
     next_num=0;
+    for i=1:length(tmp_node)%建立非树边
+            for j=1:i-1
+                begin=tmp_node(i);
+                term=tmp_node(j);
+                if (Matrix(begin,term)>0)
+                   tmp_x=[Layer(term)*boarden,(Layer(term)+Layer(begin))/2*boarden+(-1)^(rand>=0.5)*bias,Layer(begin)*boarden];
+                   tmp_y=[Hight(term),(Hight(term)+Hight(begin))/2,Hight(begin)];
+                   plot(tmp_x,tmp_y);
+                end
+            end
+        end
     for i=1:length(tmp_node)%找出树边
         begin=tmp_node(i);
         for term=find(Matrix(begin,:)>0)%遍历终点
@@ -102,9 +121,9 @@ function Painting(Matrix,starts)
         
         next_node=[];
         next_num=0;
-        for i=1:length(tmp_node)%处理反向边  
+        parfor i=1:length(tmp_node)%处理反向边  
             begin=tmp_node(i);
-            for term=find(Matrix(begin,:)>0)%遍历终点
+            for term=find(Matrix(:,begin)>0)%遍历终点(反向边)
                 if (nnz(ismember(nodes,term)))
                     tmp_x=[Layer(term)*boarden,(Layer(term)+Layer(begin))/2*boarden,Layer(begin)*boarden];
                     tmp_y=[Hight(term),(Hight(term)+Hight(begin))/2+(-1)^(rand>=0.5)*bias,Hight(begin)];
@@ -112,7 +131,7 @@ function Painting(Matrix,starts)
                 end
             end
         end
-        for i=1:length(tmp_node)%建立非树边
+        parfor i=1:length(tmp_node)%建立非树边
             for j=1:i-1
                 begin=tmp_node(i);
                 term=tmp_node(j);
@@ -142,7 +161,6 @@ function Painting(Matrix,starts)
     end
     hold off;
 end
-
 
 function ind=During(init,Date,n)
     val=Date(init);

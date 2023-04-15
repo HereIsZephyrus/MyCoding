@@ -1,7 +1,7 @@
 clc;clear;close all;
 load Cate.mat
 load Series.mat
-ind=[Count{1},Count{3}];
+ind=[Count{1},Count{3},Count{6},Count{7}];
 ind=sort(ind);
 result=cell(1,3);
 p=0;
@@ -88,7 +88,7 @@ end
 clear i j bias
 %% 去噪
 for i=1:edges
-    if (ind(i)==33 || ind(i)==61 || ind(i)==729)
+    if (ind_edge(i)==33 || ind_edge(i)==61 || ind_edge(i)==729)
         p=p+1;
         result{p}=Series_var{i};
     end
