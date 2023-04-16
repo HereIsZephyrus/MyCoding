@@ -1,0 +1,11 @@
+clc;clear;close all;
+load Cate.mat
+load Series.mat
+Normal_ind=Count{1};
+Normal_var=Time_var(Normal_ind,:);
+boxchart(Normal_var);
+n=length(Normal_ind);
+for i=1:n
+
+end
+clear i n
