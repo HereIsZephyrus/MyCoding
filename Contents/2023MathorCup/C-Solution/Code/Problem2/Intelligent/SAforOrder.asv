@@ -1,19 +1,22 @@
 %clc;clear;close all;
-function [order,result,overflow]=SAforOrder(index,day)
-load StatusAmong.mat
-load maxVolume.mat
-reOrder=0;
-num_node=81;
+function [order,result,overFlow]=SAforOrder(index,day)
+    load StatusAmong.mat
+    load maxVolume.mat
+    reOrder=0;
+    rng('shuffle');
+    num_node=81;
     %%init loading--E3
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    local=find(index==1);
     edge=Status{3}(index,1);
     start=Status{3}(index,2);
     term=Status{3}(index,3);
     contain=Status{3}(index,4);
     predict=Status{3}(index,5+day-1);
     predict=min(predict,contain);
+    predict=Clean(predict);
     %rate=sum(predict);%正在跑的总流量
-    Total=sum(Status{1}(index,4));%流向DC5的需要分配的流量
+    Total=sum(Status{1}(:,4));%流向DC5的需要分配的流量
     num_edge=length(edge);%E3集合的大小
     shutPop=ones(1,num_node);%一开始所有出点都开着
     shutPush=ones(1,num_node);%一开始所有入点都开着
@@ -28,13 +31,19 @@ num_node=81;
         if (predict(i)+order(i)>contain(i))
             reOrder=predict(i)+order(i)-contain(i);%把边能多承载的流量拿出来
             order(i)=contain(i)-predict(i);%把边塞满
+            if (order(i)<0)
+                error("错误的分配");
+            end
+            if (predict(i)+order(i)>contain(i))
+                error("错误的分配");
+            end
         else%这条边没有塞满
-            if (reOrder<=(contain(i)-predict(i))/2)
+            if (reOrder<=(contain(i)-(predict(i)+order(i))+1)/2)
                 order(i)=order(i)+reOrder;
                 reOrder=0;
             else
-                order(i)=order(i)+(contain(i)-predict(i))/2;
-                reOrder=reOrder-(contain(i)-predict(i))/2;
+                order(i)=order(i)+(contain(i)-(predict(i)+order(i))+1)/2;
+                reOrder=reOrder-(contain(i)-(predict(i)+order(i))+1)/2;
             end
         end
     end
@@ -44,13 +53,13 @@ num_node=81;
         for i=1:num_edge%考虑E3的运输能力
             if (predict(i)+order(i)<contain(i))
                 flag=1;
-                if (reOrder<=(contain(i)-predict(i)+1)/2)
+                if (reOrder<=(contain(i)-(predict(i)+order(i))+1)/2)
                     order(i)=order(i)+reOrder;
                     reOrder=0;
                 else
                     if (reOrder>0)
-                    order(i)=order(i)+(contain(i)-predict(i)+1)/2;
-                    reOrder=reOrder-(contain(i)-predict(i)+1)/2;
+                    order(i)=order(i)+(contain(i)-(predict(i)+order(i))+1)/2;
+                    reOrder=reOrder-(contain(i)-(predict(i)+order(i))+1)/2;
                     end
                 end
             end
@@ -122,12 +131,12 @@ num_node=81;
                 reOrder=predict(i)+order(i)-contain(i);%把边能多承载的流量拿出来
                 order(i)=contain(i)-predict(i);%把边塞满
             else%这条边没有塞满
-                if (reOrder<=(contain(i)-predict(i))/2)
+                if (reOrder<=(contain(i)-(predict(i)+order(i))+1)/2)
                     order(i)=order(i)+reOrder;
                     reOrder=0;
                 else
-                    order(i)=order(i)+(contain(i)-predict(i))/2;
-                    reOrder=reOrder-(contain(i)-predict(i))/2;
+                    order(i)=order(i)+(contain(i)-(predict(i)+order(i))+1)/2;
+                    reOrder=reOrder-(contain(i)-(predict(i)+order(i))+1)/2;
                 end
             end
         end
@@ -166,9 +175,9 @@ num_node=81;
         if (shutPop(start(i))==0 || shutPush(term(i))==0)
             continue
         end
-        node=start(edge(i));%取出N1中的点
+        node=start(i);%取出N1中的点
         runningPop(node)=runningPop(node)+predict(i)+order(i);
-        node=term(edge(i));%取出N3中的点
+        node=term(i);%取出N3中的点
         runningPush(node)=runningPush(node)+predict(i)+order(i);
         clear node
     end
@@ -210,10 +219,12 @@ num_node=81;
             clear node take
         end
     end
+
     %%退火,order为分配方案
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    begin_heat=1000;
-    end_heat=1;
+    order=Clean(order);
+    begin_heat=10;
+    end_heat=0.1;
     Heat=begin_heat;
     Rate=0.9;
     MarkovLength=100;
@@ -223,14 +234,14 @@ num_node=81;
     changed=Effected(totalPredict,order,index);
     Res=CalcGoal(changed,totalContain,totalLen);
     for Layer=1:MarkovLength
-        upFlow=Generate(predict,contain,start,term,order);
-        while (CheckValid(order+upFlow)==0)
-            upFlow=Generate(predict,contain,start,term,order);
+        upFlow=Generate(predict,contain,order);
+        while (upFlow(1)==-1 || CheckValid(order+upFlow,start,term,maxPop,maxPush,contain)==0)
+            upFlow=Generate(predict,contain,order);
         end
         changed=Effected(totalPredict,order+upFlow,index);
         tmp_Res=CalcGoal(changed,totalContain,totalLen);
         cost=tmp_Res-Res;
-        if (cost<0 || exp(-cost/heat)>rand)
+        if (cost<0 || exp(-cost/Heat)>rand)
             order=order+upFlow;
             Res=tmp_Res;
         end
@@ -239,6 +250,7 @@ num_node=81;
             break
         end
     end
+    result=Res;
 end
 
 function rate=CalcPort(total,running)
@@ -251,7 +263,7 @@ function valid=CheckValid(runningFlow,start,term,maxPop,maxPush,edgeContain)
     runningPop=zeros(1,num);
     runningPush=zeros(1,num);
     for i=1:len
-        if (running(i)>edgeContain(i))
+        if (runningFlow(i)>edgeContain(i))
             valid=0;
             return
         end
@@ -272,12 +284,16 @@ function valid=CheckValid(runningFlow,start,term,maxPop,maxPush,edgeContain)
     end
 end
 function upFlow=Generate(predict,contain,res)
-    rng('shuffle');
+    res=res';
     running=predict+res;%在当前分配方案下的流量
+    running=Clean(running);
     n=length(running);
     release=contain-running;
+    release=Clean(release);
     if (~isempty(find(release < 0)))
-        err("分配了大于线路容量的流量");
+        upFlow=-ones(1,n);
+        return;
+        %error("分配了大于线路容量的流量");
     end
     [sorted_release,ind_sort]=sort(release);
     shake=0;
@@ -299,10 +315,11 @@ function upFlow=Generate(predict,contain,res)
             break
         end
         take=shake*0.2;
-        if (res(ind_sort(p))+upFlow(ind_sort(p))-take>0)%能够被调节
-            upFlow(ind_sort(p))=upFlow(ind_sort(p))-take;
-            shake=shake-take;
+        while (res(ind_sort(p))+upFlow(ind_sort(p))-take<=0)%不能够被调节
+            take=take*0.8;
         end
+        upFlow(ind_sort(p))=upFlow(ind_sort(p))-take;
+        shake=shake-take;
         p=mod(p,n)+1;
     end
     while(shake<0)
@@ -320,9 +337,10 @@ function upFlow=Generate(predict,contain,res)
     end
 end
 function Res=Effected(raw,var,index)
-    len=length(index);
+    len=length(var);
+    ind=find(index==1);
     for i=1:len
-        raw(index(i))=raw(index(i))+var(i);
+        raw(ind(i))=raw(ind(i))+var(i);
     end
     Res=raw;
 end
@@ -332,5 +350,9 @@ end
 function Res=CalcGoal(running,contain,totalLen)
     loading=CalcLoad(contain,running);
     Average=sum(loading)/totalLen;
-    Res=sum((loading-Average)^2)/totalLen;
+    Res=sum((loading-Average).^2)/totalLen;
+    Res=1/Res;
+end
+function Res=Clean(raw)
+    Res=fix(raw);
 end
