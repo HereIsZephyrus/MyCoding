@@ -28,7 +28,7 @@ for node=1:length(N{1})
 end
 N3=N3(N3~=5);
 N{3}=unique(N3);
-E{3}=E{3}(find(Time_end(E{3})~=5)');
+E{3}=find(Time_end(E{3})~=5)';
 clear node edge N3
 
 %% Node4DC5右节点的左节点
@@ -41,7 +41,7 @@ for node=1:length(N{2})
 end
 N4=N4(N4~=5);
 N{4}=unique(N4);
-E{4}=E{4}(find(Time_start(E{4})~=5)');
+E{4}=find(Time_start(E{4})~=5)';
 clear node edge N4
 %% clear
 %delete(p);

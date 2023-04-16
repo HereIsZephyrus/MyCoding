@@ -1,7 +1,6 @@
 clc;clear;close all;
-load PredictCate9.mat
-load PredictFlows9.mat
-load cateNode9.mat
+load PredictFlows9total.mat
+load cateNode9total.mat
 load Series.mat
 
 Status=cell(1,4);
@@ -10,6 +9,9 @@ figure(3);
 for cate=1:4   
     node=N{cate};
     edge=E{cate};
+    if (isempty(edge))
+        break
+    end
     start=Time_start(edge);
     term=Time_end(edge);
     predict=PredictFlows{cate};
@@ -21,7 +23,7 @@ for cate=1:4
         contain(i)=max(Time_var(edge(i),:));
         plot(datetime(2023,1,1:31),predict(i,:));
     end
-    xlim([datetime("2023-01-01") datetime("2023-01-31")]);
+    %xlim([datetime("2023-01-01"),datetime("2023-01-31")]);
     ylabel("货量");
     title(str{cate});
     hold off
@@ -30,5 +32,5 @@ for cate=1:4
     writetable(tbl,"FlowsPredict9.xlsx",'sheet',num2str(cate));
     clear node edge start term n contain
 end
-save("StatusAmong9.mat",'Status');
+save("StatusAmong9total.mat",'Status');
 clear cate

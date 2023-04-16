@@ -11,7 +11,7 @@ E=cell(1,4);
 %% Node1DC9左节点
 %N{1}=Time_start(E{1})';
 E{1}=find(Time_end==9)';
-E{1}=intersect(E{1},Normal_edge);
+%E{1}=intersect(E{1},Normal_edge);
 N{1}=Time_start(E{1})';
 %% Node2DC9右节点
 %N{2}=Time_end(E{2})';
@@ -28,7 +28,7 @@ for node=1:length(N{1})
 end
 N3=N3(N3~=9);
 N{3}=unique(N3);
-E{3}=E{3}(find(Time_end(E{3})~=9)');
+E{3}=find(Time_end(E{3})~=9)';
 clear node edge N3
 
 %% Node4DC9右节点的左节点
@@ -41,7 +41,7 @@ for node=1:length(N{2})
 end
 N4=N4(N4~=9);
 N{4}=unique(N4);
-E{4}=E{4}(find(Time_start(E{4})~=9)');
+E{4}=find(Time_start(E{4})~=9)';
 clear node edge N4
 %% clear
 %delete(p);

@@ -17,11 +17,11 @@ for i=1:4
 end
 clear i
 grid on
-legend("DC5左节点","DC5右节点","左节点的右节点","右节点的左节点");
+legend("DC9左节点","DC9右节点","左节点的右节点","右节点的左节点");
 %xlim([datetime("2022-11-1") datetime("2022-12-31")]);
 ylabel("货量");
 set(gca,'yscale','log');
-title("DC5最近二月的货物流量");
+title("DC9最近二月的货物流量");
 save("FlowsAmong9.mat","Flows");
 hold off
 

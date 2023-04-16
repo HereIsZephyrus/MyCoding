@@ -118,5 +118,5 @@ function superior=Choose2023(A,B,C,day)
         sequenceVal(j)=sequenceVal(j)*(1/chosen);
     end
     [~,ind2]=sort(sequenceVal,'descend');         %选择
-    superior=Merge(ind2(1:20),:); 
+    superior=Merge(ind2(1:40),:); 
 end

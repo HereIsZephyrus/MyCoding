@@ -4,7 +4,7 @@ load maxVolume.mat
 delete(gcp('nocreate'));
 %最后一位是值的大小
 P=parpool(12);
-Population=20;
+Population=40;
 Generation=200;
 edge=Status{4}(:,1);
 EncodingLength=length(edge)+1;
@@ -48,10 +48,10 @@ function Genes=GenerateParental2023(Population,EncodingLength,day)
     Genes=zeros(Population,EncodingLength);
     for p=1:Population
         Sequence=(rand(1,EncodingLength-1)<=0.7);  %生成个体基因序列
-        [~,value,overflow]=SAforOrderIN5(Sequence,day);
+        [~,value,overflow]=SAforOrderOUT5(Sequence,day);
         while (overflow==1)%不能存活的个体
             Sequence=(rand(1,EncodingLength-1)<=0.7);  %生成个体基因序列
-            [~,value,overflow]=SAforOrderIN5(Sequence,day);
+            [~,value,overflow]=SAforOrderOUT5(Sequence,day);
         end
         Genes(p,:)=[Sequence,value];     %产生个体  
     end
@@ -107,19 +107,16 @@ end
 function superior=Choose2023(A,B,C,day)
     %遗传算法选择优秀基因型作为新的亲本
     %A,B,C分别为待选择的基因型
-    Merge=[A;B;C];
+    Merge=[A;B;C];  
     [Total,EncodingLength]=size(Merge);
     %EncodingLength=EncodingLength-1;
     %[~,ind1]=sort(Merge,2);       %整合三个种群
     sequenceVal=Merge(:,EncodingLength);
-    %{
     for j=1:Total
         Sequence=Merge(j,:);
         chosen=nnz(Sequence);
-        [~,tmp,~]=SAforOrderIN5(Sequence,day);
-        val(j)=tmp*(1/chosen);
+        sequenceVal(j)=sequenceVal(j)*(1/chosen);
     end
-    %}
     [~,ind2]=sort(sequenceVal,'descend');         %选择
-    superior=Merge(ind2(1:20),:); 
+    superior=Merge(ind2(1:40),:); 
 end

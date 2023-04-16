@@ -235,8 +235,14 @@ function [order,result,overFlow]=SAforOrderOUT5(index,day)
     Res=CalcGoal(changed,totalContain,totalLen);
     for Layer=1:MarkovLength
         upFlow=Generate(predict,contain,order);
+        tentative=1;%转移试探次数
         while (upFlow(1)==-1 || CheckValid(order+upFlow,start,term,maxPop,maxPush,contain)==0)
             upFlow=Generate(predict,contain,order);
+            tentative=tentative+1;
+            if (tentative>1000)
+                result=Res;
+                return
+            end
         end
         changed=Effected(totalPredict,order+upFlow,local);
         tmp_Res=CalcGoal(changed,totalContain,totalLen);
@@ -317,6 +323,10 @@ function upFlow=Generate(predict,contain,res)
         take=shake*0.2;
         while (res(ind_sort(p))+upFlow(ind_sort(p))-take<=0)%不能够被调节
             take=take*0.8;
+            if (take<1)
+                overFlow=1;
+                return
+            end
         end
         upFlow(ind_sort(p))=upFlow(ind_sort(p))-take;
         shake=shake-take;
