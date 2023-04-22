@@ -49,6 +49,7 @@
         "xloctime": "cpp",
         "xstddef": "cpp",
         "xtr1common": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "fstream": "cpp"
     }
 }
