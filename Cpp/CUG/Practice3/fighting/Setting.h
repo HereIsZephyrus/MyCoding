@@ -16,6 +16,8 @@
 constexpr int MAX_MONSTER_TYPES=3;
 constexpr int MAX_POTION_TYPES=4;
 constexpr int MAX_POTION_SIZES=3;
+
+class Potion;
 class Document{
 private:
     std::string name;
@@ -38,13 +40,13 @@ public:
     void Lose(){ // 失败后更新战绩
         ++loseCount;
     }
-    std::string getName(){
+    std::string getName() const{
         return name;
     }
-    int getWinCount(){
+    int getWinCount() const{
         return winCount;
     }
-    int getGold(){
+    int getGold() const{
         return gold;
     }
 };
@@ -58,7 +60,7 @@ class Creature{
         Creature()=delete;
         Creature(std::string Name,int Health,int Money,int Attack):name{Name},health{Health},money{Money},damage{Attack}{}
         ~Creature(){}
-        void display(){
+        void display() const{
             std::cout << "Name:" << name << std::endl;
             std::cout << "Health:" << health << std::endl;
             std::cout << "Money:" << money << std::endl;
@@ -72,19 +74,19 @@ class Creature{
             else
                 std::cout<<target.name<<" has "<<target.health<<" health left."<<std::endl;
         }
-        bool alive(){
+        bool alive() const{
             return health>0;
         }
-        int Contain(){
+        int Contain() const{
             return money;
         }
-        int getAttack(){
+        int getAttack() const{
             return damage;
         }
-        int getHealth(){
+        int getHealth() const{
             return health;
         }
-        std::string getName(){
+        std::string getName() const{
             return name;
         }
 };
@@ -96,7 +98,7 @@ class Monster: public Creature{
             SLIME,
             MONSTER_TYPES=MAX_MONSTER_TYPES
         };
-        constexpr static std::string typeString[MAX_MONSTER_TYPES]{"dragon", "orc", "slime"};
+        static const std::string typeString[];
     private:
         constexpr static int typeHealth[MAX_MONSTER_TYPES]{20,4,1};
         constexpr static int typeMoney[MAX_MONSTER_TYPES]{100,25,10};
@@ -132,11 +134,11 @@ class Player: public Creature{
         void Fatch(int goldFetch){//获取金币
             money+=goldFetch;
         }
-        void wastedStatus(){
+        void wastedStatus() const{
             std::cout << "You died at level " << level << " and with "<<money<< " gold." << std::endl;
             std::cout << "Too bad you can't take it with you!" << std::endl;
         }
-        int getLevel(){//获取等级
+        int getLevel() const{//获取等级
             return level;
         }
         void LevelUp(){//升级
@@ -150,11 +152,8 @@ class Player: public Creature{
         void effectAttack(int value){
             damage+=value;
         }
-        void is_recognized(int typeind){
-            if (recognize[typeind] == true)
-                std::cout << "You recognize this potion as a " << Potion::typeString[typeind] << " potion." << std::endl;
-            else
-                std::cout << "But you don't recognize this potion." << std::endl;
+        bool is_recognized(int typeind) const{
+            return recognize[typeind];
         }
         void RecognizePotion(int typeind){
             recognize[typeind]=true;
@@ -176,12 +175,12 @@ class Potion{
             LARGE,
             POTION_SIZES=MAX_POTION_SIZES
         };
-        constexpr static std::string typeString[MAX_POTION_TYPES]{"health", "strength", "poison", "weakness"};
-        constexpr static std::string sizeString[MAX_POTION_SIZES]{"small", "medium", "large"};
+        static const std::string typeString[];
+        static const std::string sizeString[];
 
     private:
-        constexpr static std::string forward_typeEffect[MAX_POTION_TYPES]{ "heals for", "boosts your attack for", "poisons you for","weakens you for"};
-        constexpr static std::string backward_typeEffect[MAX_POTION_TYPES]{ "HP", "damage", "HP","damage" };
+        static const std::string forward_typeEffect[];
+        static const std::string backward_typeEffect[];
         constexpr static char typeSymbol[MAX_POTION_TYPES]{ 'H', 'S', 'P', 'W' };
         constexpr static int effectMedium[MAX_POTION_TYPES]{ 2, 1, -1,-1 };
         constexpr static int effectLarge[MAX_POTION_TYPES]{ 5, 2, -2,-2 };
@@ -266,10 +265,19 @@ class Potion{
                     break;
             }
         }
-        int indexType(){
+        int indexType() const{
             return type;
         }
-        std::string getSize(){
+        std::string getSize() const{
             return sizeString[type];
         }
+        std::string getType() const{
+            return typeString[type];
+        }
 };
+
+const std::string Monster::typeString[MAX_MONSTER_TYPES]{"dragon", "orc", "slime"};
+const std::string Potion::typeString[MAX_POTION_TYPES]{"health", "strength", "poison", "weakness"};
+const std::string Potion::sizeString[MAX_POTION_SIZES]{"small", "medium", "large"};
+const std::string Potion::forward_typeEffect[MAX_POTION_TYPES]{" heal ", " increase your attack by ", " poison you for ", " decrease your attack by "};
+const std::string Potion::backward_typeEffect[MAX_POTION_TYPES]{" health.", " points.", " points.", " points."};

@@ -78,9 +78,12 @@ int main(){
                 if (rand()%3<=1){
                     Potion potion;
                     std::cout << "You found a "<<potion.getSize()<<" Potion!" << std::endl;
-                    player.is_recognized(potion.indexType());//玩家能否识别药水
+                    if (player.is_recognized(potion.indexType()))//玩家能否识别药水
+                        std::cout << "It is a !"<<potion.getType() << std::endl;
+                    else
+                        std::cout << "But you don't know what is it...Have a try?" << std::endl;
                     Sleep(SLEEPTIME);
-                    std::cout << "Do you want to Drink it?(Y/N)" << std::endl;
+                    std::cout << "Do you want to Drink it?(Y/N)";
                     char choice=getChoice();
                     if (choice=='Y'){
                         player.RecognizePotion(potion.indexType());//玩家识别药水类型
