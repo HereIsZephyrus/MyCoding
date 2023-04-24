@@ -10,8 +10,6 @@ void Guidance();//游戏引导
 void Background();//游戏背景
 std::string getName();//获取玩家姓名
 char getChoice();//获取玩家选择
-Monster finalBoss("Alsace",1000,1000,1000);//最终boss，用于生成静态成员（说不定会出现）
-//auto p = finalBoss.getRandomMonster(); // 试图解决一个奇怪的BUG
 int main(){
     srand((unsigned)time(NULL));//随机种子
     std::vector<Document> players;//玩家注册列表
@@ -77,6 +75,19 @@ int main(){
             if (!isFled && player.alive()){//如果玩家没有逃跑且存活
                 player.LevelUp();//玩家升级
                 player.Fatch(monster.Contain());//玩家获得怪物掉落金币
+                if (rand()%3<=1){
+                    Potion potion;
+                    std::cout << "You found a "<<potion.getSize()<<" Potion!" << std::endl;
+                    player.is_recognized(potion.indexType());//玩家能否识别药水
+                    Sleep(SLEEPTIME);
+                    std::cout << "Do you want to Drink it?(Y/N)" << std::endl;
+                    char choice=getChoice();
+                    if (choice=='Y'){
+                        player.RecognizePotion(potion.indexType());//玩家识别药水类型
+                        potion.Drinked(player);
+                        Sleep(SLEEPTIME);
+                    }
+                }
                 Sleep(SLEEPTIME);
             }
         }
@@ -128,7 +139,7 @@ char getChoice(){
     char choice;
     choice=getchar();
     choice = toupper(choice);
-    while (choice!='R' && choice!='F')
+    while (choice!='R' && choice!='F' && choice!='Y' && choice!='N')
         choice = getchar();
     return choice;
 }
