@@ -10,6 +10,7 @@
  */
 #pragma once
 #include<string>
+#include<cstring>
 #include<iostream>
 
 constexpr int MAX_MONSTER_TYPES=3;
