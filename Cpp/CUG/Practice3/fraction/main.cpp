@@ -2,6 +2,16 @@
  * @Author: ChanningTong Channing_TongCN@outlook.com
  * @Date: 2023-04-22 17:47:49
  * @LastEditors: ChanningTong Channing_TongCN@outlook.com
+ * @LastEditTime: 2023-04-29 14:17:30
+ * @FilePath: \fraction\main.cpp
+ * @Description:
+ * @
+ * @Copyright (c) 2023 by ChanningTong, All Rights Reserved.
+ */
+/***
+ * @Author: ChanningTong Channing_TongCN@outlook.com
+ * @Date: 2023-04-22 17:47:49
+ * @LastEditors: ChanningTong Channing_TongCN@outlook.com
  * @LastEditTime: 2023-04-22 17:47:59
  * @FilePath: \Practice3\fraction\main.cpp
  * @Description:

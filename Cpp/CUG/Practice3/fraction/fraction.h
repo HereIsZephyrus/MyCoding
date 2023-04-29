@@ -78,68 +78,45 @@ class fraction{
             return Res;
         }
 
-        friend fraction operator+(const double &d,const fraction &f){
-            fraction tmp(d );
+        template <typename Num>//使用模板类简化重载，但是在每一个operator前都要申明(模板函数)
+        friend fraction operator+(const Num &d, const fraction &f){
+            fraction tmp(d);
             return tmp + f;
         }
-        friend fraction operator-(const double &d,const fraction &f){
+        template <typename Num>
+        friend fraction operator-(const Num &d,const fraction &f){
             fraction tmp(d );
             return tmp - f;
         }
-        friend fraction operator*(const double &d,const fraction &f){
+        template <typename Num>
+        friend fraction operator*(const Num &d,const fraction &f){
             fraction tmp(d );
             return tmp * f;
         }
-        friend fraction operator/(const double &d,const fraction &f){
+        template <typename Num>
+        friend fraction operator/(const Num &d,const fraction &f){
             fraction tmp(d );
             return tmp / f;
         }
-        friend fraction operator+(const int &d,const fraction &f){
-            fraction tmp(d, 1);
-            return tmp + f;
-        }
-        friend fraction operator-(const int &d,const fraction &f){
-            fraction tmp(d, 1);
-            return tmp - f;
-        }
-        friend fraction operator*(const int &d,const fraction &f){
-            fraction tmp(d, 1);
-            return tmp * f;
-        }
-        friend fraction operator/(const int &d,const fraction &f){
-            fraction tmp(d, 1);
-            return tmp / f;
-        }
-        friend fraction operator+(const fraction &f,const double &d){
+
+        template <typename Num>
+        friend fraction operator+(const fraction &f, const Num &d){
             fraction tmp(d);
-            return tmp + f;
+            return f + tmp;
         }
-        friend fraction operator-(const fraction &f,const double &d){
+        template <typename Num>
+        friend fraction operator-(const fraction &f,const Num &d){
             fraction tmp(d);
             return f-tmp;
         }
-        friend fraction operator*(const fraction &f,const double &d){
+        template <typename Num>
+        friend fraction operator*(const fraction &f,const Num &d){
             fraction tmp(d);
             return tmp * f;
         }
-        friend fraction operator/(const fraction &f,const double &d){
+        template <typename Num>
+        friend fraction operator/(const fraction &f,const Num &d){
             fraction tmp(d);
-            return f/tmp;
-        }
-        friend fraction operator+(const fraction &f,const int &d){
-            fraction tmp(d, 1);
-            return tmp + f;
-        }
-        friend fraction operator-(const fraction &f,const int &d){
-            fraction tmp(d, 1);
-            return f-tmp;
-        }
-        friend fraction operator*(const fraction &f,const int &d){
-            fraction tmp(d, 1);
-            return tmp * f;
-        }
-        friend fraction operator/(const fraction &f,const int &d){
-            fraction tmp(d, 1);
             return f/tmp;
         }
 

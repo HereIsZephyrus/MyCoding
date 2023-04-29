@@ -51,11 +51,11 @@ public:
     }
 };
 class Creature{
-    protected:
+    protected://如果变量申明的顺序不同于构造顺序则编译器会抛出一个warning,记一笔
+        std::string name;
         int health;
         int money;
         int damage;
-        std::string name;
     public:
         Creature()=delete;
         Creature(std::string Name,int Health,int Money,int Attack):name{Name},health{Health},money{Money},damage{Attack}{}
@@ -112,7 +112,7 @@ class Monster: public Creature{
             money = typeMoney[tmpType];
             damage = typeAttack[tmpType];
         }
-        Monster(MonsterType type):Creature(typeString[type],typeHealth[type],typeMoney[type],typeAttack[type]){}
+        //Monster(MonsterType type):Creature(typeString[type],typeHealth[type],typeMoney[type],typeAttack[type]){}
         Monster(std::string Name, int Health, int Money, int Attack) : Creature(Name,Health,Money,Attack) {}
         static MonsterType getRandomMonster(){
             return static_cast<MonsterType>(rand() % MAX_MONSTER_TYPES);
@@ -130,6 +130,7 @@ class Player: public Creature{
         ~Player(){}
         Player operator =(const Player &player){//重载赋值运算符为移动赋值
             *this=std::move(player);
+            return *this;
         }
         void Fatch(int goldFetch){//获取金币
             money+=goldFetch;
@@ -220,6 +221,8 @@ class Potion{
                     std::cout << "It" << forward_typeEffect[type] << abs(effectLarge[type]) << backward_typeEffect[type] << std::endl;
                     Effect(type, size, player);
                     break;
+                default:
+                    break;
             }
         }
         void Effect(PotionType type,PotionSize size,Player &player){
@@ -235,6 +238,8 @@ class Potion{
                         case LARGE:
                             player.effectHeal(effectLarge[type]);
                             break;
+                        default:
+                            break;
                     }
                     break;
                 case STRENGTH:
@@ -247,6 +252,8 @@ class Potion{
                             break;
                         case LARGE:
                             player.effectAttack(effectLarge[type]);
+                            break;
+                        default:
                             break;
                     }
                     break;
@@ -261,7 +268,11 @@ class Potion{
                         case LARGE:
                             player.effectHeal(effectLarge[type]);
                             break;
+                        default:
+                            break;
                     }
+                    break;
+                default:
                     break;
             }
         }

@@ -16,13 +16,13 @@ int main(){
     Guidance();                   // 游戏引导
     std::string name=getName();//获取玩家姓名
     while (name!="quit"){//游戏主循环
-        int index=0;//玩家在注册列表中的位置
+        unsigned int index=0;//玩家在注册列表中的位置
         //system("pause");
         Player player(name);//创建玩家实例
         for (auto it=players.begin();it!=players.end();++it){//遍历注册列表
             if (it->getName()==name){
                 std::cout << "Welcome back,brave!Let's start again!" << std::endl;
-                int winCount=it->getWinCount(),gold=it->getGold();
+                //int winCount=it->getWinCount(),gold=it->getGold();
                 break;
             }
             ++index;
@@ -75,7 +75,7 @@ int main(){
             if (!isFled && player.alive()){//如果玩家没有逃跑且存活
                 player.LevelUp();//玩家升级
                 player.Fatch(monster.Contain());//玩家获得怪物掉落金币
-                if (rand()%3<=1){
+            /*    if (rand()%3<=1){
                     Potion potion;
                     std::cout << "You found a "<<potion.getSize()<<" Potion!" << std::endl;
                     if (player.is_recognized(potion.indexType()))//玩家能否识别药水
@@ -90,7 +90,7 @@ int main(){
                         potion.Drinked(player);
                         Sleep(SLEEPTIME);
                     }
-                }
+                }*/
                 Sleep(SLEEPTIME);
             }
         }
