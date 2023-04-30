@@ -14,13 +14,19 @@
 #include<assert.h>
 
 class MyString{
+private:
+    char *m_pstr = nullptr;
 public:
     explicit MyString(char* str): m_pstr(str) {};    //构造函数
     MyString(): m_pstr(){};      //构造函数
     ~MyString() {delete m_pstr;};    //析构函数
-    MyString operator=(MyString str){
+    MyString operator=(MyString str){//对字符串进行深拷贝
         delete m_pstr;
-        m_pstr = str.m_pstr;
+        unsigned int len = str.size();
+        char* tmp_str=new char [len];
+        for (int i=0;i <len; ++i)
+            tmp_str[i]=str.m_pstr[i];
+        m_pstr = tmp_str;
         return *this;
     }
     int* c_str() const{ // 返回字符串首地址
@@ -53,8 +59,6 @@ public:
         return *(p[index]);
     }*/
    friend std::ostream& operator << (std::ostream& os, const MyString& str);    //输出字符串
-private:
-    char*  m_pstr=nullptr;
 };
 
 int main(){
