@@ -77,6 +77,10 @@ public:
     std::string getWord() const{
         return word;
     }
+    friend std::ostream& operator<<(std::ostream& os, const Word& word){
+        os<<word.word<<'\t'<<word.explain<<'\t'<<partName[word.type]<<std::endl;
+        return os;
+    }
 };
 
 class Trie{

@@ -16,14 +16,19 @@ int main(){
     Trie* head=new Trie();
     static unsigned int numWords=0;
     std::ifstream fin("dictionary.txt");
+//    std::ofstream fout("dictionary.out");
     while (!fin.eof()){//read dictionary
         std::string s;
         std::getline(fin, s);
         Word word(s, numWords++);
         dict.push_back(word);
         head->insert(&word);
+//        fout<<word;
     }
     fin.close();
+//    fout.close();
+    std::cin.get();//clear the buffer
+    system("pause");
     std::cout<<"Welcome to the dictionary!\nPlease input the word that you want to quary(enterQUITto quit)"<<std::endl;
     std::string quary;
     std::cin>>quary;
@@ -33,5 +38,6 @@ int main(){
         else
             dict[index].Print();
     }
+    std::cin.get();//pause
     return 0;
 }

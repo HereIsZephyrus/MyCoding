@@ -28,9 +28,7 @@ class Student{
             os << "ID: " << id << "\tScore: " << score<<endl;
             return os;//输出流
         }
-        istream& read(istream& is)
-        {
-            float score;
+        istream& read(istream& is){
             cin>>this->id>>this->score;
             return is;//输入流
         }
@@ -44,13 +42,13 @@ Student lib[maxn];
 
 bool checkValid(char c);//检查输入是否为合法操作符
 char getOperation();//获取操作符,跳过空字符与非法操作符
-bool Delete(int loc,auto tail);//删除指定位置的元素,成功返回true,失败返回false
-float QueryMin(auto Begin,auto End);//查询最小值
-float QueryMax(auto Begin,auto End);//查询最大值
-float QueryAverage(auto Begin,auto End);//查询平均值
-float QueryTsquare(auto Begin,auto End);//查询方差
-void Savefile(string Filename,auto Begin,auto End);//保存数组内容至指定文件
-Student *Loadfile(string Filename,auto Begin);//从文件流读取信息
+bool Delete(int loc,Student* tail);//删除指定位置的元素,成功返回true,失败返回false
+float QueryMin(Student* Begin,Student* End);//查询最小值
+float QueryMax(Student* Begin,Student* End);//查询最大值
+float QueryAverage(Student* Begin,Student* End);//查询平均值
+float QueryTsquare(Student* Begin,Student* End);//查询方差
+void Savefile(string Filename,Student* Begin,Student* End);//保存数组内容至指定文件
+Student *Loadfile(string Filename,Student* Begin);//从文件流读取信息
 void readme();
 
 int main(){
@@ -63,7 +61,6 @@ int main(){
         switch (operation){
             case 'A':{//添加
                 cout<<"Please input the ID and score to Add:"<<endl;
-                float score;
                 p->read(cin);//从标准流读取信息
                 cout<<"Add successfully!"<<endl;
                 p++;//指针后移
@@ -80,7 +77,7 @@ int main(){
             }
             case 'L':{//列出数据库信息
                 cout << "The list is:" << endl;
-                for (auto m=lib;m!=p;m++) m->print(cout);//将信息输出至标准流
+                for (Student* m=lib;m!=p;++m) m->print(cout);//将信息输出至标准流
                 break;
             }
             case 'M':{//查询最小值
@@ -143,50 +140,50 @@ char getOperation(){//获取操作符,跳过空字符与非法操作符
         cin.get(operation);
     return toupper(operation);
 }
-bool Delete(int loc,auto tail){
-    auto m = lib;
-    while (m->id!=loc)    m++;
+bool Delete(int loc,Student* tail){
+    Student* m = lib;
+    while (m->id!=loc)    ++m;
     if (m-1==tail){//若未找到
         cout << "No such ID!" << endl;
         return false;
     }
-    for ( ;m!=tail;m++)    *m=*(m+1);//将后面的元素前移
+    for ( ;m!=tail;++m)    *m=*(m+1);//将后面的元素前移
     return true;
 }
-float QueryMin(auto Begin,auto End){
+float QueryMin(Student* Begin,Student* End){
     float Min = INF;
-    for (auto m=Begin;m!=End;m++)
+    for (Student* m=Begin;m!=End;++m)
         if (m->getScore()<Min) Min = m->getScore();
     return Min;
 }
-float QueryMax(auto Begin,auto End){
+float QueryMax(Student* Begin,Student* End){
     float Max = 0;
-    for (auto m=Begin;m!=End;m++)
+    for (Student* m=Begin;m!=End;++m)
         if (m->getScore()>Max) Max = m->getScore();
     return Max;
 }
-float QueryAverage(auto Begin,auto End){
+float QueryAverage(Student* Begin,Student* End){
     float sum = 0;
-    for (auto m=Begin;m!=End;m++)
+    for (Student* m=Begin;m!=End;++m)
         sum += m->getScore();
     return sum/(End-Begin);
 }
-float QueryTsquare(auto Begin,auto End){
+float QueryTsquare(Student* Begin,Student* End){
     float sum = 0;
     float average = QueryAverage(Begin,End);//计算平均值
-    for (auto m=Begin;m!=End;m++)
+    for (Student* m=Begin;m!=End;++m)
         sum += (m->getScore()-average)*(m->getScore()-average); //计算方差
     return sqrt(sum/(End-Begin));
 }
-void Savefile(string Filename,auto Begin,auto End){
+void Savefile(string Filename,Student* Begin,Student* End){
     ofstream fout(Filename);
-    for (auto m=Begin;m!=End;m++)
+    for (Student* m=Begin;m!=End;++m)
         m->print(fout);//将信息输出至文件流
     fout.close();
 }
-Student *Loadfile(string Filename,auto Begin){
+Student *Loadfile(string Filename,Student* Begin){
     ifstream fin(Filename);
-    auto m=Begin;
+    Student* m=Begin;
     while (!fin.eof())
         (++m)->read(fin);//从文件流读取信息
     fin.close();

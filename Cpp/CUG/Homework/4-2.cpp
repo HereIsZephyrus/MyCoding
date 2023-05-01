@@ -1,19 +1,19 @@
-/*** 
+/***
  * @Author: ChanningTong Channing_TongCN@outlook.com
  * @Date: 2023-03-25 20:25:20
  * @LastEditors: ChanningTong Channing_TongCN@outlook.com
  * @LastEditTime: 2023-03-26 13:11:45
  * @FilePath: \undefinedc:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\Homework\4-2.cpp
- * @Description: 
+ * @Description:
  * @
- * @Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
+ * @Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
  */
 #include<iostream>
 #include<cstring>
 #include<string>
 using namespace std;
- 
-const int maxn = 100;
+
+constexpr int maxn = 100;
 class Person{
     string name,adress;
     void clear(){name.clear(); adress.clear();}
@@ -29,7 +29,7 @@ class Person{
             is >> name >> adress;
             name=c+name;
             return is;
-        } 
+        }
 };
 void readme(){
     cout << "A [name] [address] - Add one person" << endl;
@@ -51,7 +51,7 @@ int main(){
     Person *p = Contacts;
     readme();
     cin.get(operation);
-    while (!checkValid(operation))  
+    while (!checkValid(operation))
         cin.get(operation);
     operation=toupper(operation);
     while (operation != 'X'){
