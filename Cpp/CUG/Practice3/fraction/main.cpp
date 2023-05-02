@@ -5,7 +5,7 @@
  * @LastEditTime: 2023-04-29 14:17:30
  * @FilePath: \fraction\main.cpp
  * @Description:
- * @
+ * @对分数类进行了重构
  * @Copyright (c) 2023 by ChanningTong, All Rights Reserved.
  */
 /***

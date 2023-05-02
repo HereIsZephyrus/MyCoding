@@ -14,9 +14,9 @@
 #include<string>
 #include<cstdio>
 #include<cmath>
+#include<vector>
 using namespace std;
 
-const int maxn = 10000;
 const float INF = 0xFFFF;
 class Student{
     float score;
@@ -32,28 +32,33 @@ class Student{
             cin>>this->id>>this->score;
             return is;//输入流
         }
+        friend ifstream& operator>>(ifstream& is,Student& b){
+            is>>b.id>>b.score;
+            return is;
+        }
         Student operator=(const Student &b){//重载赋值
             this->id=b.id;
             this->score=b.score;
             return *this;
         }
 };
-Student lib[maxn];
+//Student lib[maxn];
+std::vector<Student> lib;
 
 bool checkValid(char c);//检查输入是否为合法操作符
 char getOperation();//获取操作符,跳过空字符与非法操作符
-bool Delete(int loc,Student* tail);//删除指定位置的元素,成功返回true,失败返回false
-float QueryMin(Student* Begin,Student* End);//查询最小值
-float QueryMax(Student* Begin,Student* End);//查询最大值
-float QueryAverage(Student* Begin,Student* End);//查询平均值
-float QueryTsquare(Student* Begin,Student* End);//查询方差
-void Savefile(string Filename,Student* Begin,Student* End);//保存数组内容至指定文件
-Student *Loadfile(string Filename,Student* Begin);//从文件流读取信息
+bool Delete(int loc);//删除指定位置的元素,成功返回true,失败返回false
+float QueryMin();//查询最小值
+float QueryMax();//查询最大值
+float QueryAverage();//查询平均值
+float QueryTsquare();//查询方差
+void Savefile(string Filename);//保存数组内容至指定文件
+void Loadfile(string Filename);         // 从文件流读取信息
 void readme();
 
 int main(){
     char operation;
-    Student *p = lib;
+    std::vector<Student>::iterator p = lib.begin();
 
     readme();//显示合法操作符信息
     operation=getOperation();
@@ -61,46 +66,49 @@ int main(){
         switch (operation){
             case 'A':{//添加
                 cout<<"Please input the ID and score to Add:"<<endl;
-                p->read(cin);//从标准流读取信息
+                Student temp;
+                temp.Student::read(cin);//从标准流读取信息
+                lib.push_back(temp);//从标准流读取信息
                 cout<<"Add successfully!"<<endl;
-                p++;//指针后移
+                //++p;//指针后移
                 break;
             }
             case 'D':{//删除
                 cout<<"Please input the ID to Del:"<<endl;
                 int loc;
                 cin>>loc;
-                if (Delete(loc,p))    p--;//若删除成功则指针回退
-                else    cout<<"Delete failed!"<<endl;
-                cout<<"Delete successfully!"<<endl;
+                if (!Delete(loc))
+                    cout<<"Delete failed!"<<endl;
+                else
+                    cout<<"Delete successfully!"<<endl;
                 break;
             }
             case 'L':{//列出数据库信息
                 cout << "The list is:" << endl;
-                for (Student* m=lib;m!=p;++m) m->print(cout);//将信息输出至标准流
+                for (std::vector<Student>::iterator m=lib.begin();m!=lib.end();++m) (*m).Student::print(cout);//将信息输出至标准流
                 break;
             }
             case 'M':{//查询最小值
-                cout << "The minimum score is " << QueryMin(lib,p) << endl;
+                cout << "The minimum score is " << QueryMin() << endl;
                 break;
             }
             case 'N':{//查询平均值
-                cout << "The average score is " << QueryAverage(lib,p) << endl;
+                cout << "The average score is " << QueryAverage() << endl;
                 break;
             }
             case 'P':{//查询最大值
-                cout << "The maximum score is " << QueryMax(lib,p) << endl;
+                cout << "The maximum score is " << QueryMax() << endl;
                 break;
             }
             case 'T':{//查询方差
-                cout << "The standard deviation is " << QueryTsquare(lib,p) << endl;
+                cout << "The standard deviation is " << QueryTsquare() << endl;
                 break;
             }
             case 'S':{//保存数组内容至指定文件
                 string Filename;
                 cout << "Please input the filename to save:(including the path and extension)" << endl;
                 cin >> Filename;
-                Savefile(Filename,lib,p);
+                Savefile(Filename);
                 cout<<"Save successfully!"<<endl;
                 break;
             }
@@ -108,7 +116,7 @@ int main(){
                 string Filename;
                 cout << "Please input the filename to open:(including the path and extension)" << endl;
                 cin >> Filename;
-                p=Loadfile(Filename,p);
+                Loadfile(Filename);
                 cout<<"Load successfully!"<<endl;
                 break;
             }
@@ -140,54 +148,56 @@ char getOperation(){//获取操作符,跳过空字符与非法操作符
         cin.get(operation);
     return toupper(operation);
 }
-bool Delete(int loc,Student* tail){
-    Student* m = lib;
-    while (m->id!=loc)    ++m;
-    if (m-1==tail){//若未找到
-        cout << "No such ID!" << endl;
-        return false;
-    }
-    for ( ;m!=tail;++m)    *m=*(m+1);//将后面的元素前移
-    return true;
+bool Delete(int loc){
+    for (std::vector<Student>::const_iterator m = lib.begin(); m!=lib.end(); ++m)
+        if ((*m).id == loc){
+            lib.erase(m);
+            return true;
+        }
+    return false;
 }
-float QueryMin(Student* Begin,Student* End){
+float QueryMin(){
     float Min = INF;
-    for (Student* m=Begin;m!=End;++m)
+    for (std::vector<Student>::iterator m=lib.begin();m!=lib.end();++m)
         if (m->getScore()<Min) Min = m->getScore();
     return Min;
 }
-float QueryMax(Student* Begin,Student* End){
+float QueryMax(){
     float Max = 0;
-    for (Student* m=Begin;m!=End;++m)
+    for (std::vector<Student>::iterator m=lib.begin();m!=lib.end();++m)
         if (m->getScore()>Max) Max = m->getScore();
     return Max;
 }
-float QueryAverage(Student* Begin,Student* End){
+float QueryAverage(){
     float sum = 0;
-    for (Student* m=Begin;m!=End;++m)
+    for (std::vector<Student>::iterator m=lib.begin();m!=lib.end();++m)
         sum += m->getScore();
-    return sum/(End-Begin);
+    return sum/(lib.end()-lib.begin());
 }
-float QueryTsquare(Student* Begin,Student* End){
+float QueryTsquare(){
     float sum = 0;
-    float average = QueryAverage(Begin,End);//计算平均值
-    for (Student* m=Begin;m!=End;++m)
+    float average = QueryAverage();//计算平均值
+    for (std::vector<Student>::iterator m=lib.begin();m!=lib.end();++m)
         sum += (m->getScore()-average)*(m->getScore()-average); //计算方差
-    return sqrt(sum/(End-Begin));
+    return sqrt(sum/(lib.end()-lib.begin()));
 }
-void Savefile(string Filename,Student* Begin,Student* End){
+void Savefile(string Filename){
     ofstream fout(Filename);
-    for (Student* m=Begin;m!=End;++m)
+    for (std::vector<Student>::iterator m=lib.begin();m!=lib.end();++m)
         m->print(fout);//将信息输出至文件流
     fout.close();
+    return;
 }
-Student *Loadfile(string Filename,Student* Begin){
+void Loadfile(string Filename){
     ifstream fin(Filename);
-    Student* m=Begin;
-    while (!fin.eof())
-        (++m)->read(fin);//从文件流读取信息
+    std::vector<Student>::iterator m=lib.end();
+    while (!fin.eof()){
+        Student temp;
+        temp.Student::read(cin); // 从标准流读取信息
+        lib.push_back(temp);     // 从标准流读取信息
+    }
     fin.close();
-    return m;
+    return;
 }
 
 void readme(){
