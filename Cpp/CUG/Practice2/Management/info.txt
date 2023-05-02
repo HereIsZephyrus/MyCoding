@@ -1,0 +1,3 @@
+ID: 1	Score: 10
+ID: 2	Score: 20
+ID: 6	Score: 60

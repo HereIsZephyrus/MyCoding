@@ -24,12 +24,12 @@ class Student{
         int id;
         Student(int id=0,float score=0):id(id),score(score){}
         float getScore(){return score;}
-        ostream& print(ostream& os){
+        ostream& print(ostream& os) const{
             os << "ID: " << id << "\tScore: " << score<<endl;
             return os;//输出流
         }
         istream& read(istream& is){
-            cin>>this->id>>this->score;
+            is>>this->id>>this->score;
             return is;//输入流
         }
         friend ifstream& operator>>(ifstream& is,Student& b){
@@ -42,9 +42,7 @@ class Student{
             return *this;
         }
 };
-//Student lib[maxn];
 std::vector<Student> lib;
-
 bool checkValid(char c);//检查输入是否为合法操作符
 char getOperation();//获取操作符,跳过空字符与非法操作符
 bool Delete(int loc);//删除指定位置的元素,成功返回true,失败返回false
@@ -182,20 +180,23 @@ float QueryTsquare(){
     return sqrt(sum/(lib.end()-lib.begin()));
 }
 void Savefile(string Filename){
-    ofstream fout(Filename);
+    ofstream fout;
+    fout.open(Filename);
     for (std::vector<Student>::iterator m=lib.begin();m!=lib.end();++m)
         m->print(fout);//将信息输出至文件流
     fout.close();
     return;
 }
 void Loadfile(string Filename){
-    ifstream fin(Filename);
-    std::vector<Student>::iterator m=lib.end();
-    while (!fin.eof()){
+    ifstream fin;
+    fin.open(Filename);
+    do {
         Student temp;
-        temp.Student::read(cin); // 从标准流读取信息
-        lib.push_back(temp);     // 从标准流读取信息
-    }
+        temp.Student::read(fin);
+        if (fin.eof()) break;
+        temp.print(cout);
+        lib.push_back(temp);
+    }while (!fin.eof());
     fin.close();
     return;
 }

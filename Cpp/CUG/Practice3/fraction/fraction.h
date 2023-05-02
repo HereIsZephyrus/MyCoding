@@ -33,9 +33,6 @@ class fraction{
                 Res.denominator *= 10;
             }
             Res.numerator = int(num);
-        //    std::cout << num << std::endl;
-        //    std::cout << Res.numerator<<'/'<< Res.denominator<< std::endl;
-        //    system("pause");
             return Res;
         } // 标准化(分子分母都为整数
     public:
@@ -78,7 +75,7 @@ class fraction{
             return Res;
         }
 
-        template <typename Num>//使用模板类简化重载，但是在每一个operator前都要申明(模板函数)
+        template <typename Num>//使用模板类简化重载
         friend fraction operator+(const Num &d, const fraction &f){
             fraction tmp(d);
             return tmp + f;

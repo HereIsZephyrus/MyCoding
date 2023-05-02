@@ -24,8 +24,6 @@ static int flag=1;//正负号标记
 long long Solve(string expr){
     stack<long long> Num;//存储数字
     stack<char> Op;     //存储运算符
-//    cout<<"ddd"<<endl;
-//    system("pause");
     auto p = expr.begin();
     while (p != expr.end()){//遍历
         //cout<<"ddd "<<*p<<endl;
@@ -35,8 +33,6 @@ long long Solve(string expr){
                 res=res*10+*p-'0';
                 p++;
             }//提取数字
-        //    cout << res*flag  <<endl;
-        //    system("pause");
             Num.push(res*flag);//压入数字栈
             flag=1;
             continue;
@@ -45,8 +41,6 @@ long long Solve(string expr){
         if (Front_Bracket(*p)){
             Op.push(*p);
             p++;
-        //    cout<<"front"<<endl;
-        //    system("pause");
             continue;
         }
 
@@ -69,8 +63,6 @@ long long Solve(string expr){
             }
             Op.pop();//弹出左括号
             p++;
-        //    cout<<"back"<<endl;
-        //    system("pause");
             continue;
         }
 
@@ -80,16 +72,11 @@ long long Solve(string expr){
                 if (*p == '-')  flag=-1;
                 if (*p == '+')  flag=1;
                 p++;
-        //        cout<<"flag"<<endl;
-        //        system("pause");
                 continue;
             }
         }
 
         int tmp_Priority =Priority[*p];//得到当前运算符的优先级
-        //cout<<Op.top()<<endl;
-        //cout << tmp_Priority << endl;
-        //system("pause");
         while (!Op.empty() && !Front_Bracket(Op.top())&& Priority[Op.top()]<tmp_Priority){
             //符号栈不为空且栈顶优先级高(小)于当前优先级
             char top_Op=Op.top();//取出栈顶运算符
@@ -115,7 +102,7 @@ long long Solve(string expr){
 
 int main(){
     cin>>Expr;
-    while (!(Expr.length()==1 && Expr[0]=='0')){
+    while (!(Expr.length()==1 && Expr[0]=='#')){
         Expr='('+Expr+')';//在表达式两端加上括号用于简化处理
         if (!Valid(Expr))
             cout<<"It is not a valid expression!"<<endl;
