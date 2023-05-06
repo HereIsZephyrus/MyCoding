@@ -1,0 +1,43 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "intelliSenseMode": "windows-gcc-x64",
+            "includePath": [
+                "${workspaceFolder}",
+                "C:\\Program Files\\CodeBlocks\\MinGW\\include",
+                "C:\\Program Files\\CodeBlocks\\MinGW\\x86_64-w64-mingw32\\include",
+                "C:\\Program Files\\CodeBlocks\\MinGW\\opt\\include",
+                "C:\\Program Files\\CodeBlocks\\MinGW\\opt\\lib\\libffi-3.2.1\\include",
+                "C:\\Program Files\\CodeBlocks\\MinGW\\lib\\gcc\\x86_64-w64-mingw32\\8.1.0\\include",
+                "C:\\Program Files\\CodeBlocks\\MinGW\\lib\\gcc\\x86_64-w64-mingw32\\8.1.0\\install-tools\\include",
+                "C:\\Program Files\\CodeBlocks\\MinGW\\lib\\gcc\\x86_64-w64-mingw32\\8.1.0\\include-fixed"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "__GNUC__=7",
+                "__cdecl=__attribute__((__cdecl__))"
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}",
+                    "C:\\Program Files\\CodeBlocks\\MinGW\\include",
+                    "C:\\Program Files\\CodeBlocks\\MinGW\\x86_64-w64-mingw32\\include",
+                    "C:\\Program Files\\CodeBlocks\\MinGW\\opt\\include",
+                    "C:\\Program Files\\CodeBlocks\\MinGW\\opt\\lib\\libffi-3.2.1\\include",
+                    "C:\\Program Files\\CodeBlocks\\MinGW\\lib\\gcc\\x86_64-w64-mingw32\\8.1.0\\include",
+                    "C:\\Program Files\\CodeBlocks\\MinGW\\lib\\gcc\\x86_64-w64-mingw32\\8.1.0\\install-tools\\include",
+                    "C:\\Program Files\\CodeBlocks\\MinGW\\lib\\gcc\\x86_64-w64-mingw32\\8.1.0\\include-fixed"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "compilerPath": "C:\\Program Files\\CodeBlocks\\MinGW\\bin\\g++.exe"
+        }
+    ],
+    "version": 4
+}
