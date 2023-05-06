@@ -52,7 +52,7 @@ public:
     std::string name{};
     Player() = default;
     Player(int money, std::string name) : money{money}, score{score}, bet{0},name{name} {}
-    int getScore() const{return score;}
+    //int getScore() const{return score;}
     int getMoney() const{return money;}
     void printInfo(){
         std::cout<<"Name:"<<name<<std::endl;
@@ -66,6 +66,7 @@ public:
     }
     void change(int Money){
         money+=Money;
+    //    std::cout<<"Money:$"<<money<<std::endl;
     }
 };
 inline void printCard(const Card &card);

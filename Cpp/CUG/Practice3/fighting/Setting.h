@@ -100,10 +100,10 @@ class Monster: public Creature{
         };
         static const std::string typeString[];
     private:
-        constexpr static int typeHealth[MAX_MONSTER_TYPES]{20,4,1};
-        constexpr static int typeMoney[MAX_MONSTER_TYPES]{100,25,10};
-        constexpr static int typeAttack[MAX_MONSTER_TYPES]{4,2,1};
-        constexpr static char typeSymbol[MAX_MONSTER_TYPES]{'D','O','S'};
+        static constexpr int typeHealth[MAX_MONSTER_TYPES]{20,4,1};
+        static constexpr int typeMoney[MAX_MONSTER_TYPES]{100,25,10};
+        static constexpr int typeAttack[MAX_MONSTER_TYPES]{4,2,1};
+        static constexpr char typeSymbol[MAX_MONSTER_TYPES]{'D','O','S'};
     public:
         Monster():Creature("Default",1,0,1){
             MonsterType tmpType = static_cast<MonsterType>(rand() % MAX_MONSTER_TYPES);
@@ -201,75 +201,76 @@ class Potion{
         }
         void Drinked(Player &player){
             switch (size){
-                case SMALL:
-                    std::cout<<"You drink a small "<<typeString[type]<<" potion."<<std::endl;
-                    if (rand() % 100 < effectProbability * 100){
-                        std::cout<<"It"<<forward_typeEffect[type]<<abs(effectMedium[type])<<backward_typeEffect[type]<<std::endl;
-                        Effect(type,size,player);
-                    }
-                    else
-                        std::cout<<"You don't feel it works."<<std::endl;
-                    break;
-                case MEDIUM:
-                    std::cout<<"You drink a medium "<<typeString[type]<<" potion."<<std::endl;
+            case PotionSize::SMALL:
+                std::cout << "You drink a small " << typeString[type] << " potion." << std::endl;
+                if (rand() % 100 < effectProbability * 100)
+                {
                     std::cout << "It" << forward_typeEffect[type] << abs(effectMedium[type]) << backward_typeEffect[type] << std::endl;
                     Effect(type, size, player);
-                    break;
-                case LARGE:
-                    std::cout<<"You drink a large "<<typeString[type]<<" potion."<<std::endl;
-                    std::cout << "You drink a medium " << typeString[type] << " potion." << std::endl;
-                    std::cout << "It" << forward_typeEffect[type] << abs(effectLarge[type]) << backward_typeEffect[type] << std::endl;
-                    Effect(type, size, player);
-                    break;
-                default:
-                    break;
+                }
+                else
+                    std::cout << "You don't feel it works." << std::endl;
+                break;
+            case PotionSize::MEDIUM:
+                std::cout << "You drink a medium " << typeString[type] << " potion." << std::endl;
+                std::cout << "It" << forward_typeEffect[type] << abs(effectMedium[type]) << backward_typeEffect[type] << std::endl;
+                Effect(type, size, player);
+                break;
+            case PotionSize::LARGE:
+                std::cout << "You drink a large " << typeString[type] << " potion." << std::endl;
+                std::cout << "You drink a medium " << typeString[type] << " potion." << std::endl;
+                std::cout << "It" << forward_typeEffect[type] << abs(effectLarge[type]) << backward_typeEffect[type] << std::endl;
+                Effect(type, size, player);
+                break;
+            default:
+                break;
             }
         }
         void Effect(PotionType type,PotionSize size,Player &player){
             switch (type){
-                case HEALTH:
+            case PotionType::HEALTH:
                     switch (size){
-                        case SMALL:
-                            player.effectHeal(effectMedium[type]);
-                            break;
-                        case MEDIUM:
-                            player.effectHeal(effectMedium[type]);
-                            break;
-                        case LARGE:
-                            player.effectHeal(effectLarge[type]);
-                            break;
-                        default:
-                            break;
+                    case PotionSize::SMALL:
+                    player.effectHeal(effectMedium[type]);
+                    break;
+                    case PotionSize::MEDIUM:
+                    player.effectHeal(effectMedium[type]);
+                    break;
+                    case PotionSize::LARGE:
+                    player.effectHeal(effectLarge[type]);
+                    break;
+                    default:
+                    break;
                     }
                     break;
-                case STRENGTH:
+            case PotionType::STRENGTH:
                     switch (size){
-                        case SMALL:
-                            player.effectAttack(effectMedium[type]);
-                            break;
-                        case MEDIUM:
-                            player.effectAttack(effectMedium[type]);
-                            break;
-                        case LARGE:
-                            player.effectAttack(effectLarge[type]);
-                            break;
-                        default:
-                            break;
+                    case PotionSize::SMALL:
+                    player.effectAttack(effectMedium[type]);
+                    break;
+                    case PotionSize::MEDIUM:
+                    player.effectAttack(effectMedium[type]);
+                    break;
+                    case PotionSize::LARGE:
+                    player.effectAttack(effectLarge[type]);
+                    break;
+                    default:
+                    break;
                     }
                     break;
-                case POISON:
+            case PotionType::POISON:
                     switch (size){
-                        case SMALL:
-                            player.effectHeal(effectMedium[type]);
-                            break;
-                        case MEDIUM:
-                            player.effectHeal(effectMedium[type]);
-                            break;
-                        case LARGE:
-                            player.effectHeal(effectLarge[type]);
-                            break;
-                        default:
-                            break;
+                    case PotionSize::SMALL:
+                    player.effectHeal(effectMedium[type]);
+                    break;
+                    case PotionSize::MEDIUM:
+                    player.effectHeal(effectMedium[type]);
+                    break;
+                    case PotionSize::LARGE:
+                    player.effectHeal(effectLarge[type]);
+                    break;
+                    default:
+                    break;
                     }
                     break;
                 default:

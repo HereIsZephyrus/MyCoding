@@ -8,7 +8,7 @@
 
 
 std::vector<Player> players;
-
+Player dealer{500, "ChanningTong"};
 int main(){
     static int playerNum{ 1 };
     std::cout<<"How many players? ";
@@ -30,17 +30,36 @@ int main(){
 
 inline void printCard(const Card& card){
     static const char cardNames[MAXRANKS]{ '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'};
-    static const char suitNames[MAXSUITS]{ 'C', 'D', 'H', 'S'};
-    std::cout << cardNames[static_cast<int>(card.rank)] << suitNames[static_cast<int>(card.suit)];
+    static const char* suitNames[MAXSUITS]{"Club", "Diamond", "Heart", "Spade"};
+    std::cout << suitNames[static_cast<int>(card.suit)] << cardNames[static_cast<int>(card.rank)] << std::endl;
 }
 
 inline int getCardValue(const Card& card){
-    return static_cast<int>(card.rank)+2;
+    printCard(card);
+    if (card.rank <= CardRank::rank_10)
+        return static_cast<int>(card.rank)+2;
+    if (card.rank <= CardRank::rank_king)
+        return 10;
+    std::cout<<"Ace is 1 or 11[Small(s)/Great(g)]? "<<std::endl;
+    char ch{};
+    std::cin>>ch;
+    while (true){
+        switch (ch){
+        case 's':
+            return 1;
+        case 'g':
+            return 11;
+        default:
+            std::cout << "Sorry, I don't understand that.\n";
+        }
+        std::cin>>ch;
+    }
+    return -1;
 }
 Card getCard(Index &index, Deck &deck){
     Card fetch=deck[index];
-    index++;
-    if (static_cast<int>(index)>52){
+    ++index;
+    if (static_cast<int>(index)>=52){
         index = static_cast<Index>(0);
         shuffleDeck(deck);
     }
@@ -129,9 +148,8 @@ bool dealerTurn(Deck& deck, Index& nextCardIndex, Player& dealer){
 }
 
 void getTable(int playerNum){
-    Player dealer{500, "ChanningTong"};
     dealer.printInfo();
-    players.push_back(dealer);
+    //players.push_back(dealer);
     for(int i=0;i<playerNum;++i){
         std::string name;
         int money;
@@ -144,86 +162,88 @@ void getTable(int playerNum){
 }
 
 void playOneRound(Deck& deck){
-    for(auto& player: players)
-        player.score = 0;
-    for (auto& player : players){
-        if (player.name != "ChanningTong"){
-            std::cout << player.name << ", you have $" << player.getMoney() << ".\n";
+    for (std::vector<Player>::iterator player = players.begin(); player != players.end(); ++player)
+        player->score = 0;
+    for (std::vector<Player>::iterator player = players.begin(); player != players.end(); ++player){
+        std::cout << player->name << ", you have $" << player->getMoney() << ".\n";
+        std::cout << "How much do you want to bet,"<<player->name<<"? ";
+        int bet{0};
+        std::cin >> bet;
+        while (bet > player->getMoney()){
+            std::cout << "You can't bet more than you have.\n";
             std::cout << "How much do you want to bet? ";
-            int bet{ 0 };
             std::cin >> bet;
-            while (bet > player.getMoney()){
-                std::cout << "You can't bet more than you have.\n";
-                std::cout << "How much do you want to bet? ";
-                std::cin >> bet;
-            }
-            //player.change(-bet);
-            player.bet = bet;
-            std::cout << '\n';
         }
+        // player.change(-bet);
+        player->bet = bet;
+        std::cout << '\n';
     }
     // Create the dealer and give them 1 card.
-    Player* dealer=&players[0];
-    dealer->score = getCardValue(getCard(nextCardIndex,deck));
-    std::cout << "The dealer is showing: " << dealer->score << '\n';
+    dealer.score = getCardValue(getCard(nextCardIndex,deck));
+    std::cout << "The dealer is showing: " << dealer.score << '\n';
     // Play the player's turn.
-    for (std::vector<Player>::iterator iter=players.begin()+1;iter!=players.end();++iter){
-        Player player=*iter;
+    for (std::vector<Player>::iterator player=players.begin();player!=players.end();++player){
+        //Player player=*player;
         std::cout << '\n';
-        std::cout << player.name << "'s turn:\n";
-        player.score = getCardValue(getCard(nextCardIndex,deck)) + getCardValue(getCard(nextCardIndex,deck));
-        std::cout << "You have: " << player.score << '\n';
-        if (playerTurn(deck, nextCardIndex, player)){
-            player.change(-player.bet);
-            player.score = -1;
-            std::cout << player.name << ", you lost! You have $" << player.getMoney() << " left.\n";
-            if (player.isBroke()){
-                std::cout << player.name << ", you have no money left. You are out of the game!\n";
-                players.erase(iter);
+        std::cout << player->name << "'s turn:\n";
+        player->score = getCardValue(getCard(nextCardIndex, deck)) + getCardValue(getCard(nextCardIndex, deck));
+        std::cout << "You have: " << player->score << '\n';
+        if (playerTurn(deck, nextCardIndex, *player)){
+            player->change(-(player->bet));
+            dealer.change(player->bet);
+            player->score = -1;
+            std::cout << player->name << ", you lost! You have $" << player->getMoney() << " left.\n";
+            if (player->isBroke()){
+                std::cout << player->name << ", you have no money left. You are out of the game!\n";
+                players.erase(player);
             }
         }
         else
-            std::cout << player.name << ", you have " << player.score <<" in this round. Let's see."<< '\n';
+            std::cout << player->name << ", you have " << player->score << " in this round. Let's see." << '\n';
     }
-    if (!dealerTurn(deck, nextCardIndex, *dealer)){
-        for (auto& player : players){
-            if (player.name != "ChanningTong" && player.score != -1){
-                player.change(player.bet);
-                dealer->change(-player.bet);
-                std::cout << player.name << ", you won! You have $" << player.getMoney() << " now.\n";
+    if (dealerTurn(deck, nextCardIndex, dealer)){
+        //std::cout<<"Dealer lost!"<<std::endl;
+        for (std::vector<Player>::iterator player = players.begin(); player != players.end(); ++player){
+            if (player->name != "ChanningTong" && player->score != -1){
+                player->change(player->bet);
+                dealer.change(-player->bet);
+                std::cout << player->name << ", you won! You have $" << player->getMoney() << " now.\n";
             }
         }
     }
     else{
-        for (std::vector<Player>::iterator iter = players.begin() + 1; iter != players.end(); ++iter){
-            Player player=*iter;
-            if (player.score > dealer->score){
-                player.change(player.bet);
-                dealer->change(-player.bet);
-                std::cout << player.name << ", you won! You have $" << player.getMoney() << " now.\n";
+        //std::cout<<"Dealer win!"<<std::endl;
+        for (std::vector<Player>::iterator player = players.begin(); player != players.end(); ++player){
+//            Player player=*player;
+            if (player->score == -1)
+                continue;
+            if (player->score > dealer.score){
+                player->change(player->bet);
+                dealer.change(-player->bet);
+                std::cout << player->name << ", you won! You have $" << player->getMoney() << " now.\n";
             }
-            else if (player.score < dealer->score){
-                player.change(-player.bet);
-                dealer->change(player.bet);
-                std::cout << player.name << ", you lost! You have $" << player.getMoney() << " left.\n";
-                if (player.isBroke()){
-                    std::cout << player.name << ", you have no money left. You are out of the game!\n";
-                    players.erase(iter);
+            else if (player->score < dealer.score){
+                player->change(-player->bet);
+                dealer.change(player->bet);
+                std::cout << player->name << ", you lost! You have $" << player->getMoney() << " left.\n";
+                if (player->isBroke()){
+                    std::cout << player->name << ", you have no money left. You are out of the game!\n";
+                    players.erase(player);
                 }
             }
             else
-                std::cout << player.name << ", you draw! You have $" << player.getMoney() << " now.\n";
+                std::cout << player->name << ", you draw! You have $" << player->getMoney() << " now.\n";
         }
     }
 }
 
 bool finished(){
-    if (players.size() == 1){
+    if (players.empty()){
         std::cout<<"All players were out!The dealer win!"<<std::endl;
-        players[0].printInfo();
+        dealer.printInfo();
         return true;
     }
-    if (players[0].isBroke()){
+    if (dealer.isBroke()){
         std::cout<<"The dealer was bankrupt!"<<std::endl;
         for(int i=1;i<players.size();++i)
             players[i].printInfo();
