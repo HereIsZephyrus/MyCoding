@@ -1,5 +1,5 @@
 #pragma once
-#include "gragh.h"
+#include "graph.h"
 
 //enum class HardLevel {Primary, Intermediate, Exclusive };// 难度等级
 //bool isInitgraph = true;

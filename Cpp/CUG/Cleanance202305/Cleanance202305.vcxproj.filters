@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="gragh.h">
+    <ClInclude Include="graph.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="MineSweeper.h">

@@ -34,13 +34,13 @@
 
 	版　　权：作者原创，无抄袭，不涉及版权问题，仅用作学习
 */
-#include "gragh.h"
+#include "graph.h"
 #include "MineSweeper.h"
 //int graphSize = static_cast<int>(Primary);
 int main(){
     long	ret = 0;
     srand((unsigned)time(0));
-    MineSweeper *ms = new MineSweeper(0);//primary
+    MineSweeper *ms = new MineSweeper(1);//primary
     while (true){
         int size = ms->Running();
         if (size > 0){
