@@ -10,12 +10,14 @@
  */
 #pragma once
 #include<iostream>
+#include<fstream>
+#include<sstream>
 #include<cstring>
 #include<string>
 #include<cmath>
 
-constexpr short PARTOFSPEECHNUM=10;
-static std::string partName[PARTOFSPEECHNUM]={"noun","verb","adj","adv","prep","conj","pron","art","num","interj"};
+constexpr short PARTOFSPEECHNUM=8;
+static std::string partName[PARTOFSPEECHNUM]={"n.","v.","adj.","adv.","prep.","conj.","pron.","num."};
 class Word{
 public:
     enum partType{
@@ -26,24 +28,18 @@ public:
         prep,
         conj,
         pron,
-        art,
         num,
-        interj,
         MAX_PART=PARTOFSPEECHNUM
     };
 private:
     std::string word;
     std::string explain;
-    enum partType type;
+    //enum partType type;
+    unsigned short type{0};
     int index{0};
-    partType getPartType(std::string s){
-        for (int i=0;i<PARTOFSPEECHNUM; ++i)
-            if (s==partName[i])
-                return static_cast<partType>(i);
-        std::cerr<<"Error: unknown part of speech"<<std::endl;
-        exit(1);
-        return MAX_PART;
-    }
+    //partType getPartType(std::string s){
+    unsigned short getPartType(std::string s);
+    std::string printType(const unsigned short type) const;
 public:
     Word()=delete;
     explicit Word(std::string s,int ind):index(ind){
@@ -57,7 +53,7 @@ public:
                 else{
                     explain=s.substr(prev,pos-prev);
                     prev=pos+1;
-                    type = getPartType(s.substr(prev + 1));
+                    type = getPartType(s.substr(prev,s.length()-prev));
                 }
             }
         }
@@ -66,19 +62,15 @@ public:
     void Print(){
         std::cout<<"word:"<<word<<std::endl;
         std::cout<<"explain:"<<explain<<std::endl;
-        std::cout<<"part of speech:"<<partName[type]<<std::endl;
+        std::cout << "part of speech:" << printType(type)<< std::endl;
     }
-    int getIndex() const{
-        return index;
-    }
-    int getLen() const{
-        return word.length();
-    }
-    std::string getWord() const{
-        return word;
-    }
+    int getIndex() const    {return index;}
+    int getLen() const      {return word.length();}
+    unsigned short getType() const     {return type;}
+    std::string getWord() const{return word;}
+    std::string getExplain() const{return explain;}
     friend std::ostream& operator<<(std::ostream& os, const Word& word){
-        os<<word.word<<'\t'<<word.explain<<'\t'<<partName[word.type]<<std::endl;
+        os<<word.getWord()<<'\t'<<word.getExplain()<<'\t'<<word.printType(word.getType())<<std::endl;
         return os;
     }
 };
@@ -116,4 +108,34 @@ int Trie::search(const std::string key){
     if (node!=nullptr&&node->loc!=-1)
         return node->loc;
     return -1;
+}
+
+unsigned short Word::getPartType(std::string s){
+    s = s + ',';
+    unsigned int prev = 0;
+    bool exist = false;
+    for (unsigned int pos = 0; pos < s.length(); ++pos){
+        if (s[pos] == ','){
+            std::string tmp = s.substr(prev, pos - prev);
+            for (int i = 0; i < PARTOFSPEECHNUM; ++i)
+                if (tmp == partName[i]){
+                    exist = true;
+                    type |= (1 << i); // 用二进制数据存储词性
+                }
+            prev = pos + 1;
+        }
+    }
+    if (!exist){
+        std::cerr << "Error: unknown part of speech" << std::endl;
+        exit(2);
+    }
+    return MAX_PART;
+}
+std::string Word::printType(const unsigned short type) const{
+    std::ostringstream ostr;
+    for (int ind=0,x=type; x; x>>=1,++ind)
+        if (x&1)
+            ostr<<partName[ind]<<" ";
+    //ostr.putback();
+    return ostr.str();
 }

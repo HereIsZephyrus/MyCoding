@@ -1,14 +1,16 @@
 #pragma once
 #include<iostream>
+#include<cmath>
 
 class Shape{
 protected:
     double area;
     double perimeter;
+    int type;
 public:
-    Shape():area(0),perimeter(0){}
+    Shape() :area(0), perimeter(0) { type = 0; }
     virtual ~Shape()=default;
-    virtual std::istream& read(int* argu);//一个抽象的shape类无法有构造的行为
+    //virtual std::istream& read(int* argu);//一个抽象的shape类无法有构造的行为
     std::ostream& write(std::ostream& os){
         os<<"Area: "<<area<<std::endl;
         os<<"Perimeter: "<<perimeter<<std::endl;
@@ -16,6 +18,9 @@ public:
     }
     std::ostream& operator<<(std::ostream& os){
         return write(os);
+    }
+    int getType() const{
+        return type;
     }
 };
 
@@ -30,13 +35,14 @@ private:
         return a+b+c;
     }
 public:
-    Triangle():a(0),b(0),c(0){}
+    Triangle():a(0),b(0),c(0){type=0;}
     Triangle(int* arg):a(arg[0]),b(arg[1]),c(arg[2]){
         area=calcArea();
         perimeter=calcPerimeter();
+        type=0;
     }
     ~Triangle()=default;
-    int* read(std::istream& is){
+    virtual int* read(std::istream& is){
         int* arg=new int[3];
         is>>arg[0]>>arg[1]>>arg[2];
         return arg;
@@ -52,13 +58,15 @@ private:
         return 2*(a+b);
     }
 public:
-    Rectangle():a(0),b(0){}
+    Rectangle():a(0),b(0){type=1;}
     Rectangle(int* arg):a(arg[0]),b(arg[1]){
         area=calcArea();
         perimeter=calcPerimeter();
+        type=1;
     }
     ~Rectangle()=default;
-    int* read(std::istream& is){
+    virtual int *read(std::istream &is)
+    {
         int* arg=new int[2];
         is>>arg[0]>>arg[1];
         return arg;
@@ -74,13 +82,15 @@ private:
         return 4*a;
     }
 public:
-    Square():a(0){}
+    Square() : a(0) { type = 2; }
     Square(int* arg):a(arg[0]){
         area=calcArea();
         perimeter=calcPerimeter();
+        type = 2;
     }
     ~Square()=default;
-    int* read(std::istream& is){
+    virtual int *read(std::istream &is)
+    {
         int* arg=new int[1];
         is>>arg[0];
         return arg;
@@ -96,13 +106,15 @@ private:
         return 2*3.14*sqrt((a*a+b*b)/2);
     }
 public:
-    Ellipse():a(0),b(0){}
+    Ellipse() : a(0), b(0) { type = 3; }
     Ellipse(int* arg):a(arg[0]),b(arg[1]){
         area=calcArea();
         perimeter=calcPerimeter();
+        type = 3;
     }
     ~Ellipse()=default;
-    int* read(std::istream& is){
+    virtual int *read(std::istream &is)
+    {
         int* arg=new int[2];
         is>>arg[0]>>arg[1];
         return arg;
@@ -118,13 +130,15 @@ private:
         return 2*r*3.14;
     }
 public:
-    Circle():r(0){}
+    Circle() : r(0) { type = 4; }
     Circle(int* arg):r(arg[0]){
         area=calcArea();
         perimeter=calcPerimeter();
+        type = 4;
     }
     ~Circle()=default;
-    int* read(std::istream& is){
+    virtual int *read(std::istream &is)
+    {
         int* arg=new int[1];
         is>>arg[0];
         return arg;
