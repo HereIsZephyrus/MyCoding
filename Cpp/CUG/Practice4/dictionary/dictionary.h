@@ -15,31 +15,21 @@
 #include<cstring>
 #include<string>
 #include<cmath>
+#include <vector>
 
-constexpr short PARTOFSPEECHNUM=8;
-static std::string partName[PARTOFSPEECHNUM]={"n.","v.","adj.","adv.","prep.","conj.","pron.","num."};
+constexpr int PARTOFSPEECHNUM=9;
+static std::string partName[PARTOFSPEECHNUM]={"n.","v.","adj.","adv.","prep.","conj.","pron.","num.","int."};
 class Word{
-public:
-    enum partType{
-        noun,
-        verb,
-        adj,
-        adv,
-        prep,
-        conj,
-        pron,
-        num,
-        MAX_PART=PARTOFSPEECHNUM
-    };
 private:
     std::string word;
     std::string explain;
     //enum partType type;
-    unsigned short type{0};
+    //unsigned int type{0};
+    std::vector<unsigned short> type;
     int index{0};
     //partType getPartType(std::string s){
-    unsigned short getPartType(std::string s);
-    std::string printType(const unsigned short type) const;
+    void getPartType(std::vector<unsigned short>& type,std::string s);
+    std::string printType(const std::vector<unsigned short> type) const;
 public:
     Word()=delete;
     explicit Word(std::string s,int ind):index(ind){
@@ -53,7 +43,7 @@ public:
                 else{
                     explain=s.substr(prev,pos-prev);
                     prev=pos+1;
-                    type = getPartType(s.substr(prev,s.length()-prev));
+                    getPartType(type,s.substr(prev,s.length()-prev));
                 }
             }
         }
@@ -66,7 +56,7 @@ public:
     }
     int getIndex() const    {return index;}
     int getLen() const      {return word.length();}
-    unsigned short getType() const     {return type;}
+    std::vector<unsigned short> getType() const { return type; }
     std::string getWord() const{return word;}
     std::string getExplain() const{return explain;}
     friend std::ostream& operator<<(std::ostream& os, const Word& word){
@@ -84,6 +74,11 @@ public:
         for (int i=0;i<26;++i)
             next[i]=nullptr;
     }
+    ~Trie(){
+        for (int i=0;i<26;++i)
+            if (next[i]!=nullptr)
+                delete next[i];
+    }
     void insert(Word* key);
     int search(std::string key);
 };
@@ -91,9 +86,10 @@ void Trie::insert(Word* key){
     Trie* node=this;
     const std::string word=key->getWord();
     for (int i=0;i<key->getLen();++i){
-        if (node->next[word[i]-'a']==nullptr){
+        if (word[i]=='-' || word[i]=='/')
+            continue;
+        if (node->next[word[i]-'a']==nullptr)
             node->next[word[i]-'a']=new Trie();
-        }
         node=node->next[word[i]-'a'];
     }
     node->loc=key->getIndex();
@@ -110,7 +106,7 @@ int Trie::search(const std::string key){
     return -1;
 }
 
-unsigned short Word::getPartType(std::string s){
+void Word::getPartType(std::vector<unsigned short> & type,std::string s){
     s = s + ',';
     unsigned int prev = 0;
     bool exist = false;
@@ -120,22 +116,26 @@ unsigned short Word::getPartType(std::string s){
             for (int i = 0; i < PARTOFSPEECHNUM; ++i)
                 if (tmp == partName[i]){
                     exist = true;
-                    type |= (1 << i); // 用二进制数据存储词性
+                    //type = type | (1 << i); // 用二进制数据存储词性
+                    type.push_back(i);
+                    //std::cout<<partName[i]<<' ';
                 }
             prev = pos + 1;
         }
     }
+    //std::cout<<index<<std::endl;
+    //system("pause");
     if (!exist){
-        std::cerr << "Error: unknown part of speech" << std::endl;
-        exit(2);
+        std::cout << "Error: unknown part of speech" << std::endl;
+        exit(index);
     }
-    return MAX_PART;
 }
-std::string Word::printType(const unsigned short type) const{
+std::string Word::printType(const std::vector<unsigned short> type) const{
     std::ostringstream ostr;
-    for (int ind=0,x=type; x; x>>=1,++ind)
-        if (x&1)
-            ostr<<partName[ind]<<" ";
+    //std::cout<<type<<std::endl;
+    for (std::vector<unsigned short>::const_iterator it=type.begin();it!=type.end();++it){
+        ostr<<partName[*it]<<' ';
+    }
     //ostr.putback();
     return ostr.str();
 }

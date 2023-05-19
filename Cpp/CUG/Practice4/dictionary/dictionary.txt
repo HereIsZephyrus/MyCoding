@@ -191,7 +191,7 @@ aggressive	侵略的，进取的	adj.
 aggressor	侵略者	n.
 agitate	鼓动	v.
 agitation	鼓动，不安	n.
-ago	以前	adv....
+ago	以前	adv.
 agonize	使痛苦	v.
 agony	苦恼，痛苦	n.
 agree	同意，一致认为	v.
@@ -1111,7 +1111,7 @@ chap	伙计	n.
 chapter	章，节	n.
 character	性格，角色，特牲	n.
 characteristic	特征，特性	n.
-characteristical	特征的	adj....
+characteristical	特征的	adj.
 characterize	具有...特征	v.
 charcoal	木炭	n.
 charge	收费，冲向，控告	v.
@@ -3324,7 +3324,7 @@ head	头，领导	n.
 headache	头疼，头疼的事	n.
 heading	标题	n.
 headline	通栏标题	n.
-headlong	头向前地，卤莽地	ad.
+headlong	头向前地，卤莽地	adv.
 headmaster	(中、小学)校长	n.
 headquarters	司令部，总部	n.
 heal	治愈，医治	v.
@@ -4247,7 +4247,7 @@ mackintosh	雨衣	n.
 macroeconomics	宏观经济学	n.
 mad	疯狂的，狂热的	adj.
 madam	夫人，太太，女士	n.
-madman	疯子	nn.
+madman	疯子	n.
 madness	疯狂，疯病	n.
 magazine	杂志，期刊	n.
 magic	魔法，魔术，魅力	n.
@@ -4843,7 +4843,7 @@ october	十月	n.
 odd	古怪的，奇数的	adj.
 odour	气味	n.
 of	的(表示领属等)	prep.
-off	去	adv....
+off	去	adv.
 off-duty	不当班的	adj.
 offence	过错，冒犯，攻击	n.
 offend	冒犯，得罪	v.

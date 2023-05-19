@@ -2,24 +2,14 @@
  * @Author: ChanningTong Channing_TongCN@outlook.com
  * @Date: 2023-04-30 22:31:28
  * @LastEditors: ChanningTong Channing_TongCN@outlook.com
- * @LastEditTime: 2023-05-18 21:52:54
+ * @LastEditTime: 2023-05-19 09:04:22
  * @FilePath: \dictionary\main.cpp
  * @Description:
  * @
  * @Copyright (c) 2023 by ChanningTong, All Rights Reserved.
  */
-/***
- * @Author: ChanningTong Channing_TongCN@outlook.com
- * @Date: 2023-04-30 22:31:28
- * @LastEditors: ChanningTong Channing_TongCN@outlook.com
- * @LastEditTime: 2023-04-30 23:21:05
- * @FilePath: \dictionary\main.cpp
- * @Description:
- * @
- * @Copyright (c) 2023 by ChanningTong, All Rights Reserved.
- */
+
 #include "dictionary.h"
-#include<vector>
 using std::cout;
 using std::endl;
 using std::ios_base;
@@ -41,8 +31,6 @@ int main(){
     fin.close();
     fout.close();
     std::cin.clear();
-    std::cin.ignore();
-    system("pause");
     std::cout<<"Welcome to the dictionary!\nPlease input the word that you want to quary(enterQUITto quit)"<<std::endl;
     std::string quary;
     std::cin>>quary;
@@ -51,6 +39,7 @@ int main(){
         if (index==-1) std::cout<<"Sorry, the word you quary is not in the dictionary."<<std::endl;
         else
             dict[index].Print();
+        std::cin >> quary;
     }
     std::cin.get();
     std::cin.get();
