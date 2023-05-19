@@ -1,0 +1,11 @@
+﻿  main.cpp
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\Practice4\matrix\matrix.h(77,28): warning C4244: “*=”: 从“const double”转换到“Type”，可能丢失数据
+          with
+          [
+              Type=int
+          ]
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\Practice4\matrix\matrix.h(73): message : 在编译 类 模板 成员函数“Matrix<int,3,3> &Matrix<int,3,3>::operator *(const double)”时
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\Practice4\matrix\main.cpp(32): message : 查看对正在编译的函数 模板 实例化“Matrix<int,3,3> &Matrix<int,3,3>::operator *(const double)”的引用
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\Practice4\matrix\main.cpp(27): message : 查看对正在编译的 类 模板 实例化“Matrix<int,3,3>”的引用
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\Practice4\matrix\matrix.h(71): warning C4172: 返回局部变量或临时变量的地址: tmp
+  Matrix.vcxproj -> C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\Practice4\matrix\Matrix\x64\Debug\Matrix.exe
