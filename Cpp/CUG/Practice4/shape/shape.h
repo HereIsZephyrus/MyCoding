@@ -1,4 +1,5 @@
 #pragma once
+#include<fstream>
 #include<iostream>
 #include<cmath>
 
@@ -10,14 +11,16 @@ protected:
 public:
     Shape() :area(0), perimeter(0) { type = 0; }
     virtual ~Shape()=default;
-    //virtual std::istream& read(int* argu);//一个抽象的shape类无法有构造的行为
+    //virtual std::ifstream& read(int* argu);//一个抽象的shape类无法有构造的行为
     std::ostream& write(std::ostream& os){
         os<<"Area: "<<area<<std::endl;
         os<<"Perimeter: "<<perimeter<<std::endl;
         return os;
     }
-    std::ostream& operator<<(std::ostream& os){
-        return write(os);
+    friend std::ostream& operator<<(std::ostream& os,const Shape& shape){
+        os<<"Area: "<<shape.area<<std::endl;
+        os<<"Perimeter: "<<shape.perimeter<<std::endl;
+        return os;
     }
     int getType() const{
         return type;
@@ -42,7 +45,7 @@ public:
         type=0;
     }
     ~Triangle()=default;
-    virtual int* read(std::istream& is){
+    virtual int* read(std::ifstream& is){
         int* arg=new int[3];
         is>>arg[0]>>arg[1]>>arg[2];
         return arg;
@@ -65,7 +68,7 @@ public:
         type=1;
     }
     ~Rectangle()=default;
-    virtual int *read(std::istream &is)
+    virtual int *read(std::ifstream &is)
     {
         int* arg=new int[2];
         is>>arg[0]>>arg[1];
@@ -89,7 +92,7 @@ public:
         type = 2;
     }
     ~Square()=default;
-    virtual int *read(std::istream &is)
+    virtual int *read(std::ifstream &is)
     {
         int* arg=new int[1];
         is>>arg[0];
@@ -113,7 +116,7 @@ public:
         type = 3;
     }
     ~Ellipse()=default;
-    virtual int *read(std::istream &is)
+    virtual int *read(std::ifstream &is)
     {
         int* arg=new int[2];
         is>>arg[0]>>arg[1];
@@ -137,7 +140,7 @@ public:
         type = 4;
     }
     ~Circle()=default;
-    virtual int *read(std::istream &is)
+    virtual int *read(std::ifstream &is)
     {
         int* arg=new int[1];
         is>>arg[0];
