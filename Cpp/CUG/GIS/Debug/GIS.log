@@ -1,5 +1,121 @@
-﻿  main.cpp
-Commander.obj : error LNK2019: 无法解析的外部符号 "protected: enum ButtonType __thiscall Commander::DictateButton(struct MOUSEMSG const &)" (?DictateButton@Commander@@IAE?AW4ButtonType@@ABUMOUSEMSG@@@Z)，函数 "public: int __thiscall Commander::getCommand(void)" (?getCommand@Commander@@QAEHXZ) 中引用了该符号
-Commander.obj : error LNK2019: 无法解析的外部符号 "protected: unsigned int __thiscall Commander::FocusObjID(struct MOUSEMSG const &)" (?FocusObjID@Commander@@IAEIABUMOUSEMSG@@@Z)，函数 "public: int __thiscall Commander::getCommand(void)" (?getCommand@Commander@@QAEHXZ) 中引用了该符号
-Commander.obj : error LNK2019: 无法解析的外部符号 "protected: class Response * __thiscall Commander::getObj(unsigned int const &)" (?getObj@Commander@@IAEPAVResponse@@ABI@Z)，函数 "public: int __thiscall Commander::getCommand(void)" (?getCommand@Commander@@QAEHXZ) 中引用了该符号
-C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Debug\GIS.exe : fatal error LNK1120: 3 个无法解析的外部命令
+﻿  Commander.cpp
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.h(57,1): error C2679: 二元“=”: 没有找到接受“nullptr”类型的右操作数的运算符(或没有可接受的转换)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\vector(331,1): message : 可能是“std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> &std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>::operator =(std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> &&)”
+          with
+          [
+              _Ty=Response *
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\vector(331,1): message : 或    “std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> &std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>::operator =(const std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> &)”
+          with
+          [
+              _Ty=Response *
+          ]
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.h(57,1): message : 尝试匹配参数列表“(std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>, nullptr)”时
+          with
+          [
+              _Ty=Response *
+          ]
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(35,68): error C2440: “初始化”: 无法从“std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>”转换为“std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> *”
+          with
+          [
+              _Ty=Response *
+          ]
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(35,49): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(36,39): error C2679: 二元“==”: 没有找到接受“std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>”类型的右操作数的运算符(或没有可接受的转换)
+          with
+          [
+              _Ty=Response *
+          ]
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\guiddef.h(192,15): message : 可能是“bool operator ==(const GUID &,const GUID &)”
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(36,39): message : 或       “内置 C++ operator==(std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> *，std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> *)"
+          with
+          [
+              _Ty=Response *
+          ]
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(36,39): message : 尝试匹配参数列表“(std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> *, std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>)”时
+          with
+          [
+              _Ty=Response *
+          ]
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(38,44): error C2664: “void Commander::TOclick(std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>,const MOUSEMSG &,bool)”: 无法将参数 1 从“std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> *”转换为“std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>”
+          with
+          [
+              _Ty=Response *
+          ]
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(38,44): message : 无构造函数可以接受源类型，或构造函数重载决策不明确
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.h(53,10): message : 参见“Commander::TOclick”的声明
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(43,50): error C2440: “初始化”: 无法从“std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>”转换为“Response *”
+          with
+          [
+              _Ty=Response *
+          ]
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(43,31): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(44,41): error C2679: 二元“==”: 没有找到接受“std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>”类型的右操作数的运算符(或没有可接受的转换)
+          with
+          [
+              _Ty=Response *
+          ]
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\guiddef.h(192,15): message : 可能是“bool operator ==(const GUID &,const GUID &)”
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(44,41): message : 或       “内置 C++ operator==(Response *，Response *)"
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(44,41): message : 尝试匹配参数列表“(Response *, std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>)”时
+          with
+          [
+              _Ty=Response *
+          ]
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(170,17): error C2511: “void Commander::TOclick(std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>,const MOUSEMSG &,bool)”:“Commander”中没有找到重载的成员函数
+          with
+          [
+              _Ty=Line *
+          ]
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.h(41): message : 参见“Commander”的声明
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(200,28): error C2275: “Point”: 应为表达式而不是类型
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(201,86): error C2039: "size": 不是 "Response" 的成员
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Objects.h(20): message : 参见“Response”的声明
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(203,28): error C2275: “Line”: 应为表达式而不是类型
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(204,16): error C2664: “bool CheckEdges(const int,const int,std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> &)”: 无法将参数 3 从“std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>”转换为“std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> &”
+          with
+          [
+              _Ty=Line *
+          ]
+          and
+          [
+              _Ty=Response *
+          ]
+          and
+          [
+              _Ty=Line *
+          ]
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.h(64,6): message : 参见“CheckEdges”的声明
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(206,28): error C2275: “Polygen”: 应为表达式而不是类型
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.cpp(207,16): error C2664: “int CalcLine(const int,const int,std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> &)”: 无法将参数 3 从“std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>”转换为“std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> &”
+          with
+          [
+              _Ty=Polygen *
+          ]
+          and
+          [
+              _Ty=Response *
+          ]
+          and
+          [
+              _Ty=Polygen *
+          ]
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.h(63,5): message : 参见“CalcLine”的声明
+  main.cpp
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.h(57,1): error C2679: 二元“=”: 没有找到接受“nullptr”类型的右操作数的运算符(或没有可接受的转换)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\vector(331,1): message : 可能是“std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> &std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>::operator =(std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> &&)”
+          with
+          [
+              _Ty=Response *
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\vector(331,1): message : 或    “std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> &std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>::operator =(const std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> &)”
+          with
+          [
+              _Ty=Response *
+          ]
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Commander.h(57,1): message : 尝试匹配参数列表“(std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>, nullptr)”时
+          with
+          [
+              _Ty=Response *
+          ]
+  正在生成代码...

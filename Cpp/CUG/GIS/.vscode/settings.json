@@ -3,6 +3,9 @@
         "cstring": "cpp",
         "iterator": "cpp",
         "xmemory": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "system_error": "cpp",
+        "xlocale": "cpp",
+        "vector": "cpp"
     }
 }

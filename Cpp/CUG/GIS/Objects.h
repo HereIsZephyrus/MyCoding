@@ -186,7 +186,8 @@ public:
 	virtual int Suspend();
 	virtual int ClickMiddle(bool);
 };
-
+vector<Response*> objList;
+vector<Display*> elmList;
 #endif // !_OBJECTS_H_
 
 #ifndef _BUTTONS_H_

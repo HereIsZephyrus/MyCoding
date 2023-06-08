@@ -32,28 +32,32 @@ int Commander::getCommand()
             }
             case Hold: // 空载状态，可能将更新已有矢量状态
             {
-                const unsigned int objID = FocusObjID(mouse);
-                if (!objID)
+                vector<Response*>::iterator*obj = FocusObjID(mouse);
+                if (obj==objList.end())
                     break;
-                obj = getObj(objID);
                 TOclick(obj, mouse, EXISTED);
                 break;
             }
             case Drag:
             {
-                const unsigned int objID = FocusObjID(mouse);
-                if (!objID)
+                Response *obj = FocusObjID(mouse);
+                if (obj == objList.end())
                     break;
-                obj = getObj(objID);
                 obj->Move();
                 break;
             }
+            case Clicking:
+            {
+                //感觉没啥好写， 现在也没想到解决鼠标响应冲突的办法
+                break;
             }
-		}
+		    }
+            break;
+        }
 		default://out_of_range
 			break;
 		}
-        UpdateStage(mouse);
+        UpdateStage(mouse);//更新鼠标对象状态
     }
 	else {
 		//failed
@@ -163,7 +167,7 @@ void Commander::UpdateStage(const MOUSEMSG &mouse)
     return;
 }
 
-void Commander::TOclick(Response* obj,const MOUSEMSG& mouse,bool HOLDING)
+void Commander::TOclick(vector<Line*>::iterator,const MOUSEMSG& mouse,bool HOLDING)
 {
     switch (mouse.uMsg)
     {
@@ -186,4 +190,36 @@ void Commander::TOclick(Response* obj,const MOUSEMSG& mouse,bool HOLDING)
         break;
     }
     return;
+}
+
+vector<Response *>::iterator Commander::FocusObjID(const MOUSEMSG &mouse)
+{
+    const int x = mouse.x, y = mouse.y;
+    for (vector<Response *>::iterator it = objList.begin(); it != objList.end(); it++)
+    {
+        if (typeid(*it) == Point) // 指到点的范围内就可以，注意Point的X和Y是中心点
+            if (Distance(x,y,(*it)->getX(),(*it)->getY())<static_cast<double>((*it)->size))
+                return it;
+        if (typeid(*it) == Line)
+            if (CheckEdges(x,y,it))
+                return it;
+        if (typeid(*it) == Polygen) // 通过鼠标x轴坐标经过的绘制边界的奇偶性，判断鼠标是否在对象中
+            if ((CalcLine(x,y,it)&1)!=0)
+                return it;
+        // 理论上Button对象不可能出现在Photo中，后期考虑写一个异常
+    }
+    return objList.end();
+}
+
+double Distance(const int x1, const int y1, const int x2, const int y2)
+{
+    return 0;
+}
+int CalcLine(const int x, const int y, vector<Polygen*>::iterator& obj)
+{
+    return 0;
+}
+bool CheckEdges(const int x, const int y, vector<Line*>::iterator& obj)
+{
+    return false;
 }
