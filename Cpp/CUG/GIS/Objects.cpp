@@ -14,7 +14,11 @@ int Response::getX() const              {return X;}
 int Response::getY() const              {return Y;}
 int Response::getID() const             {return id;}
 double Response::getColor() const     {return color;}
-double Response::getAlpha() const    {return alpha;}
+double Response::getAlpha() const { return alpha; }
+void Response::Move()
+{
+    return;
+}
 
 int Display::getX() const               {return X;}
 int Display::getY() const               {return Y;}
@@ -22,66 +26,83 @@ int Display::getID() const              {return id;}
 
 int Text::getX() const                  {return X;}
 int Text::getY() const                  {return Y;}
-double Text::getColor() const         {return color;}
+int Text::getColor() const         {return color;}
 
 int Point::getSize() const              {return size;}
-int Point::getType() const              {return type;}
+//int Point::getType() const              {return type;}
 
 int Borden::getTermX() const             {return termX;}
 int Borden::getTermY() const             {return termY;}
 int Borden::getBold() const             {return bold;}
 
-int Point::ClickLeft()
+int Point::ClickLeft(bool Status)
 {
+	return 0;
 }
-int Point::ClickRight()
+int Point::ClickRight(bool Status)
 {
+    return 0;
 }
 int Point::Suspend()
 {
+    return 0;
 }
-int Point::ClickMiddle()
+int Point::ClickMiddle(bool Status)
 {
+    return 0;
 }
 int Point::Draw()
 {
+    return 0;
 }
 int Point::Create()
 {
+    return 0;
 }
 int Point::Delete()
 {
+    return 0;
 }
 void Point::DisplayInfo() const
 {
+    return;
 }
 
 int Borden::Draw()
 {
+    return 0;
 }
 
-int Polygen::ClickLeft()
+int Polygen::ClickLeft(bool Status)
 {
+    return 0;
 }
-int Polygen::ClickRight()
+int Polygen::ClickRight(bool Status)
 {
+    return 0;
 }
 int Polygen::Suspend()
 {
+    return 0;
 }
-int Polygen::ClickMiddle()
+int Polygen::ClickMiddle(bool Status)
 {
+    return 0;
 }
 
-int Line::ClickLeft()
+int Line::ClickLeft(bool Status)
 {
+    return 0;
 }
-int Line::ClickRight()
+int Line::ClickRight(bool Status)
 {
+    return 0;
 }
 int Line::Suspend()
 {
+    return 0;
 }
-int Line::ClickMiddle()
+int Line::ClickMiddle(bool Status)
 {
+    return 0;
 }

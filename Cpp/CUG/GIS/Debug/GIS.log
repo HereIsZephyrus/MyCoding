@@ -1,4 +1,5 @@
-﻿  Commander.cpp
-  main.cpp
-  正在生成代码...
-  GIS.vcxproj -> C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Debug\GIS.exe
+﻿  main.cpp
+Commander.obj : error LNK2019: 无法解析的外部符号 "protected: enum ButtonType __thiscall Commander::DictateButton(struct MOUSEMSG const &)" (?DictateButton@Commander@@IAE?AW4ButtonType@@ABUMOUSEMSG@@@Z)，函数 "public: int __thiscall Commander::getCommand(void)" (?getCommand@Commander@@QAEHXZ) 中引用了该符号
+Commander.obj : error LNK2019: 无法解析的外部符号 "protected: unsigned int __thiscall Commander::FocusObjID(struct MOUSEMSG const &)" (?FocusObjID@Commander@@IAEIABUMOUSEMSG@@@Z)，函数 "public: int __thiscall Commander::getCommand(void)" (?getCommand@Commander@@QAEHXZ) 中引用了该符号
+Commander.obj : error LNK2019: 无法解析的外部符号 "protected: class Response * __thiscall Commander::getObj(unsigned int const &)" (?getObj@Commander@@IAEPAVResponse@@ABI@Z)，函数 "public: int __thiscall Commander::getCommand(void)" (?getCommand@Commander@@QAEHXZ) 中引用了该符号
+C:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GIS\Debug\GIS.exe : fatal error LNK1120: 3 个无法解析的外部命令

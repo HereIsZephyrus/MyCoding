@@ -139,19 +139,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Buttons.h" />
     <ClInclude Include="Commander.h" />
     <ClInclude Include="Errors.h" />
     <ClInclude Include="Objects.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resource1.h" />
+    <ClInclude Include="Solution.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Buttons.cpp" />
     <ClCompile Include="Commander.cpp" />
     <ClCompile Include="Errors.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Objects.cpp" />
+    <ClCompile Include="Solution.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

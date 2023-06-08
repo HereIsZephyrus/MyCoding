@@ -1,10 +1,10 @@
 #pragma once
 #ifndef _ERRORS_H_
 #define _ERRORS_H_
+#include "Solution.h"
 #include<exception>
 #include<iomanip>
 #include<iostream>
-#include<graphics.h>
 namespace std_errors {
 	using std::logic_error;
 	using std::runtime_error;

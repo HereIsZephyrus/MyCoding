@@ -21,9 +21,6 @@
     <ClInclude Include="Objects.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Buttons.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Errors.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -36,6 +33,9 @@
     <ClInclude Include="resource1.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Solution.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Objects.cpp">
@@ -44,14 +44,14 @@
     <ClCompile Include="Errors.cpp">
       <Filter>源文件\Headers</Filter>
     </ClCompile>
-    <ClCompile Include="Buttons.cpp">
-      <Filter>源文件\Headers</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Commander.cpp">
       <Filter>源文件\Headers</Filter>
+    </ClCompile>
+    <ClCompile Include="Solution.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

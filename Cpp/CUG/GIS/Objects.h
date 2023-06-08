@@ -1,11 +1,10 @@
 #pragma once
 #ifndef _OBJECTS_H_
 #define _OBJECTS_H_
+#include "Solution.h"
 #include<vector>
-#include<graphics.h>
 #include<cstring>
 #include<string>
-#include<conio.h>
 using std::vector;
 using std::string;
 namespace ColorConst {
@@ -15,26 +14,29 @@ namespace ColorConst {
 	constexpr double ALPHA = 1.0;
 }
 using namespace ColorConst;
+constexpr bool DRAWING = false;
+constexpr bool EXISTED = true;
 
 class Response
 {
 private:
-	int X, Y, borderBold;
-	double color, alpha;
+	int X, Y, borderBold, color;
+	double alpha;
 	static unsigned int count;
 	unsigned int id;
 public:
-	Response(int x, int y, int Bold, double Color, double Alpha) :X(x), Y(y), borderBold(Bold), color(Color), alpha(Alpha) {
+	Response(int x, int y, int Bold, int Color, double Alpha) :X(x), Y(y), borderBold(Bold), color(Color), alpha(Alpha) {
 		id=++count;
 	}
 	~Response() {
 		--count;
 	}
-	virtual int ClickLeft() = 0;
-	virtual int ClickRight() = 0;
-	virtual int ClickMiddle() = 0;
+	virtual int ClickLeft(bool) = 0;
+	virtual int ClickRight(bool) = 0;
+	virtual int ClickMiddle(bool) = 0;
 	virtual int Suspend() = 0;
 	virtual int Draw() = 0;
+    void Move();
 	int getX() const;
 	int getY() const;
 	int getID() const;
@@ -48,7 +50,6 @@ private:
 	static unsigned int count;
 	unsigned int id;
 public:
-	virtual int Draw() = 0;
 	Display(int x, int y) :X(x), Y(y) {
 		id = ++count;
 	}
@@ -90,13 +91,13 @@ public:
 	{
 
 	};
-	Point(int X, int Y, int Bold, double Color, double Alpha, int Size) :Response(X, Y, Bold, Color, Alpha), size(Size) {}
+	Point(int X, int Y, int Bold, int Color, double Alpha, int Size) :Response(X, Y, Bold, Color, Alpha), size(Size) {}
 	int getSize() const;
 	int getType() const;
-	virtual int ClickLeft();
-	virtual int ClickRight();
+	virtual int ClickLeft(bool);
+	virtual int ClickRight(bool);
 	virtual int Suspend();
-	virtual int ClickMiddle();
+	virtual int ClickMiddle(bool);
 };
 class Borden :public Display
 {
@@ -139,15 +140,15 @@ protected:
 	int Bind();
 	virtual void DisplayInfo() const;
 public:
-	Polygen(int X, int Y, int Bold, double Color) :Response(X, Y, Bold, Color, ALPHA), points{}, borders{}, area(0), shownedInfo(false) {}
+	Polygen(int X, int Y, int Bold, int Color) :Response(X, Y, Bold, Color, ALPHA), points{}, borders{}, area(0), shownedInfo(false) {}
 	~Polygen() {
 		points.clear();
 		borders.clear();
 	}
-	virtual int ClickLeft();
-	virtual int ClickRight();
+	virtual int ClickLeft(bool);
+	virtual int ClickRight(bool);
 	virtual int Suspend();
-	virtual int ClickMiddle();
+	virtual int ClickMiddle(bool);
 };
 class Line :public Response
 {
@@ -163,15 +164,15 @@ protected:
 	int Bind();
 	virtual void DisplayInfo() const;
 public:
-	Line(int X, int Y, int Bold, double Color) :Response(X, Y, Bold, Color, ALPHA), points{}, borders{}, length(0), shownedInfo(false) {}
+	Line(int X, int Y, int Bold, int Color) :Response(X, Y, Bold, Color, ALPHA), points{}, borders{}, length(0), shownedInfo(false) {}
 	~Line() {
 		points.clear();
 		borders.clear();
 	}
-	virtual int ClickLeft();
-	virtual int ClickRight();
+	virtual int ClickLeft(bool);
+	virtual int ClickRight(bool);
 	virtual int Suspend();
-	virtual int ClickMiddle();
+	virtual int ClickMiddle(bool);
 };
 class Button :public Response
 {
@@ -179,11 +180,57 @@ private:
 	int width, height;
 	Text info;
 public:
-	Button(int X, int Y, int Bold, double Color,int w,int h) :Response(X, Y, Bold, Color, ALPHA),width(w),height(h)  {}
-	virtual int ClickLeft();
-	virtual int ClickRight();
+	Button(int X, int Y, int Bold, int Color,int w,int h) :Response(X, Y, Bold, Color, ALPHA),width(w),height(h)  {}
+	virtual int ClickLeft(bool);
+	virtual int ClickRight(bool);
 	virtual int Suspend();
-	virtual int ClickMiddle();
+	virtual int ClickMiddle(bool);
 };
 
 #endif // !_OBJECTS_H_
+
+#ifndef _BUTTONS_H_
+#define _BUTTONS_H_
+
+enum ButtonType {
+	Load,
+	Save,
+	New,
+	Open,
+	Exit,
+	Switch,
+	Draw,
+	NOEXIST_BUTTON
+};
+constexpr int ButtonNum = 11;//一共有11个按钮
+
+class LoadButton :protected Button
+{
+
+};
+class SaveButton :protected Button
+{
+
+};
+class NewButton :protected Button
+{
+
+};
+class OpenButton :protected Button
+{
+
+};
+class ExitButton :protected Button
+{
+
+};
+class SwitchButton : protected Button
+{
+
+};
+class DrawButton :protected Button
+{
+
+};
+
+#endif // !_BUTTONS_H_

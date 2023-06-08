@@ -1,26 +1,38 @@
+/***
+ * @Author: ChanningTong Channing_TongCN@outlook.com
+ * @Date: 2023-06-07 20:53:55
+ * @LastEditors: ChanningTong Channing_TongCN@outlook.com
+ * @LastEditTime: 2023-06-08 13:59:55
+ * @FilePath: \GIS\main.cpp
+ * @Description:
+ * @
+ * @Copyright (c) 2023 by ChanningTong, All Rights Reserved.
+ */
+
+#include "Solution.h"
 #include "Objects.h"
 #include "Errors.h"
-#include "Buttons.h"
 #include "Commander.h"
 
-void Initialize();
-void ShutDown();
 int main(int argc,char *argv[]) {
 	Initialize();
 	Commander cmder;
-	while (cmder.getCommand()) {
-
-	}
+    bool bExit = false;
+    while (!bExit)
+    {
+        switch (cmder.getCommand())//异常控制
+        {
+            case 0: {
+                break;
+            }
+            default: {
+                bExit = true;
+                break;
+            }
+        }
+    }
 	ShutDown();
 	return 0;
 }
 
-void Initialize() {
-	initgraph(1280, 720);
 
-	return;
-}
-void ShutDown() {
-	closegraph();
-	return;
-}
