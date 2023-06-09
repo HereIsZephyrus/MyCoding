@@ -21,21 +21,26 @@
 #pragma once
 #ifndef _COMMANDER_H_
 #define _COMMANDER_H_
-#include "Solution.h"
 #include "Objects.h"
 #include<typeinfo>
 
- enum Areas {
-	Toolbar,
-	Photo,
-	OUT_OF_RANGE
+extern vector<Response *> objList;
+extern vector<Display *> elmList;
+extern vector<Button *> butList;
+
+enum Areas
+{
+    Toolbar,
+    Photo,
+    OUT_OF_RANGE
 };
- enum Status {
-	 Hold,
-	 Drawing,
-	 Drag,
-	 Clicking,
-	NOEXIST_STATUS
+enum Status
+{
+    Hold,
+    Drawing,
+    Drag,
+    Clicking,
+    NOEXIST_STATUS
 };
 
 class Commander {
@@ -48,18 +53,18 @@ protected:
 	Areas DictateArea(const MOUSEMSG&);
     ButtonType DictateButton(const MOUSEMSG&);
     void UpdateStage(const MOUSEMSG&);
-    void PressButton(ButtonType);
+    int PressButton(ButtonType);
     vector<Response *>::iterator FocusObjID(const MOUSEMSG &);
     void TOclick(vector<Response*>::iterator,const MOUSEMSG &,bool);
 public:
 	Commander() :mouse{}, stage{ Hold },objID{0}{
         FlushMouseMsgBuffer();
-        obj=nullptr;
+        obj=objList.end();
     }
 	int getCommand();
 };
 
-double Distance(const int, const int, const int, const int);
-int CalcLine(const int,const int, vector<Polygen*>::iterator&);
-bool CheckEdges(const int, const int, vector<Line*>::iterator&);
+double Distance(const int &, const int &, const int &, const int &);
+int CalcLine(const int,const int, Polygen*);
+bool CheckEdges(const int, const int, Line*);
 #endif // !_COMMANDER_H_

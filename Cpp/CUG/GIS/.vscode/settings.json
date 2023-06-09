@@ -6,6 +6,8 @@
         "xutility": "cpp",
         "system_error": "cpp",
         "xlocale": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "initializer_list": "cpp",
+        "xstring": "cpp"
     }
 }

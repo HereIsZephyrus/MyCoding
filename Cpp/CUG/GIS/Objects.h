@@ -36,7 +36,7 @@ public:
 	virtual int ClickMiddle(bool) = 0;
 	virtual int Suspend() = 0;
 	virtual int Draw() = 0;
-    void Move();
+    void Move(const int& , const int& );
 	int getX() const;
 	int getY() const;
 	int getID() const;
@@ -186,12 +186,6 @@ public:
 	virtual int Suspend();
 	virtual int ClickMiddle(bool);
 };
-vector<Response*> objList;
-vector<Display*> elmList;
-#endif // !_OBJECTS_H_
-
-#ifndef _BUTTONS_H_
-#define _BUTTONS_H_
 
 enum ButtonType {
 	Load,
@@ -207,7 +201,6 @@ constexpr int ButtonNum = 11;//一共有11个按钮
 
 class LoadButton :protected Button
 {
-
 };
 class SaveButton :protected Button
 {
@@ -233,5 +226,4 @@ class DrawButton :protected Button
 {
 
 };
-
-#endif // !_BUTTONS_H_
+#endif // !_OBJECTS_H_

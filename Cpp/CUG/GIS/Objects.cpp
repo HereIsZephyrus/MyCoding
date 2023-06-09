@@ -15,8 +15,9 @@ int Response::getY() const              {return Y;}
 int Response::getID() const             {return id;}
 double Response::getColor() const     {return color;}
 double Response::getAlpha() const { return alpha; }
-void Response::Move()
+void Response::Move(const int& dx, const int& dy)
 {
+    //对对象进行移动，并用EdgeError类处理非法移动
     return;
 }
 
@@ -29,7 +30,6 @@ int Text::getY() const                  {return Y;}
 int Text::getColor() const         {return color;}
 
 int Point::getSize() const              {return size;}
-//int Point::getType() const              {return type;}
 
 int Borden::getTermX() const             {return termX;}
 int Borden::getTermY() const             {return termY;}
