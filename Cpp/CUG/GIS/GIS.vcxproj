@@ -140,10 +140,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Commander.h" />
+    <ClInclude Include="Enums.h" />
     <ClInclude Include="Errors.h" />
+    <ClInclude Include="GlobalVar.h" />
     <ClInclude Include="Objects.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="resource1.h" />
     <ClInclude Include="Solution.h" />
   </ItemGroup>
   <ItemGroup>

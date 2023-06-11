@@ -1,12 +1,14 @@
 #pragma once
 #ifndef _OBJECTS_H_
 #define _OBJECTS_H_
-#include "Solution.h"
-#include<vector>
+#include "Enums.h"
+#include<graphics.h>
+#include<conio.h>
 #include<cstring>
 #include<string>
-using std::vector;
+#include<vector>
 using std::string;
+using std::vector;
 namespace ColorConst {
 	constexpr char _dx = 3;
 	constexpr char _dy = 3;
@@ -17,6 +19,7 @@ namespace ColorConst {
 using namespace ColorConst;
 constexpr bool DRAWING = false;
 constexpr bool EXISTED = true;
+
 
 class Commander ;
 class Response
@@ -114,15 +117,15 @@ public:
 	virtual void DisplayInfo() const;
 };
 
-class Rectangle :public Display
+class Squareness :public Display
 {
 private:
 	int width, height;
 	vector<Text> msg;
 	//image
 public:
-	Rectangle(int x, int y, int w, int h) :Display(x, y), width(w), height(h) {};
-	~Rectangle() {
+	Squareness(int x, int y, int w, int h) :Display(x, y), width(w), height(h),msg{} {};
+	~Squareness() {
 		msg.clear();
 	}
 };
@@ -174,18 +177,7 @@ public:
     virtual int ClickRight(bool, const MOUSEMSG &);
     virtual int Suspend();
 };
-enum ButtonType {
-	Load,
-	Save,
-	New,
-	Open,
-	Exit,
-	Switch,
-	DrawPoint,
-	DrawLine,
-	DrawPolygen,
-	NOEXIST_BUTTON
-};
+
 class Button :public Response
 {
 friend class Commander;
@@ -200,7 +192,7 @@ public:
     virtual int ClickLeft(bool, const MOUSEMSG &);
     virtual int ClickRight(bool, const MOUSEMSG &);
     virtual int Suspend();
-	int Press();
+	int Press(Status,const MOUSEMSG&, vector<Response*>::iterator&);
 };
 
 constexpr int ButtonNum = 11;//一共有11个按钮

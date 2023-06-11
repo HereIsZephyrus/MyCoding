@@ -1,7 +1,6 @@
 #pragma once
 #ifndef _ERRORS_H_
 #define _ERRORS_H_
-#include "Solution.h"
 #include<exception>
 #include<iomanip>
 #include<iostream>

@@ -18,40 +18,28 @@
  * @
  * @Copyright (c) 2023 by ChanningTong, All Rights Reserved.
  */
-/***
- * @Author: ChanningTong Channing_TongCN@outlook.com
- * @Date: 2023-06-07 20:53:55
- * @LastEditors: ChanningTong Channing_TongCN@outlook.com
- * @LastEditTime: 2023-06-07 21:35:42
- * @FilePath: \GIS\Commander.h
- * @Description:
- * @
- * @Copyright (c) 2023 by ChanningTong, All Rights Reserved.
- */
+
 #pragma once
 #ifndef _COMMANDER_H_
 #define _COMMANDER_H_
-#include "Objects.h"
+#include "Enums.h"
 #include<typeinfo>
+#include<vector>
+#include<graphics.h>
+#include<conio.h>
+#include<fstream>
+using std::vector;
+class Response;
+class Display;
+class Button;
+class Polygen;
+class Line;
 
+extern std::fstream Basic, Vec;
 extern vector<Response *> objList;
 extern vector<Display *> elmList;
 extern vector<Button *> butList;
 
-enum Areas
-{
-    Toolbar,
-    Photo,
-    OUT_OF_RANGE
-};
-enum Status
-{
-    Hold,
-    Drawing,
-    Drag,
-    Clicking,
-    NOEXIST_STATUS
-};
 
 class Commander {
 friend class Button;

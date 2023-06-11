@@ -15,15 +15,17 @@
 #include "Commander.h"
 
 int main(int argc,char *argv[]) {
-	Initialize();
-	Commander cmder;
+    Commander cmder;
+	Initialize(cmder);
     bool bExit = false;
+    
     while (!bExit)
     {
+        system("pause");
         switch (cmder.getCommand())//异常控制
         {
             case 0: {
-                ShutDown();
+                ShutDown(cmder);
                 bExit = true;
                 break;
             }
@@ -37,8 +39,9 @@ int main(int argc,char *argv[]) {
                 break;
             }
         }
+        system("pause");
     }
-	ShutDown();
+	ShutDown(cmder);
 	return 0;
 }
 

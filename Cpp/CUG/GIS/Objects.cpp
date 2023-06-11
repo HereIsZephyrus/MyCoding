@@ -1,5 +1,15 @@
 /***
  * @Author: ChanningTong Channing_TongCN@outlook.com
+ * @Date: 2023-06-11 13:47:16
+ * @LastEditors: ChanningTong Channing_TongCN@outlook.com
+ * @LastEditTime: 2023-06-11 14:44:55
+ * @FilePath: \GIS\Objects.cpp
+ * @Description:
+ * @
+ * @Copyright (c) 2023 by ChanningTong, All Rights Reserved.
+ */
+/***
+ * @Author: ChanningTong Channing_TongCN@outlook.com
  * @Date: 2023-06-07 20:53:55
  * @LastEditors: ChanningTong Channing_TongCN@outlook.com
  * @LastEditTime: 2023-06-07 21:25:06
@@ -9,6 +19,12 @@
  * @Copyright (c) 2023 by ChanningTong, All Rights Reserved.
  */
 #include "Objects.h"
+#include "GlobalVar.h"
+
+//extern vector<Response*> objList;
+//extern vector<Display*> elmList;
+//extern vector<Button*> butList;
+//extern fstream Basic, Vec;
 
 int Response::getX() const              {return X;}
 int Response::getY() const              {return Y;}
@@ -121,6 +137,7 @@ int Polygen::_Draw()
     unsigned int num = 0;
     //POINT pts[] = {};
     //fillpolygon(pts, num);
+    return 0;
 }
 void Polygen::DisplayInfo() const
 {
@@ -152,7 +169,7 @@ int Button::Suspend()
 {
     return 0;
 }
-int Button::Press() {
+int Button::Press(Status stage, const MOUSEMSG& mouse, vector<Response*>::iterator& obj) {
     if (type == Exit)
         return 0;
     switch (type)
@@ -161,16 +178,16 @@ int Button::Press() {
     {
         wchar_t filename[50];
         InputBox(filename, 50, L"请输入图片绝对路径与完整名称");
-        Vec.open(filename, std::ios_base::in);
+        //Vec.open(filename, std::ios_base::in);
         //...
-        Vec.close();
+        //Vec.close();
         break;
     }
     case New:
     {
         wchar_t filename[50];
         InputBox(filename, 50, L"请输入文件名称（默认保存在程序所在文件夹内");
-        Vec.open(filename, std::ios_base::out);
+        //Vec.open(filename, std::ios_base::out);
         //保持打开状态，直到用户手动保存或者在关闭程序时被动保存
         break;
     }
@@ -178,15 +195,14 @@ int Button::Press() {
     {
         wchar_t filename[50];
         InputBox(filename, 50, L"请输入文件绝对路径与完整名称");
-        Vec.open(filename, std::ios_base::in);
+        //Vec.open(filename, std::ios_base::in);
         //...
         //保持打开状态，直到用户手动保存或者在关闭程序时被动保存
-        return;
         break;
     }
     case Save:
     {
-        Vec.close();
+        //Vec.close();
         break;
     }
     case Switch:
@@ -200,7 +216,7 @@ int Button::Press() {
         stage = Drawing;
         const int x = mouse.x;
         //objList.push_back(new Point());
-        *obj = objList.end() - 1;
+        obj = objList.end() - 1;
         break;
     }
     case DrawLine:
@@ -208,7 +224,7 @@ int Button::Press() {
         stage = Drawing;
         const int x = mouse.x;
         //objList.push_back(new Line());
-        *obj = objList.end() - 1;
+        obj = objList.end() - 1;
         break;
     }
     case DrawPolygen:
@@ -228,5 +244,5 @@ int Button::Press() {
 int Button::_Draw()
 {
     //fillroundrect();
-    return;
+    return 0;
 }

@@ -19,21 +19,15 @@
  * @Copyright (c) 2023 by ChanningTong, All Rights Reserved.
  */
 #include "Commander.h"
+#include "Objects.h"
 #include<cmath>
-
-vector<Response *> objList;
-vector<Display *> elmList;
-vector<Button *> butList;
-
-extern fstream Basic;
-extern fstream Vec;
 
 int Commander::getCommand()
 {
 	if (MouseHit()) {
 		mouse = GetMouseMsg();
-        if (illegalClick(mouse))
-            return 0;
+        //if (illegalClick(mouse))
+        //    return 0;
 		switch (static_cast<int>(DictateArea(mouse)))
 		{
 		case static_cast<int>(Toolbar) : {//理论上在工具栏中可操作对象是按钮为充分必要的
@@ -44,7 +38,7 @@ int Commander::getCommand()
                 break;//没有点击在有效对象上
             if ((*obj)->getID() > ButtonNum)//这是一个没有被定义的行为，要报个错
                 break;
-            if (!dynamic_cast<Button*>((*obj))->Press())
+            if (!dynamic_cast<Button*>((*obj))->Press(stage,mouse,obj))
                 return 0;
 			break;
 		}
