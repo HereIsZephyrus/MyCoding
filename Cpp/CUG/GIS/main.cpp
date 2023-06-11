@@ -23,9 +23,16 @@ int main(int argc,char *argv[]) {
         switch (cmder.getCommand())//异常控制
         {
             case 0: {
+                ShutDown();
+                bExit = true;
+                break;
+            }
+            case -1: {
+                //failed
                 break;
             }
             default: {
+
                 bExit = true;
                 break;
             }

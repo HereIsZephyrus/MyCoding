@@ -1,13 +1,7 @@
 {
     "files.associations": {
-        "cstring": "cpp",
         "iterator": "cpp",
         "xmemory": "cpp",
-        "xutility": "cpp",
-        "system_error": "cpp",
-        "xlocale": "cpp",
-        "vector": "cpp",
-        "initializer_list": "cpp",
-        "xstring": "cpp"
+        "xutility": "cpp"
     }
 }

@@ -19,37 +19,59 @@
  * @Copyright (c) 2023 by ChanningTong, All Rights Reserved.
  */
 #include "Commander.h"
+#include<cmath>
 
 vector<Response *> objList;
 vector<Display *> elmList;
 vector<Button *> butList;
 
+extern fstream Basic;
+extern fstream Vec;
+
 int Commander::getCommand()
 {
 	if (MouseHit()) {
 		mouse = GetMouseMsg();
+        if (illegalClick(mouse))
+            return 0;
 		switch (static_cast<int>(DictateArea(mouse)))
 		{
 		case static_cast<int>(Toolbar) : {//理论上在工具栏中可操作对象是按钮为充分必要的
-            ButtonType objButton=DictateButton(mouse);
-            if (mouse.uMsg == WM_LBUTTONUP && objButton) // 在有效对象上释放响应
-                switch (PressButton(objButton))
-                {
-                    case 0:
-                    {
-                        return 0;//Exit
-                        break;
-                    }
-                    case 1:
-                    {
-                        stage=Drawing;//Load
-                        break;
-                    }
-                }
-
+            if (mouse.uMsg != WM_LBUTTONUP) // 除了左键放开，在工具栏都是点着玩的
+                break;
+            obj=DictateButton(mouse);
+            if (obj==objList.end())
+                break;//没有点击在有效对象上
+            if ((*obj)->getID() > ButtonNum)//这是一个没有被定义的行为，要报个错
+                break;
+            if (!dynamic_cast<Button*>((*obj))->Press())
+                return 0;
 			break;
 		}
 		case static_cast<int>(Photo): {
+            if (mouse.uMsg == WM_RBUTTONUP)//这个动作是不被定义的，右键只会被用来删除，而删除是瞬间的
+                break;
+            if (mouse.uMsg == WM_LBUTTONUP)
+            {
+                if (stage != Drag)  break;
+                else
+                {
+                    stage = Hold;//结束拖动
+                    if (typeid(*obj)==typeid(Line))
+                        if (!CheckExceed(*obj, 0))
+                        {
+                            // 越界了，非法拖动
+                            break;
+                        }
+                    if (typeid(*obj) == typeid(Polygen))
+                        if (!CheckExceed(*obj, 1))
+                        {
+                            // 越界了，非法拖动
+                            break;
+                        }
+                }
+            }
+            //剩下的鼠标输入状态只剩下左键按下，右键按下，鼠标移动
             switch (stage)
             {
             case Drawing: // 在绘制状态下，鼠标左键按下时，响应对象的ClickLeft()函数用以新建对象
@@ -62,6 +84,7 @@ int Commander::getCommand()
                 vector<Response*>::iterator obj = FocusObjID(mouse);
                 if (obj==objList.end())
                     break;
+                (*obj)->Suspend();//被focus的高亮显示
                 TOclick(obj, mouse, EXISTED);
                 break;
             }
@@ -70,7 +93,25 @@ int Commander::getCommand()
                 vector<Response *>::iterator obj = FocusObjID(mouse);
                 if (obj == objList.end())
                     break;
-                (* obj)->Move(mouse.x-(*obj)->getX(),mouse.y-(*obj)->getY());
+                (*obj)->Suspend();//被focus的高亮显示
+                switch (mouse.uMsg)//查看鼠标信息看看是被拖动的哪一个状态
+                {
+                case WM_LBUTTONUP:
+                {
+                    //开始拖动
+                    break;
+                }
+                case WM_LBUTTONDOWN://结束拖动
+                {
+                    (*obj)->Move(mouse.x - (*obj)->getX(), mouse.y - (*obj)->getY());
+                    break;
+                }
+                case WM_MOUSEMOVE:
+                {
+                    //拖动过程中，有精力写个异或线，先空着
+                    break;
+                }
+                }
                 break;
             }
             case Clicking:
@@ -103,54 +144,13 @@ Areas Commander::DictateArea(const MOUSEMSG& mouse)
 	}
 	return OUT_OF_RANGE;
 }
-ButtonType Commander::DictateButton(const MOUSEMSG &mouse)
+vector<Response*>::iterator Commander::DictateButton(const MOUSEMSG &mouse)
 {
-    return NOEXIST_BUTTON;
-}
-
-int Commander::PressButton(ButtonType objButton){
-    switch (objButton)
-    {
-    case ButtonType::Exit:
-    {
-
-        break;
-    }
-    case ButtonType::Load:
-    {
-
-        break;
-    }
-    case ButtonType::New:
-    {
-
-        break;
-    }
-    case ButtonType::Open:
-    {
-
-        break;
-    }
-    case ButtonType::Save:
-    {
-
-        break;
-    }
-    case ButtonType::Switch:
-    {
-
-        break;
-    }
-    case ButtonType::Draw:
-    {
-        return 1;
-        break;
-    }
-    default:
-        //failed
-        break;
-    }
-    return 0;
+    int x = mouse.x,y = mouse.y;
+    if (x<(10) || x>(100))//所有的鼠标都是对齐的，
+        return objList.end();
+     //...从上至下把按钮的坐标枚举一遍
+    return objList.end();
 }
 
 void Commander::UpdateStage(const MOUSEMSG &mouse)
@@ -169,7 +169,7 @@ void Commander::UpdateStage(const MOUSEMSG &mouse)
     }
     case WM_MBUTTONDOWN:
     {
-        if (objID > ButtonNum)
+        if ((*obj)->getID() > ButtonNum)
             stage = Drag;
         break;
     }
@@ -194,23 +194,18 @@ void Commander::UpdateStage(const MOUSEMSG &mouse)
     return;
 }
 
-void Commander::TOclick(vector<Response*>::iterator obj,const MOUSEMSG& mouse,bool HOLDING)
+void Commander::TOclick(vector<Response*>::iterator obj,const MOUSEMSG& mouse,bool STATUS)
 {
     switch (mouse.uMsg)
     {
     case WM_LBUTTONDOWN:
     {
-        (*obj)->ClickLeft(HOLDING);
+        (*obj)->ClickLeft(STATUS, mouse);
         break;
     }
     case WM_RBUTTONDOWN:
     {
-        (*obj)->ClickRight(HOLDING);
-        break;
-    }
-    case WM_MBUTTONDOWN:
-    {
-        (*obj)->ClickMiddle(HOLDING);
+        (*obj)->ClickRight(STATUS, mouse);
         break;
     }
     default:
@@ -248,5 +243,25 @@ int CalcLine(const int x, const int y, Polygen* obj)
 }
 bool CheckEdges(const int x, const int y, Line* obj)
 {
+    return false;
+}
+bool CheckExceed(const Response* obj, bool style)
+{
+    if (style == 0)//Line
+    {
+        return false;
+    }
+    //Polygen
+    return false;
+}
+bool illegalClick(const MOUSEMSG& mouse)
+{
+    if (mouse.uMsg == WM_MBUTTONDOWN ||
+        mouse.uMsg == WM_MBUTTONUP ||
+        mouse.uMsg == WM_MBUTTONDBLCLK ||
+        mouse.uMsg == WM_LBUTTONDBLCLK ||
+        mouse.uMsg == WM_RBUTTONDBLCLK ||
+        mouse.uMsg == WM_MOUSEWHEEL)
+        return true;//未定义的输入，不做处理，空转
     return false;
 }

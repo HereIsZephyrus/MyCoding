@@ -1,5 +1,15 @@
 /***
  * @Author: ChanningTong Channing_TongCN@outlook.com
+ * @Date: 2023-06-11 13:47:16
+ * @LastEditors: ChanningTong Channing_TongCN@outlook.com
+ * @LastEditTime: 2023-06-11 14:25:28
+ * @FilePath: \GIS\Commander.h
+ * @Description:
+ * @
+ * @Copyright (c) 2023 by ChanningTong, All Rights Reserved.
+ */
+/***
+ * @Author: ChanningTong Channing_TongCN@outlook.com
  * @Date: 2023-06-07 20:53:55
  * @LastEditors: ChanningTong Channing_TongCN@outlook.com
  * @LastEditTime: 2023-06-08 22:58:08
@@ -44,20 +54,19 @@ enum Status
 };
 
 class Commander {
+friend class Button;
 private:
 	MOUSEMSG mouse;
 	Status stage;
-    unsigned int objID;
 	vector<Response*>::iterator obj;//指向当前响应对象的指针
 protected:
 	Areas DictateArea(const MOUSEMSG&);
-    ButtonType DictateButton(const MOUSEMSG&);
+    vector<Response*>::iterator DictateButton(const MOUSEMSG&);
     void UpdateStage(const MOUSEMSG&);
-    int PressButton(ButtonType);
     vector<Response *>::iterator FocusObjID(const MOUSEMSG &);
     void TOclick(vector<Response*>::iterator,const MOUSEMSG &,bool);
 public:
-	Commander() :mouse{}, stage{ Hold },objID{0}{
+	Commander() :mouse{}, stage{ Hold }{
         FlushMouseMsgBuffer();
         obj=objList.end();
     }
@@ -67,4 +76,6 @@ public:
 double Distance(const int &, const int &, const int &, const int &);
 int CalcLine(const int,const int, Polygen*);
 bool CheckEdges(const int, const int, Line*);
+bool CheckExceed(const Response*,bool );
+bool illegalClick(const MOUSEMSG&);
 #endif // !_COMMANDER_H_

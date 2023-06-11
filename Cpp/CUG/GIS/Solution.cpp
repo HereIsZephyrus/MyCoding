@@ -11,44 +11,61 @@
 #include "Solution.h"
 #include "Commander.h"
 
-namespace streaming {
-    using std::fstream;
-    using std::ostream;
-    using std::istream;
-    using std::endl;
-    using std::cin;
-    using std::cout;
-}
-using namespace streaming;
-
-static fstream Basic, Vec;
+extern fstream Basic;
+extern fstream Vec;
 void Initialize() {
 	initgraph(1280, 720);
-    /*
     //绘制Toolbar
     static Rectangle toolbar();
     //...
     elmList.push_back(&toolbar);
     {
         //绘制按钮
-        static exitButton ExitButton();
-        butList.push_back(&ExitButton);
-        //...
+        static Button exitButton();//退出按钮
+        butList.push_back(&exitButton);
+        exitButton._Draw();
+        static Button drawButton1 ();//画点按钮
+        butList.push_back(&drawButton1);
+        drawButton1._Draw();
+        static Button drawButton2();//画线按钮
+        butList.push_back(&drawButton2);
+        drawButton2._Draw();
+        static Button drawButton3();//画面按钮
+        butList.push_back(&drawButton3);
+        drawButton3._Draw();
+        static Button openButton();//打开vec按钮
+        butList.push_back(&openButton);
+        openButton._Draw();
+        static Button newButton();//新建vec按钮
+        butList.push_back(&newButton);
+        newButton._Draw();
+        static Button saveButton ();//保存vec按钮
+        butList.push_back(&saveButton);
+        saveButton._Draw();
+        static Button loadButton();//加载底图按钮
+        butList.push_back(&loadButton);
+        loadButton._Draw();
     }
     //绘制地图底框
     static Rectangle map();
     elmList.push_back(&map);
-    */
-    //Basic.open();
-    //Vec.open();
+    
+    loadButton.Press();//加载一张先
 	return;
 }
 void ShutDown() {
     objList.clear();
     elmList.clear();
     butList.clear();
-    if (Basic.is_open())    Basic.close();
-    if (Vec.is_open())      Vec.close();
+    if (Basic.is_open()) {
+        //这是逻辑错误，不需要管理，但需要被检测
+        Basic.close();
+    }
+    if (Vec.is_open()) {
+        Vec.close();
+        saveButton.Press();
+        //说明是意外退出的，需要帮用户保存
+    }
 	closegraph();
 	return;
 }
