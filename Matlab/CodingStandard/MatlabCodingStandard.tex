@@ -1,32 +1,113 @@
-\documentclass[UTF8]{ctexart}
+\documentclass[12pt]{article}
+\usepackage{ctex,hyperref}
+\usepackage{times}
+\title{\fontsize{18pt}{27pt}\selectfont
+    {\heiti    
+        How TCB write Matlab Codes}\vspace{0em}}
+\author{\fontsize{12pt}{18pt}}
+\date{}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
 
+\usepackage[export]{adjustbox}
 
-\title{\Huge{\textsc{Matlab Coding Standard}}}
-\author{\Large{Channing Tong}}
-\bibliographystyle{plain}
+\usepackage{bibentry}
+\usepackage{natbib}
+
+\usepackage{abstract}
+\renewcommand{\abstractname}{\fontsize{14pt}{21pt}\selectfont Abstract}
+\renewcommand{\abstractname}{\textbf{前\quad 言}}
+\renewcommand{\absnamepos}{empty}
+
+\usepackage{xcolor}
+\newcommand{\red}[1]{\textcolor[rgb]{1.00,0.00,0.00}{#1}}
+\newcommand{\blue}[1]{\textcolor[rgb]{0.00,0.00,1.00}{#1}}
+\newcommand{\green}[1]{\textcolor[rgb]{0.00,1.00,0.00}{#1}}
+\newcommand{\darkblue}[1]
+{\textcolor[rgb]{0.00,0.00,0.50}{#1}}
+\newcommand{\darkgreen}[1]
+{\textcolor[rgb]{0.00,0.37,0.00}{#1}}
+\newcommand{\darkred}[1]{\textcolor[rgb]{0.60,0.00,0.00}{#1}}
+\newcommand{\brown}[1]{\textcolor[rgb]{0.50,0.∫30,0.00}{#1}}
+\newcommand{\purple}[1]{\textcolor[rgb]{0.50,0.00,0.50}{#1}}
+
+\usepackage{url}% 超链接
+\usepackage{bm}% 加粗部分公式
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{epstopdf}
+\usepackage{epsfig}
+\usepackage{longtable}% 长表格
+\usepackage{supertabular}% 跨页表格
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{changepage}% 换页
+
+\usepackage{enumerate}% 短编号
+\usepackage{caption}% 设置标题
+\usepackage{indentfirst}% 中文首行缩进
+\usepackage[left=2.50cm,right=2.50cm,top=2.80cm,bottom=2.50cm]{geometry}% 页边距设置
+\renewcommand{\baselinestretch}{1.5}% 定义行间距（1.5）
+\usepackage{fancyhdr} %设置全文页眉、页脚的格式
+\pagestyle{fancy}
+\hypersetup{colorlinks=true,linkcolor=black}% 去除引用红框，改变颜色
+
 \begin{document}
+    \maketitle
+    \begin{abstract}
+        Matlab虽然拥有十分强大的功能，但并不是一个面向对象语言。因此在使用和开发的过程中需要建立一套合理的代码规范进行资源管理、提升代码可读性与降低耦合度。以下是自己使用过程中的一些经验教训。\\
+        
+        \noindent \texbf{关键词:}Matlab; Coding Standard
+    \end {abstract}
+    \tableofcontents
+    \section{如何管理变量}
+        \subsection{命名规则}
+        \begin{description}
+            \item[\textbf{临时变量}]
+                \makebox[80pt][r]{驼峰法}       [eg:tmpvValue;  isChecked;]
+            \item[\textbf{全局变量}]
+                \makebox[80pt][r]{大写表示}     [eg:MAXN;   GENERATION;]
+            \item[\textbf{命名变量}] 
+                \makebox[80pt][r]{下划线法}     [eg:summer\_data;    origin\_gragh;]
+        \end{description}
 
-\maketitle
+        由于Matlab无法封装，所以在变量命名时尽量描述其[所属的数据范围][阶段][属性名][用途]等。
 
-\tableofcontents
+        \subsection{作用域管理}
+        由于Matlab的变量在声明后在离开其声明的作用域时不会自己销毁，因此“尽可能局部地声明变量”这一铁律被打破了，不过仍然需要尽可能避免显式声明全局变量而是在文件中传递。相应地就必须对作用域做显式的管理。所以\red{一定要手动clear用到的临时变量！}尤其是在for之后
 
+        进行准确的作用域管理将带来一个巨大的优势————在程序运行结束后只需要将所有数据/新生成的数据均导出到mat中即可，视将采用的链接方式决定。
+    \section{如何管理函数}
+        \subsection{命名规则}
+        \begin{description}
+            \item[\textbf{公用算法方法}]
+                \makebox[120pt][c]{帕斯卡法}   [eg:Arima;  GoalPrograming;] 
+            \item[\textbf{项目算法方法}]
+                \makebox[120pt][c]{m\_帕斯卡法}   [eg:m\_Arima;  m\_GoalPrograming;]
+            \item[\textbf{控制处理函数}]   
+                \makebox[120pt][c]{首字母大写的下划线法}   [eg:Calc\_connection;] 
+        \end{description}
 
-\section{代码规范}
+        \subsection{接口管理}
+        由于Matlab无法重载，只能通过可变参数列表的方式形成比较有限的多态，因此在函数接口设计时需要尽可能地将参数列表设计为一致的。好在Matlab的参数列表还是比较现代的，传递比较方便。
 
-\subsection{命名规范}
-\begin{description}
-	\item{\textbf{变量命名}}		\makebox[80pt][r]{驼峰命名法} 
-			[eg:tmpValue;		isChecked;]
-	\item{\textbf{函数命名}}		\makebox[80pt][r]{首字母大写} 
-			[eg:CheckValid;	FirstFunction;]
-\end{description}
+        \subsection{函数调用}
+        由于Matlab的函数参数传递是值传递，因此在函数内部对参数的修改不会影响到函数外部的变量，因此在函数内部对参数的修改需要通过返回值的方式进行。
 
+        Matlab调用函数文档及其方便，所以\red{不要偷懒给每一个函数都写上必要的说明，尤其是算法函数提供较细致的接口说明}
 
-\[\sum_{i=1}^n i \prod_{i=1}^n \lim_{x\to0}x^2 \int_a^b x^2 dx\]
-\subsection{构建规范}
+    \section{如何链接程序}
+        \subsection{迭代构建的情况}
+            mat中使用同样的文件名，这样调用不同阶段的数据文件就可以查看相应情况的结果。
 
-\section{代码风格}
+            \textbf{数据处理最好使用迭代构建。}比如[\text{读取}\rightarrow \text{清洗}\rightarrow \text{预处理}\rightarrow \text{分类}]的过程
 
-\subsection{变量管理}
-
+            \textbf{添加属性最好使用流程构建。}比如已经有了若干结论，在此基础上需要添加新的属性，这时候就需要将原有的数据文件作为输入，添加新的属性后输出到新的文件中。
+        
+        \subsection{独立构建的情况}
+            在不同线性的处理流合并、分析等都最好使用独立构建。包含若干需要的中间数据，只将将得到的少量所求数据放入文件，因为往往这是一个阶段的结果，也常常是需要在此基础上进行下一步的处理的起点。
 \end{document}
