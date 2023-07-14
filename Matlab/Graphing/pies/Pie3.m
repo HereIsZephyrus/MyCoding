@@ -5,6 +5,7 @@
 % 读取数据
 X = [0.49 0.12 0.1 0.08 0.08 0.04 0.04 0.05];
 Label = {'Brazil','Colombia','Argentina','Peru','Venezuela','Chile','Ecuador','Others'};
+explode=zeros(length(X),1);
 
 %% 颜色定义
 % TheColor函数获取方式：
@@ -22,7 +23,7 @@ figureHandle = figure;
 set(gcf, 'Units', figureUnits, 'Position', [0 0 figureWidth figureHeight]);
 
 %% 三维饼图绘制
-pie3(X)
+pie3(X,explode);
 hTitle = title('South American Population by Country');
 
 %% 细节优化
