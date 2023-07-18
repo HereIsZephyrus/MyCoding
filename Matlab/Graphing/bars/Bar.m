@@ -1,6 +1,4 @@
-% 多色单组柱状图绘制模板
-% 公众号：阿昆的科研日常
-
+clc;clear;close all;
 %% 数据准备
 % 读取数据
 % 自变量
@@ -9,8 +7,6 @@ x = 1:10;
 dataset = [0.341,0.493,0.324,0.428,0.333,0.341,0.493,0.324,0.428,0.333];
 
 %% 颜色定义
-% addcolorplus函数获取方式：
-% 公众号后台回复：配色强化
 map = addcolorplus(296);
 idx = linspace(1,64,10);
 idx = round(idx);
@@ -28,8 +24,8 @@ hold on
 
 %% 绘制多色单组柱状图
 GO = bar(x,dataset,0.6,'EdgeColor','k','LineWidth', 1);
-hXLabel = xlabel('Samples');
-hYLabel = ylabel('RMSE (m)');
+hXLabel = xlabel('XAxis');
+hYLabel = ylabel('YAxis');
 
 %% 细节优化
 % 赋色
@@ -50,7 +46,7 @@ set(gca, 'Box', 'off', ...                                         % 边框
          'Xlim' , [0.3 10.7], ...
          'XTick', 1:10,...
          'Xticklabel',{1:10},...                                   % X坐标轴刻度标签
-         'Yticklabel',{[0:0.1:1]})                                 % Y坐标轴刻度标签
+         'Yticklabel',{0:0.1:1})                                 % Y坐标轴刻度标签
 
 % 字体和字号
 set(gca, 'FontName', 'Helvetica')
@@ -66,5 +62,5 @@ figW = figureWidth;
 figH = figureHeight;
 set(figureHandle,'PaperUnits',figureUnits);
 set(figureHandle,'PaperPosition',[0 0 figW figH]);
-fileout = 'eg1';
+fileout = 'Bar';
 print(figureHandle,[fileout,'.png'],'-r300','-dpng');

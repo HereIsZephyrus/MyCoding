@@ -1,6 +1,3 @@
-% 对数刻度横向柱状图绘制模板
-% 公众号：阿昆的科研日常
-
 %% 数据准备
 % 读取数据
 % 自变量
@@ -9,10 +6,9 @@ x = 1:7;
 y = [87687 9229 1387 1066 447 147 26];
 
 %% 颜色定义
-% TheColor函数获取方式：
-% 公众号后台回复：TC
+C=addcolorplus(296);
 % 对比色
-C = TheColor('sci',999);
+%C = TheColor('sci',999);
 % 渐变色
 % C = TheColor('sci',2064,'map',7);
 % C = flipud(C);
@@ -30,15 +26,17 @@ hold on
 %% 对数刻度横向柱状图绘制
 GO = barh(x,y,0.9,'EdgeColor','k','LineWidth',1);
 hTitle = title('Horizontal bar chart with logarithmic scale');
-hXLabel = xlabel('Number of nodes');
-hYLabel = ylabel('Province');
+hXLabel = xlabel('XAxis');
+hYLabel = ylabel('YAxis');
 
 %% 细节优化
 % 赋色
 GO.FaceColor = 'flat';
-for i = 1:7
-    GO.CData(i,:) = C(i,:);
+n=length(x);
+for i = 1:n
+    GO.CData(i,:) = C(floor(length(C)/n*i),:);
 end
+clear n;
 % 坐标区调整
 set(gca, 'Box', 'off', ...                                         % 边框
          'LineWidth',1,...                                         % 线宽
@@ -77,5 +75,5 @@ figW = figureWidth;
 figH = figureHeight;
 set(figureHandle,'PaperUnits',figureUnits);
 set(figureHandle,'PaperPosition',[0 0 figW figH]);
-fileout = 'test';
+fileout = 'BarhLog';
 print(figureHandle,[fileout,'.png'],'-r300','-dpng');

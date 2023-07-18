@@ -1,67 +1,58 @@
-% ºáÏòÖù×´Í¼»æÖÆÄ£°å
-% By£º°¢À¥µÄ¿ÆÑĞÈÕ³£
-
-%% Êı¾İ×¼±¸
-% ¶ÁÈ¡Êı¾İ
-% ×Ô±äÁ¿x
+clc;clear;close all;
+%% æ•°æ®å‡†å¤‡
 x = [1980 1990 2000];
-% Òò±äÁ¿y
 y = [50 63 52; 
      55 50 48; 
      30 20 44];
 
-%% ÑÕÉ«¶¨Òå
-% addcolorplusº¯Êı»ñÈ¡·½Ê½£º
-% ¹«ÖÚºÅºóÌ¨»Ø¸´£ºÅäÉ«Ç¿»¯
+%% é¢œè‰²å®šä¹‰
 C1 = addcolorplus(193);
 C2 = addcolorplus(194);
 C3 = addcolorplus(195);
 
-%% Í¼Æ¬³ß´çÉèÖÃ£¨µ¥Î»£ºÀåÃ×£©
+%% å›¾ç‰‡å°ºå¯¸è®¾ç½®
 figureUnits = 'centimeters';
 figureWidth = 15;
 figureHeight = 8;
 
-%% ´°¿ÚÉèÖÃ
+%% çª—å£è®¾ç½®
 figureHandle = figure;
 set(gcf, 'Units', figureUnits, 'Position', [0 0 figureWidth figureHeight]); % define the new figure dimensions
 hold on
 
-%% ºáÏòÖù×´Í¼»æÖÆ
-% Ô­Ê¼ºáÏòÖù×´Í¼
+%% ç»˜åˆ¶æ¡å½¢å›¾
 GO = barh(x,y,0.8,'EdgeColor','k');
-xlabel('Snowfall')
-ylabel('Year')
+xlabel('XAxis');
+ylabel('YAxis');
 
-% ¸³É«
 GO(1).FaceColor = C1;
 GO(2).FaceColor = C2;
 GO(3).FaceColor = C3;
 
-%% Ï¸½ÚÓÅ»¯
-set(gca, 'Box', 'off', ...                                         % ±ß¿ò
-         'XGrid', 'off', 'YGrid', 'off', ...                       % Íø¸ñ
-         'TickDir', 'out', 'TickLength', [.01 .01], ...            % ¿Ì¶È
-         'XMinorTick', 'off', 'YMinorTick', 'off', ...             % Ğ¡¿Ì¶È
-         'XColor', [.1 .1 .1],  'YColor', [.1 .1 .1],...           % ×ø±êÖáÑÕÉ«
-         'YTick', 1980:10:2000,...                                 % ¿Ì¶ÈÎ»ÖÃ¡¢¼ä¸ô
-         'Xticklabel',{0:10:70},...                                % X×ø±êÖá¿Ì¶È±êÇ©
-         'Yticklabel',{[1980:10:2000]})                            % Y×ø±êÖá¿Ì¶È±êÇ© 
+%% åæ ‡åŒºè°ƒæ•´
+set(gca, 'Box', 'off', ...                                         % Â±ÃŸÂ¿Ã²
+         'XGrid', 'off', 'YGrid', 'off', ...                       % ÃÃ¸Â¸Ã±
+         'TickDir', 'out', 'TickLength', [.01 .01], ...            % Â¿ÃŒÂ¶Ãˆ
+         'XMinorTick', 'off', 'YMinorTick', 'off', ...             % ÃÂ¡Â¿ÃŒÂ¶Ãˆ
+         'XColor', [.1 .1 .1],  'YColor', [.1 .1 .1],...           % Ã—Ã¸Â±ÃªÃ–Ã¡Ã‘Ã•Ã‰Â«
+         'YTick', 1980:10:2000,...                                 % Â¿ÃŒÂ¶ÃˆÃÂ»Ã–ÃƒÂ¡Â¢Â¼Ã¤Â¸Ã´
+         'Xticklabel',{0:10:70},...                                % XÃ—Ã¸Â±ÃªÃ–Ã¡Â¿ÃŒÂ¶ÃˆÂ±ÃªÃ‡Â©
+         'Yticklabel',{[1980:10:2000]})                            % YÃ—Ã¸Â±ÃªÃ–Ã¡Â¿ÃŒÂ¶ÃˆÂ±ÃªÃ‡Â© 
 
 hLegend = legend([GO(1),GO(2),GO(3)], ...
-                 'Springfield','Fairview','Bristol', ...
+                 'Legend1','Legend2','Legend3', ...
                  'Location', 'northeast');
 
-% ×ÖÌåºÍ×ÖºÅ
+% å­—ä½“å­—å·
 set(gca, 'FontName', 'Arial', 'FontSize', 10)
 
-% ±³¾°ÑÕÉ«
+% èƒŒæ™¯é¢œè‰²
 set(gca,'Color',[1 1 1])
 
-%% Í¼Æ¬Êä³ö
+%% å›¾ç‰‡è¾“å‡º
 figW = figureWidth;
 figH = figureHeight;
 set(figureHandle,'PaperUnits',figureUnits);
 set(figureHandle,'PaperPosition',[0 0 figW figH]);
-fileout = 'test';
+fileout = 'Barh';
 print(figureHandle,[fileout,'.png'],'-r300','-dpng');
