@@ -1,4 +1,4 @@
-function [a_pre,b_pre]=Secondary_Exponential_Smoothing(y,alpha)
+function [a_pre,b_pre]=SecexpSmooth(y,alpha)
     n=length(y);
     st1(1)=y(1);        st2(1)=y(1);
     for i=2:n

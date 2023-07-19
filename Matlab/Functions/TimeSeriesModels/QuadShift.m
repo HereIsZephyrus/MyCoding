@@ -1,4 +1,4 @@
-function [a_pre,b_pre]=Quadratc_Average_shift(y,n)
+function [a_pre,b_pre]=QuadShift(y,n)
     m1=length(y);
     for i=1:m1-n+1
             yhat1(i)=sum(y(i:i+n-1))/n;

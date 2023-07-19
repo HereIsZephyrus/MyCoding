@@ -1,4 +1,4 @@
-function [y_pre,w]=Adaptive_filtering(y,N,limit)
+function [y_pre,w]=AdaptiveFiltering(y,N,limit)
     %y为序列,N为权数个数,k为学习常数.当时间序列的观测值呈季节变动时，N应取季节性长度值.
     if (nargin<3)
         limit=0.01;

@@ -1,4 +1,4 @@
-function [a,b,k,y_pre]=Index_Correction_Curve(y,t)
+function [a,b,k,y_pre]=IndexCorrectionCurve(y,t)
 %利用三合法求解,检验方法是看给定数据的逐期增长量的比率是否接近某一常数b
     n=length(y);
     m=n/3;

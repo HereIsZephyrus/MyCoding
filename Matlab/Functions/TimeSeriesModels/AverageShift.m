@@ -1,6 +1,6 @@
 %clc;clear
 %load data; %data in y
-function [y_pre,s]=Average_shift(y,n)
+function [y_pre,s]=AverageShift(y,n)
     m=length(y);
     for i=1:length(n)
         for j=1:m-n(i)+1

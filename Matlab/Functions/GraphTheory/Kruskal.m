@@ -1,5 +1,5 @@
-% Function to implement Kruskal's algorithm for finding the minimum spanning tree
 function [miniumSpantree, Weight] = Kruskal(adjMatrix)
+    % Function to implement Kruskal's algorithm for finding the minimum spanning tree
     %计算以邻接矩阵存储的最小生成树,miniumSpantree为最小生成树的形态,Weight为路径长
     % Find the number of nodes in the graph
     num_Nodes = size(adjMatrix, 1);

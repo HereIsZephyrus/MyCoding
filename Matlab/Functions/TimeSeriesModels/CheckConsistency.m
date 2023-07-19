@@ -1,4 +1,4 @@
-function [CI,CR]=Check_Consistency(A,RI)
+function [CI,CR]=CheckConsistency(A,RI)
     %CI为一致性指标,CR为一致性比例,比如CR<0.1时一致性检验通过
     [V,D] = eig(A);
     Max_eig = max(max(D));
