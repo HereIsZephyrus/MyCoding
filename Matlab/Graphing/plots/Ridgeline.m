@@ -1,19 +1,14 @@
-% Matlab进阶绘图-山脊图
-% 公众号：阿昆的科研日常
-
+close all;
 %% 数据准备
-% 读取数据
-load data.mat
-% 自变量
-X = x;
-% 因变量
-Y = data;
+num=6;
+data=groupedData{num}';
+data=data/100;
 
 %% 颜色定义
-% TheColor函数获取方式：
-% 公众号后台回复：TC
-map = TheColor('sci',2064);
+%map = TheColor('sci',2064);
+map = addcolorplus(296);
 map = flipud(map);
+x=1:length(data);
 
 %% 图片尺寸设置（单位：厘米）
 figureUnits = 'centimeters';
@@ -25,15 +20,15 @@ figureHandle = figure;
 set(gcf, 'Units', figureUnits, 'Position', [0 0 figureWidth figureHeight]);
 
 %% 山脊图绘制
-JoyPlot(data',x,0.7, ...
+JoyPlot(data',x,1.1, ...
        'constant', ...
         false,...
        'LineWidth',1.2, ...
        'FaceColor','position', ...
        'FaceAlpha',0.8)
-hTitle = title('Ridgeline Plot');
-hXLabel = xlabel('K (w)');
-hYLabel = ylabel('Samples');
+hTitle = title(strcat(num2str(temperature(num)),'C下各组样品各指标'));
+hXLabel = xlabel('转化率/选择率%');
+hYLabel = ylabel('样品');
 
 %% 细节优化
 % 赋色
@@ -41,7 +36,7 @@ colormap(map)
 % 坐标区调整
 % Y刻度标签定义
 temp = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-ylbs = sprintfc('Samp %c',temp(1:10));
+ylbs = sprintfc('Goal %c',temp(1:10));
 set(gca, 'Box', 'off', ...                                % 边框
          'LineWidth',1,...                                % 线宽
          'XGrid', 'off', 'YGrid', 'off', ...              % 网格

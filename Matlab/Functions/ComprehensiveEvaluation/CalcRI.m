@@ -1,4 +1,5 @@
 function RI=CalcRI(n,times)
+    %计算AHP的RI
     if (nargin==1)
         times=1000;
     end

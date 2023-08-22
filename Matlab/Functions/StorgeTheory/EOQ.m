@@ -1,11 +1,20 @@
-function [quantity,period,cost] = EOQ(rate_demand, cost_order,cost_hold)
-    %经济订购批量存储模型[optimal_order_quantity]:不允许缺货,生产时间近似0
-    %demand为需求率,cost_order为订货费,cost_hold为存储费
-    %quantity,period,cost] = EOQ(rate_demand, cost_order,cost_hold)
-    quantity = round(sqrt((2 * rate_demand * cost_order) / cost_hold));
-    period=quantity/rate_demand;
-    cost=1/2*cost_hold*quantity+cost_order*rate_demand/quantity;
+function [quantity,period,cost] = EOQ(rateDemand, costOrder,costPersistence,costShortage)
+    %订购-存储模型(economic ordering quantity)不允许缺货,生产时间近似0,需求是连续的均匀的
+    %   rateDemand为需求率,costOrder为订货费,costPersistence为存储费,costShortage是短缺费
+    %   quantity为每次订货数量,period为订货周期间隔,cost为平均每周期成本
+    %   [quantity,period,cost] = EOQ(rateDemand, costOrder,costPersistence)
+    %   [quantity,period,cost] = EOQ(rateDemand, costOrder,costPersistence,costShortage)
+    if (nargin<3)
+        error("argument error");
+    end
+    if (nargin==3)%不允许缺货
+        quantity = sqrt((2 * rateDemand * costOrder) / costPersistence);
+        period=quantity/rateDemand;
+        cost=sqrt(2*costOrder*costPersistence*rateDemand);
+    else%允许缺货
+        tCost=costOrder*(1/costPersistence+1/costShortage);
+        quantity=sqrt(2*tCost*rateDemand);
+        period=quantity/rateDemand;
+        cost=2*costOrder/period;
+    end
 end
-
-%optimal_order_quantity = economic_ordering_quantity(D, S, H);
-%disp(['Optimal order quantity: ', num2str(optimal_order_quantity)]);

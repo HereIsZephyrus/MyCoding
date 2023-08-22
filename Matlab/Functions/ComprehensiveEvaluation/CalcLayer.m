@@ -1,4 +1,5 @@
 function [weight,CR,maxEig]=CalcLayer(rawData)
+    %计算AHP单层权重
     [weight,rawDiag]=eig(rawData);
     rawEig=diag(rawDiag);
     n=length(rawEig);
