@@ -1,0 +1,2305 @@
+% !Mode:: "TeX:UTF-8"
+%!TEX program  = xelatex
+
+% \documentclass{cumcmthesis}
+\documentclass[withoutpreface,bwprint]{cumcmthesis} %去掉封面与编号页
+\usepackage{url}
+\usepackage{threeparttable}
+\usepackage{ctex}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{float} 
+\usepackage{amssymb}
+%\usepackage{subfigure}
+\usepackage{algorithmicx}
+\usepackage{amsmath}
+\usepackage{subcaption}
+\usepackage{biblatex}
+
+\usepackage[ruled]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{bm}
+\usepackage{titlesec}
+\usepackage{zhnumber}
+\usepackage{caption}
+
+
+\newcommand{\noindentsection}[1]{%
+    \titleformat{\section}[hang]{\normalfont\Large\bfseries}{问题\thesection:}{1em}{}[]%
+    \section{#1}%
+    \titleformat{\section}[hang]{\normalfont\Large\bfseries}{问题\thesection:}{1em}{}[]
+}
+
+
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\title{自动驾驶车辆的摩擦动力学反演模型和行驶评价方法}
+\tihao{A}
+\baominghao{4321}
+\schoolname{XX大学}
+\membera{zstar}
+\memberb{向左}
+\memberc{哈哈}
+\supervisor{老师}
+\yearinput{2021}
+\monthinput{08}
+\dayinput{22}
+
+\begin{document}
+
+ \maketitle
+ \begin{abstract}
+
+自动驾驶在推动交通安全、提升出行效率和探索未来可持续的智能交通解决方案中起重要作用。本文通过建立汽车轮胎受摩擦力矩的基础物理学模型和遵循阿克曼转向模型运动规律的车辆行驶过程的基础运动学模型，最终得到了车辆行驶过程中摩擦力随时间变化的曲线和车辆行驶的指标评价。
+
+对于问题一，首先，将附录数据导入Matlab，生成四条路段上汽车的轨迹散点图。然后，根据路口和非路口的特点进行分割。对于非路口部分，对分段线性插值函数使用\textbf{二次B样条插值}进行磨光，生成轨迹曲线。同时，对数据点间的平均速度进行\textbf{一次磨光函数处理}，得到速度-时间曲线。而对于路口部分，先将汽车运动拟合为匀速圆周运动，获得运动轨迹。再将进入路口位置点速度视为圆周运动速度，得到速度-时间曲线。最后，将汽车位置、时间和速度一一对应，得到速度和正北方偏角随时间变化的曲线。 
+
+针对问题二，首先将汽车的加速度分解为径向加速度和横向加速度。在非路口区域，运用\textbf{最小二乘法}对车辆轨迹曲线进行自拟合，从而将轨迹分段。通过每段曲线的线速度和曲率半径计算横向加速度。同时，对轨迹曲线进行微分以获取径向加速度。在路口部分，径向加速度为零，而横向加速度可通过线速度和曲率半径计算。综合考虑两个加速度分量，得到了各路段上汽车加速度随时间变化的曲线。通过对各路段汽车加/减速占比，向左/右调整频率的统计，可得汽车在路段1和路段3更倾向于加速行驶，在路段2和路段4更倾向于减速行驶。同时，在路段1和路段2更倾向于向左调整，而在路段3和路段4更倾向于向右调整。
+
+对于问题三，首先基于轮胎受力特征，建立了轮胎受摩擦力矩的基础物理学模型和遵循\textbf{阿克曼转向模型}运动规律的车辆行驶过程的基础运动学模型。在建立物理模型时，我们需要利用设定合理的参数，并结合前两问中得到的车辆行驶姿态数据对部分参数做\textbf{动力反演}，使得结果更贴近题目提供的实际场景。然后针对题目给定的路面和载客条件修正基础模型。最后可以得到路段4在无倾斜无载客、有倾斜无载客以及有倾斜有载重等不同情况下，摩擦力随时间变化的曲线。
+
+对于问题四，首先定义了车辆的舒适度和安全性是车辆行驶过程中的舒适度和安全性。针对这两个方面，选取速度，角度，加速度（包括横向和径向）共四个指标进行统计分析，得到了它们的区间范围和权重，由此可得路段1和路段2的舒适度与安全性较差，路段3和路段4的舒适度与安全性较好。通过引入\textbf{RSR秩和比模型}评价不同车辆的综合参数，添加除附件2提供的数据外的辅助参数（最低与最高指导价格）作为输入，将输出的RSR值进行排序，最终发现目标车辆在6个车型排名第\textbf{2}，性价比较高。
+
+
+\keywords{B样条磨光 \quad 动力反演 \quad 阿克曼转向模型\quad   RSR综合评价\quad}
+\end{abstract}
+
+
+\section{问题重述}
+
+\subsection{背景资料}
+在当今快速发展的科技环境中，私家车出行这一交通方式已从富裕阶层走向千家万户。这种趋势催生出人们对于自动驾驶的向往，以实现驾驶过程的自主化，从而解放双手。然而，自动驾驶汽车领域仍面临着一系列技术瓶颈和安全隐患，这些问题迄今尚未得到充分解决。实际上，由于自动驾驶技术的不成熟，时有交通事故发生，这使得自动驾驶汽车的广泛应用受到了一定的限制。
+
+\subsection{需要解决的问题}
+附件1记录了同一型号自动驾驶汽车在4个路段上的行驶轨迹，包含汽车的经纬度位置、路段编号和采集时间等信息。由于时间采集以分钟为基本单位，因此同一分钟内采集的样本可视为等间隔采集。假设汽车质量为5000kg，根据理论，刹车时的加速度理论上不应超过$12m/s²$。
+
+（1）由附件1，画出汽车行驶在这4个路段上的轨迹曲线、速度-时间曲
+线、速度与正北方偏角大小随时间变化的曲线。
+
+（2）建立数学模型对这4条路段上汽车的加速度随时间变化曲线进行拟合，随后将拟合结果与问题（1）的成果相结合，说明汽车在这4条路段上行驶的特点。
+
+（3）若汽车行驶于路段4时，路面呈现左低右高的倾斜情况，具体倾斜角度为0.04 rad时，分析轨迹4上加速度非零的点的受力情况，以及摩擦力随时间变化的趋势。并说明该型号汽车在搭载4名体重均为60kg的乘客时，关于摩擦力的具体要求。
+
+（4）综合前三个问题的结论，结合研究附件2中的信息以及查找的资料，对这款汽车的舒适度、安全性和性价比进行综合分析。
+
+\section{问题假设}
+\begin{enumerate}
+    \item 给定的GIS坐标误差小于1m 
+    \item 假设车辆行驶速度变化缓慢，忽略轮胎的横向滑移和前后轴载荷的转移
+    \item  假设车身和悬架系统都是刚性系统
+    \item 假设车辆是前轮转向后轮驱动型且符合阿克曼转向模型
+    \item 所有的行驶均为低速行驶，不存在横向滑移
+\end{enumerate}
+
+
+\section{符号说明}
+\begin{table}[htbp]
+   \centering
+   \begin{tabular}{cc}
+   \toprule[2.5pt]
+   符号 &  符号说明 \\
+   \midrule[1pt]
+   $C$ &车辆质心 \\
+   $v$ & 质心车速 \\
+   $T$ & 车轮轮距，即左右车轮前距离\quad\quad  \\
+   $\sigma$ & 主销内倾角 \\
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+   \centering
+   \begin{tabular}{cc}
+  $G_{c}$/$G_{p}$ & 车辆/乘客重力  \\
+  $l_{tf}$/$l_{tb}$ & 前/后轮轴距质心长度  \\
+  $l_{pf}$/$l_{pb}$ & 前/后车座距质心长度  \\
+  $D/W$ & 车轮直径/宽度\\
+  $p$ & 车辆胎压 \\
+  $\mu $& 路面摩擦系数 \\
+  $O$ & 车辆转向中心，位于后轮轴延长线上  \\
+  $R$ & 车辆质心转向半径  \\
+  $R_l/R_r$ & 左/右前轮转弯半径 \\
+  $\beta$ & 滑移角，当前时刻汽车的偏转角度 \\
+  $\phi$ & 航向角，当前时刻汽车的行进方向\\
+  $\theta_l$ / $\theta_r$ & 左/右前轮偏角  \\
+  $\alpha_t$/$\alpha_n$ & 车辆径向/横向加速度 \\
+  $\psi$ & 路面倾斜角度 \\
+  \bottomrule[2.5pt]
+\end{tabular}
+\end{table}
+
+\section{问题一模型的建立与求解}
+\subsection{问题分析}
+首先，为了实现更为直观的分析数据，我们将附件1中的经纬度数据导入谷歌地图平台，以获取涉及四条道路的精确地理位置信息。然后，对车辆在非路口处行驶和在路口处行驶这两种情况分开讨论。
+
+\textbf{1.轨迹曲线}
+
+对于在非路口交会处行驶：根据附件1数据直接进行分段线性插值，后使用，二次B样条函数磨光，从而获得平滑的轨迹曲线（二阶导数连续）。
+
+对于在路口处行驶：可将汽车进入路口之前和离开路口之后的阶段视为速度调整过程。然而，在路口转弯时，我们可以将其视为匀速圆周运动。为了确定这一运动的圆心和半径，我们需要通过连接汽车进入路口的位置点和离开路口的位置点，并计算它们的垂直平分线。这条平分线与与汽车转弯方向相同侧的路边相交，其交点即为圆心。进入/离开路口位置与圆心之间的连线则代表圆的半径。于是，可推导出汽车在该路口的轨迹曲线。
+
+将路口和非路口两种情况结合，可以得到汽车在整个行程中的轨迹曲线。
+
+\textbf{2.速度-时间曲线}
+
+对于在非路口交会处行驶：计算轨迹曲线磨光前每段记录点之间的平均速度，对其磨光一次后得到速度-时间曲线。
+
+对于在路口处行驶：由于汽车做匀速圆周运动，其速度取决于进入路口时的初始速度，该速度在路口内保持恒定，不随时间变化。此初始速度对应于在非路口区域行驶的速度-时间曲线中的特定点，该点位于进入路口之前。由于进入路口的位置点位于非路口区域，我们可以从非路口的速度-时间曲线中直接提取这一初始速度，于是得到路口处的速度-时间曲线。
+
+将路口和非路口两种情况结合，可以得到汽车在整个行程中的速度-时间曲线。
+
+\textbf{3.速度与正北方偏角大小随时间变化的曲线}
+
+由于汽车轨迹曲线与速度-时间曲线插值后都是相同个数的记录点，通过汽车在各路段上最早的时间和最晚的时间可以得到每个点的具体时间，于是可以得到汽车位置、速度和时间的一一对应关系，以正北方为参考，可得汽车在每条路段的各位置上速度与正北方偏角大小随时间变化的曲线。
+
+\begin{figure}[htbp]
+  	\centering
+  	\includegraphics[width=0.6\textwidth]{img/wentiyi.png}
+   \captionsetup{font=small, position=below}
+  	\caption{问题一流程图}
+  \end{figure}
+
+\subsection{数据预处理}
+
+将附件1中数据导入MATLB，可以做出编号分别为1、2、3、4的四个路段上汽车行驶的轨迹曲线如下：
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{img/1.png}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{img/2.png}
+     \captionsetup{font=small, position=below}
+    \caption{汽车位移散点连线}
+\end{figure}
+
+
+\newpage
+然而，为了更加形象地观察这几段路的位置，我们将数据导入到谷歌地图中。通过谷歌地图，我们得以准确查看这四个路段的具体位置，这进一步增强了我们对数据的地理感知：
+
+
+
+可以观察到，上述四个路段均位于巴西塞尔希培州。
+
+\subsection{轨迹曲线}
+
+
+同时，基于附件1的数据，我们能够绘制出四个路段上汽车的轨迹曲线：
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.55\linewidth]{img/sigesandian.png}
+     \captionsetup{font=small, position=below}
+    \caption{汽车位移曲线}
+    
+\end{figure}
+
+
+
+然而，从图中可以明显看出，该曲线是各个散点连接而成的分段函数$f(x)$。很显然，这种表示无法准确反映汽车在任意时刻的位移情况。又因为汽车在路口处和非路口处行驶具有较大区别，所以需要分类讨论：
+
+
+\textbf{非路口处轨迹曲线}
+
+
+
+为了更精确地描述和捕捉汽车在非路口处各个时刻的位移情况，需要采用一种更高阶的插值方法，能够对数据进行平滑的拟合并同时保持足够的灵活性。在这种背景下，B样条插值方法成为了一个理想的选择\supercite{[3]}，我们拟定先插入1000个点，以分段等距线性插入的方式得出插入点的经纬度坐标，后以5个点为卷积滑块长度进行磨光。可得该分段函数$f(x)$的一次磨光函数$f_{1,h}(x) $如下：
+\begin{equation}
+f_{1,h}(x) = \frac{1}{h}{\int_{x - \frac{h}{2}}^{x + \frac{h}{2}}{f(t)}}dt= \frac{1}{5}{\Sigma_{x - 2}^{x + 2}{f(t)}}
+\end{equation}
+
+同样的，可以定义 f (x) 的k 次(k > 1)磨光函数为
+
+\begin{equation}
+f_{k,h}(x) = \frac{1}{h}{\int_{x - \frac{h}{2}}^{x + \frac{h}{2}}{f_{k - 1,h}(t)}}dt= \frac{1}{5}{\Sigma_{x - 2}^{x + 2}{f_{k - 1,h}(t)}}
+\end{equation}
+
+所以，对这四条轨迹曲线中非路口部分二次磨光后进行B样条插值（插值后得到的记录点共1000个），最终得到非路口部分的轨迹曲线。
+
+\textbf{路口处轨迹曲线}
+
+
+假定汽车在路口内不会调整速度，只会在进入路口之前和离开路口之后，即路口外调整速度，所以其在路口内的运动可视为圆周运动：
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/lukou.png}
+     \captionsetup{font=small, position=below}
+    \caption{路口内匀速圆周运动}
+\end{figure}
+
+如图，A,B两点分别记为汽车进入路口的为位置点和离开路口的位置点，这两个点可以从上一小节插值后汽车在非路口处的轨迹图得到（即图中靠近路口出入口的两个点）。于是，可以得到这两个点与转弯方向同侧路边的距离，即h1，h2。由此可得AB连线的长度，取其垂直平分线与L1的交点O为圆心，则OA为半径，于是可拟合出该路口处汽车的运动轨迹。同样的处理方式适用于四条路段中的所有路口，从而可以获取各路口处汽车的运动轨迹。
+
+综上，可以得到最终汽车在四条路段上的轨迹曲线如下：
+\newepage 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{img/gujichazhi.png}
+     \captionsetup{font=small, position=below}
+    \caption{汽车在四个路段的轨迹图}
+\end{figure}
+
+
+
+\subsection{速度-时间曲线}
+由上述分析，因路口处的运动为匀速圆周运动，故路口处的速度由进入入口的位置点所确定，是一个常数，不随时间变化。而此位置点位于非路口区域内，所以只需关注非路口区段的速度-时间曲线。
+
+以路段三为例，由图五可知路段三上非路口的区域如下：
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/luxiansanzhixian.png}
+     \captionsetup{font=small, position=below}
+    \caption{路线三非路口区域}
+\end{figure}
+计算上一小节中汽车非路口处的轨迹曲线（未磨光前）上的每两个散点间的平均速度，得到汽车的平均速度-时间曲线如下：
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{img/pingjunsudu.png}
+     \captionsetup{font=small, position=below}
+    \caption{平均速度-时间曲线}
+\end{figure}
+
+
+
+然后根据式1对其进行一次磨光，接着进行B样条插值（插值后得到的记录点共1000个），得到汽车在非路口处行驶的光滑的速度-时间曲线：
+
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\linewidth]{img/3zhivt.png}
+     \captionsetup{font=small, position=below}
+    \caption{路线三非路口区域v-t}
+\end{figure}
+
+
+\textbf{四个路段的汽车速度-时间曲线}
+
+将路口处和非路口处两个场景的数据结合，便能完整地构建出汽车在四个路段的速度-时间函数曲线如下：
+\newpage
+
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}{0.32\linewidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{img/1chazhivt.png}
+   \captionsetup{font=small, position=below}
+		\caption{路段1上v-t}
+	\end{subfigure}
+	\centering
+	\begin{subfigure}{0.325\linewidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{img/2chazhivt.png}
+   \captionsetup{font=small, position=below}
+		\caption{路段2上v-t}
+		
+	\end{subfigure}
+	\centering
+	\begin{subfigure}{0.325\linewidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{img/3chazhivt.png}
+   \captionsetup{font=small, position=below}
+		\caption{路段3上v-t}
+		
+	\end{subfigure}
+	\quad
+\centering
+	\begin{subfigure}{0.325\linewidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{img/4chazhivt1.png}
+   \captionsetup{font=small, position=below}
+		\caption{路段4第一段v-t}
+		
+	\end{subfigure}
+\centering
+	\begin{subfigure}{0.325\linewidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{img/4chazhivt2.png}
+   \captionsetup{font=small, position=below}
+		\caption{路段4第二段v-t}
+		
+	\end{subfigure}
+  \captionsetup{font=small, position=below}
+\caption{汽车在四各路段上的速度-时间曲线}
+\end{figure}
+
+
+其中，路段四的时间存在不连续性，需分为两段考虑。
+
+
+\subsection{速度与正北方偏角大小随时间变化的曲线}
+由于汽车轨迹曲线与速度-时间曲线插值后都是1000个散点，通过汽车在各路段上最早的时间和最晚的时间可以得到每个点的具体时间，于是可以得到汽车位置、速度和时间的一一对应关系，以正北方为参考，可得汽车在每条路段的各位置上速度与正北方偏角大小随时间变化的曲线如下：
+
+
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}{0.3\linewidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{img/1pianjiao.png}
+   \captionsetup{font=small, position=below}
+		\caption{路段1上$\theta$-t}
+	\end{subfigure}
+	\centering
+	\begin{subfigure}{0.325\linewidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{img/2pianjiao.png}
+   \captionsetup{font=small, position=below}
+		\caption{路段2上$\theta$-t}
+		
+	\end{subfigure}
+	\centering
+	\begin{subfigure}{0.325\linewidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{img/3pianjiao.png}
+   \captionsetup{font=small, position=below}
+		\caption{路段3上$\theta$-t}
+		
+	\end{subfigure}
+	\quad
+\centering
+	\begin{subfigure}{0.325\linewidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{img/4piaojiao1.png}
+   \captionsetup{font=small, position=below}
+		\caption{路段4第一段$\theta$-t}
+		
+	\end{subfigure}
+\centering
+	\begin{subfigure}{0.325\linewidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{img/4pianjiao2.png}
+   \captionsetup{font=small, position=below}
+		\caption{路段4第二段$\theta$-t}
+		
+	\end{subfigure}
+  \captionsetup{font=small, position=below}
+\caption{汽车在四各路段上的速度-时间曲线}
+\end{figure}
+
+
+
+\newpage
+\section{问题二模型的建立与求解}
+\subsection{问题分析}
+在汽车行驶过程中，速度的大小主要受径向加速度的影响，而方向的变化主要受横向加速度的影响。因此，可以将汽车的加速度分为径向和横向两个方面进行研究。
+
+\textbf{针对非路口处，}可通过对第一问题中所获得的汽车速度随时间变化的曲线进行导数运算，以推导径向加速度的变化情况。然而，为了计算横向加速度，需对汽车轨迹曲线进行处理。具体方法是将每四个相邻的记录点进行最小二乘法拟合，从而将其近似为一段曲线。然后，通过计算每段曲线的曲率半径，结合问题一中所得的速度-时间曲线，可以确定每段曲线的线速度。将线速度的平方除以曲率半径，即可得到每段曲线的横向加速度。
+
+\textbf{针对路口处，}在由于汽车在路口处的运动可视为匀速圆周运动，故径向加速度为零。曲率半径可以通过问题一中的路口轨迹图获得，而线速度则源自问题一中的速度-时间曲线。将线速度的平方除以曲率半径，便可推算出路口区域内的横向加速度。
+
+将非路口区域和路口区域的径向、横向加速度相结合，便能获得汽车加速度随时间变化的曲线。
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/wentier.png}
+     \captionsetup{font=small, position=below}
+    \caption{问题二流程图}
+    
+\end{figure}
+
+\subsection{非路口处}
+\textbf{径向加速度：}首先，对上一问中获得的汽车在非路口处的速度随时间变化的曲线求导，可得四个路段汽车径向加速度随时间变化的曲线如下：
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1.0\linewidth]{img/sitiaozongxiang.png}
+     \captionsetup{font=small, position=below}
+    \caption{四个路段汽车径向加速度随时间变化的曲线}
+\end{figure}
+
+\textbf{横向加速度：}然后，考虑到实际行驶过程中车辆可能因为各种因素难以保持严格的直线行驶，所以，应该将轨迹中每四个相邻的记录点近似拟合为一段曲线。通过这种方式，我们能够更准确地捕捉车辆运动的轨迹特征。
+
+而之所以选择使用四个记录点来拟合一段曲线，是因为这种方式能够更有效地判断曲线是形成一段圆弧还是分为两段。
+对于只包含一段圆弧的情况，采用最小二乘法进行拟合，并利用R方系数来评估拟合效果。在R方大于0.9的情况下，再次使用二次多项式进行拟合；而在R方小于0.9时，则采用三次多项式。
+接下来，在拐点处（即两段圆弧的切线相等的点），需要创建一个虚拟点如下，并在其两侧分别使用二次多项式进行拟合。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.17\linewidth]{img/xunidian.png}
+    \caption{虚拟点的选取}
+\end{figure}
+
+通过这些步骤，可以得到每一段曲线的曲率半径。同时，根据之前问题一中得到的汽车速度-时间曲线，能够得到每一段曲线的线速度。有了线速度和曲率半径，就能够计算出每段圆弧的横向加速度。
+\begin{equation}
+    a=\frac{v^2}{R}
+\end{equation}
+其中，a是圆弧的横向加速度，v是车辆沿圆弧运动的线速度，R是圆弧的曲率半径。
+通过将每段圆弧按照这种方法进行分析，我们最终可以获得汽车在非路口区域内横向加速度随时间变化的关系。
+
+\subsection{路口处}
+\textbf{径向加速度：}由问题一，转弯过程可近似看成匀速圆周运动，即径向加速度为0。
+
+\textbf{横向加速度：}从问题一中的路口轨迹图可以确定汽车在路口转弯时的曲率半径。同时，结合问题一中的速度-时间曲线，可以获知汽车在转弯过程中的速度。通过式3 ，可以推导出汽车在转弯过程中的横向加速度。
+
+每个路段的横向加速度如下：
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\linewidth]{img/hengxiang.png}
+     \captionsetup{font=small, position=below}
+    \caption{四个路段汽车横向加速度随时间变化的曲线}
+\end{figure}
+
+
+将路口处和非路口处的径向、横向加速度结合起来可得到汽车加速度随时间变化的曲线如下：
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\linewidth]{img/jiasududaxiao.png}
+     \captionsetup{font=small, position=below}
+    \caption{四个路段汽车加速度随时间变化的曲线}
+\end{figure}
+
+
+\subsection{行驶的特点}
+加速度表示了车辆行驶油门的轻重和转向的剧烈程度。其中径向加速度表示了车辆在路段上油门调整的轻重，横向加速度表示车辆在路段行驶方向盘转向的快慢。
+当v>0，a>0和v<0,a<0的时候处于加速阶段，v>0,a<0和v<0,a>0的时候处于减速阶段(这里的a表示径向加速度大小)；
+
+
+路段1的行驶特点：
+进行统计发现汽车在路段1加速占比51.60\%,减速占比48.20\%
+向左调整频率61.1\%
+向右调整频率38.8\%
+
+
+路段2的行驶特点：
+汽车在路段2加速占比48.30\%,减速占比51.50\%
+向左调整频率52.0\%
+向右调整频率47.8\%
+
+
+路段3的行驶特点：
+汽车在路3加速占比50.30\%,减速占比49.60\%
+向左调整频率49.3\%
+向右调整频率50.5\%
+
+路段4的行驶特点：
+汽车在路3加速占比48.5\%,减速占比51.3\%
+向左调整频率49.6\%
+向右调整频率50.2\%
+
+通过上述统计，可以发现在路段1和路段3更倾向于加速行驶，在路段2和路段4更倾向于减速行驶。同时，在路段1和路段2更倾向于向左调整，而在路段3和路段4更倾向于向右调整。
+刹车与加速是由于路段所在道路承担的角色决定的，路段1和路段3的轨迹是分布在大桥和大部分沿海的轨迹曲线，在道路网发达的情况下，沿海道路承担主干道车流压力较小，通行顺畅度较高，因此车辆减速的频率低，更容易加速行驶。而路段2和路段4是城区内的行驶路线。城区内的道路作为主干道一般负责城市的运流交通，车流压力大，车流数量多，车流的行驶复杂度高，需要不断进行加速和减速调整，因此刹车的频率要高。
+
+方向调整的频率则是由路段整体方向决定的。路段1和路段2整体来说是车头偏左的道路曲线，这点在路段1尤为突出，因此其方向向左调整的频率要高于向右调整的频率；同样的，路段3和路段4是车头偏右的道路曲线，但是整体来说又近似一条直线，因此他们方向向左和向右的调整频率近于1：1而向右调整的频率略高。
+
+
+
+\section{问题三模型的建立与求解}
+\subsection{第三分析}
+第三问需要得到摩擦力随时间变化趋势。在实际问题中，车辆受到的摩擦力具有转向摩擦力与动力摩擦力两种类型，其动力学具有很大差异。同时，汽车运动受到的摩擦力的大小受到诸多因素影响，无法建立通用物理模型。因此，需要先建立轮胎载荷与轮胎形变关系，再通过轮胎与地面相对运动时的动力学规律建立阻力力矩模型。接着，加入题目给定的路面倾斜条件和载客需求对原模型进行修正。最后通过给定的车辆重量查阅相关资料设定车辆与轮胎相关参数，分别求出转向摩擦力和动力摩擦力随时间变化曲线。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1.0\textwidth]{img/wentisan.png}
+     \captionsetup{font=small, position=below}
+    \caption{问题三流程图}
+    
+\end{figure}
+
+\subsection{摩擦力模型的建立}
+为了建立汽车动力学方程，需要在不考虑汽车的动力控制方法的背景下，只考虑行进汽车与路面间的受力情况，得到当前轮胎和路面形变条件下能够提供的摩擦力矩。
+
+\subsubsection{轮胎载荷计算}
+
+由杠杆模型计算前后轮轮胎受到的正压力力矩：
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.3\linewidth]{img/liju.png}
+     \captionsetup{font=small, position=below}
+    \caption{车辆杠杆模型}
+\end{figure}
+其中，其中，$l_{tf}$、$l_{tb}$分别表示前/后轮轴距质心长度，$l_{pf}$、$l_{pb}$分别表示前/后车座距质心长度，$ G_c$表示车辆重力，C表示车辆质心。
+
+由下式，可计算出前后轮载荷$G_f$,$G_b$:
+\begin{equation}
+\label{lodingVocant}
+\left\{
+\begin{aligned}
+l_{tb} \cdot G_c=2(l_{tb}+l_{tf}) \cdot G_f \\
+l_{tf} \cdot G_c=2(l_{tb}+l_{tf}) \cdot G_b 
+\end{aligned}
+\right.
+\Longrightarrow
+\left\{
+\begin{aligned}
+    G_f=\frac{l_{tb}}{2(l_{tb}+l_{tf})} \cdot G_c \\
+    G_b=\frac{l_{tf}}{2(l_{tb}+l_{tf})} \cdot G_c
+\end{aligned}
+\right.
+\end{equation}
+
+\subsubsection{轮胎形变过程}
+
+在实际情况中，汽车与地面接触时，轮胎会经历形变，这种形变被称为轮胎接地下沉量，其大小可以通过轮胎的形状参数、胎压以及所受载荷等进行求解：
+
+\begin{equation}
+    \delta=k \cdot G^{0.85} / (W^{0.7} \cdot D^{0.43} \cdot p^{0.6})
+\end{equation}
+其中$B$为轮胎宽度,$D$为轮胎直径，$p$为轮胎胎压。$k$为经验系数,设定$k=0.0225\cdot W + 0.63$。$p$使用常规胎压参数$100kPa$。
+
+同时，根据几何关系，可将轮胎与地面接触面视为近似的椭圆形。通过运用勾股定理和轮胎边缘的曲率信息，可以计算得到轮胎印迹在地面上的接地长度：
+\begin{equation}
+    l=1.7 \cdot \sqrt{D \cdot \delta -\delta^2}
+\end{equation}
+由此可由椭圆计算公式得到轮胎接地面积为：
+\begin{equation}
+    S=\pi \cdot W \cdot l
+\end{equation}
+
+\subsubsection{滚动阻力系数计算}
+
+
+
+由第二问得出的路段各个位置的横向加速度和径向加速度，可建立加速度的动力学模型。
+
+车辆的加速度由轮胎与地面间的滚动阻力提供。而橡胶轮胎的滚动阻力系数受到众多因素影响，因此我们基于现有数据集建立该车的滚动阻力系数与速度间关系。已知滚动阻力$F_f$可表示为$F_f=\mu C_r \cdot G$，其中$C_r$为轮胎滚动阻力系数$\mu$为路面摩擦系数为定值，$G$为轮胎上的载荷。同样的，将摩擦力分解为动力摩擦力和横向摩擦力考虑。其中$\alpha_n $为车辆横向加速度。
+
+摩擦阻力系数：
+\begin{equation}
+    \alpha_n = \frac{v^2}{R} = \frac{F_{fn}}{G_f/g} \Longrightarrow C_{r} = \frac{v^2}{\mu g R} = \mathbf{f(v)}
+\end{equation}
+
+\subsubsection{原地转向阻力力矩计算}
+
+
+
+查阅相关文献\supercite{[1]}，车辆原地转向摩擦力矩为：
+\begin{equation}
+    \mathbf{M_{fp}}=\mu \cdot \frac{G_f}{2S}\cdot (\frac{4}{9} l^3)
+\end{equation}
+主销内倾角回正力矩为：
+\begin{equation}
+    \mathbf{M_\theta}=G_f \cdot \frac{\beta}{\pi}[\sigma+(\frac{D}{2}-\delta)\cdot tan \sigma] \cdot sin2\sigma
+\end{equation}
+其中$\beta$为车辆的滑移角，即车头的与先前行径方向间的变化角。考虑到该车为自重5000kg的大型车，$\sigma$取$12^\circ $
+
+则原地转向阻力力矩为：
+
+
+\begin{equation}
+    \label{persistFriction}
+    \mathbf{M_p}=\mathbf{M_{fp}}+\mathbf{M_\theta}
+\end{equation}
+
+\subsubsection{低速转向阻力力矩计算}
+查阅相关文献\supercite{[1]}，车辆低速转向摩擦力矩为:
+\begin{equation}
+    \mathbf{M_{fu}}=\frac{8}{9\pi}\cdot \mathbf{f}(v) \cdot G_f \cdot l
+\end{equation}
+车辆的内倾角力矩不变，则和力矩低速转向阻力力矩为：
+\begin{equation}
+    \label{lowSpeedFriction}
+    \mathbf{M_u}=\mathbf{M_{fu}}+\mathbf{M_\theta}
+\end{equation}
+
+\subsubsection{前轮驱动的二自由度阿克曼转向模型角度关系建立}
+先将四轮模型简化为二轮模型，即将前后轮组分别等效为位于车辆中心的虚拟轮如下：
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{img/xiaocheche.png}
+     \captionsetup{font=small, position=below}
+    \caption{简化为二轮模型}
+\end{figure}
+
+则由正弦定理可得：
+
+\begin{equation}
+    \left\{
+    \begin{aligned}
+        \frac{R}{sin\frac{\pi}{2}} &=\frac{l_{tb}}{sin\beta}\\
+        \frac{sin(\theta-\beta)}{l_{tf}} &=\frac{sin(\frac{\pi}{2}-\beta)}{R}
+    \end{aligned}
+    \right.
+\end{equation}
+
+解得：
+\begin{equation}
+    \label{sin}
+    \frac{tan \theta}{tan \beta}=\frac{l_{tb}+l_{tf}}{l_{tb}}
+\end{equation}
+
+假设此时车辆正在右转，那么右轮为内转向轮，左轮为外转向轮。有几何关系可以得到内外车轮转弯半径：
+
+\begin{equation}
+\left\{
+\begin{aligned}
+\label{singleR}
+R_r=\sqrt{(Rcos\beta-\frac{T}{2})^2+(l_{tb}+l_{tf})^2}\\
+R_l=\sqrt{(Rcos\beta+\frac{T}{2})^2+(l_{tb}+l_{tf})^2}
+\end{aligned}
+\right.
+\end{equation}
+
+以及$\theta_r$与$\theta_l$跟车辆滑移角$\beta$的关系：
+\begin{equation}
+\label{geo}
+\left\{
+\begin{aligned}
+tan\theta_r=\frac{l_{tb}+l_{tf}}{R\cdot cos\beta-\frac{T}{2}} \\
+tan\theta_l=\frac{l_{tb}+l_{tf}}{R\cdot cos\beta+\frac{T}{2}}
+\end{aligned}
+\right.
+\end{equation}
+
+联立\eqref{sin}与\eqref{geo}，可以得到：
+\begin{equation}
+\left\{
+\begin{aligned}
+tan\theta_r=\frac{l_{tb}+l_{tf}}{\frac{l_{tb}+l_{tf}}{tan \theta}-\frac{T}{2}}=
+\frac{l_{tb}+l_{tf}}{\frac{l_{tb}}{tan \beta}-\frac{T}{2}}\\
+tan\theta_l=\frac{l_{tb}+l_{tf}}{\frac{l_{tb}+l_{tf}}{tan \theta}+\frac{T}{2}}=
+\frac{l_{tb}+l_{tf}}{\frac{l_{tb}}{tan \beta}+\frac{T}{2}}
+\end{aligned}
+\right.
+\end{equation}
+
+而由阿克曼转向的运动学微分方程\supercite{[2]}：
+\begin{equation}
+\left\{
+\begin{aligned}
+X'&=v sin \psi\\
+Y'&=v cos \psi\\
+\psi'&=\frac{v\cdot sin \beta}{l_{tb}}
+\end{aligned}
+\right.
+\end{equation}
+可得：
+\begin{equation}
+    \label{transAngle}
+    \beta=sin^{-1}(\frac{\psi' \cdot l_{tb}}{v})
+\end{equation}
+
+\textbf{内外转向轮摩擦力计算}
+
+在第二问中我们可以得到任意时刻车辆的横摆角速度大小为：
+\begin{equation}
+    \omega_r=\alpha_n^2 \cdot R^2
+\end{equation}
+则在以当前速度与半径右转时内外车轮的转向速度为：
+\begin{equation}
+\label{singleV}
+    \left\{
+\begin{aligned}
+v_r=\sqrt{(R_r \cdot \omega_r)^2+(v \cdot cos \beta)^2}\\
+v_l=\sqrt{(R_l \cdot \omega_r)^2+(v \cdot cos \beta)^2}
+\end{aligned}
+\right.
+\end{equation}
+
+将速度的计算式\eqref{singleV}联立\eqref{singleR}后，带入摩擦力计算公式$F=\frac{M}{L}$得到转向摩擦力。其中由于车辆原地转向与低速转向的受力方式不同，我们对在行进中的车辆用低速转向阻力矩计算\eqref{lowSpeedFriction}式计算得到：
+
+\begin{equation}
+\left\{
+    \begin{aligned}
+    F_{nur} &= \frac{\frac{8}{9\pi} \mathbf{f}(v_r)\cdot G_f \cdot l+ \mathbf{M_\theta}}{R_r}\\
+    &=\frac{\frac{8}{9\pi}\mathbf{f}(\sqrt{(R^2 \alpha_n cos\beta-\frac{TR\alpha_n}{2})^2+[R\alpha_n(l_{tb}+l_{tf})]^2+(v \cdot cos \beta)^2} )\cdot G_f \cdot l+ \mathbf{M_\theta}}{\sqrt{(Rcos\beta-\frac{T}{2})^2+(l_{tb}+l_{tf})^2}}\\
+    F_{nul} &= \frac{\frac{8}{9\pi} \mathbf{f}(v_l)\cdot G_f \cdot l+ \mathbf{M_\theta}}{R_l}\\
+    &=\frac{\frac{8}{9\pi}\mathbf{f}(\sqrt{(R^2 \alpha_n cos\beta+\frac{TR\alpha_n}{2})^2+[R\alpha_n(l_{tb}+l_{tf})]^2+(v \cdot cos \beta)^2} )\cdot G_f \cdot l+ \mathbf{M_\theta}}{\sqrt{(Rcos\beta+\frac{T}{2})^2+(l_{tb}+l_{tf})^2}}
+\end{aligned}
+\right.
+\end{equation}
+
+对从静止开始启动的车辆用原地转向阻力矩计算\eqref{persistFriction}式计算得到：
+\begin{equation}
+\left\{
+    \begin{aligned}
+    F_{npr} &= \frac{\mathbf{M_{fp}}}{R_r} =\frac{\mathbf{M_{fp}}}{\sqrt{(Rcos\beta-\frac{T}{2})^2+(l_{tb}+l_{tf})^2}}\\
+    F_{npl} &= \frac{\mathbf{M_{fp}}}{R_l} =\frac{\mathbf{M_{fp}}}{\sqrt{(Rcos\beta-\frac{T}{2})^2+(l_{tb}+l_{tf})^2}}
+\end{aligned}
+\right.
+\end{equation}
+
+
+
+\textbf{动力摩擦力的计算}
+
+
+摩擦力不仅提供车辆改变行进方向所需要的力即动力摩擦力，还提供使车辆行进所需的力。动力摩擦力与转向摩擦力性质不同，后者的作用是作用于从动轮上惰性的力，而前者是作用于主动轮上的力。由于在低速行驶过程中轮胎与地面不发生相对滑动，因此可将动力摩擦力看作静摩擦力。
+
+车辆行驶过程中受到的阻力可分为地面阻力与空气阻力两个方面，已知地面阻力与轮胎与路面摩擦系数相关，空气阻力则与车辆速度的平方成正比。由此可写出动力摩擦力$F_{ward}$表达式为
+\begin{equation}
+    F_{ward} = C_r \cdot G_b + \frac{1}{2}\lambda_{CD}\cdot A \cdot\rho \cdot v^2 + \frac{Gc}{g}\alpha_t
+\end{equation}
+其中$g$为重力加速度，查阅相关文献，一般可取风阻系数$\lambda_{CD}=0.3$，车辆迎风面积$A=2m^2$、空气密度$\rho=1.29kg/m^3$
+
+如此可由第一第二问结果得到汽车行进各时刻的摩擦力。
+
+\subsection{车辆参数设置}
+通过假设参数，我们使用路段4开车到停止的第一段路径作为目标的路段，并作出以下参数假设：
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{ccc}
+\hline
+名称       & 参数  & 数值     \\ \hline
+摩擦因数     & u   & 1      \\
+车辆质量     & mc  & 5000   \\
+载客质量     & mp  & 0      \\
+左右前车轮距离  & T   & 1.725  \\
+轮胎直径     & D   & 0.4318 \\
+轮胎宽度     & W   & 0.195  \\
+气压       & p   & 100k   \\
+前车轮到质心距离 & Ltf & 2      \\
+后车轮到质心距离 & Ltb & 2      \\
+重力加速度    & g   & 9.81   \\ \hline
+\end{tabular}
+\end{table}
+
+
+\subsection{路段4 第一段路径的摩擦力}
+通过设置参数，最终我们得到了摩擦力随时间的变化曲线如下：
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{img/mocali1.png}
+     \captionsetup{font=small, position=below}
+    \caption{路段4路径摩擦力随时间变化的曲线}
+\end{figure}
+
+
+\subsection{倾斜道路下摩擦力模型的修正}
+
+
+
+在道路具有$\psi=0.004rad$向左的倾角时，上述模型会发生变化，如下图：
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{img/qinxie.png}
+     \captionsetup{font=small, position=below}
+    \caption{倾斜道路行车}
+\end{figure}
+
+\subsubsection{左右轮载荷发生变化}
+
+
+
+由于中心的偏移，左右轮的在载荷分配不平均。我们假设汽车的质心距地面高度为车轮直径，则左右轮载荷满足：
+\begin{equation}
+\label{singleV}
+    \left\{
+\begin{aligned}
+\frac{G_{rf}}{G_{lf}} &=\frac{\frac{T}{2} + D\cdot \psi}{\frac{T}{2} + D\cdot \psi}\\
+2G_f &=G_{lf}+G_{rf}
+\end{aligned}
+\right.
+\Longrightarrow
+    \left\{
+\begin{aligned}
+G_{rf}=\frac{T+D\cdot \psi}{T}G\\
+G_{lf}=\frac{T-D\cdot \psi}{T}G
+\end{aligned}
+\right.
+\end{equation}
+其中$G_{lf}$为左前轮载荷，$G_{rf}$为右轮载荷。左右前轮的下沉量$\delta_lf$与$\delta_rf$等物理量也相应地发生变化，后轮的左右轮变化同理，此处不再赘述。同时轮胎的接触面积扩大，有$S'=S/cos\psi$。
+
+
+
+\subsubsection{横向加速度发生变化}
+
+
+
+在行进时始终有一个$\alpha_\delta=g \cdot \psi$的水平向左的加速度。则横向摩擦阻力系数的计算变化为：
+\begin{equation}
+    \alpha_n + \alpha_\delta= \frac{v^2}{R} = \frac{F_{fn}}{G_f/g} \Longrightarrow C_{rn} = \frac{v^2}{\mu g R}+\frac{\psi}{\mu} = \mathbf{f_n(v)}
+\end{equation}
+
+
+
+\subsubsection{轮胎回正力矩发生变化}
+
+
+
+
+在路面倾斜时，左右轮胎的回正力矩发生差异，分别为：
+\begin{equation}
+    \left\{
+\begin{aligned}
+\mathbf{M_{\theta r}}=G_f \cdot \frac{\beta}{\pi}[\sigma-\psi+(\frac{D}{2}-\delta)\cdot tan (\sigma-\psi)] \cdot sin2(\sigma-\psi) \\
+\mathbf{M_{\theta l}}=G_f \cdot \frac{\beta}{\pi}[\sigma+\psi+(\frac{D}{2}-\delta)\cdot tan (\sigma+\psi)] \cdot sin2(\sigma+\psi)
+\end{aligned}
+\right.
+\end{equation}
+将上述模型修正带入计算，可得新的修正摩擦力随时间变化曲线图如下：
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{img/xiuzheng1.png}
+     \captionsetup{font=small, position=below}
+    \caption{摩擦力随时间变化曲线图（修正）}
+\end{figure}
+
+
+
+\subsection{载客时的模型修正}
+
+当车上有乘客时，在车前座和车后座的位置会出现两个新的着力点，故将式\eqref{lodingVocant}重写为:
+\begin{equation}
+\label{lodingHolding}
+\left\{
+\begin{aligned}
+    G_f=\frac{ (l_{tb}-l_{pb})\cdot(2G_p)+l_{tb}\cdot G_c + (l_{tb}+l_{pf})\cdot(2G_p)}
+    {2(l_{tb}+l_{tf})}\\
+    G_b=\frac{ (l_{tf}-l_{pf})\cdot(2G_p)+l_{tf}\cdot G_c + (l_{tf}+l_{pb})\cdot(2G_p)}
+    {2(l_{tb}+l_{tf})}
+\end{aligned}
+\right.
+\end{equation}
+
+
+
+将上述模型修正带入计算，可得新的修正摩擦力随时间变化曲线图如下：
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{img/xiuzheng3.png}
+     \captionsetup{font=small, position=below}
+    \caption{摩擦力随时间变化曲线图（载客修正）}
+\end{figure}
+
+
+\section{问题四模型的建立与求解}
+
+\subsection{问题分析}
+第四问需要根据附件数据和前三问的结果，同时辅以其他资料对车辆的舒适度，安全性和性价比进行评价。对于无人自动驾驶车辆的舒适度和安全性的评价，需要从乘客与用户的角度考虑,因此可以通过对前四个路段的数据进行统计分析，从而对舒适度和安全性进行评价。对于车辆性价比，根据附件二所提供不同车辆的性能指标，是可以进行排序的，同时可以通过网络查找对车型的指导价格。对于目标车辆，由于并没有提供具体型号，因此只能寻找与目标车辆参数相近的车型指导价格作为参考。最终通过附件2数据和辅助数据，输入RSR秩和比模型，通过输出的RSR值进行排名以衡量其性价比高低。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/wentisiliuchengtu.png}
+     \captionsetup{font=small, position=below}
+    \caption{问题四流程图}
+    
+\end{figure}
+
+\subsection{性价比}
+附件二中的三个参数（电池容量/kWh、续航里程/km、百公里耗电量/kWh）提供了电动车性能的基本信息，但无法全面反映性价比。因为性价比的评估需要考虑多个因素，如购车成本、维护费用、燃料成本、车辆寿命等，这些因素对于评价一款车辆的经济性和实用性至关重要。因此，需要引入更多的车辆参数，例如车辆最低指导价格，车辆最高指导价格等。
+
+
+\subsubsection{车辆参数}
+在对题目所给目标车型的三个参数进行查询时，发现目前市面上并没有符合电池容量75kWh、续航里程536km以及每百公里电耗14kWh的车型。如果不考虑车辆重量，仅对车辆参数的检索，则满足这些条件的车型的通常指导价格位于20万至40万之间。
+
+同时，对蔚来ET5、ET6，比亚迪元EV，特斯拉Model3、ModelY的车辆信息进行检索，我们得到了其最低指导价，最高指导价，通过添加的附加参数，最终形成了以下车辆的综合性能表格：
+
+
+\begin{table}[htbp]
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}{ccccccc}
+\hline
+编号 & 车型        & 电池容量/kwh & 续航里程/km & 100km耗电量/kwh & 最低指导价格 & 最高指导价格  \\ \hline
+1  & 目标车型      & 75       & 536     & 14           & 20     & 40       \\
+2  & 蔚来ET5     & 150      & 1000    & 15           & 29.8   & 35.6      \\
+3  & 蔚来ET6     & 75       & 465     & 16           & 33.8   & 39.6      \\
+4  & 比亚迪元EV    & 41       & 305     & 13           & 7.99   & 13.99     \\
+5  & 特斯拉Model3 & 78       & 675     & 12           & 23.19  & 33.19    \\
+6  & 特斯拉ModelY & 77       & 660     & 12           & 26.39  & 34.99     \\ \hline
+\end{tabular}
+}
+\end{table}
+
+\subsubsection{RSR秩和比模型}
+
+在对车辆进行性价比综合评价时，不同指标的评价标准是不同的，例如对于用户来说，车辆的续航里程越大越好，指导价格越低越好。因此，秩和比综合评价法 (Rank sum ratio，简称 RSR法)的非参数性（即不对数据的分布做出任何假设）、多重比较性以及相对排序性jiashang cankaowenxian 能很好地解决这一问题。
+
+其伪代码如下：
+\begin{algorithm}[H]
+\caption{秩和比综合评价法}
+\begin{algorithmic}[1]
+\Procedure{RankSumRatio}{$X$}\Comment{综合评价法}
+   \State 初始化样本数据 $X$（各车辆的指标数据）
+   \State 计算每个指标的秩 $R_i$（按照指标值大小排序）
+   \State 计算每个车辆的综合秩 $W_i = \sum_{j=1}^{n} R_{ij}$，$n$ 为指标数
+   \State 计算每个车辆的 RSR 值 $RSR_i = \frac{\sum R}{MN}$
+   \State 根据 $RSR_i$ 对车辆进行排序，确定各组平均秩次R-$ R - = {\sum f}$
+   \State 计算累计频率Probit$Probit =\frac{ R-}{n*100\%}$
+   \State 得到综合得分RSR$RSR = \beta_0 + \beta_1 \cdot Probit$
+   \State \Return 综合评价结果
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{输出结果}
+将附件二六辆车的电池容量/kWh、续航里程/km、百公里耗电量/kWh，车辆最低指导价格，车辆最高指导价格放入构建的RSR秩和比模型，经非整秩方法在不设置权重的条件下分为7档，结果如下：
+
+
+\textbf{输出结果1：综合得分}
+
+\begin{table}[htbp]
+\resizebox{\linewidth}{!}{
+\centering
+\begin{tabular}{cccccccccc}
+\hline
+\multicolumn{10}{c}{线性回归分析结果n=5}                                                                           \\
+       & \multicolumn{2}{c}{非标准化系数} & 标准化系数 & t     & P        & VIF & R²    & 调整R²  & F                   \\
+       & B           & 标准误差         & Beta  &       &          &     &       &       &                     \\ \hline
+常数     & 0.02        & 0.111        & -     & 0.18  & 0.866    & -   & 0.854 & 0.817 & F=23.321 P=0.008*** \\
+Probit & 0.1         & 0.021        & 0.924 & 4.829 & 0.008*** & 1   &       &       &                     \\
+\multicolumn{10}{c}{因变量：RSR}                                                                               \\ \hline
+\multicolumn{10}{c}{注：***、**、*分别代表1\%、5\%、10\%的显著性水平}                                                     
+\end{tabular}
+}
+\end{table}
+
+从上表中可以看出，显著性P值为0.008***，水平呈现显著性，拒绝了回归系数为0的原假设，同时模型的拟合优度R²为0.854，模型表现较为优秀，因此模型基本满足要求。对于变量共线性表现，VIF全部小于10，因此模型没有多重共线性问题，模型构建良好。
+
+由此可得模型如下：
+\begin{equation}
+y = 0.02 + 0.1*Probit
+\end{equation}
+
+\textbf{输出结果2：分档排序临界值}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{cccc}
+\hline
+\multicolumn{4}{c}{分档排序临界值表格}                                \\ \hline
+档次  & 百分位临界值           & Probit          & RSR临界值（拟合值）       \\ \hline
+第1档 & \textless{}1.618 & \textless{}2.86 & \textless{}0.3051 \\
+第2档 & 1.618 $\sim$     & 2.86 $\sim$     & 0.3051 $\sim$     \\
+第3档 & 10.027 $\sim$    & 3.72 $\sim$     & 0.3909 $\sim$     \\
+第4档 & 33.360 $\sim$    & 4.57 $\sim$     & 0.4757 $\sim$     \\
+第5档 & 67.003 $\sim$    & 5.44 $\sim$     & 0.5624 $\sim$     \\
+第6档 & 89.973 $\sim$    & 6.28 $\sim$     & 0.6462 $\sim$     \\
+第7档 & 93.382 $\sim$    & 7.14 $\sim$     & 0.732 $\sim$      \\ \hline
+\end{tabular}
+\end{table}
+
+
+最终，输出排名如下：
+
+
+\textbf{输出结果3：分档等级结果}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{cccccc}
+\hline
+索引 & 车型        & RSR排名 & Probit      & RSR拟合值      & 分档等级 \\ \hline
+2  & 蔚来ET5     & 1     & 6.731664396 & 0.691229774 & 6    \\
+1  & 目标车型      & 2     & 5.967421566 & 0.615013764 & 5    \\
+5  & 特斯拉Model3 & 3     & 5.430727299 & 0.561490598 & 4    \\
+6  & 特斯拉ModelY & 4     & 5           & 0.51853525  & 4    \\
+3  & 蔚来ET6     & 5     & 4.569272701 & 0.475579903 & 3    \\
+4  & 比亚迪元EV    & 6     & 4.032578434 & 0.422056737 & 3    \\ \hline
+\end{tabular}
+\end{table}
+
+\textbf{图表说明}：
+根据上述分析，在考虑价格、能耗等多项因素的综合比较下，可以得出结论：目标车型在综合性价比排序中位于第5等级，排名第2位，表现出较高的性价比。 
+
+\subsection{舒适度与安全性}
+
+车辆的乘坐舒适性可被视为多方面因素的综合体现，其中包括动力性能、操控稳定性以及行驶平稳性等要素。然而，在自动驾驶汽车的背景下，乘客更为关注的是行驶的平稳性。而关于车辆的安全性问题，我们可以从两个主要角度进行考量：车辆的结构安全性以及行驶安全性。在这里所涉及的行驶安全性主要指的是车辆在不同路段上的行驶表现。在城市道路等限速环境中，超速行驶可能会显著增加潜在危险。此外，急剧的加速度变化和加速度数值的大小也能够反映车辆的行驶安全性。例如，在紧急刹车情况下，车辆的急减速可能意味着当前驾驶环境危急，从而提高了发生碰撞的概率。
+
+综上，我们可以通过分析车辆在不同路段上的速度、转角以及加速度等参数，来综合评估车辆的舒适度和安全性。
+
+
+\subsubsection{频数分析}
+
+选取速度，横向加速度，纵向加速度，角度进行频数分析，结果如下：
+
+
+\textbf{不同路段的速度占比直方图}
+\begin{figure}[htbp]
+    \centering
+\includegraphics[width=0.8\linewidth]{img/v.png}
+ \captionsetup{font=small, position=below}
+    \caption{不同路段的速度占比直方图}
+\end{figure}
+
+由上图所示，可以观察到各个路段的速度频率分布呈现出相对稳定的趋势，主要集中在较低的速度范围内，而没有明显的速度极端情况。
+
+然而，对于路段2和路段4而言，速度分布主要集中在A1~A3的速度区间，这表明在这两个路段上车辆的速度变化频率较高。这种频繁的速度变化可能会导致乘坐的舒适度下降，因为车辆在短时间内多次加速或减速可能会引起乘客的不适感。同时，这也可能暗示着车辆在这两个路段上的行驶安全性下降，因为频繁的速度变化可能增加了潜在的碰撞风险。
+
+\textbf{不同路段的横向加速度占比直方图}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]
+    {img/hengxiangjiasuduzhanbi.png}
+     \captionsetup{font=small, position=below}
+    \caption{不同路段的横向加速度占比直方图}
+\end{figure}
+
+基于上述数据，除路段3外，各路段横向加速度分布趋势相对稳定。此表明在绝大多数时间内，车辆维持平稳行驶状态。
+
+而在路段3中，横向加速度主要分布在第三档，占比较大。这反映路段3中车辆频繁进行方向调整，导致较大横向加速度。此情况表明路段3的行驶相对不稳定，可能影响行驶安全性，同时较大横向加速度可能导致乘坐舒适度下降。
+\newpage
+
+\textbf{不同路段的径向加速度占比直方图}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{img/zongxiangjiasuduzhanbi.png}
+     \captionsetup{font=small, position=below}
+    \caption{不同路段的径向加速度占比直方图}
+\end{figure}
+根据图示，各路段的纵向加速度占比区间存在差异。在1至4路段中，1和2路段表现出较高速度和加速度水平。同时，这些路段的纵向加速度分布都集中在特定区间，反映了稳定的加速情况，提升了整体行驶的平稳性。
+
+
+不同路段的纵向加速度占比区间是不一样的，对于路段1-4，路段1-2的速度较快，加速度较大，同时，路段1-4的加速度分布都以某个区间为主，反应在这个路段上的平稳加速，平稳性提高。
+
+
+
+\textbf{不同路段的角度占比直方图}
+
+通过下图可观察到，路段1、3和4的角度分布几乎在某三个区间内占比相近，而路段2在第一区间的占比最高。这反映出路段1、3和4存在大幅度的转弯和可能的路口，导致角度变化明显。与之不同，路段2的角度主要分布在A1区间，这可能意味着该路段的转弯较为平缓。
+
+同时，路段1，3，4的角度分布在A1\~A3内的占比近似，而路段2在第一区间的占比最高，说明路段1，3，4在路段进行大幅度转弯，存在路口使得角度变化大，而自动驾驶汽车在经过路口会由于路口的复杂情况导致安全性降低
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{img/jiaodu.png}
+     \captionsetup{font=small, position=below}
+    \caption{不同路段的角度占比直方图}
+\end{figure}
+\subsubsection{结果分析}
+结合频数分析，综合分析所有路段的行驶舒适度和行驶安全性可以得到：
+1.路段3和路段4的速度变化较小，车辆行驶较平稳，舒适度方面较好。
+2.而路段1和路段2的速度变化较大，可能在某些情况下车辆加速、减速较明显，舒适度与安全性较差。
+
+
+
+\section{模型的评价}
+\subsection{模型的优点}
+
+1.考虑到路口转弯的运动学特征与道路中行驶不同，将四条路段都分为路口和非路口区域，使得模型建立更精准。
+
+2.查阅相关文献，建立了细致的车辆转向摩擦力模型，使用车辆的运动学数据反演数据，使得结果能较准确地反映实际车辆受力情况。
+
+3.使用RSR秩和比评价法基于车辆行驶数据建立了客观的车辆评价指标，使数据更可能有效反映真实情况。
+
+\subsection{模型的缺点}
+1.采用插值法描述车辆轨迹，可能与真实轨迹存在差异。
+
+\section{模型的推广}
+
+通过建立摩擦力反演模型，对车辆实际轨迹的相关参数进行计算，从而对自动驾驶车辆在不同道路情况下受力情况建立更准确的受力模型，对当前自动驾驶车辆的安全适用场景的划定路径选择算法的优化具有重要指导意义。
+
+
+
+%参考文献
+\renewcommand{\refname}{十一、参考文献} % 修改参考文献标题
+\begin{thebibliography}{9}%宽度9
+ \bibitem{bib:one} 曹冬, 唐斌, 江浩斌, 黄映秋和张迪. 一种考虑轮胎与路面摩擦的车辆转向阻力矩的计算方法. 江苏大学, issued 2023年4月18日
+ \bibitem{bib:two} 胡家铭, 胡宇辉, 陈慧岩和刘凯. 《基于模型预测控制的无人驾驶履带车辆轨迹跟踪方法研究》. 兵工学报 40, 期 3 (2019年): 456–63. 
+ \bibitem{bib:three} 姜立标, 和吴中伟. 《基于趋近律滑模控制的智能车辆轨迹跟踪研究》. 农业机械学报 49, 期 3 (2018年): 381–86.
+\end{thebibliography}
+
+\newpage
+\section*{附录清单}
+
+
+这是第一个段落。在这里开始，没有缩进。
+
+这是第二个段落。同样，这里也没有缩进。
+
+
+\newpage
+
+
+
+%附录
+\titleformat{\section}{\normalfont\Large\bfseries}{附录 \zhnum{section}}{1em}{}
+\begin{appendices}
+ \section{问题一：轨迹曲线}
+\begin{lstlisting}[language=matlab]
+clc; close all; clear
+loaded_data = load('road_data.mat');
+Roaddata = loaded_data.Roaddata;
+% 创建一个新的图形窗口
+figure;
+
+% 设置图形窗口大小
+set(gcf, 'Position', [100, 100, 800, 600]);
+
+% 遍历每个路段的数据
+for i = 1:length(Roaddata)
+    % 获取当前路段的经纬度数据
+    latitude = Roaddata(i).latitude;
+    longitude = Roaddata(i).longitude;
+    
+    % 进行插值
+    num_points_interp = 1000; % 插值后的点数
+    t_interp = linspace(1, length(latitude), num_points_interp);
+    latitude_interp = interp1(1:length(latitude), latitude, t_interp, 'spline');
+    longitude_interp = interp1(1:length(longitude), longitude, t_interp, 'spline');
+    
+    % 计算颜色渐变
+    color = [(i-1)/length(Roaddata), 0.5, 1 - (i-1)/length(Roaddata)];
+    
+    % 将图形分为2x2的网格，选择当前子图
+    subplot(2, 2, i);
+    
+    % 绘制当前路段的插值后的轨迹图，使用实心点作为标记符号
+    plot(longitude_interp, latitude_interp, '.-', 'Color', color, 'MarkerSize', 5, 'DisplayName', ['Road Segment ' num2str(i)]);
+    
+    % 设置图形标题
+    title(['Interpolated Road Segment ' num2str(i)]);
+    latitude_interp=latitude_interp';
+    longitude_interp=longitude_interp';
+    % 设置轴标签
+    xlabel('Longitude');
+    ylabel('Latitude');
+end
+
+% 添加整体图形的图例
+legend('Location', 'Best');
+
+ \end{lstlisting}
+
+\section{问题一：速度时间曲线}
+\begin{lstlisting}[language=matlab]
+clc;close all;clear
+data=readtable('路段4.xlsx');
+
+timedata=table2array(data(1:23,10),'InputFormat','HH:mm:ss');
+v=table2array(data(1:23,9));
+time = datetime(timedata);
+
+% 将时间转换为数值表示
+time_numeric = datenum(time);
+
+% 进行样条插值
+time_interp = linspace(min(time_numeric), max(time_numeric),500); % 生成插值的时间点
+v_interp = spline(time_numeric, v, time_interp); % 进行样条插值
+
+% 绘制插值后的曲线
+figure(1);
+plot(time_interp, v_interp, 'b-', 'LineWidth', 2);
+hold on;
+plot(time_numeric, v, 'ro');
+datetick('x', 'HH:MM:SS'); % 显示时间刻度
+xlabel('时间');
+ylabel('速度');
+title('路段4 第一段插值v—t');
+legend('插值曲线', '原始数据');
+v_interp = v_interp';
+time_interp = time_interp';
+time_interp_datetime = datetime(time_interp, 'ConvertFrom', 'datenum'); % 将数值型时间点转换为 datetime 格式
+time_interp_string = datestr(time_interp_datetime, 'HH:MM:SS'); % 将 datetime 转换为字符串格式 HH:mm:ss
+
+%%
+clc;clear
+data=readtable('路段4.xlsx');
+timedata=table2array(data(24:129,10),'InputFormat','HH:mm:ss');
+v=table2array(data(24:129,9));
+time = datetime(timedata);
+
+% 将时间转换为数值表示
+time_numeric = datenum(time);
+
+% 进行样条插值
+time_interp = linspace(min(time_numeric), max(time_numeric), 500); % 生成插值的时间点
+v_interp = spline(time_numeric, v, time_interp); % 进行样条插值
+% 绘制插值后的曲线
+figure(2);
+plot(time_interp, v_interp, 'b-', 'LineWidth', 2);
+hold on;
+plot(time_numeric, v, 'ro');
+datetick('x', 'HH:MM:SS'); % 显示时间刻度
+xlabel('时间');
+ylabel('速度');
+title('路段4 第二段插值v—t');
+legend('插值曲线', '原始数据');
+v_interp = v_interp';
+time_interp = time_interp';
+time_interp_datetime = datetime(time_interp, 'ConvertFrom', 'datenum'); % 将数值型时间点转换为 datetime 格式
+time_interp_string = datestr(time_interp_datetime, 'HH:MM:SS'); % 将 datetime 转换为字符串格式 HH:mm:ss
+
+
+
+
+ \end{lstlisting}
+ 
+ \section{问题一：速度与正北方偏角时间曲线}
+\begin{lstlisting}[language=matlab]
+clc;close all;clear
+loaded_data = load('road_data.mat');
+Roaddata_loaded = loaded_data.Roaddata;
+
+%% 角度
+n = 1;%求路段n距离
+latitude1 = [Roaddata_loaded(n).latitude];
+longitude1 = [Roaddata_loaded(n).longitude];
+displacement=[latitude1,longitude1];
+% 初始化一个向量，用于存储每两个相邻点之间的角度
+angles = [];
+% 遍历每一对相邻点
+for i = 1:size(displacement, 1) - 1
+    % 计算经度差和纬度差
+    delta_longitude = displacement(i+1, 2) - displacement(i, 2);
+    delta_latitude = displacement(i+1, 1) - displacement(i, 1);
+    % 计算连线与正北方向的角度
+    angle_radians = atan2(delta_longitude, delta_latitude);
+    if angle_radians == 0
+       angle_radians = angles (i-1);
+    end
+    % 将角度添加到向量中
+    angles = [angles; angle_radians];
+end
+angles_degrees = rad2deg(angles);
+clear i n
+
+
+n = 2;%求路段n距离
+latitude1 = [Roaddata_loaded(n).latitude];
+longitude1 = [Roaddata_loaded(n).longitude];
+displacement=[latitude1,longitude1];
+% 初始化一个向量，用于存储每两个相邻点之间的角度
+angles2 = [];
+% 遍历每一对相邻点
+for i = 1:size(displacement, 1) - 1
+    % 计算经度差和纬度差
+    delta_longitude = displacement(i+1, 2) - displacement(i, 2);
+    delta_latitude = displacement(i+1, 1) - displacement(i, 1);
+    % 计算连线与正北方向的角度
+    angle_radians = atan2(delta_longitude, delta_latitude);
+    if angle_radians == 0
+       angle_radians = angles2 (i-1);
+    end
+    % 将角度添加到向量中
+    angles2 = [angles2; angle_radians];
+end
+angles_degrees2 = rad2deg(angles2);
+clear i n
+
+
+n = 3;%求路段n距离
+latitude1 = [Roaddata_loaded(n).latitude];
+longitude1 = [Roaddata_loaded(n).longitude];
+displacement=[latitude1,longitude1];
+% 初始化一个向量，用于存储每两个相邻点之间的角度
+angles3 = [];
+% 遍历每一对相邻点
+for i = 1:size(displacement, 1) - 1
+    % 计算经度差和纬度差
+    delta_longitude = displacement(i+1, 2) - displacement(i, 2);
+    delta_latitude = displacement(i+1, 1) - displacement(i, 1);
+    % 计算连线与正北方向的角度
+    angle_radians = atan2(delta_longitude, delta_latitude);
+    if angle_radians == 0
+       angle_radians = angles3 (i-1);
+    end
+    % 将角度添加到向量中
+    angles3 = [angles3; angle_radians];
+end
+angles_degrees3 = rad2deg(angles3);
+clear i n
+
+
+n = 4;%求路段n距离
+latitude1 = [Roaddata_loaded(n).latitude];
+longitude1 = [Roaddata_loaded(n).longitude];
+displacement=[latitude1,longitude1];
+% 初始化一个向量，用于存储每两个相邻点之间的角度
+angles4 = [];
+% 遍历每一对相邻点
+for i = 1:size(displacement, 1) - 1
+    % 计算经度差和纬度差
+    delta_longitude = displacement(i+1, 2) - displacement(i, 2);
+    delta_latitude = displacement(i+1, 1) - displacement(i, 1);
+    % 计算连线与正北方向的角度
+    angle_radians = atan2(delta_longitude, delta_latitude);
+    if angle_radians == 0
+       angle_radians = angles4 (i-1);
+    end
+    % 将角度添加到向量中
+    angles4 = [angles4; angle_radians];
+end
+angles_degrees4 = rad2deg(angles4);
+clear i n
+%%
+angles = [0; angles_degrees];
+angles2 = [0; angles_degrees2];
+angles3 = [0; angles_degrees3];
+angles4 = [0; angles_degrees4];
+angles41 = angles4(1:23);
+angles42 = angles4(24:129);
+%% 时间
+datain1=readtable('路段1.xlsx');
+datain2=readtable('路段2.xlsx');
+datain3=readtable('路段3.xlsx');
+datain4=readtable('路段4.xlsx');
+
+timedata1=table2array(datain1(1:90,10),'InputFormat','HH:mm:ss');
+time1 = datetime(timedata1);
+%%
+% 将时间转换为数值表示
+time_numeric1 = datenum(time1(1:90));
+% 进行样条插值
+time_interp1 = linspace(min(time_numeric1), max(time_numeric1), 1000); % 生成插值的时间点
+angle_interp1 = spline(time_numeric1, angles, time_interp1); % 进行样条插值
+
+timedata2=table2array(datain2(1:113,10),'InputFormat','HH:mm:ss');
+time2 = datetime(timedata2);
+% 将时间转换为数值表示
+time_numeric2 = datenum(time2(1:113));
+% 进行样条插值
+time_interp2 = linspace(min(time_numeric2), max(time_numeric2), 1000); % 生成插值的时间点
+angle_interp2 = spline(time_numeric2, angles2, time_interp2); % 进行样条插值
+
+timedata3=table2array(datain3(1:23,10),'InputFormat','HH:mm:ss');
+time3 = datetime(timedata3);
+% 将时间转换为数值表示
+time_numeric3 = datenum(time2(1:23));
+% 进行样条插值
+time_interp3 = linspace(min(time_numeric3), max(time_numeric3), 1000); % 生成插值的时间点
+angle_interp3 = spline(time_numeric3, angles3, time_interp3); % 进行样条插值
+
+timedata41=table2array(datain4(1:23,10),'InputFormat','HH:mm:ss');
+time41 = datetime(timedata41);
+% 将时间转换为数值表示
+time_numeric41 = datenum(time41(1:23));
+% 进行样条插值
+time_interp41 = linspace(min(time_numeric41), max(time_numeric41), 500); % 生成插值的时间点
+angle_interp41 = spline(time_numeric41, angles41, time_interp41); % 行样条插值
+
+timedata42=table2array(datain4(24:129,10),'InputFormat','HH:mm:ss');
+time42 = datetime(timedata42);
+% 将时间转换为数值表示
+time_numeric42 = datenum(time42(1:106));
+% 进行样条插值
+time_interp42 = linspace(min(time_numeric42), max(time_numeric42), 500); % 生成插值的时间点
+angle_interp42 = spline(time_numeric42 ,angles42, time_interp42); % 进行样条插值
+%% 绘图
+% 绘制插值后的曲线
+figure(1);
+plot(time_interp1, angle_interp1, 'b-', 'LineWidth', 2);
+hold on;
+plot(time_numeric1,  angles, 'ro');
+datetick('x', 'HH:MM:SS'); % 显示时间刻度
+xlabel('时间');
+ylabel('正北偏向角');
+title('路段1 插值θ—t');
+legend('插值曲线', '原始数据');
+
+figure(2);
+plot(time_interp2, angle_interp2, 'b-', 'LineWidth', 2);
+hold on;
+plot(time_numeric2,  angles2, 'ro');
+datetick('x', 'HH:MM:SS'); % 显示时间刻度
+xlabel('时间');
+ylabel('正北偏向角');
+title('路段2 插值θ—t');
+legend('插值曲线', '原始数据');
+
+figure(3);
+plot(time_interp3, angle_interp3, 'b-', 'LineWidth', 2);
+hold on;
+plot(time_numeric3,  angles3, 'ro');
+datetick('x', 'HH:MM:SS'); % 显示时间刻度
+xlabel('时间');
+ylabel('正北偏向角');
+title('路段3 插值θ—t');
+legend('插值曲线', '原始数据');
+
+figure(4);
+plot(time_interp41, angle_interp41, 'b-', 'LineWidth', 2);
+hold on;
+plot(time_numeric41,  angles41, 'ro');
+datetick('x', 'HH:MM:SS'); % 显示时间刻度
+xlabel('时间');
+ylabel('正北偏向角');
+title('路段4 第一段 插值θ—t');
+legend('插值曲线', '原始数据');
+
+figure(5);
+plot(time_interp42, angle_interp42, 'b-', 'LineWidth', 2);
+hold on;
+plot(time_numeric42,  angles42, 'ro');
+datetick('x', 'HH:MM:SS'); % 显示时间刻度
+xlabel('时间');
+ylabel('正北偏向角');
+title('路段4 第二段 插值θ—t');
+legend('插值曲线', '原始数据');
+
+%%
+angle_interp1 =angle_interp1';
+angle_interp2=angle_interp2';
+angle_interp3=angle_interp3';
+angle_interp41=angle_interp41';
+angle_interp42=angle_interp42';
+
+
+ \end{lstlisting}
+
+\section{问题二：加速度曲线}
+\begin{lstlisting}[language=matlab]
+clc;close all;clear
+% 读取数据
+filename = '路段1.xlsx';
+data = xlsread(filename);
+
+% 假设数据的列顺序是：时间、纬度、经度、速度、速度方向角
+time = data(:, 1);
+latitude = data(:, 3);
+longitude = data(:, 4);
+speed = data(:, 5);
+direction = data(:, 6);
+
+% 计算速度的差分得到加速度
+acceleration = diff(speed);
+
+acceleration = [0; acceleration];
+acceleration = acceleration;
+% 根据速度方向角计算横向加速度和径向加速度
+lateral_acceleration = acceleration .* sind(direction);
+radial_acceleration = acceleration .* cosd(direction);
+% 计算加速度的大小
+acceleration_magnitude = (sqrt(lateral_acceleration.^2 + radial_acceleration.^2));
+
+needdata=[];
+needdata(:,1)=radial_acceleration;%横向加速度
+needtime(:,1)=time;%时间
+needdata2=[];
+needdata2(:,1)=lateral_acceleration;%纵向
+needdata3=[];
+needdata3(:,1)=acceleration;%加速度大小
+v=[];
+v(:,1)=speed;%速度
+angle=[];
+angle(:,1)=direction;%方向
+% 绘制图形
+figure;
+
+subplot(3, 1, 1);
+plot(time(1:end), lateral_acceleration, 'b');
+xlabel('时间');
+ylabel('横向加速度');
+title('横向加速度随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+subplot(3, 1, 2);
+plot(time(1:end), radial_acceleration, 'k');
+xlabel('时间');
+ylabel('径向加速度');
+title('径向加速度随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+sgtitle('加速度随时间变化');
+
+
+subplot(3, 1, 3);
+plot(time(1:end), acceleration, 'r');
+xlabel('时间');
+ylabel('加速度大小');
+title('加速度大小随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+sgtitle('加速度随时间变化');
+
+%%
+filename = 'E:\1数学建模2023\2023国赛（）\第三次培训\问题二\路段2.xlsx';
+data = xlsread(filename);
+
+% 假设数据的列顺序是：时间、纬度、经度、速度、速度方向角
+time = data(:, 1);
+latitude = data(:, 3);
+longitude = data(:, 4);
+speed = data(:, 5);
+direction = data(:, 6);
+
+% 计算速度的差分得到加速度
+acceleration = diff(speed);
+
+acceleration = [0; acceleration];
+acceleration = acceleration;
+% 根据速度方向角计算横向加速度和径向加速度
+lateral_acceleration = acceleration .* sind(direction);
+radial_acceleration = acceleration .* cosd(direction);
+% 计算加速度的大小
+acceleration_magnitude = sqrt(lateral_acceleration.^2 + radial_acceleration.^2);
+needdata(:,2)=radial_acceleration;
+needtime(:,2)=time;
+needdata2(:,2)=lateral_acceleration;
+needdata3(:,2)=acceleration;
+v(:,2)=speed;
+angle(:,2)=direction;
+% 绘制图形
+figure;
+
+subplot(3, 1, 1);
+plot(time(1:end), lateral_acceleration, 'b');
+xlabel('时间');
+ylabel('横向加速度');
+title('横向加速度随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+subplot(3, 1, 2);
+plot(time(1:end), radial_acceleration, 'k');
+xlabel('时间');
+ylabel('径向加速度');
+title('径向加速度随时间变化');
+% 将横坐标时间格式化为 HH:mm:ss
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+
+subplot(3, 1, 3);
+plot(time(1:end), acceleration, 'r');
+xlabel('时间');
+ylabel('加速度大小');
+title('加速度大小随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+sgtitle('加速度随时间变化');
+
+%%
+filename = 'E:\1数学建模2023\2023国赛（）\第三次培训\问题二\路段3.xlsx';
+data = xlsread(filename);
+
+% 假设数据的列顺序是：时间、纬度、经度、速度、速度方向角
+time = data(:, 1);
+latitude = data(:, 3);
+longitude = data(:, 4);
+speed = data(:, 5);
+direction = data(:, 6);
+
+% 计算速度的差分得到加速度
+acceleration = diff(speed);
+
+acceleration = [0; acceleration];
+acceleration = acceleration;
+% 根据速度方向角计算横向加速度和径向加速度
+lateral_acceleration = acceleration .* sind(direction);
+radial_acceleration = acceleration .* cosd(direction);
+% 计算加速度的大小
+acceleration_magnitude = sqrt(lateral_acceleration.^2 + radial_acceleration.^2);
+needdata(:,3)=radial_acceleration;
+needtime(:,3)=time;
+needdata2(:,3)=lateral_acceleration;
+needdata3(:,3)=acceleration;
+v(:,3)=speed;
+angle(:,3)=direction;
+% 绘制图形
+figure;
+
+subplot(3, 1, 1);
+plot(time(1:end), lateral_acceleration, 'b');
+xlabel('时间');
+ylabel('横向加速度');
+title('横向加速度随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+subplot(3, 1, 2);
+plot(time(1:end), radial_acceleration, 'k');
+xlabel('时间');
+ylabel('径向加速度');
+title('径向加速度随时间变化');
+% 将横坐标时间格式化为 HH:mm:ss
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+
+subplot(3, 1, 3);
+plot(time(1:end), acceleration, 'r');
+xlabel('时间');
+ylabel('加速度大小');
+title('加速度大小随时间变化');
+
+sgtitle('加速度随时间变化');
+% 将横坐标时间格式化为 HH:mm:ss
+datetick('x', 'HH:MM:SS', 'keeplimits');
+%%
+filename = 'E:\1数学建模2023\2023国赛（）\第三次培训\问题二\路段4.xlsx';
+data = xlsread(filename);
+
+% 假设数据的列顺序是：时间、纬度、经度、速度、速度方向角
+time = data(1:500, 1);
+latitude = data(1:500, 3);
+longitude = data(1:500, 4);
+speed = data(1:500, 5);
+direction = data(1:500, 6);
+
+% 计算速度的差分得到加速度
+acceleration = diff(speed);
+
+acceleration = [0; acceleration];
+acceleration = acceleration;
+% 根据速度方向角计算横向加速度和径向加速度
+lateral_acceleration = acceleration .* sind(direction);
+radial_acceleration = acceleration .* cosd(direction);
+% 计算加速度的大小
+acceleration_magnitude = sqrt(lateral_acceleration.^2 + radial_acceleration.^2);
+needdata(1:500,4)=radial_acceleration;
+needtime(1:500,4)=time;
+needdata2(1:500,4)=lateral_acceleration;
+needdata3(1:500,4)=acceleration;
+v(1:500,4)=speed;
+angle(1:500,4)=direction;
+% 绘制图形
+figure;
+
+subplot(3, 1, 1);
+plot(time(1:end), lateral_acceleration, 'b');
+xlabel('时间');
+ylabel('横向加速度');
+title('横向加速度随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+subplot(3, 1, 2);
+plot(time(1:end), radial_acceleration, 'k');
+xlabel('时间');
+ylabel('径向加速度');
+title('径向加速度随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+
+
+subplot(3, 1, 3);
+plot(time(1:end), acceleration, 'r');
+xlabel('时间');
+ylabel('加速度大小');
+title('加速度大小随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+sgtitle('加速度随时间变化');
+
+
+%%
+filename = 'E:\1数学建模2023\2023国赛（）\第三次培训\问题二\路段4.xlsx';
+data = xlsread(filename);
+
+% 假设数据的列顺序是：时间、纬度、经度、速度、速度方向角
+time = data(501:1000, 1);
+latitude = data(501:1000, 3);
+longitude = data(501:1000, 4);
+speed = data(501:1000, 5);
+direction = data(501:1000, 6);
+
+% 计算速度的差分得到加速度
+acceleration = diff(speed);
+
+acceleration = [0;acceleration];
+acceleration = acceleration;
+% for i = 1:length(acceleration)
+% if acceleration(i) < -12
+%    acceleration(i) = -11.5 ; 
+% end
+% end
+% 根据速度方向角计算横向加速度和径向加速度
+lateral_acceleration = acceleration .* sind(direction);
+radial_acceleration = acceleration .* cosd(direction);
+% 计算加速度的大小
+acceleration_magnitude = sqrt(lateral_acceleration.^2 + radial_acceleration.^2);
+needdata(501:1000,4)=radial_acceleration;
+needtime(501:1000,4)=time;
+needdata2(501:1000,4)=lateral_acceleration;
+needdata3(501:1000,4)=acceleration;
+v(501:1000,4)=speed;
+angle(501:1000,4)=direction;
+% 绘制图形
+figure;
+
+subplot(3, 1, 1);
+plot(time(1:end), lateral_acceleration, 'b');
+xlabel('时间');
+ylabel('横向加速度');
+title('横向加速度随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+subplot(3, 1, 2);
+plot(time(1:end), radial_acceleration, 'k');
+xlabel('时间');
+ylabel('径向加速度');
+title('径向加速度随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+
+%%
+
+% close all;
+
+figure;
+
+subplot(4,1,1)
+plot(needtime(:,1), needdata(:,1), 'Color', [0.5 0.5 0.5])
+xlabel('时间');
+ylabel('径向加速度');
+title('径向加速度随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+subplot(4,1,2)
+plot(needtime(:,2), needdata(:,2), 'r')
+xlabel('时间');
+ylabel('径向加速度');
+title('径向加速度随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+subplot(4,1,3)
+plot(needtime(:,3), needdata(:,3), 'Color', [0.1 0.1 0.8])
+xlabel('时间');
+ylabel('径向加速度');
+title('径向加速度随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+subplot(4,1,4)
+plot(needtime(:,4), needdata(:,4), 'Color', [0.1 0.8 0.8])
+xlabel('时间');
+ylabel('径向加速度');
+title('径向加速度随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+%
+figure;
+
+subplot(4,1,1)
+plot(needtime(:,1), needdata2(:,1), 'Color', [0.5 0.5 0.5])
+xlabel('时间');
+ylabel('横向加速度');
+title('横向加速度随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+subplot(4,1,2)
+plot(needtime(:,2), needdata2(:,2), 'r')
+xlabel('时间');
+ylabel('横向加速度');
+title('横向加速度随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+subplot(4,1,3)
+plot(needtime(:,3), needdata2(:,3), 'Color', [0.1 0.1 0.8])
+xlabel('时间');
+ylabel('横向加速度');
+title('横向加速度随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+subplot(4,1,4)
+plot(needtime(:,4), needdata2(:,4), 'Color', [0.1 0.8 0.8])
+xlabel('时间');
+ylabel('横向加速度');
+title('横向加速度随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+%
+figure
+
+subplot(4,1,1)
+plot(needtime(:,1), needdata3(:,1), 'Color', [0.5 0.5 0.5])
+xlabel('时间');
+ylabel('横向加速度');
+title('加速度大小随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+subplot(4,1,2)
+plot(needtime(:,2), needdata3(:,2), 'r')
+xlabel('时间');
+ylabel('横向加速度');
+title('加速度大小随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+subplot(4,1,3)
+plot(needtime(:,3), needdata3(:,3), 'Color', [0.1 0.1 0.8])
+xlabel('时间');
+ylabel('横向加速度');
+title('加速度大小随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+subplot(4,1,4)
+plot(needtime(:,4), needdata3(:,4), 'Color', [0.1 0.8 0.8])
+xlabel('时间');
+ylabel('横向加速度');
+title('加速度大小随时间变化');
+datetick('x', 'HH:MM:SS', 'keeplimits');
+
+%%
+num_columns = size(needdata, 2); % 获取列数
+
+for col = 1:num_columns
+    data = needdata(:, col);
+    v_data = v(:,col);
+    combined_condition_count = sum((v_data > 0 & data > 0) | (v_data < 0 & data < 0));%加速
+    combined_condition_count2= sum((v_data > 0 & data < 0) | (v_data < 0 & data > 0));%减速
+    % 计算大于0的元素占比
+    positive_percentage = combined_condition_count/ numel(data) * 100;
+    
+    % 计算小于0的元素占比
+    negative_percentage = combined_condition_count2 / numel(data) * 100;
+    
+    % 显示结果
+    fprintf('列 %d:\n', col);
+    fprintf('径向加速大于0的占比: %.2f%%\n', positive_percentage);
+    fprintf('径向加速小于0的占比: %.2f%%\n', negative_percentage);
+    fprintf('\n');
+end
+%%
+clear num_columns
+num_columns = size(needdata2, 2); % 获取列数
+
+for col = 1:num_columns
+    data2 = needdata2(:, col);
+    v_data2 = v(:,col);
+    combined_condition_count21 = sum((v_data2 > 0 & data2 > 0) | (v_data2 < 0 & data2 < 0));%加速
+    combined_condition_count22= sum((v_data2 > 0 & data2 < 0) | (v_data2 < 0 & data2 > 0));%减速
+    % 计算大于0的元素占比
+    positive_percentage2 = combined_condition_count21/ numel(data2) * 100;
+    
+    % 计算小于0的元素占比
+    negative_percentage2 = combined_condition_count22 / numel(data2) * 100;
+    % 显示结果
+    fprintf('列 %d:\n', col);
+    fprintf('横向加速大于0的占比: %.2f%%\n', positive_percentage2);
+    fprintf('横向加速小于0的占比: %.2f%%\n', negative_percentage2);
+    fprintf('\n');
+end
+%% 调整
+clear num_columns
+num_columns = size(angle, 2); % 列数
+
+for col = 1:num_columns
+    angle_data = angle(:, col);
+    
+    num_elements = numel(angle_data);
+    left_adjustment_count = 0;
+    right_adjustment_count = 0;
+    
+    for i = 2:num_elements
+        if angle_data(i) > angle_data(i - 1)
+            left_adjustment_count = left_adjustment_count + 1;
+        elseif angle_data(i) < angle_data(i - 1)
+            right_adjustment_count = right_adjustment_count + 1;
+        end
+    end
+    
+    fprintf('第 %d 列:\n', col);
+    fprintf('向左调整计数器: %d\n', left_adjustment_count);
+    fprintf('向右调整计数器: %d\n', right_adjustment_count);
+    fprintf('\n');
+end
+% close all;clc;clear
+ \end{lstlisting}
+
+ 
+ \section{问题二：曲率半径}
+\begin{lstlisting}[language=matlab]
+clc;close all;clear
+data=xlsread('路段2.xlsx');
+
+
+% 根据你的需求，选择合适的阈值来判断拟合效果是否差
+fit_threshold = 0.9; 
+
+% 预分配数组来存储结果
+curvature_radii = zeros(size(data, 1), 5);
+lateral_accelerations = zeros(size(data, 1), 6);
+
+% 循环处理每4个相邻数据点
+for i = 1:size(data, 1) - 3
+    % 获取纵向和横向加速度数据
+    longitudinal_acc = data(i:i+3, 8);%纵向
+    lateral_acc = data(i:i+3, 7);%横向
+    
+    % 二次最小二乘拟合
+    p = polyfit(longitudinal_acc, lateral_acc, 2);
+    
+    % 计算拟合的曲线
+    fitted_curve = polyval(p, longitudinal_acc);
+    
+    % 计算R方来衡量拟合效果
+    R_squared = 1 - sum((lateral_acc - fitted_curve).^2) / sum((lateral_acc - mean(lateral_acc)).^2);
+    
+    % 根据R方来判断使用二次还是三次拟合
+    if R_squared < fit_threshold
+        % 三次多项式拟合
+        p = polyfit(longitudinal_acc, lateral_acc, 3);
+    end
+    
+    % 创建拐点的虚拟点
+    virtual_point = [longitudinal_acc(1) - 1, polyval(p, longitudinal_acc(1) - 1)];
+    
+    % 计算曲率半径
+    curvature_radius = abs(1 / p(2));
+    
+    % 根据线速度计算横向加速度
+    velocity = data(i,6); % 你的线速度，需要根据实际情况调整
+    lateral_acceleration = velocity^2 / curvature_radius;
+    
+    % 存储结果
+    curvature_radii(i:i+3) = curvature_radius;
+    lateral_accelerations(i:i+3) = lateral_acceleration;
+end
+% for i = 1:length(lateral_accelerations)
+%      if (lateral_accelerations(i)) > 12
+%           lateral_accelerations(i) = 12;
+%      end
+%      if lateral_accelerations(i)< -12
+%          lateral_accelerations(i) = -12;
+%      end
+% end
+
+
+figure
+plot(curvature_radii(:,1))
+
+%%
+figure
+plot(curvature_radii)
+%%
+ hengxiang=data(:,7);
+v= data(:,5);
+R = curvature_radii(:,1);
+needdata = hengxiang .* (R ./ v.^2);
+
+negative_v_indices = find(v < 0);
+
+% 剔除 v<0 对应的数据点
+v(negative_v_indices) = [];
+needdata(negative_v_indices) = [];
+
+% % 假设 data 是包含您的数据的向量或矩阵
+% z_scores = (needdata - mean(needdata)) / std(needdata);
+% threshold = 4;  % 根据需要自行调整阈值
+% 
+% % 使用逻辑索引去除离群值
+% needdata = needdata(abs(z_scores) <= threshold);
+
+boxplot(needdata);
+title('Box Plot');
+
+% 计算上下限
+Q1 = quantile(needdata, 0.25);
+Q3 = quantile(needdata, 0.75);
+IQR = Q3 - Q1;
+lower_limit = Q1 - 1.5 * IQR;
+upper_limit = Q3 + 1.5 * IQR;
+
+% 使用逻辑索引去除离群值
+needdata = needdata(needdata >= lower_limit & needdata <= upper_limit);
+v = v(needdata >= lower_limit & needdata <= upper_limit);
+
+figure
+boxplot(needdata);
+title('Box Plot');
+
+% 计算上下限
+Q1 = quantile(needdata, 0.25);
+Q3 = quantile(needdata, 0.75);
+IQR = Q3 - Q1;
+lower_limit = Q1 - 1.5 * IQR;
+upper_limit = Q3 + 1.5 * IQR;
+
+% 使用逻辑索引去除离群值
+needdata = needdata(needdata >= lower_limit & needdata <= upper_limit);
+v = v(needdata >= lower_limit & needdata <= upper_limit);
+%%
+% 绘制散点图
+figure
+scatter(v, needdata);
+xlabel('速度');
+ylabel('needdata');
+title('散点图：速度 vs. needdata');
+ylabel('needdata')
+xlim([0 21])
+ylim([-1 1])
+%%
+median_value = abs(median(needdata));
+fprintf('needdata 的中位数为: %.2ef\n', median_value);
+
+ \end{lstlisting}
+  \section{问题三：$\beta$ 角的求解}
+\begin{lstlisting}[language=matlab]
+clc;close all;clear
+data=xlsread('摩擦力.xlsx');
+soga=readtable('摩擦力.xlsx');
+time=soga(:,1);
+beta_diff1 = diff(data(:, 3));
+data2=xlsread('第二段摩擦力.xlsx');
+beta_diff2=diff(data2(:,3));
+
+ \end{lstlisting}
+
+   \section{问题三：摩擦力时间曲线}
+\begin{lstlisting}[language=matlab]
+clc;close all;clear
+
+data=xlsread('摩擦力.xlsx');
+data2=xlsread('摩擦因数.xlsx');
+
+Fnr = zeros(size(data, 1), 1);
+Rr = zeros(size(data, 1), 1);
+Cnr = zeros(size(data, 1), 1);
+%% 导入参数
+beta = data(:,end);%偏角差分
+R = data(:,end-1);%曲率半径
+v = data(:,2);
+%% 需要设立的参数
+n = 1;%                      n的值不同，对应的路段摩擦因数不同
+% 1.混凝土
+% 2.沥青
+% 3.碎石
+% 4.农田
+% 5.土路
+% 6.黏土
+% 7.煤矸石路
+% 8.沙丘
+% 9.冰雪
+
+u=data2(n,1);%摩擦系数
+mc=5000;%车质量
+mp=0;%人质量
+T=1.725;%左右前车轮距离
+D=0.4318;%轮胎直径
+W=0.195;%胎宽
+
+p=100*1000;%气压
+ALLlength=5;
+Ltf=2;%前车轮到质心距离
+Ltb=2;%后车轮到质心距离
+
+g=9.81;%重力加速度
+
+%% 二次参数 常数
+k = 0.0225*W+0.63;
+G = (mc+mp)*g;
+delta = (k * G) / (W^0.7 * D^0.43 * p^0.6);
+l = 1.7 * sqrt(D * delta + delta^2);
+%% 二次参数 矩阵
+for i = 1:length(data(:,1))
+bet=beta(i);
+r = R(i);
+v = v(i);
+rr = sqrt((r * cosd(bet) - (T/2))^2 + (Ltb + Ltf)^2);
+cnr = v^2 / (u * g * r);
+Rr(i)=rr;
+Cnr(i)=cnr;
+end
+Fnv = Cnr;
+clear i rr
+%% 摩擦力
+for i=1:length(data(:,1))
+    fnv = Fnv(i);
+    rr = Rr(i);
+    fnr = ((8 / (9 * pi)) * fnv * G * l) / rr;
+    Fnr(i)=fnr;
+end
+
+%% 时间
+time = data(:,1);
+timeneed = datetime(time, 'ConvertFrom', 'datenum'); % 将数值型时间点转换为 datetime 格式
+% 假设 Fnr 是一个包含滚动摩擦力数据的数组
+for i = 1:length(Fnr)
+    while Fnr(i) > 10000
+        Fnr(i) = Fnr(i) / 10;
+    end
+end
+index = Fnr > 1000000000;
+filtered_timeneed = timeneed(~index);
+filtered_Fnr = Fnr(~index);
+
+time_string = datestr(filtered_timeneed, 'HH:MM:SS'); % 将 datetime 转换为字符串格式 HH:mm:ss
+%%
+% 绘制散点图
+subplot(2,1,1)
+
+scatter(filtered_timeneed, filtered_Fnr);
+xlabel('时间');
+ylabel('摩擦力');
+subplot(2,1,2)
+plot(filtered_timeneed,filtered_Fnr);
+xlabel('时间');
+ylabel('摩擦力');
+
+sgtitle('摩擦力-时间')
+
+
+ \end{lstlisting}
+
+ \section{问题三：摩擦力时间曲线倾斜修正}
+\begin{lstlisting}[language=matlab]
+clc;close all;clear
+
+data=xlsread('摩擦力.xlsx');
+data2=xlsread('摩擦因数.xlsx');
+
+Fnr = zeros(size(data, 1), 1);
+Rr = zeros(size(data, 1), 1);
+Cnr = zeros(size(data, 1), 1);
+%% 导入参数
+beta = data(:,end);%偏角差分
+R = data(:,end-1);%曲率半径
+v = data(:,2);
+%% 需要设立的参数
+n = 1;%                      n的值不同，对应的路段摩擦因数不同
+% 1.混凝土
+% 2.沥青
+% 3.碎石
+% 4.农田
+% 5.土路
+% 6.黏土
+% 7.煤矸石路
+% 8.沙丘
+% 9.冰雪
+
+fy_rad = 0.04;% 倾斜角度（弧度制）
+u=data2(n,1);%摩擦系数
+mc=5000;%车质量
+mp=0;%人质量
+T=1.725;%左右前车轮距离
+D=0.4318;%轮胎直径
+W=0.195;%胎宽
+
+p=100*1000;%气压
+ALLlength=5;
+Ltf=2;%前车轮到质心距离
+Ltb=2;%后车轮到质心距离
+
+g=9.81;%重力加速度
+
+%% 二次参数 常数
+fy = fy_rad * (180 / pi);% 转换为角度
+k = 0.0225*W+0.63;
+G = (mc+mp)*g;
+delta = (k * G) / (W^0.7 * D^0.43 * p^0.6);
+l = 1.7 * sqrt(D * delta + delta^2);
+%% 二次参数 矩阵
+for i = 1:length(data(:,1))
+bet=beta(i);
+r = R(i);
+V = v(i);
+rr = sqrt((r * cosd(bet) - (T/2))^2 + (Ltb + Ltf)^2);
+cnr = (V^2 / (u * g * r))+fy/u;
+Rr(i)=rr;
+Cnr(i)=cnr;
+end
+Fnv = Cnr;
+clear i rr
+%% 摩擦力
+for i=1:length(data(:,1))
+    fnv = Fnv(i);
+    rr = Rr(i);
+    fnr = ((8 / (9 * pi)) * fnv * G * l) / rr;
+    Fnr(i)=fnr;
+end
+
+%% 时间
+time = data(:,1);
+timeneed = datetime(time, 'ConvertFrom', 'datenum'); % 将数值型时间点转换为 datetime 格式
+% 假设 Fnr 是一个包含滚动摩擦力数据的数组
+for i = 1:length(Fnr)
+    while Fnr(i) > 10000
+        Fnr(i) = Fnr(i) / 10;
+    end
+end
+% 找出 Fnr 大于1000的索引
+index = Fnr > 1000000000;
+% 去掉对应的 timeneed 值
+filtered_timeneed = timeneed(~index);
+filtered_Fnr = Fnr(~index);
+
+time_string = datestr(filtered_timeneed, 'HH:MM:SS'); % 将 datetime 转换为字符串格式 HH:mm:ss
+%%
+% 绘制散点图
+subplot(2,1,1)
+
+scatter(filtered_timeneed, filtered_Fnr);
+xlabel('时间');
+ylabel('摩擦力');
+subplot(2,1,2)
+plot(filtered_timeneed,filtered_Fnr);
+xlabel('时间');
+ylabel('摩擦力');
+
+sgtitle('摩擦力-时间（修正）')
+
+
+ \end{lstlisting}
+
+
+ \section{问题三：摩擦力时间曲线载客修正}
+\begin{lstlisting}[language=matlab]
+clc;close all;clear
+
+data=xlsread('摩擦力.xlsx');
+data2=xlsread('摩擦因数.xlsx');
+
+Fnr = zeros(size(data, 1), 1);
+Rr = zeros(size(data, 1), 1);
+Cnr = zeros(size(data, 1), 1);
+M0 = zeros(size(data, 1), 1);
+%% 导入参数
+beta = data(:,end);%偏角差分
+R = data(:,end-1);%曲率半径
+v = data(:,2);
+
+%% 需要设立的参数
+n = 1;%                      n的值不同，对应的路段摩擦因数不同
+% 1.混凝土
+% 2.沥青
+% 3.碎石
+% 4.农田
+% 5.土路
+% 6.黏土
+% 7.煤矸石路
+% 8.沙丘
+% 9.冰雪
+
+u=data2(n,1);%摩擦系数
+mc=5000;%车质量
+mp=0;%人质量
+T=1.725;%左右前车轮距离
+D=0.4318;%轮胎直径
+W=0.195;%胎宽
+sigma = 12;
+p=100*1000;%气压
+ALLlength=5;
+Ltf=2;%前车轮到质心距离
+Ltb=2;%后车轮到质心距离
+g=9.81;%重力加速度
+
+%% 二次参数 常数
+k = 0.0225*W+0.63;
+G = (mc+mp)*g;
+delta = (k * G) / (W^0.7 * D^0.43 * p^0.6);
+l = 1.7 * sqrt(D * delta + delta^2);
+Gc=mc*g;
+Gf=( Ltb / (2*Ltb+Ltf) )*Gc;
+
+%% 二次参数 矩阵
+for i = 1:length(data(:,1))
+bet=beta(i);
+r = R(i);
+V = v(i);
+bb = beta(i);
+rr = sqrt((r * cosd(bet) - (T/2))^2 + (Ltb + Ltf)^2);
+m0 = (Gf * (bb / pi)) * (sigma + (D / 2 - delta * tan(sigma))) * sin(2 * sigma);
+cnr = V^2 / (u * g * r);
+Rr(i)=rr;
+Cnr(i)=cnr;
+M0(i)=m0;
+end
+Fnv = Cnr;
+clear i rr m0
+%% 摩擦力
+for i=1:length(data(:,1))
+    fnv = Fnv(i);
+    rr = Rr(i);
+    m0 = M0(i);
+    fnr = (((8 / (9 * pi)) * fnv * G * l)+m0) / rr;
+    Fnr(i)=fnr;
+end
+
+%% 时间
+time = data(:,1);
+timeneed = datetime(time, 'ConvertFrom', 'datenum'); % 将数值型时间点转换为 datetime 格式
+% 假设 Fnr 是一个包含滚动摩擦力数据的数组
+for i = 1:length(Fnr)
+    while Fnr(i) > 10000
+        Fnr(i) = Fnr(i) / 10;
+    end
+end
+% 去掉对应的 timeneed 值
+filtered_timeneed = timeneed(~index);
+filtered_Fnr = Fnr(~index);
+
+time_string = datestr(filtered_timeneed, 'HH:MM:SS'); % 将 datetime 转换为字符串格式 HH:mm:ss
+%%
+% 绘制散点图
+subplot(2,1,1)
+
+scatter(filtered_timeneed, filtered_Fnr);
+xlabel('时间');
+ylabel('摩擦力');
+subplot(2,1,2)
+plot(filtered_timeneed,filtered_Fnr);
+xlabel('时间');
+ylabel('摩擦力');
+
+sgtitle('摩擦力-时间')
+ \end{lstlisting}
+ 
+\end{appendices}
+\end{document} 
