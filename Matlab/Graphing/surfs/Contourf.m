@@ -1,29 +1,10 @@
-% 无线条等高线填充图绘制模板
-% 公众号：阿昆的科研日常
-
-%% 数据准备
-% 读取数据
-load mountain2.mat
-[X,Y] = meshgrid(xi,yi);
-Z = DSM;
-
-%% 颜色定义
-% TheColor函数获取方式：
-% 公众号后台回复：TC
-map = TheColor('sci',2061);
-map = flipud(map);
-
-%% 图片尺寸设置（单位：厘米）
-figureUnits = 'centimeters';
-figureWidth = 16;
-figureHeight = 10;
 
 %% 窗口设置
 figureHandle = figure;
 set(gcf, 'Units', figureUnits, 'Position', [0 0 figureWidth figureHeight]);
 
 %% 无线条等高线填充图绘制
-h = contourf(X, Y, Z, 10, 'LineStyle','none');
+h = contourf(y, x, data, 10, 'LineStyle','none');
 hTitle = title('Contourf Without Lines');
 hXLabel = xlabel('XAxis');
 hYLabel = ylabel('YAxis');
