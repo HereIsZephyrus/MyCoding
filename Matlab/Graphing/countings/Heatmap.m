@@ -17,7 +17,7 @@ rho=[1.00    0.16    0.29    0.05    0.34    0.41    0.29    0.22    0.25    0.5
 %% 颜色定义
 % addcolorplus函数获取方式：
 % 公众号后台回复：配色强化
-map = addcolorplus(300);
+%map = addcolorplus(300);
 % map = flipud(map);
 
 %% 图片尺寸设置（单位：厘米）
@@ -41,7 +41,7 @@ h.YLabel = 'YLabel';
 
 %% 细节优化
 % 赋色
-colormap(map)
+%colormap(map)
 % 背景颜色
 set(gcf,'Color',[1 1 1])
 

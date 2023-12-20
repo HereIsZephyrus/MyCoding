@@ -1,0 +1,2 @@
+INSERT INTO CS_Student VALUES(200215129,'赵新','男',20,'CS');
+GO
