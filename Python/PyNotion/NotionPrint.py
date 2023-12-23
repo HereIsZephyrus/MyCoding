@@ -2,7 +2,7 @@ import sys
 sys.path.append(r'/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages')
 import os
 from notion_client import Client  # 导入notion_client库，终端输入"pip install notion_client"进行安装
-from pprint import pprint 
+from pprint import pprint
 # 从notion中获取数据
 notion = Client(auth="secret_rsEEx3ne1DapGydZdHit7289lrPXrEYYR53TmzfgcI7")  # 替换为自己的Token
 db_name = "ReadingList"    # 替换为自己的DataBase名称
@@ -10,18 +10,18 @@ db_id = "444bf12774544b1d842eed17083960f7"    # 替换为自己的DataBase ID
 page_id = "444bf127-7454-4b1d-842e-ed17083960f7"   # # 替换为自己的Page ID
 startDate='2023-12-15'
 endDate='2023-12-22' # 替换为自己的时间段
-db_values = notion.databases.query( 
+db_values = notion.databases.query(
         **{
-            "database_id": db_id, 
+            "database_id": db_id,
             "filter" : {
                 "and" : [
                     {
-                    "property": "Completed", 
+                    "property": "Completed",
                     "date": {
                         "after": startDate
                     }},
                     {
-                    "property": "Completed", 
+                    "property": "Completed",
                     "date": {
                     "before": endDate
                     }
@@ -55,14 +55,13 @@ printFormat=input("请输入打印格式:(doc/slide)")
 while printFormat not in ["doc","slide"]:
     printFormat=input("请输入打印格式:(doc/slide)")
 import time
-current_time=time.strftime("%Y%m%d_%H%M", time.localtime()) 
+current_time=time.strftime("%Y%m%d_%H%M", time.localtime())
 # 使用markdown语法生成doc输出
 if printFormat=="doc":
     file_name = "readinglist"+current_time+".md"
     with open(file_name,"w") as file:
         for i in range(len(title)):
-            file.write(f"## 标题\n")
-            file.write(f"{title[i]}\n")
+            file.write(f"##@ {title[i]}\n")
             file.write(f"**作者**: {author[i]}\n")
             file.write(f"**关键词**: {keywords[i]}\n")
             file.write(f"**完成时间**: {completeDate[i]}")
@@ -72,9 +71,9 @@ if printFormat=="doc":
                 file.write(f"(略读)\n")
             elif level[i]=="Skip":
                 file.write(f"(选读)\n")
-            file.write(f"### 内容简介\n")
+            file.write(f"##@# 内容简介\n")
             file.write(f"{content[i]}\n")
-            file.write(f"### 笔记与思考\n")
+            file.write(f"#@## 笔记与思考\n")
             file.write(f"{notes[i]}\n")
             file.write("\n")
 # 使用latex语法生成slide输出
@@ -121,7 +120,7 @@ if printFormat=="slide":
 \kaishu
 \begin{frame}
     \titlepage
-    \vspace{-2em}  % 减小间距 
+    \vspace{-2em}  % 减小间距
     \begin{figure}[htpb]
         \begin{center}
         		\includegraphics[width=0.3\linewidth]{pic/CUG_Logo.png}
