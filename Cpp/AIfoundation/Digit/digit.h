@@ -1,63 +1,64 @@
+/***
+ * @Author: ChanningTong Channing_TongCN@outlook.com
+ * @Date: 2023-12-30 16:44:22
+ * @LastEditors: ChanningTong Channing_TongCN@outlook.com
+ * @LastEditTime: 2023-12-30 19:55:14
+ * @FilePath: \AIfoundation\digit.h
+ * @Description:
+ * @
+ * @Copyright (c) 2023 by ChanningTong, All Rights Reserved.
+ */
 #pragma once
 #include <iostream>
 #include <algorithm>
 #include <cstdio>
 #include <cstring>
+#include <string>
 #include <queue>
 #include <vector>
+#include <iomanip>
 #include <set>
 using std::cin;
 using std::cout;
 using std::endl;
 using std::make_pair;
 
-const int dx[4] = {1, -1, 0, 0}, dy[4] = {0, 0, 1, -1};
-constexpr int MAXN = 10;
-int fx, fy;
-char ch;
+constexpr int MAXN = 1000;
 
 class Matrix
 {
 private:
     size_t n;
-    int h = -1;
     std::vector<std::vector<int>> num;
     std::vector<std::vector<int>> term;
     bool reachable = false;
-
+    int h = 0;
 protected:
     int countInverse(const std::vector<int> &);
-    int CalcH();
-
 public:
-    Matrix() : n(0), h(-1) {}
+    Matrix() : n(0),h(0) {}
+    void CalcH();
     Matrix(size_t size, const std::vector<int> &puzzle, const std::vector<int> &goal)
     {
         build(size, puzzle, goal);
-        h = CalcH();
     }
     // Matrix(Matrix&& outside){n=outside.n; num=outside.num; term=outside.term; h=outside.h;}
+    Matrix(const Matrix &outside){n = outside.n;num = outside.num;term = outside.term;h=outside.h;}
     ~Matrix() {}
     bool getReachable() const { return reachable; }
     bool accessable(int x, int y) const { return (x >= 0) && (y >= 0) && (x < n) && (y < n); }
     std::string checkValid(const std::vector<int> &, const std::vector<int> &);
     void setDigit(const int x, const int y, int val){num[x][y] = val;return;}
-    void change(int fx, int fy, int sx, int sy) { std::swap(num[fx][fy], num[sx][sy]); }
+    void change(int fx, int fy, int sx, int sy) { std::swap(num[fx][fy], num[sx][sy]); CalcH();}
     void Init();
     void build(size_t size, const std::vector<int> &puzzle, const std::vector<int> &goal);
     std::pair<int,int> getZ();
-    int getH()
-    {
-        if (h < 0)
-            h = CalcH(); // alright, cannot call a non-const method with a const object
-        return h;
-    }
+    int getH() const {return h;}
     Matrix &operator=(const Matrix &other)
     {
         if (this != &other)
         {
             n = other.n;
-            h = other.h;
             num = other.num;
             term = other.term;
         }
@@ -67,20 +68,10 @@ public:
         if (this != &outside)
         {
             n = outside.n;
-            h = outside.h;
             num = outside.num;
             term = outside.term;
         }
         return *this;
-    }
-    friend bool operator<(const Matrix &f1, const Matrix &f2)
-    {
-        size_t size = f1.n;
-        for (int i = 0; i < size; ++i)
-            for (int j = 0; j < size; ++j)
-                if (f1.num[i][j] != f2.num[i][j])
-                    return f1.num[i][j] < f2.num[i][j];
-        return false;
     }
     friend std::istream &operator>>(std::istream &is, Matrix &x)
     {
@@ -93,9 +84,9 @@ public:
             x.Init();
         }
     }
-    friend std::ostream &operator<<(std::ostream &os, const Matrix &x)
+    friend std::ostream &operator<<(std::ostream &os, const Matrix &m)
     {
-        for (std::vector<std::vector<int>>::const_iterator itx = x.num.begin(); itx != x.num.end(); ++itx)
+        for (std::vector<std::vector<int>>::const_iterator itx = m.num.begin(); itx != m.num.end(); ++itx)
         {
             std::vector<int> x = *itx;
             for (std::vector<int>::iterator ity = x.begin(); ity != x.end(); ++ity)
@@ -104,16 +95,43 @@ public:
         }
         return os;
     }
+
+    std::ostream & Print(std::ostream &os,const int gap)
+    {
+        for (std::vector<std::vector<int>>::iterator itx = this->num.begin(); itx != this->num.end(); ++itx)
+        {
+            std::vector<int> x = *itx;
+            os << '|'<<std::setw(gap);
+            for (std::vector<int>::iterator ity = x.begin(); ity != x.end(); ++ity)
+                os << *ity;
+            os << endl;
+        }
+        return os;
+    }
+    bool operator<(const Matrix &x) const{return num<x.num;}
 };
 
-typedef std::pair<Matrix, int> countedMap;
+struct Node
+{
+    Matrix map;
+    int deep;
+    int id;
+    friend bool operator<(const Node &x,const Node &y)
+    {
+        return x.deep + x.map.getH() > y.deep + y.map.getH();
+    }
+};
+
 struct cmp
 {
-    bool operator()(countedMap &x, countedMap &y)
+    bool operator()(Node &x, Node &y)
     {
-        const int tx = x.second, ty = y.second;
-        Matrix *mapx = &x.first;
-        Matrix *mapy = &y.first;
+        const int tx = x.deep, ty = y.deep;
+        Matrix *mapx = &x.map;
+        Matrix *mapy = &y.map;
         return tx + mapx->getH() > ty + mapy->getH();
     }
 };
+
+void Search(std::priority_queue<Node> *, std::set<Matrix> *, Matrix *, const int, const int);
+void Print(Matrix*,const int);
