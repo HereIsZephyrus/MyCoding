@@ -1,0 +1,1904 @@
+<html><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <title>特性 - 宝可梦图鉴 - 精灵宝可梦剑·盾</title>
+    <meta charset="utf-8">
+    <meta name="description" content="宝可梦图鉴 - 精灵宝可梦剑·盾">
+    <meta name="keywords" content="口袋大学城,口袋妖怪,神奇宝贝,精灵宝可梦,宠物小精灵,pokemon,图鉴,资料库,剑盾,Sword,Shield">
+    <base href="https://www.pokedex.app/zh/">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../resource/stylesheet.css?3.5">
+    <link rel="stylesheet" type="text/css" href="../resource/library/chosen-js/chosen.css">
+    <link rel="stylesheet" type="text/css" href="../resource/font-awesome.min.css">
+    <link rel="alternate" href="https://www.pokedex.app/zh" hreflang="x-default">
+    <link rel="alternate" href="https://www.pokedex.app/en" hreflang="en">
+    <script async="" src="//s.pokeuniv.com/analytics.js"></script><script src="../resource/library/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="../resource/library/angular.min.js" type="text/javascript"></script>
+    <script src="../resource/library/angular-sanitize.min.js" type="text/javascript"></script>
+    <script src="../resource/library/angular-chosen.min.js" type="text/javascript"></script>
+    <script src="../resource/library/angular-inview.js" type="text/javascript"></script>
+    <script src="../resource/library/javascript.js?3.5" type="text/javascript"></script>
+    <script src="../resource/library/chosen-js/chosen.jquery.js" type="text/javascript"></script>
+    <script src="../resource/library/pinyin.js" type="text/javascript"></script>
+    <script src="../resource/library/names.js?3.5" type="text/javascript"></script>
+    <script src="../resource/constants.js?3.5" type="text/javascript"></script>
+    <!--<script src="https://kit.fontawesome.com/f73184b8a7.js" type="text/javascript"></script>-->
+</head>
+<body ng-app="pokedex" ng-controller="main" class="ng-scope">
+    <header>
+        <img class="logo" src="../image/logo.png">
+        <ul class="nav">
+            <li><a href="home" ng-bind="_LANG.page_name.home" class="ng-binding">首页</a></li>
+            <li><a href="pokemon" ng-bind="_LANG.page_name.pokemon" class="ng-binding">宝可梦</a></li>
+            <li><a href="move" ng-bind="_LANG.page_name.move" class="ng-binding">招式</a></li>
+            <li><a href="ability" ng-bind="_LANG.page_name.ability" class="ng-binding">特性</a></li>
+            <li><a href="item" ng-bind="_LANG.page_name.item" class="ng-binding">道具</a></li>
+            <li><a href="trainer" ng-bind="_LANG.page_name.trainer" class="ng-binding">对战</a></li>
+            <li><a href="tool" ng-bind="_LANG.page_name.tool" class="ng-binding">工具</a></li>
+            <li><a href="search" ng-bind="_LANG.page_name.search" class="ng-binding">搜索</a></li>
+            <li><a href="http://www.pokeuniv.com/bbs/thread-53808-1-1.html" target="_blank" ng-bind="_LANG.page_name.data" class="ng-binding">资料</a></li>
+            <li><a href="http://www.pokeuniv.com/bbs/thread-7329-1-1.html" target="_blank" ng-bind="_LANG.page_name.forum" class="ng-binding">反馈</a></li>
+            <li class="float-right ng-binding" ng-bind="_LANG.current_version + '3.5'">目前版本：3.5</li>
+        </ul>
+    </header>
+    <main>
+        
+<article ng-show="" class="ng-hide">
+    Loading...
+</article>    <article ng-controller="abilities" class="ng-scope">
+        <input ng-model="search_criteria.name_zh[0]" type="text" placeholder="筛选" class="ng-pristine ng-untouched ng-valid"><br><br>
+
+        <table width="100%">
+            <tbody><tr>
+                <th ng-bind="::_LANG.pokemon.id" class="ng-binding">编号</th>
+                <th ng-bind="::_LANG.pokemon.name_trans.zh" class="ng-binding">中文名</th>
+                <th ng-bind="::_LANG.pokemon.name_trans.en" class="ng-binding">英文名</th>
+                <th ng-bind="::_LANG.pokemon.name_trans.jp" class="ng-binding">日文名</th>
+                <th ng-bind="::_LANG.description" class="ng-binding">描述</th>
+                <th ng-bind="::_LANG.details" class="ng-binding">详情</th>
+            </tr>
+            <!-- ngIf: !abilities.length -->
+            <!-- ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">1</td>
+                <td ng-bind="a.name_zh" class="ng-binding">恶臭</td>
+                <td ng-bind="a.name_en" class="ng-binding">Stench</td>
+                <td ng-bind="a.name_jp" class="ng-binding">あくしゅう</td>
+                <td ng-bind="a.brief_description" class="ng-binding">通过释放臭臭的气味，在攻击的时候，有时会使对手畏缩。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">2</td>
+                <td ng-bind="a.name_zh" class="ng-binding">降雨</td>
+                <td ng-bind="a.name_en" class="ng-binding">Drizzle</td>
+                <td ng-bind="a.name_jp" class="ng-binding">あめふらし</td>
+                <td ng-bind="a.brief_description" class="ng-binding">出场时，会将天气变为下雨。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">3</td>
+                <td ng-bind="a.name_zh" class="ng-binding">加速</td>
+                <td ng-bind="a.name_en" class="ng-binding">Speed Boost</td>
+                <td ng-bind="a.name_jp" class="ng-binding">かそく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">每一回合速度会变快。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">4</td>
+                <td ng-bind="a.name_zh" class="ng-binding">战斗盔甲</td>
+                <td ng-bind="a.name_en" class="ng-binding">Battle Armor</td>
+                <td ng-bind="a.name_jp" class="ng-binding">カブトアーマー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">被坚硬的甲壳守护着，不会被对手的攻击击中要害。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">5</td>
+                <td ng-bind="a.name_zh" class="ng-binding">结实</td>
+                <td ng-bind="a.name_en" class="ng-binding">Sturdy</td>
+                <td ng-bind="a.name_jp" class="ng-binding">がんじょう</td>
+                <td ng-bind="a.brief_description" class="ng-binding">即使受到对手的招式攻击，也不会被一击打倒。一击必杀的招式也没有效果。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">6</td>
+                <td ng-bind="a.name_zh" class="ng-binding">湿气</td>
+                <td ng-bind="a.name_en" class="ng-binding">Damp</td>
+                <td ng-bind="a.name_jp" class="ng-binding">しめりけ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">通过把周围都弄湿，使谁都无法使用自爆等爆炸类的招式。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">7</td>
+                <td ng-bind="a.name_zh" class="ng-binding">柔软</td>
+                <td ng-bind="a.name_en" class="ng-binding">Limber</td>
+                <td ng-bind="a.name_jp" class="ng-binding">じゅうなん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">因为身体柔软，不会变为麻痹状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">8</td>
+                <td ng-bind="a.name_zh" class="ng-binding">沙隐</td>
+                <td ng-bind="a.name_en" class="ng-binding">Sand Veil</td>
+                <td ng-bind="a.name_jp" class="ng-binding">すながくれ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">在沙暴的时候，闪避率会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">9</td>
+                <td ng-bind="a.name_zh" class="ng-binding">静电</td>
+                <td ng-bind="a.name_en" class="ng-binding">Static</td>
+                <td ng-bind="a.name_jp" class="ng-binding">せいでんき</td>
+                <td ng-bind="a.brief_description" class="ng-binding">身上带有静电，有时会让接触到的对手麻痹。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">10</td>
+                <td ng-bind="a.name_zh" class="ng-binding">蓄电</td>
+                <td ng-bind="a.name_en" class="ng-binding">Volt Absorb</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ちくでん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到电属性的招式攻击时，不会受到伤害，而是会回复。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">11</td>
+                <td ng-bind="a.name_zh" class="ng-binding">储水</td>
+                <td ng-bind="a.name_en" class="ng-binding">Water Absorb</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ちょすい</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到水属性的招式攻击时，不会受到伤害，而是会回复。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">12</td>
+                <td ng-bind="a.name_zh" class="ng-binding">迟钝</td>
+                <td ng-bind="a.name_en" class="ng-binding">Oblivious</td>
+                <td ng-bind="a.name_jp" class="ng-binding">どんかん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">因为感觉迟钝，不会变为着迷和被挑衅状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">13</td>
+                <td ng-bind="a.name_zh" class="ng-binding">无关天气</td>
+                <td ng-bind="a.name_en" class="ng-binding">Cloud Nine</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ノーてんき</td>
+                <td ng-bind="a.brief_description" class="ng-binding">任何天气的影响都会消失。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">14</td>
+                <td ng-bind="a.name_zh" class="ng-binding">复眼</td>
+                <td ng-bind="a.name_en" class="ng-binding">Compound Eyes</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ふくがん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">因为拥有复眼，招式的命中率会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">15</td>
+                <td ng-bind="a.name_zh" class="ng-binding">不眠</td>
+                <td ng-bind="a.name_en" class="ng-binding">Insomnia</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ふみん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">因为有着睡不着的体质，所以不会陷入睡眠状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">16</td>
+                <td ng-bind="a.name_zh" class="ng-binding">变色</td>
+                <td ng-bind="a.name_en" class="ng-binding">Color Change</td>
+                <td ng-bind="a.name_jp" class="ng-binding">へんしょく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">自己的属性会变为从对手处所受招式的属性。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">17</td>
+                <td ng-bind="a.name_zh" class="ng-binding">免疫</td>
+                <td ng-bind="a.name_en" class="ng-binding">Immunity</td>
+                <td ng-bind="a.name_jp" class="ng-binding">めんえき</td>
+                <td ng-bind="a.brief_description" class="ng-binding">因为体内拥有免疫能力，不会变为中毒状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">18</td>
+                <td ng-bind="a.name_zh" class="ng-binding">引火</td>
+                <td ng-bind="a.name_en" class="ng-binding">Flash Fire</td>
+                <td ng-bind="a.name_jp" class="ng-binding">もらいび</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到火属性的招式攻击时，吸收火焰，自己使出的火属性招式会变强。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">19</td>
+                <td ng-bind="a.name_zh" class="ng-binding">鳞粉</td>
+                <td ng-bind="a.name_en" class="ng-binding">Shield Dust</td>
+                <td ng-bind="a.name_jp" class="ng-binding">りんぷん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">被鳞粉守护着，不会受到招式的追加效果影响。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">20</td>
+                <td ng-bind="a.name_zh" class="ng-binding">我行我素</td>
+                <td ng-bind="a.name_en" class="ng-binding">Own Tempo</td>
+                <td ng-bind="a.name_jp" class="ng-binding">マイペース</td>
+                <td ng-bind="a.brief_description" class="ng-binding">因为我行我素，不会变为混乱状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">21</td>
+                <td ng-bind="a.name_zh" class="ng-binding">吸盘</td>
+                <td ng-bind="a.name_en" class="ng-binding">Suction Cups</td>
+                <td ng-bind="a.name_jp" class="ng-binding">きゅうばん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">用吸盘牢牢贴在地面上，让替换宝可梦的招式和道具无效。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">22</td>
+                <td ng-bind="a.name_zh" class="ng-binding">威吓</td>
+                <td ng-bind="a.name_en" class="ng-binding">Intimidate</td>
+                <td ng-bind="a.name_jp" class="ng-binding">いかく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">出场时威吓对手，让其退缩，降低对手的攻击。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">23</td>
+                <td ng-bind="a.name_zh" class="ng-binding">踩影</td>
+                <td ng-bind="a.name_en" class="ng-binding">Shadow Tag</td>
+                <td ng-bind="a.name_jp" class="ng-binding">かげふみ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">踩住对手的影子使其无法逃走或替换。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">24</td>
+                <td ng-bind="a.name_zh" class="ng-binding">粗糙皮肤</td>
+                <td ng-bind="a.name_en" class="ng-binding">Rough Skin</td>
+                <td ng-bind="a.name_jp" class="ng-binding">さめはだ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到攻击时，用粗糙的皮肤弄伤接触到自己的对手。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">25</td>
+                <td ng-bind="a.name_zh" class="ng-binding">神奇守护</td>
+                <td ng-bind="a.name_en" class="ng-binding">Wonder Guard</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ふしぎなまもり</td>
+                <td ng-bind="a.brief_description" class="ng-binding">不可思议的力量，只有效果绝佳的招式才能击中。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">26</td>
+                <td ng-bind="a.name_zh" class="ng-binding">飘浮</td>
+                <td ng-bind="a.name_en" class="ng-binding">Levitate</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ふゆう</td>
+                <td ng-bind="a.brief_description" class="ng-binding">从地面浮起，从而不会受到地面属性招式的攻击。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">27</td>
+                <td ng-bind="a.name_zh" class="ng-binding">孢子</td>
+                <td ng-bind="a.name_en" class="ng-binding">Effect Spore</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ほうし</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到攻击时，有时会把接触到自己的对手变为中毒、麻痹或睡眠状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">28</td>
+                <td ng-bind="a.name_zh" class="ng-binding">同步</td>
+                <td ng-bind="a.name_en" class="ng-binding">Synchronize</td>
+                <td ng-bind="a.name_jp" class="ng-binding">シンクロ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">将自己的中毒、麻痹或灼伤状态传染给对手。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">29</td>
+                <td ng-bind="a.name_zh" class="ng-binding">恒净之躯</td>
+                <td ng-bind="a.name_en" class="ng-binding">Clear Body</td>
+                <td ng-bind="a.name_jp" class="ng-binding">クリアボディ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">不会因为对手的招式或特性而被降低能力。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">30</td>
+                <td ng-bind="a.name_zh" class="ng-binding">自然回复</td>
+                <td ng-bind="a.name_en" class="ng-binding">Natural Cure</td>
+                <td ng-bind="a.name_jp" class="ng-binding">しぜんかいふく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">回到同行队伍后，异常状态就会被治愈。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">31</td>
+                <td ng-bind="a.name_zh" class="ng-binding">避雷针</td>
+                <td ng-bind="a.name_en" class="ng-binding">Lightning Rod</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ひらいしん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">将电属性的招式吸引到自己身上，不会受到伤害，而是会提高特攻。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">32</td>
+                <td ng-bind="a.name_zh" class="ng-binding">天恩</td>
+                <td ng-bind="a.name_en" class="ng-binding">Serene Grace</td>
+                <td ng-bind="a.name_jp" class="ng-binding">てんのめぐみ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">托天恩的福，招式的追加效果容易出现。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">33</td>
+                <td ng-bind="a.name_zh" class="ng-binding">悠游自如</td>
+                <td ng-bind="a.name_en" class="ng-binding">Swift Swim</td>
+                <td ng-bind="a.name_jp" class="ng-binding">すいすい</td>
+                <td ng-bind="a.brief_description" class="ng-binding">下雨天气时，速度会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">34</td>
+                <td ng-bind="a.name_zh" class="ng-binding">叶绿素</td>
+                <td ng-bind="a.name_en" class="ng-binding">Chlorophyll</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ようりょくそ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">晴朗天气时，速度会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">35</td>
+                <td ng-bind="a.name_zh" class="ng-binding">发光</td>
+                <td ng-bind="a.name_en" class="ng-binding">Illuminate</td>
+                <td ng-bind="a.name_jp" class="ng-binding">はっこう</td>
+                <td ng-bind="a.brief_description" class="ng-binding">通过让周围变亮，变得容易遇到野生的宝可梦。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">36</td>
+                <td ng-bind="a.name_zh" class="ng-binding">复制</td>
+                <td ng-bind="a.name_en" class="ng-binding">Trace</td>
+                <td ng-bind="a.name_jp" class="ng-binding">トレース</td>
+                <td ng-bind="a.brief_description" class="ng-binding">出场时，复制对手的特性，变为与之相同的特性。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">37</td>
+                <td ng-bind="a.name_zh" class="ng-binding">大力士</td>
+                <td ng-bind="a.name_en" class="ng-binding">Huge Power</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ちからもち</td>
+                <td ng-bind="a.brief_description" class="ng-binding">物理攻击的威力会变为２倍。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">38</td>
+                <td ng-bind="a.name_zh" class="ng-binding">毒刺</td>
+                <td ng-bind="a.name_en" class="ng-binding">Poison Point</td>
+                <td ng-bind="a.name_jp" class="ng-binding">どくのトゲ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">有时会让接触到自己的对手变为中毒状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">39</td>
+                <td ng-bind="a.name_zh" class="ng-binding">精神力</td>
+                <td ng-bind="a.name_en" class="ng-binding">Inner Focus</td>
+                <td ng-bind="a.name_jp" class="ng-binding">せいしんりょく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">拥有经过锻炼的精神，而不会因对手的攻击而畏缩。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">40</td>
+                <td ng-bind="a.name_zh" class="ng-binding">熔岩铠甲</td>
+                <td ng-bind="a.name_en" class="ng-binding">Magma Armor</td>
+                <td ng-bind="a.name_jp" class="ng-binding">マグマのよろい</td>
+                <td ng-bind="a.brief_description" class="ng-binding">将炽热的熔岩覆盖在身上，不会变为冰冻状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">41</td>
+                <td ng-bind="a.name_zh" class="ng-binding">水幕</td>
+                <td ng-bind="a.name_en" class="ng-binding">Water Veil</td>
+                <td ng-bind="a.name_jp" class="ng-binding">みずのベール</td>
+                <td ng-bind="a.brief_description" class="ng-binding">将水幕裹在身上，不会变为灼伤状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">42</td>
+                <td ng-bind="a.name_zh" class="ng-binding">磁力</td>
+                <td ng-bind="a.name_en" class="ng-binding">Magnet Pull</td>
+                <td ng-bind="a.name_jp" class="ng-binding">じりょく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">用磁力吸住钢属性的宝可梦，使其无法逃走。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">43</td>
+                <td ng-bind="a.name_zh" class="ng-binding">隔音</td>
+                <td ng-bind="a.name_en" class="ng-binding">Soundproof</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ぼうおん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">通过屏蔽声音，不受到声音招式的攻击。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">44</td>
+                <td ng-bind="a.name_zh" class="ng-binding">雨盘</td>
+                <td ng-bind="a.name_en" class="ng-binding">Rain Dish</td>
+                <td ng-bind="a.name_jp" class="ng-binding">あめうけざら</td>
+                <td ng-bind="a.brief_description" class="ng-binding">下雨天气时，会缓缓回复ＨＰ。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">45</td>
+                <td ng-bind="a.name_zh" class="ng-binding">扬沙</td>
+                <td ng-bind="a.name_en" class="ng-binding">Sand Stream</td>
+                <td ng-bind="a.name_jp" class="ng-binding">すなおこし</td>
+                <td ng-bind="a.brief_description" class="ng-binding">出场时，会把天气变为沙暴。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">46</td>
+                <td ng-bind="a.name_zh" class="ng-binding">压迫感</td>
+                <td ng-bind="a.name_en" class="ng-binding">Pressure</td>
+                <td ng-bind="a.name_jp" class="ng-binding">プレッシャー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">给予对手压迫感，大量减少其使用招式的ＰＰ。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">47</td>
+                <td ng-bind="a.name_zh" class="ng-binding">厚脂肪</td>
+                <td ng-bind="a.name_en" class="ng-binding">Thick Fat</td>
+                <td ng-bind="a.name_jp" class="ng-binding">あついしぼう</td>
+                <td ng-bind="a.brief_description" class="ng-binding">因为被厚厚的脂肪保护着，会让火属性和冰属性的招式伤害减半。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">48</td>
+                <td ng-bind="a.name_zh" class="ng-binding">早起</td>
+                <td ng-bind="a.name_en" class="ng-binding">Early Bird</td>
+                <td ng-bind="a.name_jp" class="ng-binding">はやおき</td>
+                <td ng-bind="a.brief_description" class="ng-binding">即使变为睡眠状态，也能以２倍的速度提早醒来。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">49</td>
+                <td ng-bind="a.name_zh" class="ng-binding">火焰之躯</td>
+                <td ng-bind="a.name_en" class="ng-binding">Flame Body</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ほのおのからだ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">有时会让接触到自己的对手变为灼伤状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">50</td>
+                <td ng-bind="a.name_zh" class="ng-binding">逃跑</td>
+                <td ng-bind="a.name_en" class="ng-binding">Run Away</td>
+                <td ng-bind="a.name_jp" class="ng-binding">にげあし</td>
+                <td ng-bind="a.brief_description" class="ng-binding">一定能从野生宝可梦那儿逃走。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">51</td>
+                <td ng-bind="a.name_zh" class="ng-binding">锐利目光</td>
+                <td ng-bind="a.name_en" class="ng-binding">Keen Eye</td>
+                <td ng-bind="a.name_jp" class="ng-binding">するどいめ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">多亏了锐利的目光，命中率不会被降低。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">52</td>
+                <td ng-bind="a.name_zh" class="ng-binding">怪力钳</td>
+                <td ng-bind="a.name_en" class="ng-binding">Hyper Cutter</td>
+                <td ng-bind="a.name_jp" class="ng-binding">かいりきバサミ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">因为拥有以力量自豪的钳子，不会被对手降低攻击。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">53</td>
+                <td ng-bind="a.name_zh" class="ng-binding">捡拾</td>
+                <td ng-bind="a.name_en" class="ng-binding">Pickup</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ものひろい</td>
+                <td ng-bind="a.brief_description" class="ng-binding">有时会捡来对手用过的道具，冒险过程中也会捡到。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">54</td>
+                <td ng-bind="a.name_zh" class="ng-binding">懒惰</td>
+                <td ng-bind="a.name_en" class="ng-binding">Truant</td>
+                <td ng-bind="a.name_jp" class="ng-binding">なまけ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">如果使出招式，下一回合就会休息。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">55</td>
+                <td ng-bind="a.name_zh" class="ng-binding">活力</td>
+                <td ng-bind="a.name_en" class="ng-binding">Hustle</td>
+                <td ng-bind="a.name_jp" class="ng-binding">はりきり</td>
+                <td ng-bind="a.brief_description" class="ng-binding">自己的攻击变高，但命中率会降低。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">56</td>
+                <td ng-bind="a.name_zh" class="ng-binding">迷人之躯</td>
+                <td ng-bind="a.name_en" class="ng-binding">Cute Charm</td>
+                <td ng-bind="a.name_jp" class="ng-binding">メロメロボディ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">有时会让接触到自己的对手着迷。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">57</td>
+                <td ng-bind="a.name_zh" class="ng-binding">正电</td>
+                <td ng-bind="a.name_en" class="ng-binding">Plus</td>
+                <td ng-bind="a.name_jp" class="ng-binding">プラス</td>
+                <td ng-bind="a.brief_description" class="ng-binding">出场的伙伴之间如果有正电或负电特性的宝可梦，自己的特攻会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">58</td>
+                <td ng-bind="a.name_zh" class="ng-binding">负电</td>
+                <td ng-bind="a.name_en" class="ng-binding">Minus</td>
+                <td ng-bind="a.name_jp" class="ng-binding">マイナス</td>
+                <td ng-bind="a.brief_description" class="ng-binding">出场的伙伴之间如果有正电或负电特性的宝可梦，自己的特攻会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">59</td>
+                <td ng-bind="a.name_zh" class="ng-binding">阴晴不定</td>
+                <td ng-bind="a.name_en" class="ng-binding">Forecast</td>
+                <td ng-bind="a.name_jp" class="ng-binding">てんきや</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受天气的影响，会变为水属性、火属性或冰属性中的某一个。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">60</td>
+                <td ng-bind="a.name_zh" class="ng-binding">黏着</td>
+                <td ng-bind="a.name_en" class="ng-binding">Sticky Hold</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ねんちゃく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">因为道具是粘在黏性身体上的，所以不会被对手夺走。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">61</td>
+                <td ng-bind="a.name_zh" class="ng-binding">蜕皮</td>
+                <td ng-bind="a.name_en" class="ng-binding">Shed Skin</td>
+                <td ng-bind="a.name_jp" class="ng-binding">だっぴ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">通过蜕去身上的皮，有时会治愈异常状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">62</td>
+                <td ng-bind="a.name_zh" class="ng-binding">毅力</td>
+                <td ng-bind="a.name_en" class="ng-binding">Guts</td>
+                <td ng-bind="a.name_jp" class="ng-binding">こんじょう</td>
+                <td ng-bind="a.brief_description" class="ng-binding">如果变为异常状态，会拿出毅力，攻击会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">63</td>
+                <td ng-bind="a.name_zh" class="ng-binding">神奇鳞片</td>
+                <td ng-bind="a.name_en" class="ng-binding">Marvel Scale</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ふしぎなうろこ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">如果变为异常状态，神奇鳞片会发生反应，防御会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">64</td>
+                <td ng-bind="a.name_zh" class="ng-binding">污泥浆</td>
+                <td ng-bind="a.name_en" class="ng-binding">Liquid Ooze</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ヘドロえき</td>
+                <td ng-bind="a.brief_description" class="ng-binding">吸收了污泥浆的对手会因强烈的恶臭而受到伤害，减少ＨＰ。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">65</td>
+                <td ng-bind="a.name_zh" class="ng-binding">茂盛</td>
+                <td ng-bind="a.name_en" class="ng-binding">Overgrow</td>
+                <td ng-bind="a.name_jp" class="ng-binding">しんりょく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">ＨＰ减少的时候，草属性的招式威力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">66</td>
+                <td ng-bind="a.name_zh" class="ng-binding">猛火</td>
+                <td ng-bind="a.name_en" class="ng-binding">Blaze</td>
+                <td ng-bind="a.name_jp" class="ng-binding">もうか</td>
+                <td ng-bind="a.brief_description" class="ng-binding">ＨＰ减少的时候，火属性的招式威力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">67</td>
+                <td ng-bind="a.name_zh" class="ng-binding">激流</td>
+                <td ng-bind="a.name_en" class="ng-binding">Torrent</td>
+                <td ng-bind="a.name_jp" class="ng-binding">げきりゅう</td>
+                <td ng-bind="a.brief_description" class="ng-binding">ＨＰ减少的时候，水属性的招式威力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">68</td>
+                <td ng-bind="a.name_zh" class="ng-binding">虫之预感</td>
+                <td ng-bind="a.name_en" class="ng-binding">Swarm</td>
+                <td ng-bind="a.name_jp" class="ng-binding">むしのしらせ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">ＨＰ减少的时候，虫属性的招式威力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">69</td>
+                <td ng-bind="a.name_zh" class="ng-binding">坚硬脑袋</td>
+                <td ng-bind="a.name_en" class="ng-binding">Rock Head</td>
+                <td ng-bind="a.name_jp" class="ng-binding">いしあたま</td>
+                <td ng-bind="a.brief_description" class="ng-binding">即使使出会受反作用力伤害的招式，ＨＰ也不会减少。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">70</td>
+                <td ng-bind="a.name_zh" class="ng-binding">日照</td>
+                <td ng-bind="a.name_en" class="ng-binding">Drought</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ひでり</td>
+                <td ng-bind="a.brief_description" class="ng-binding">出场时，会将天气变为晴朗。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">71</td>
+                <td ng-bind="a.name_zh" class="ng-binding">沙穴</td>
+                <td ng-bind="a.name_en" class="ng-binding">Arena Trap</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ありじごく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">在战斗中让对手无法逃走。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">72</td>
+                <td ng-bind="a.name_zh" class="ng-binding">干劲</td>
+                <td ng-bind="a.name_en" class="ng-binding">Vital Spirit</td>
+                <td ng-bind="a.name_jp" class="ng-binding">やるき</td>
+                <td ng-bind="a.brief_description" class="ng-binding">通过激发出干劲，不会变为睡眠状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">73</td>
+                <td ng-bind="a.name_zh" class="ng-binding">白色烟雾</td>
+                <td ng-bind="a.name_en" class="ng-binding">White Smoke</td>
+                <td ng-bind="a.name_jp" class="ng-binding">しろいけむり</td>
+                <td ng-bind="a.brief_description" class="ng-binding">被白色烟雾保护着，不会被对手降低能力。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">74</td>
+                <td ng-bind="a.name_zh" class="ng-binding">瑜伽之力</td>
+                <td ng-bind="a.name_en" class="ng-binding">Pure Power</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ヨガパワー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">因瑜伽的力量，物理攻击的威力会变为２倍。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">75</td>
+                <td ng-bind="a.name_zh" class="ng-binding">硬壳盔甲</td>
+                <td ng-bind="a.name_en" class="ng-binding">Shell Armor</td>
+                <td ng-bind="a.name_jp" class="ng-binding">シェルアーマー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">被坚硬的壳保护着，对手的攻击不会击中要害。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">76</td>
+                <td ng-bind="a.name_zh" class="ng-binding">气闸</td>
+                <td ng-bind="a.name_en" class="ng-binding">Air Lock</td>
+                <td ng-bind="a.name_jp" class="ng-binding">エアロック</td>
+                <td ng-bind="a.brief_description" class="ng-binding">所有天气的影响都会消失。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">77</td>
+                <td ng-bind="a.name_zh" class="ng-binding">蹒跚</td>
+                <td ng-bind="a.name_en" class="ng-binding">Tangled Feet</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ちどりあし</td>
+                <td ng-bind="a.brief_description" class="ng-binding">在混乱状态时，闪避率会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">78</td>
+                <td ng-bind="a.name_zh" class="ng-binding">电气引擎</td>
+                <td ng-bind="a.name_en" class="ng-binding">Motor Drive</td>
+                <td ng-bind="a.name_jp" class="ng-binding">でんきエンジン</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到电属性的招式攻击时，不会受到伤害，而是速度会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">79</td>
+                <td ng-bind="a.name_zh" class="ng-binding">斗争心</td>
+                <td ng-bind="a.name_en" class="ng-binding">Rivalry</td>
+                <td ng-bind="a.name_jp" class="ng-binding">とうそうしん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">面对性别相同的对手，会燃起斗争心，变得更强。而面对性别不同的，则会变弱。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">80</td>
+                <td ng-bind="a.name_zh" class="ng-binding">不屈之心</td>
+                <td ng-bind="a.name_en" class="ng-binding">Steadfast</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ふくつのこころ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">每次畏缩时，不屈之心就会燃起，速度也会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">81</td>
+                <td ng-bind="a.name_zh" class="ng-binding">雪隐</td>
+                <td ng-bind="a.name_en" class="ng-binding">Snow Cloak</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ゆきがくれ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">冰雹天气时，闪避率会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">82</td>
+                <td ng-bind="a.name_zh" class="ng-binding">贪吃鬼</td>
+                <td ng-bind="a.name_en" class="ng-binding">Gluttony</td>
+                <td ng-bind="a.name_jp" class="ng-binding">くいしんぼう</td>
+                <td ng-bind="a.brief_description" class="ng-binding">原本ＨＰ变得很少时才会吃树果，在ＨＰ还有一半时就会把它吃掉。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">83</td>
+                <td ng-bind="a.name_zh" class="ng-binding">愤怒穴位</td>
+                <td ng-bind="a.name_en" class="ng-binding">Anger Point</td>
+                <td ng-bind="a.name_jp" class="ng-binding">いかりのつぼ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">要害被击中时，会大发雷霆，攻击力变为最大。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">84</td>
+                <td ng-bind="a.name_zh" class="ng-binding">轻装</td>
+                <td ng-bind="a.name_en" class="ng-binding">Unburden</td>
+                <td ng-bind="a.name_jp" class="ng-binding">かるわざ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">失去所持有的道具时，速度会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">85</td>
+                <td ng-bind="a.name_zh" class="ng-binding">耐热</td>
+                <td ng-bind="a.name_en" class="ng-binding">Heatproof</td>
+                <td ng-bind="a.name_jp" class="ng-binding">たいねつ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">耐热的体质会让火属性的招式威力减半。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">86</td>
+                <td ng-bind="a.name_zh" class="ng-binding">单纯</td>
+                <td ng-bind="a.name_en" class="ng-binding">Simple</td>
+                <td ng-bind="a.name_jp" class="ng-binding">たんじゅん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">能力变化会变为平时的２倍。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">87</td>
+                <td ng-bind="a.name_zh" class="ng-binding">干燥皮肤</td>
+                <td ng-bind="a.name_en" class="ng-binding">Dry Skin</td>
+                <td ng-bind="a.name_jp" class="ng-binding">かんそうはだ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">下雨天气时和受到水属性的招式时，ＨＰ会回复。晴朗天气时和受到火属性的招式时，ＨＰ会减少。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">88</td>
+                <td ng-bind="a.name_zh" class="ng-binding">下载</td>
+                <td ng-bind="a.name_en" class="ng-binding">Download</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ダウンロード</td>
+                <td ng-bind="a.brief_description" class="ng-binding">比较对手的防御和特防，根据较低的那项能力相应地提高自己的攻击或特攻。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">89</td>
+                <td ng-bind="a.name_zh" class="ng-binding">铁拳</td>
+                <td ng-bind="a.name_en" class="ng-binding">Iron Fist</td>
+                <td ng-bind="a.name_jp" class="ng-binding">てつのこぶし</td>
+                <td ng-bind="a.brief_description" class="ng-binding">使用拳类招式的威力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">90</td>
+                <td ng-bind="a.name_zh" class="ng-binding">毒疗</td>
+                <td ng-bind="a.name_en" class="ng-binding">Poison Heal</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ポイズンヒール</td>
+                <td ng-bind="a.brief_description" class="ng-binding">变为中毒状态时，ＨＰ不会减少，反而会增加起来。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">91</td>
+                <td ng-bind="a.name_zh" class="ng-binding">适应力</td>
+                <td ng-bind="a.name_en" class="ng-binding">Adaptability</td>
+                <td ng-bind="a.name_jp" class="ng-binding">てきおうりょく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">与自身同属性的招式威力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">92</td>
+                <td ng-bind="a.name_zh" class="ng-binding">连续攻击</td>
+                <td ng-bind="a.name_en" class="ng-binding">Skill Link</td>
+                <td ng-bind="a.name_jp" class="ng-binding">スキルリンク</td>
+                <td ng-bind="a.brief_description" class="ng-binding">如果使用连续招式，总是能使出最高次数。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">93</td>
+                <td ng-bind="a.name_zh" class="ng-binding">湿润之躯</td>
+                <td ng-bind="a.name_en" class="ng-binding">Hydration</td>
+                <td ng-bind="a.name_jp" class="ng-binding">うるおいボディ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">下雨天气时，异常状态会治愈。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">94</td>
+                <td ng-bind="a.name_zh" class="ng-binding">太阳之力</td>
+                <td ng-bind="a.name_en" class="ng-binding">Solar Power</td>
+                <td ng-bind="a.name_jp" class="ng-binding">サンパワー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">晴朗天气时，特攻会提高，而每回合ＨＰ会减少。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">95</td>
+                <td ng-bind="a.name_zh" class="ng-binding">飞毛腿</td>
+                <td ng-bind="a.name_en" class="ng-binding">Quick Feet</td>
+                <td ng-bind="a.name_jp" class="ng-binding">はやあし</td>
+                <td ng-bind="a.brief_description" class="ng-binding">变为异常状态时，速度会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">96</td>
+                <td ng-bind="a.name_zh" class="ng-binding">一般皮肤</td>
+                <td ng-bind="a.name_en" class="ng-binding">Normalize</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ノーマルスキン</td>
+                <td ng-bind="a.brief_description" class="ng-binding">无论是什么属性的招式，全部会变为一般属性。威力会少量提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">97</td>
+                <td ng-bind="a.name_zh" class="ng-binding">狙击手</td>
+                <td ng-bind="a.name_en" class="ng-binding">Sniper</td>
+                <td ng-bind="a.name_jp" class="ng-binding">スナイパー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">击中要害时，威力会变得更强。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">98</td>
+                <td ng-bind="a.name_zh" class="ng-binding">魔法防守</td>
+                <td ng-bind="a.name_en" class="ng-binding">Magic Guard</td>
+                <td ng-bind="a.name_jp" class="ng-binding">マジックガード</td>
+                <td ng-bind="a.brief_description" class="ng-binding">不会受到攻击以外的伤害。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">99</td>
+                <td ng-bind="a.name_zh" class="ng-binding">无防守</td>
+                <td ng-bind="a.name_en" class="ng-binding">No Guard</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ノーガード</td>
+                <td ng-bind="a.brief_description" class="ng-binding">由于无防守战术，双方使出的招式都必定会击中。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">100</td>
+                <td ng-bind="a.name_zh" class="ng-binding">慢出</td>
+                <td ng-bind="a.name_en" class="ng-binding">Stall</td>
+                <td ng-bind="a.name_jp" class="ng-binding">あとだし</td>
+                <td ng-bind="a.brief_description" class="ng-binding">使出招式的顺序必定会变为最后。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">101</td>
+                <td ng-bind="a.name_zh" class="ng-binding">技术高手</td>
+                <td ng-bind="a.name_en" class="ng-binding">Technician</td>
+                <td ng-bind="a.name_jp" class="ng-binding">テクニシャン</td>
+                <td ng-bind="a.brief_description" class="ng-binding">攻击时可以将低威力招式的威力提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">102</td>
+                <td ng-bind="a.name_zh" class="ng-binding">叶子防守</td>
+                <td ng-bind="a.name_en" class="ng-binding">Leaf Guard</td>
+                <td ng-bind="a.name_jp" class="ng-binding">リーフガード</td>
+                <td ng-bind="a.brief_description" class="ng-binding">晴朗天气时，不会变为异常状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">103</td>
+                <td ng-bind="a.name_zh" class="ng-binding">笨拙</td>
+                <td ng-bind="a.name_en" class="ng-binding">Klutz</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ぶきよう</td>
+                <td ng-bind="a.brief_description" class="ng-binding">无法使用持有的道具。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">104</td>
+                <td ng-bind="a.name_zh" class="ng-binding">破格</td>
+                <td ng-bind="a.name_en" class="ng-binding">Mold Breaker</td>
+                <td ng-bind="a.name_jp" class="ng-binding">かたやぶり</td>
+                <td ng-bind="a.brief_description" class="ng-binding">可以不受对手特性的干扰，向对手使出招式。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">105</td>
+                <td ng-bind="a.name_zh" class="ng-binding">超幸运</td>
+                <td ng-bind="a.name_en" class="ng-binding">Super Luck</td>
+                <td ng-bind="a.name_jp" class="ng-binding">きょううん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">因为拥有超幸运，攻击容易击中对手的要害。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">106</td>
+                <td ng-bind="a.name_zh" class="ng-binding">引爆</td>
+                <td ng-bind="a.name_en" class="ng-binding">Aftermath</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ゆうばく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">变为濒死时，会对接触到自己的对手造成伤害。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">107</td>
+                <td ng-bind="a.name_zh" class="ng-binding">危险预知</td>
+                <td ng-bind="a.name_en" class="ng-binding">Anticipation</td>
+                <td ng-bind="a.name_jp" class="ng-binding">きけんよち</td>
+                <td ng-bind="a.brief_description" class="ng-binding">可以察觉到对手拥有的危险招式。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">108</td>
+                <td ng-bind="a.name_zh" class="ng-binding">预知梦</td>
+                <td ng-bind="a.name_en" class="ng-binding">Forewarn</td>
+                <td ng-bind="a.name_jp" class="ng-binding">よちむ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">出场时，只读取１个对手拥有的招式。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">109</td>
+                <td ng-bind="a.name_zh" class="ng-binding">纯朴</td>
+                <td ng-bind="a.name_en" class="ng-binding">Unaware</td>
+                <td ng-bind="a.name_jp" class="ng-binding">てんねん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">可以无视对手能力的变化，进行攻击。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">110</td>
+                <td ng-bind="a.name_zh" class="ng-binding">有色眼镜</td>
+                <td ng-bind="a.name_en" class="ng-binding">Tinted Lens</td>
+                <td ng-bind="a.name_jp" class="ng-binding">いろめがね</td>
+                <td ng-bind="a.brief_description" class="ng-binding">可以将效果不好的招式以通常的威力使出。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">111</td>
+                <td ng-bind="a.name_zh" class="ng-binding">过滤</td>
+                <td ng-bind="a.name_en" class="ng-binding">Filter</td>
+                <td ng-bind="a.name_jp" class="ng-binding">フィルター</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到效果绝佳的攻击时，可以减弱其威力。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">112</td>
+                <td ng-bind="a.name_zh" class="ng-binding">慢启动</td>
+                <td ng-bind="a.name_en" class="ng-binding">Slow Start</td>
+                <td ng-bind="a.name_jp" class="ng-binding">スロースタート</td>
+                <td ng-bind="a.brief_description" class="ng-binding">在５回合内，攻击和速度减半。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">113</td>
+                <td ng-bind="a.name_zh" class="ng-binding">胆量</td>
+                <td ng-bind="a.name_en" class="ng-binding">Scrappy</td>
+                <td ng-bind="a.name_jp" class="ng-binding">きもったま</td>
+                <td ng-bind="a.brief_description" class="ng-binding">一般属性和格斗属性的招式可以击中幽灵属性的宝可梦。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">114</td>
+                <td ng-bind="a.name_zh" class="ng-binding">引水</td>
+                <td ng-bind="a.name_en" class="ng-binding">Storm Drain</td>
+                <td ng-bind="a.name_jp" class="ng-binding">よびみず</td>
+                <td ng-bind="a.brief_description" class="ng-binding">将水属性的招式引到自己身上，不会受到伤害，而是会提高特攻。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">115</td>
+                <td ng-bind="a.name_zh" class="ng-binding">冰冻之躯</td>
+                <td ng-bind="a.name_en" class="ng-binding">Ice Body</td>
+                <td ng-bind="a.name_jp" class="ng-binding">アイスボディ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">冰雹天气时，会缓缓回复ＨＰ。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">116</td>
+                <td ng-bind="a.name_zh" class="ng-binding">坚硬岩石</td>
+                <td ng-bind="a.name_en" class="ng-binding">Solid Rock</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ハードロック</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到效果绝佳的攻击时，可以减弱其威力。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">117</td>
+                <td ng-bind="a.name_zh" class="ng-binding">降雪</td>
+                <td ng-bind="a.name_en" class="ng-binding">Snow Warning</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ゆきふらし</td>
+                <td ng-bind="a.brief_description" class="ng-binding">出场时，会将天气变为冰雹。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">118</td>
+                <td ng-bind="a.name_zh" class="ng-binding">采蜜</td>
+                <td ng-bind="a.name_en" class="ng-binding">Honey Gather</td>
+                <td ng-bind="a.name_jp" class="ng-binding">みつあつめ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">战斗结束时，有时候会捡来甜甜蜜。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">119</td>
+                <td ng-bind="a.name_zh" class="ng-binding">察觉</td>
+                <td ng-bind="a.name_en" class="ng-binding">Frisk</td>
+                <td ng-bind="a.name_jp" class="ng-binding">おみとおし</td>
+                <td ng-bind="a.brief_description" class="ng-binding">出场时，可以察觉对手的持有物。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">120</td>
+                <td ng-bind="a.name_zh" class="ng-binding">舍身</td>
+                <td ng-bind="a.name_en" class="ng-binding">Reckless</td>
+                <td ng-bind="a.name_jp" class="ng-binding">すてみ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">自己会因反作用力受伤的招式，其威力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">121</td>
+                <td ng-bind="a.name_zh" class="ng-binding">多属性</td>
+                <td ng-bind="a.name_en" class="ng-binding">Multitype</td>
+                <td ng-bind="a.name_jp" class="ng-binding">マルチタイプ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">自己的属性会根据持有的石板或Ｚ纯晶的属性而改变。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">122</td>
+                <td ng-bind="a.name_zh" class="ng-binding">花之礼</td>
+                <td ng-bind="a.name_en" class="ng-binding">Flower Gift</td>
+                <td ng-bind="a.name_jp" class="ng-binding">フラワーギフト</td>
+                <td ng-bind="a.brief_description" class="ng-binding">晴朗天气时，自己与同伴的攻击和特防能力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">123</td>
+                <td ng-bind="a.name_zh" class="ng-binding">梦魇</td>
+                <td ng-bind="a.name_en" class="ng-binding">Bad Dreams</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ナイトメア</td>
+                <td ng-bind="a.brief_description" class="ng-binding">给予睡眠状态的对手伤害。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">124</td>
+                <td ng-bind="a.name_zh" class="ng-binding">顺手牵羊</td>
+                <td ng-bind="a.name_en" class="ng-binding">Pickpocket</td>
+                <td ng-bind="a.name_jp" class="ng-binding">わるいてぐせ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">盗取接触到自己的对手的道具。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">125</td>
+                <td ng-bind="a.name_zh" class="ng-binding">强行</td>
+                <td ng-bind="a.name_en" class="ng-binding">Sheer Force</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ちからずく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">招式的追加效果消失，但因此能以更高的威力使出招式。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">126</td>
+                <td ng-bind="a.name_zh" class="ng-binding">唱反调</td>
+                <td ng-bind="a.name_en" class="ng-binding">Contrary</td>
+                <td ng-bind="a.name_jp" class="ng-binding">あまのじゃく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">能力的变化发生逆转，原本提高时会降低，而原本降低时会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">127</td>
+                <td ng-bind="a.name_zh" class="ng-binding">紧张感</td>
+                <td ng-bind="a.name_en" class="ng-binding">Unnerve</td>
+                <td ng-bind="a.name_jp" class="ng-binding">きんちょうかん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">让对手紧张，使其无法食用树果。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">128</td>
+                <td ng-bind="a.name_zh" class="ng-binding">不服输</td>
+                <td ng-bind="a.name_en" class="ng-binding">Defiant</td>
+                <td ng-bind="a.name_jp" class="ng-binding">まけんき</td>
+                <td ng-bind="a.brief_description" class="ng-binding">能力被降低时，攻击会大幅提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">129</td>
+                <td ng-bind="a.name_zh" class="ng-binding">软弱</td>
+                <td ng-bind="a.name_en" class="ng-binding">Defeatist</td>
+                <td ng-bind="a.name_jp" class="ng-binding">よわき</td>
+                <td ng-bind="a.brief_description" class="ng-binding">ＨＰ减半时，会变得软弱，攻击和特攻会减半。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">130</td>
+                <td ng-bind="a.name_zh" class="ng-binding">诅咒之躯</td>
+                <td ng-bind="a.name_en" class="ng-binding">Cursed Body</td>
+                <td ng-bind="a.name_jp" class="ng-binding">のろわれボディ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到攻击时，有时会把对手的招式变为定身法状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">131</td>
+                <td ng-bind="a.name_zh" class="ng-binding">治愈之心</td>
+                <td ng-bind="a.name_en" class="ng-binding">Healer</td>
+                <td ng-bind="a.name_jp" class="ng-binding">いやしのこころ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">有时会治愈异常状态的同伴。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">132</td>
+                <td ng-bind="a.name_zh" class="ng-binding">友情防守</td>
+                <td ng-bind="a.name_en" class="ng-binding">Friend Guard</td>
+                <td ng-bind="a.name_jp" class="ng-binding">フレンドガード</td>
+                <td ng-bind="a.brief_description" class="ng-binding">可以减少我方的伤害。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">133</td>
+                <td ng-bind="a.name_zh" class="ng-binding">碎裂铠甲</td>
+                <td ng-bind="a.name_en" class="ng-binding">Weak Armor</td>
+                <td ng-bind="a.name_jp" class="ng-binding">くだけるよろい</td>
+                <td ng-bind="a.brief_description" class="ng-binding">如果因物理招式受到伤害，防御会降低，速度会大幅提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">134</td>
+                <td ng-bind="a.name_zh" class="ng-binding">重金属</td>
+                <td ng-bind="a.name_en" class="ng-binding">Heavy Metal</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ヘヴィメタル</td>
+                <td ng-bind="a.brief_description" class="ng-binding">自身的重量会变为２倍。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">135</td>
+                <td ng-bind="a.name_zh" class="ng-binding">轻金属</td>
+                <td ng-bind="a.name_en" class="ng-binding">Light Metal</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ライトメタル</td>
+                <td ng-bind="a.brief_description" class="ng-binding">自身的重量会减半。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">136</td>
+                <td ng-bind="a.name_zh" class="ng-binding">多重鳞片</td>
+                <td ng-bind="a.name_en" class="ng-binding">Multiscale</td>
+                <td ng-bind="a.name_jp" class="ng-binding">マルチスケイル</td>
+                <td ng-bind="a.brief_description" class="ng-binding">ＨＰ全满时，受到的伤害会变少。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">137</td>
+                <td ng-bind="a.name_zh" class="ng-binding">中毒激升</td>
+                <td ng-bind="a.name_en" class="ng-binding">Toxic Boost</td>
+                <td ng-bind="a.name_jp" class="ng-binding">どくぼうそう</td>
+                <td ng-bind="a.brief_description" class="ng-binding">变为中毒状态时，物理招式的威力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">138</td>
+                <td ng-bind="a.name_zh" class="ng-binding">受热激升</td>
+                <td ng-bind="a.name_en" class="ng-binding">Flare Boost</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ねつぼうそう</td>
+                <td ng-bind="a.brief_description" class="ng-binding">变为灼伤状态时，特殊招式的威力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">139</td>
+                <td ng-bind="a.name_zh" class="ng-binding">收获</td>
+                <td ng-bind="a.name_en" class="ng-binding">Harvest</td>
+                <td ng-bind="a.name_jp" class="ng-binding">しゅうかく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">可以多次制作出已被使用掉的树果。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">140</td>
+                <td ng-bind="a.name_zh" class="ng-binding">心灵感应</td>
+                <td ng-bind="a.name_en" class="ng-binding">Telepathy</td>
+                <td ng-bind="a.name_jp" class="ng-binding">テレパシー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">读取我方的攻击，并闪避其招式伤害。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">141</td>
+                <td ng-bind="a.name_zh" class="ng-binding">心情不定</td>
+                <td ng-bind="a.name_en" class="ng-binding">Moody</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ムラっけ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">每一回合，能力中的某项会大幅提高，而某项会降低。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">142</td>
+                <td ng-bind="a.name_zh" class="ng-binding">防尘</td>
+                <td ng-bind="a.name_en" class="ng-binding">Overcoat</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ぼうじん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">不会受到沙暴或冰雹等的伤害。不会受到粉末类招式的攻击。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">143</td>
+                <td ng-bind="a.name_zh" class="ng-binding">毒手</td>
+                <td ng-bind="a.name_en" class="ng-binding">Poison Touch</td>
+                <td ng-bind="a.name_jp" class="ng-binding">どくしゅ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">只通过接触就有可能让对手变为中毒状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">144</td>
+                <td ng-bind="a.name_zh" class="ng-binding">再生力</td>
+                <td ng-bind="a.name_en" class="ng-binding">Regenerator</td>
+                <td ng-bind="a.name_jp" class="ng-binding">さいせいりょく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">退回同行队伍后，ＨＰ会少量回复。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">145</td>
+                <td ng-bind="a.name_zh" class="ng-binding">健壮胸肌</td>
+                <td ng-bind="a.name_en" class="ng-binding">Big Pecks</td>
+                <td ng-bind="a.name_jp" class="ng-binding">はとむね</td>
+                <td ng-bind="a.brief_description" class="ng-binding">不会受到防御降低的效果。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">146</td>
+                <td ng-bind="a.name_zh" class="ng-binding">拨沙</td>
+                <td ng-bind="a.name_en" class="ng-binding">Sand Rush</td>
+                <td ng-bind="a.name_jp" class="ng-binding">すなかき</td>
+                <td ng-bind="a.brief_description" class="ng-binding">沙暴天气时，速度会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">147</td>
+                <td ng-bind="a.name_zh" class="ng-binding">奇迹皮肤</td>
+                <td ng-bind="a.name_en" class="ng-binding">Wonder Skin</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ミラクルスキン</td>
+                <td ng-bind="a.brief_description" class="ng-binding">成为不易受到变化招式攻击的身体。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">148</td>
+                <td ng-bind="a.name_zh" class="ng-binding">分析</td>
+                <td ng-bind="a.name_en" class="ng-binding">Analytic</td>
+                <td ng-bind="a.name_jp" class="ng-binding">アナライズ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">如果在最后使出招式，招式的威力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">149</td>
+                <td ng-bind="a.name_zh" class="ng-binding">幻觉</td>
+                <td ng-bind="a.name_en" class="ng-binding">Illusion</td>
+                <td ng-bind="a.name_jp" class="ng-binding">イリュージョン</td>
+                <td ng-bind="a.brief_description" class="ng-binding">假扮成同行队伍中的最后一只宝可梦出场，迷惑对手。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">150</td>
+                <td ng-bind="a.name_zh" class="ng-binding">变身者</td>
+                <td ng-bind="a.name_en" class="ng-binding">Imposter</td>
+                <td ng-bind="a.name_jp" class="ng-binding">かわりもの</td>
+                <td ng-bind="a.brief_description" class="ng-binding">变身为当前面对的宝可梦。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">151</td>
+                <td ng-bind="a.name_zh" class="ng-binding">穿透</td>
+                <td ng-bind="a.name_en" class="ng-binding">Infiltrator</td>
+                <td ng-bind="a.name_jp" class="ng-binding">すりぬけ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">可以穿透对手的壁障或替身进行攻击。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">152</td>
+                <td ng-bind="a.name_zh" class="ng-binding">木乃伊</td>
+                <td ng-bind="a.name_en" class="ng-binding">Mummy</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ミイラ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">被对手接触到后，会将对手变为木乃伊。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">153</td>
+                <td ng-bind="a.name_zh" class="ng-binding">自信过度</td>
+                <td ng-bind="a.name_en" class="ng-binding">Moxie</td>
+                <td ng-bind="a.name_jp" class="ng-binding">じしんかじょう</td>
+                <td ng-bind="a.brief_description" class="ng-binding">如果打倒对手，就会充满自信，攻击会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">154</td>
+                <td ng-bind="a.name_zh" class="ng-binding">正义之心</td>
+                <td ng-bind="a.name_en" class="ng-binding">Justified</td>
+                <td ng-bind="a.name_jp" class="ng-binding">せいぎのこころ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到恶属性的招式攻击时，因为正义感，攻击会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">155</td>
+                <td ng-bind="a.name_zh" class="ng-binding">胆怯</td>
+                <td ng-bind="a.name_en" class="ng-binding">Rattled</td>
+                <td ng-bind="a.name_jp" class="ng-binding">びびり</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到恶属性、幽灵属性和虫属性的招式攻击时，会因胆怯而速度提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">156</td>
+                <td ng-bind="a.name_zh" class="ng-binding">魔法镜</td>
+                <td ng-bind="a.name_en" class="ng-binding">Magic Bounce</td>
+                <td ng-bind="a.name_jp" class="ng-binding">マジックミラー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">可以不受到由对手使出的变化招式影响，并将其反弹。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">157</td>
+                <td ng-bind="a.name_zh" class="ng-binding">食草</td>
+                <td ng-bind="a.name_en" class="ng-binding">Sap Sipper</td>
+                <td ng-bind="a.name_jp" class="ng-binding">そうしょく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到草属性的招式攻击时，不会受到伤害，而是攻击会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">158</td>
+                <td ng-bind="a.name_zh" class="ng-binding">恶作剧之心</td>
+                <td ng-bind="a.name_en" class="ng-binding">Prankster</td>
+                <td ng-bind="a.name_jp" class="ng-binding">いたずらごころ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">可以率先使出变化招式。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">159</td>
+                <td ng-bind="a.name_zh" class="ng-binding">沙之力</td>
+                <td ng-bind="a.name_en" class="ng-binding">Sand Force</td>
+                <td ng-bind="a.name_jp" class="ng-binding">すなのちから</td>
+                <td ng-bind="a.brief_description" class="ng-binding">沙暴天气时，岩石属性、地面属性和钢属性的招式威力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">160</td>
+                <td ng-bind="a.name_zh" class="ng-binding">铁刺</td>
+                <td ng-bind="a.name_en" class="ng-binding">Iron Barbs</td>
+                <td ng-bind="a.name_jp" class="ng-binding">てつのトゲ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">用铁刺给予接触到自己的对手伤害。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">161</td>
+                <td ng-bind="a.name_zh" class="ng-binding">达摩模式</td>
+                <td ng-bind="a.name_en" class="ng-binding">Zen Mode</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ダルマモード</td>
+                <td ng-bind="a.brief_description" class="ng-binding">ＨＰ变为一半以下时，样子会改变。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">162</td>
+                <td ng-bind="a.name_zh" class="ng-binding">胜利之星</td>
+                <td ng-bind="a.name_en" class="ng-binding">Victory Star</td>
+                <td ng-bind="a.name_jp" class="ng-binding">しょうりのほし</td>
+                <td ng-bind="a.brief_description" class="ng-binding">自己和同伴的命中率会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">163</td>
+                <td ng-bind="a.name_zh" class="ng-binding">涡轮火焰</td>
+                <td ng-bind="a.name_en" class="ng-binding">Turboblaze</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ターボブレイズ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">可以不受对手特性的干扰，向对手使出招式。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">164</td>
+                <td ng-bind="a.name_zh" class="ng-binding">兆级电压</td>
+                <td ng-bind="a.name_en" class="ng-binding">Teravolt</td>
+                <td ng-bind="a.name_jp" class="ng-binding">テラボルテージ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">可以不受对手特性的干扰，向对手使出招式。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">165</td>
+                <td ng-bind="a.name_zh" class="ng-binding">芳香幕</td>
+                <td ng-bind="a.name_en" class="ng-binding">Aroma Veil</td>
+                <td ng-bind="a.name_jp" class="ng-binding">アロマベール</td>
+                <td ng-bind="a.brief_description" class="ng-binding">可以防住向自己和同伴发出的心灵攻击。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">166</td>
+                <td ng-bind="a.name_zh" class="ng-binding">花幕</td>
+                <td ng-bind="a.name_en" class="ng-binding">Flower Veil</td>
+                <td ng-bind="a.name_jp" class="ng-binding">フラワーベール</td>
+                <td ng-bind="a.brief_description" class="ng-binding">我方的草属性宝可梦能力不会降低，也不会变为异常状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">167</td>
+                <td ng-bind="a.name_zh" class="ng-binding">颊囊</td>
+                <td ng-bind="a.name_en" class="ng-binding">Cheek Pouch</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ほおぶくろ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">无论是哪种树果，食用后，ＨＰ都会回复。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">168</td>
+                <td ng-bind="a.name_zh" class="ng-binding">变幻自如</td>
+                <td ng-bind="a.name_en" class="ng-binding">Protean</td>
+                <td ng-bind="a.name_jp" class="ng-binding">へんげんじざい</td>
+                <td ng-bind="a.brief_description" class="ng-binding">变为与自己使出的招式相同的属性。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">169</td>
+                <td ng-bind="a.name_zh" class="ng-binding">毛皮大衣</td>
+                <td ng-bind="a.name_en" class="ng-binding">Fur Coat</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ファーコート</td>
+                <td ng-bind="a.brief_description" class="ng-binding">对手给予的物理招式的伤害会减半。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">170</td>
+                <td ng-bind="a.name_zh" class="ng-binding">魔术师</td>
+                <td ng-bind="a.name_en" class="ng-binding">Magician</td>
+                <td ng-bind="a.name_jp" class="ng-binding">マジシャン</td>
+                <td ng-bind="a.brief_description" class="ng-binding">夺走被自己的招式击中的对手的道具。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">171</td>
+                <td ng-bind="a.name_zh" class="ng-binding">防弹</td>
+                <td ng-bind="a.name_en" class="ng-binding">Bulletproof</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ぼうだん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">可以防住对手的球和弹类招式。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">172</td>
+                <td ng-bind="a.name_zh" class="ng-binding">好胜</td>
+                <td ng-bind="a.name_en" class="ng-binding">Competitive</td>
+                <td ng-bind="a.name_jp" class="ng-binding">かちき</td>
+                <td ng-bind="a.brief_description" class="ng-binding">如果能力被降低，特攻就会大幅提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">173</td>
+                <td ng-bind="a.name_zh" class="ng-binding">强壮之颚</td>
+                <td ng-bind="a.name_en" class="ng-binding">Strong Jaw</td>
+                <td ng-bind="a.name_jp" class="ng-binding">がんじょうあご</td>
+                <td ng-bind="a.brief_description" class="ng-binding">因为颚部强壮，啃咬类招式的威力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">174</td>
+                <td ng-bind="a.name_zh" class="ng-binding">冰冻皮肤</td>
+                <td ng-bind="a.name_en" class="ng-binding">Refrigerate</td>
+                <td ng-bind="a.name_jp" class="ng-binding">フリーズスキン</td>
+                <td ng-bind="a.brief_description" class="ng-binding">一般属性的招式会变为冰属性。威力会少量提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">175</td>
+                <td ng-bind="a.name_zh" class="ng-binding">甜幕</td>
+                <td ng-bind="a.name_en" class="ng-binding">Sweet Veil</td>
+                <td ng-bind="a.name_jp" class="ng-binding">スイートベール</td>
+                <td ng-bind="a.brief_description" class="ng-binding">我方的宝可梦不会变为睡眠状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">176</td>
+                <td ng-bind="a.name_zh" class="ng-binding">战斗切换</td>
+                <td ng-bind="a.name_en" class="ng-binding">Stance Change</td>
+                <td ng-bind="a.name_jp" class="ng-binding">バトルスイッチ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">如果使出攻击招式，会变为刀剑形态，如果使出招式“王者盾牌”，会变为盾牌形态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">177</td>
+                <td ng-bind="a.name_zh" class="ng-binding">疾风之翼</td>
+                <td ng-bind="a.name_en" class="ng-binding">Gale Wings</td>
+                <td ng-bind="a.name_jp" class="ng-binding">はやてのつばさ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">ＨＰ全满时，飞行属性的招式可以率先使出。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">178</td>
+                <td ng-bind="a.name_zh" class="ng-binding">超级发射器</td>
+                <td ng-bind="a.name_en" class="ng-binding">Mega Launcher</td>
+                <td ng-bind="a.name_jp" class="ng-binding">メガランチャー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">波动和波导类招式的威力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">179</td>
+                <td ng-bind="a.name_zh" class="ng-binding">草之毛皮</td>
+                <td ng-bind="a.name_en" class="ng-binding">Grass Pelt</td>
+                <td ng-bind="a.name_jp" class="ng-binding">くさのけがわ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">在青草场地时，防御会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">180</td>
+                <td ng-bind="a.name_zh" class="ng-binding">共生</td>
+                <td ng-bind="a.name_en" class="ng-binding">Symbiosis</td>
+                <td ng-bind="a.name_jp" class="ng-binding">きょうせい</td>
+                <td ng-bind="a.brief_description" class="ng-binding">同伴使用道具时，会把自己持有的道具传递给同伴。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">181</td>
+                <td ng-bind="a.name_zh" class="ng-binding">硬爪</td>
+                <td ng-bind="a.name_en" class="ng-binding">Tough Claws</td>
+                <td ng-bind="a.name_jp" class="ng-binding">かたいツメ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">接触到对手的招式威力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">182</td>
+                <td ng-bind="a.name_zh" class="ng-binding">妖精皮肤</td>
+                <td ng-bind="a.name_en" class="ng-binding">Pixilate</td>
+                <td ng-bind="a.name_jp" class="ng-binding">フェアリースキン</td>
+                <td ng-bind="a.brief_description" class="ng-binding">一般属性的招式会变为妖精属性。威力会少量提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">183</td>
+                <td ng-bind="a.name_zh" class="ng-binding">黏滑</td>
+                <td ng-bind="a.name_en" class="ng-binding">Gooey</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ぬめぬめ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">对于用攻击接触到自己的对手，会降低其速度。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">184</td>
+                <td ng-bind="a.name_zh" class="ng-binding">飞行皮肤</td>
+                <td ng-bind="a.name_en" class="ng-binding">Aerilate</td>
+                <td ng-bind="a.name_jp" class="ng-binding">スカイスキン</td>
+                <td ng-bind="a.brief_description" class="ng-binding">一般属性的招式会变为飞行属性。威力会少量提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">185</td>
+                <td ng-bind="a.name_zh" class="ng-binding">亲子爱</td>
+                <td ng-bind="a.name_en" class="ng-binding">Parental Bond</td>
+                <td ng-bind="a.name_jp" class="ng-binding">おやこあい</td>
+                <td ng-bind="a.brief_description" class="ng-binding">亲子俩可以合计攻击２次。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">186</td>
+                <td ng-bind="a.name_zh" class="ng-binding">暗黑气场</td>
+                <td ng-bind="a.name_en" class="ng-binding">Dark Aura</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ダークオーラ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">全体的恶属性招式变强。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">187</td>
+                <td ng-bind="a.name_zh" class="ng-binding">妖精气场</td>
+                <td ng-bind="a.name_en" class="ng-binding">Fairy Aura</td>
+                <td ng-bind="a.name_jp" class="ng-binding">フェアリーオーラ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">全体的妖精属性招式变强。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">188</td>
+                <td ng-bind="a.name_zh" class="ng-binding">气场破坏</td>
+                <td ng-bind="a.name_en" class="ng-binding">Aura Break</td>
+                <td ng-bind="a.name_jp" class="ng-binding">オーラブレイク</td>
+                <td ng-bind="a.brief_description" class="ng-binding">让气场的效果发生逆转，降低威力。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">189</td>
+                <td ng-bind="a.name_zh" class="ng-binding">始源之海</td>
+                <td ng-bind="a.name_en" class="ng-binding">Primordial Sea</td>
+                <td ng-bind="a.name_jp" class="ng-binding">はじまりのうみ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">变为不会受到火属性攻击的天气。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">190</td>
+                <td ng-bind="a.name_zh" class="ng-binding">终结之地</td>
+                <td ng-bind="a.name_en" class="ng-binding">Desolate Land</td>
+                <td ng-bind="a.name_jp" class="ng-binding">おわりのだいち</td>
+                <td ng-bind="a.brief_description" class="ng-binding">变为不会受到水属性攻击的天气。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">191</td>
+                <td ng-bind="a.name_zh" class="ng-binding">德尔塔气流</td>
+                <td ng-bind="a.name_en" class="ng-binding">Delta Stream</td>
+                <td ng-bind="a.name_jp" class="ng-binding">デルタストリーム</td>
+                <td ng-bind="a.brief_description" class="ng-binding">变为令飞行属性的弱点消失的天气。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">192</td>
+                <td ng-bind="a.name_zh" class="ng-binding">持久力</td>
+                <td ng-bind="a.name_en" class="ng-binding">Stamina</td>
+                <td ng-bind="a.name_jp" class="ng-binding">じきゅうりょく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到攻击时，防御会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">193</td>
+                <td ng-bind="a.name_zh" class="ng-binding">跃跃欲逃</td>
+                <td ng-bind="a.name_en" class="ng-binding">Wimp Out</td>
+                <td ng-bind="a.name_jp" class="ng-binding">にげごし</td>
+                <td ng-bind="a.brief_description" class="ng-binding">ＨＰ变为一半时，会慌慌张张逃走，退回同行队伍中。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">194</td>
+                <td ng-bind="a.name_zh" class="ng-binding">危险回避</td>
+                <td ng-bind="a.name_en" class="ng-binding">Emergency Exit</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ききかいひ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">ＨＰ变为一半时，为了回避危险，会退回到同行队伍中。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">195</td>
+                <td ng-bind="a.name_zh" class="ng-binding">遇水凝固</td>
+                <td ng-bind="a.name_en" class="ng-binding">Water Compaction</td>
+                <td ng-bind="a.name_jp" class="ng-binding">みずがため</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到水属性的招式攻击时，防御会大幅提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">196</td>
+                <td ng-bind="a.name_zh" class="ng-binding">不仁不义</td>
+                <td ng-bind="a.name_en" class="ng-binding">Merciless</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ひとでなし</td>
+                <td ng-bind="a.brief_description" class="ng-binding">攻击中毒状态的对手时，必定会击中要害。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">197</td>
+                <td ng-bind="a.name_zh" class="ng-binding">界限盾壳</td>
+                <td ng-bind="a.name_en" class="ng-binding">Shields Down</td>
+                <td ng-bind="a.name_jp" class="ng-binding">リミットシールド</td>
+                <td ng-bind="a.brief_description" class="ng-binding">ＨＰ变为一半时，壳会坏掉，变得有攻击性。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">198</td>
+                <td ng-bind="a.name_zh" class="ng-binding">蹲守</td>
+                <td ng-bind="a.name_en" class="ng-binding">Stakeout</td>
+                <td ng-bind="a.name_jp" class="ng-binding">はりこみ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">可以对替换出场的对手以２倍的伤害进行攻击。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">199</td>
+                <td ng-bind="a.name_zh" class="ng-binding">水泡</td>
+                <td ng-bind="a.name_en" class="ng-binding">Water Bubble</td>
+                <td ng-bind="a.name_jp" class="ng-binding">すいほう</td>
+                <td ng-bind="a.brief_description" class="ng-binding">降低自己受到的火属性招式的威力，不会灼伤。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">200</td>
+                <td ng-bind="a.name_zh" class="ng-binding">钢能力者</td>
+                <td ng-bind="a.name_en" class="ng-binding">Steelworker</td>
+                <td ng-bind="a.name_jp" class="ng-binding">はがねつかい</td>
+                <td ng-bind="a.brief_description" class="ng-binding">钢属性的招式威力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">201</td>
+                <td ng-bind="a.name_zh" class="ng-binding">怒火冲天</td>
+                <td ng-bind="a.name_en" class="ng-binding">Berserk</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ぎゃくじょう</td>
+                <td ng-bind="a.brief_description" class="ng-binding">因对手的攻击ＨＰ变为一半时，特攻会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">202</td>
+                <td ng-bind="a.name_zh" class="ng-binding">拨雪</td>
+                <td ng-bind="a.name_en" class="ng-binding">Slush Rush</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ゆきかき</td>
+                <td ng-bind="a.brief_description" class="ng-binding">冰雹天气时，速度会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">203</td>
+                <td ng-bind="a.name_zh" class="ng-binding">远隔</td>
+                <td ng-bind="a.name_en" class="ng-binding">Long Reach</td>
+                <td ng-bind="a.name_jp" class="ng-binding">えんかく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">可以不接触对手就使出所有的招式。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">204</td>
+                <td ng-bind="a.name_zh" class="ng-binding">湿润之声</td>
+                <td ng-bind="a.name_en" class="ng-binding">Liquid Voice</td>
+                <td ng-bind="a.name_jp" class="ng-binding">うるおいボイス</td>
+                <td ng-bind="a.brief_description" class="ng-binding">所有的声音招式都变为水属性。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">205</td>
+                <td ng-bind="a.name_zh" class="ng-binding">先行治疗</td>
+                <td ng-bind="a.name_en" class="ng-binding">Triage</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ヒーリングシフト</td>
+                <td ng-bind="a.brief_description" class="ng-binding">可以率先使出回复招式。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">206</td>
+                <td ng-bind="a.name_zh" class="ng-binding">电气皮肤</td>
+                <td ng-bind="a.name_en" class="ng-binding">Galvanize</td>
+                <td ng-bind="a.name_jp" class="ng-binding">エレキスキン</td>
+                <td ng-bind="a.brief_description" class="ng-binding">一般属性的招式会变为电属性。威力会少量提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">207</td>
+                <td ng-bind="a.name_zh" class="ng-binding">冲浪之尾</td>
+                <td ng-bind="a.name_en" class="ng-binding">Surge Surfer</td>
+                <td ng-bind="a.name_jp" class="ng-binding">サーフテール</td>
+                <td ng-bind="a.brief_description" class="ng-binding">电气场地时，速度会变为２倍。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">208</td>
+                <td ng-bind="a.name_zh" class="ng-binding">鱼群</td>
+                <td ng-bind="a.name_en" class="ng-binding">Schooling</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ぎょぐん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">ＨＰ多的时候会聚起来变强。ＨＰ剩余量变少时，群体会分崩离析。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">209</td>
+                <td ng-bind="a.name_zh" class="ng-binding">画皮</td>
+                <td ng-bind="a.name_en" class="ng-binding">Disguise</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ばけのかわ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">通过画皮覆盖住身体，可以防住１次攻击。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">210</td>
+                <td ng-bind="a.name_zh" class="ng-binding">牵绊变身</td>
+                <td ng-bind="a.name_en" class="ng-binding">Battle Bond</td>
+                <td ng-bind="a.name_jp" class="ng-binding">きずなへんげ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">打倒对手时，与训练家的牵绊会增强，变为小智版甲贺忍蛙。飞水手里剑的招式威力会增强。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">211</td>
+                <td ng-bind="a.name_zh" class="ng-binding">群聚变形</td>
+                <td ng-bind="a.name_en" class="ng-binding">Power Construct</td>
+                <td ng-bind="a.name_jp" class="ng-binding">スワームチェンジ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">ＨＰ变为一半时，细胞们会赶来支援，变为完全体形态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">212</td>
+                <td ng-bind="a.name_zh" class="ng-binding">腐蚀</td>
+                <td ng-bind="a.name_en" class="ng-binding">Corrosion</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ふしょく</td>
+                <td ng-bind="a.brief_description" class="ng-binding">可以使钢属性和毒属性的宝可梦也陷入中毒状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">213</td>
+                <td ng-bind="a.name_zh" class="ng-binding">绝对睡眠</td>
+                <td ng-bind="a.name_en" class="ng-binding">Comatose</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ぜったいねむり</td>
+                <td ng-bind="a.brief_description" class="ng-binding">总是半梦半醒的状态，绝对不会醒来。可以就这么睡着进行攻击。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">214</td>
+                <td ng-bind="a.name_zh" class="ng-binding">女王的威严</td>
+                <td ng-bind="a.name_en" class="ng-binding">Queenly Majesty</td>
+                <td ng-bind="a.name_jp" class="ng-binding">じょおうのいげん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">向对手施加威慑力，使其无法对我方使出先制招式。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">215</td>
+                <td ng-bind="a.name_zh" class="ng-binding">飞出的内在物</td>
+                <td ng-bind="a.name_en" class="ng-binding">Innards Out</td>
+                <td ng-bind="a.name_jp" class="ng-binding">とびだすなかみ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">被对手打倒的时候，会给予对手相当于ＨＰ剩余量的伤害。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">216</td>
+                <td ng-bind="a.name_zh" class="ng-binding">舞者</td>
+                <td ng-bind="a.name_en" class="ng-binding">Dancer</td>
+                <td ng-bind="a.name_jp" class="ng-binding">おどりこ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">有谁使出跳舞招式时，自己也能就这么接着使出跳舞招式。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">217</td>
+                <td ng-bind="a.name_zh" class="ng-binding">蓄电池</td>
+                <td ng-bind="a.name_en" class="ng-binding">Battery</td>
+                <td ng-bind="a.name_jp" class="ng-binding">バッテリー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">会提高我方的特殊招式的威力。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">218</td>
+                <td ng-bind="a.name_zh" class="ng-binding">毛茸茸</td>
+                <td ng-bind="a.name_en" class="ng-binding">Fluffy</td>
+                <td ng-bind="a.name_jp" class="ng-binding">もふもふ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">会将对手所给予的接触类招式的伤害减半，但火属性招式的伤害会变为２倍。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">219</td>
+                <td ng-bind="a.name_zh" class="ng-binding">鲜艳之躯</td>
+                <td ng-bind="a.name_en" class="ng-binding">Dazzling</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ビビッドボディ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">让对手吓一跳，使其无法对我方使出先制招式。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">220</td>
+                <td ng-bind="a.name_zh" class="ng-binding">魂心</td>
+                <td ng-bind="a.name_en" class="ng-binding">Soul-Heart</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ソウルハート</td>
+                <td ng-bind="a.brief_description" class="ng-binding">宝可梦每次变为濒死状态时，特攻会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">221</td>
+                <td ng-bind="a.name_zh" class="ng-binding">卷发</td>
+                <td ng-bind="a.name_en" class="ng-binding">Tangling Hair</td>
+                <td ng-bind="a.name_jp" class="ng-binding">カーリーヘアー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">对于用攻击接触到自己的对手，会降低其速度。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">222</td>
+                <td ng-bind="a.name_zh" class="ng-binding">接球手</td>
+                <td ng-bind="a.name_en" class="ng-binding">Receiver</td>
+                <td ng-bind="a.name_jp" class="ng-binding">レシーバー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">继承被打倒的同伴的特性，变为相同的特性。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">223</td>
+                <td ng-bind="a.name_zh" class="ng-binding">化学之力</td>
+                <td ng-bind="a.name_en" class="ng-binding">Power of Alchemy</td>
+                <td ng-bind="a.name_jp" class="ng-binding">かがくのちから</td>
+                <td ng-bind="a.brief_description" class="ng-binding">继承被打倒的同伴的特性，变为相同的特性。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">224</td>
+                <td ng-bind="a.name_zh" class="ng-binding">异兽提升</td>
+                <td ng-bind="a.name_en" class="ng-binding">Beast Boost</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ビーストブースト</td>
+                <td ng-bind="a.brief_description" class="ng-binding">打倒对手的时候，自己最高的那项能力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">225</td>
+                <td ng-bind="a.name_zh" class="ng-binding">ＡＲ系统</td>
+                <td ng-bind="a.name_en" class="ng-binding">RKS System</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ＡＲシステム</td>
+                <td ng-bind="a.brief_description" class="ng-binding">根据持有的存储碟，自己的属性会改变。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">226</td>
+                <td ng-bind="a.name_zh" class="ng-binding">电气制造者</td>
+                <td ng-bind="a.name_en" class="ng-binding">Electric Surge</td>
+                <td ng-bind="a.name_jp" class="ng-binding">エレキメイカー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">出场时，会布下电气场地。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">227</td>
+                <td ng-bind="a.name_zh" class="ng-binding">精神制造者</td>
+                <td ng-bind="a.name_en" class="ng-binding">Psychic Surge</td>
+                <td ng-bind="a.name_jp" class="ng-binding">サイコメイカー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">出场时，会布下精神场地。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">228</td>
+                <td ng-bind="a.name_zh" class="ng-binding">薄雾制造者</td>
+                <td ng-bind="a.name_en" class="ng-binding">Misty Surge</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ミストメイカー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">出场时，会布下薄雾场地。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">229</td>
+                <td ng-bind="a.name_zh" class="ng-binding">青草制造者</td>
+                <td ng-bind="a.name_en" class="ng-binding">Grassy Surge</td>
+                <td ng-bind="a.name_jp" class="ng-binding">グラスメイカー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">出场时，会布下青草场地。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">230</td>
+                <td ng-bind="a.name_zh" class="ng-binding">金属防护</td>
+                <td ng-bind="a.name_en" class="ng-binding">Full Metal Body</td>
+                <td ng-bind="a.name_jp" class="ng-binding">メタルプロテクト</td>
+                <td ng-bind="a.brief_description" class="ng-binding">不会因为对手的招式或特性而被降低能力。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">231</td>
+                <td ng-bind="a.name_zh" class="ng-binding">幻影防守</td>
+                <td ng-bind="a.name_en" class="ng-binding">Shadow Shield</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ファントムガード</td>
+                <td ng-bind="a.brief_description" class="ng-binding">ＨＰ全满时，受到的伤害会变少。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">232</td>
+                <td ng-bind="a.name_zh" class="ng-binding">棱镜装甲</td>
+                <td ng-bind="a.name_en" class="ng-binding">Prism Armor</td>
+                <td ng-bind="a.name_jp" class="ng-binding">プリズムアーマー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到效果绝佳的攻击时，可以减弱其威力。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">233</td>
+                <td ng-bind="a.name_zh" class="ng-binding">脑核之力</td>
+                <td ng-bind="a.name_en" class="ng-binding">Neuroforce</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ブレインフォース</td>
+                <td ng-bind="a.brief_description" class="ng-binding">效果绝佳的攻击，威力会变得更强。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">234</td>
+                <td ng-bind="a.name_zh" class="ng-binding">不挠之剑</td>
+                <td ng-bind="a.name_en" class="ng-binding">Intrepid Sword</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ふとうのけん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">出场时，攻击会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">235</td>
+                <td ng-bind="a.name_zh" class="ng-binding">不屈之盾</td>
+                <td ng-bind="a.name_en" class="ng-binding">Dauntless Shield</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ふくつのたて</td>
+                <td ng-bind="a.brief_description" class="ng-binding">出场时，防御会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">236</td>
+                <td ng-bind="a.name_zh" class="ng-binding">自由者</td>
+                <td ng-bind="a.name_en" class="ng-binding">Libero</td>
+                <td ng-bind="a.name_jp" class="ng-binding">リベロ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">变为与自己使出的招式相同的属性。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">237</td>
+                <td ng-bind="a.name_zh" class="ng-binding">捡球</td>
+                <td ng-bind="a.name_en" class="ng-binding">Ball Fetch</td>
+                <td ng-bind="a.name_jp" class="ng-binding">たまひろい</td>
+                <td ng-bind="a.brief_description" class="ng-binding">没有携带道具时，会拾取第１个投出后捕捉失败的精灵球。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">238</td>
+                <td ng-bind="a.name_zh" class="ng-binding">棉絮</td>
+                <td ng-bind="a.name_en" class="ng-binding">Cotton Down</td>
+                <td ng-bind="a.name_jp" class="ng-binding">わたげ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到攻击后撒下棉絮，降低除自己以外的所有宝可梦的速度。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">239</td>
+                <td ng-bind="a.name_zh" class="ng-binding">螺旋尾鳍</td>
+                <td ng-bind="a.name_en" class="ng-binding">Propeller Tail</td>
+                <td ng-bind="a.name_jp" class="ng-binding">スクリューおびれ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">能无视具有吸引对手招式效果的特性或招式的影响。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">240</td>
+                <td ng-bind="a.name_zh" class="ng-binding">镜甲</td>
+                <td ng-bind="a.name_en" class="ng-binding">Mirror Armor</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ミラーアーマー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">只反弹自己受到的能力降低效果。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">241</td>
+                <td ng-bind="a.name_zh" class="ng-binding">一口导弹</td>
+                <td ng-bind="a.name_en" class="ng-binding">Gulp Missile</td>
+                <td ng-bind="a.name_jp" class="ng-binding">うのミサイル</td>
+                <td ng-bind="a.brief_description" class="ng-binding">冲浪或潜水时会叼来猎物。受到伤害时，会吐出猎物进行攻击。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">242</td>
+                <td ng-bind="a.name_zh" class="ng-binding">坚毅</td>
+                <td ng-bind="a.name_en" class="ng-binding">Stalwart</td>
+                <td ng-bind="a.name_jp" class="ng-binding">すじがねいり</td>
+                <td ng-bind="a.brief_description" class="ng-binding">能无视具有吸引对手招式效果的特性或招式的影响。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">243</td>
+                <td ng-bind="a.name_zh" class="ng-binding">蒸汽机</td>
+                <td ng-bind="a.name_en" class="ng-binding">Steam Engine</td>
+                <td ng-bind="a.name_jp" class="ng-binding">じょうききかん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到水属性或火属性的招式攻击时，速度会巨幅提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">244</td>
+                <td ng-bind="a.name_zh" class="ng-binding">庞克摇滚</td>
+                <td ng-bind="a.name_en" class="ng-binding">Punk Rock</td>
+                <td ng-bind="a.name_jp" class="ng-binding">パンクロック</td>
+                <td ng-bind="a.brief_description" class="ng-binding">声音招式的威力会提高。受到的声音招式伤害会减半。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">245</td>
+                <td ng-bind="a.name_zh" class="ng-binding">吐沙</td>
+                <td ng-bind="a.name_en" class="ng-binding">Sand Spit</td>
+                <td ng-bind="a.name_jp" class="ng-binding">すなはき</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到攻击时，会刮起沙暴。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">246</td>
+                <td ng-bind="a.name_zh" class="ng-binding">冰鳞粉</td>
+                <td ng-bind="a.name_en" class="ng-binding">Ice Scales</td>
+                <td ng-bind="a.name_jp" class="ng-binding">こおりのりんぷん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">由于有冰鳞粉的守护，受到的特殊攻击伤害会减半。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">247</td>
+                <td ng-bind="a.name_zh" class="ng-binding">熟成</td>
+                <td ng-bind="a.name_en" class="ng-binding">Ripen</td>
+                <td ng-bind="a.name_jp" class="ng-binding">じゅくせい</td>
+                <td ng-bind="a.brief_description" class="ng-binding">使树果成熟，效果变为２倍。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">248</td>
+                <td ng-bind="a.name_zh" class="ng-binding">结冻头</td>
+                <td ng-bind="a.name_en" class="ng-binding">Ice Face</td>
+                <td ng-bind="a.name_jp" class="ng-binding">アイスフェイス</td>
+                <td ng-bind="a.brief_description" class="ng-binding">头部的冰会代替自己承受物理攻击，但是样子会改变。下冰雹时，冰会恢复原状。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">249</td>
+                <td ng-bind="a.name_zh" class="ng-binding">能量点</td>
+                <td ng-bind="a.name_en" class="ng-binding">Power Spot</td>
+                <td ng-bind="a.name_jp" class="ng-binding">パワースポット</td>
+                <td ng-bind="a.brief_description" class="ng-binding">只要处在相邻位置，招式的威力就会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">250</td>
+                <td ng-bind="a.name_zh" class="ng-binding">拟态</td>
+                <td ng-bind="a.name_en" class="ng-binding">Mimicry</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ぎたい</td>
+                <td ng-bind="a.brief_description" class="ng-binding">宝可梦的属性会根据场地的状态而变化。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">251</td>
+                <td ng-bind="a.name_zh" class="ng-binding">除障</td>
+                <td ng-bind="a.name_en" class="ng-binding">Screen Cleaner</td>
+                <td ng-bind="a.name_jp" class="ng-binding">バリアフリー</td>
+                <td ng-bind="a.brief_description" class="ng-binding">出场时，敌方和我方的光墙、反射壁和极光幕的效果会消失。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">252</td>
+                <td ng-bind="a.name_zh" class="ng-binding">钢之意志</td>
+                <td ng-bind="a.name_en" class="ng-binding">Steely Spirit</td>
+                <td ng-bind="a.name_jp" class="ng-binding">はがねのせいしん</td>
+                <td ng-bind="a.brief_description" class="ng-binding">我方的钢属性攻击威力会提高。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">253</td>
+                <td ng-bind="a.name_zh" class="ng-binding">灭亡之躯</td>
+                <td ng-bind="a.name_en" class="ng-binding">Perish Body</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ほろびのボディ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">受到接触类招式攻击时，双方都会在３回合后变为濒死状态。替换后效果消失。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">254</td>
+                <td ng-bind="a.name_zh" class="ng-binding">游魂</td>
+                <td ng-bind="a.name_en" class="ng-binding">Wandering Spirit</td>
+                <td ng-bind="a.name_jp" class="ng-binding">さまようたましい</td>
+                <td ng-bind="a.brief_description" class="ng-binding">与使用接触类招式攻击自己的宝可梦互换特性。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">255</td>
+                <td ng-bind="a.name_zh" class="ng-binding">一猩一意</td>
+                <td ng-bind="a.name_en" class="ng-binding">Gorilla Tactics</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ごりむちゅう</td>
+                <td ng-bind="a.brief_description" class="ng-binding">虽然攻击会提高，但是只能使出一开始所选的招式。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">256</td>
+                <td ng-bind="a.name_zh" class="ng-binding">化学变化气体</td>
+                <td ng-bind="a.name_en" class="ng-binding">Neutralizing Gas</td>
+                <td ng-bind="a.name_jp" class="ng-binding">かがくへんかガス</td>
+                <td ng-bind="a.brief_description" class="ng-binding">特性为化学变化气体的宝可梦在场时，场上所有宝可梦的特性效果都会消失或者无法生效。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">257</td>
+                <td ng-bind="a.name_zh" class="ng-binding">粉彩护幕</td>
+                <td ng-bind="a.name_en" class="ng-binding">Pastel Veil</td>
+                <td ng-bind="a.name_jp" class="ng-binding">パステルベール</td>
+                <td ng-bind="a.brief_description" class="ng-binding">自己和同伴都不会陷入中毒的异常状态。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">258</td>
+                <td ng-bind="a.name_zh" class="ng-binding">饱了又饿</td>
+                <td ng-bind="a.name_en" class="ng-binding">Hunger Switch</td>
+                <td ng-bind="a.name_jp" class="ng-binding">はらぺこスイッチ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">每回合结束时会在满腹花纹与空腹花纹之间交替改变样子。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">259</td>
+                <td ng-bind="a.name_zh" class="ng-binding">速击</td>
+                <td ng-bind="a.name_en" class="ng-binding">Quick Draw</td>
+                <td ng-bind="a.name_jp" class="ng-binding">クイックドロウ</td>
+                <td ng-bind="a.brief_description" class="ng-binding">有时能比对手先一步行动。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria --><tr ng-repeat="a in abilities | generalSearch : search_criteria" ng-click="open('ability-' + normalize(a.name_en))" class="clickable ng-scope">
+                <td ng-bind="a.abi_id" class="ng-binding">260</td>
+                <td ng-bind="a.name_zh" class="ng-binding">无形拳</td>
+                <td ng-bind="a.name_en" class="ng-binding">Unseen Fist</td>
+                <td ng-bind="a.name_jp" class="ng-binding">ふかしのこぶし</td>
+                <td ng-bind="a.brief_description" class="ng-binding">如果使出的是接触到对手的招式，就可以无视守护效果进行攻击。</td>
+                <td><a ng-bind="_LANG.view" class="ng-binding">查看</a></td>
+            </tr><!-- end ngRepeat: a in abilities | generalSearch : search_criteria -->
+        </tbody></table>
+    </article>
+    </main>
+    <div id="tooltip-box" class="hidden"></div>
+    <br clear="both">
+    <footer>
+        <script>
+            var VERSION = '3.5';
+            var DCVERSION = '1.2';
+
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//s.pokeuniv.com/analytics.js','ga');
+
+            ga('create', 'UA-88740254-2', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <br>
+        请使用支持HTML5的浏览器（例如谷歌浏览器）进行浏览<br>
+        2010-2019 PokeUniv Dex V3.5. <br>
+        All rights reserved by Game Freak, Nintendo and Pokemon Company.
+    </footer>
+
+</body></html>

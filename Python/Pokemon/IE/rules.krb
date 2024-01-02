@@ -1,0 +1,6 @@
+may_live
+    foreach
+        pokemons.next_to($area1,$area2)
+        pokemons.live_in($pokemon,$area1)
+    assert
+        pokemons.may_live($pokemon,$area2)

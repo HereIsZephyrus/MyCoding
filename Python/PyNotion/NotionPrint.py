@@ -8,8 +8,8 @@ notion = Client(auth="secret_rsEEx3ne1DapGydZdHit7289lrPXrEYYR53TmzfgcI7")  # �
 db_name = "ReadingList"    # 替换为自己的DataBase名称
 db_id = "444bf12774544b1d842eed17083960f7"    # 替换为自己的DataBase ID
 page_id = "444bf127-7454-4b1d-842e-ed17083960f7"   # # 替换为自己的Page ID
-startDate='2023-12-15'
-endDate='2023-12-22' # 替换为自己的时间段
+startDate='2023-12-25'
+endDate='2023-12-31' # 替换为自己的时间段
 db_values = notion.databases.query(
         **{
             "database_id": db_id,
@@ -60,8 +60,10 @@ current_time=time.strftime("%Y%m%d_%H%M", time.localtime())
 if printFormat=="doc":
     file_name = "readinglist"+current_time+".md"
     with open(file_name,"w") as file:
+        file.write(f'**Time**: {startDate}~{endDate}\n')
+        file.write(f'**Author**: 童川博\n')
         for i in range(len(title)):
-            file.write(f"##@ {title[i]}\n")
+            file.write(f"### {title[i]}\n")
             file.write(f"**作者**: {author[i]}\n")
             file.write(f"**关键词**: {keywords[i]}\n")
             file.write(f"**完成时间**: {completeDate[i]}")
@@ -71,9 +73,9 @@ if printFormat=="doc":
                 file.write(f"(略读)\n")
             elif level[i]=="Skip":
                 file.write(f"(选读)\n")
-            file.write(f"##@# 内容简介\n")
+            file.write(f"#### 内容简介\n")
             file.write(f"{content[i]}\n")
-            file.write(f"#@## 笔记与思考\n")
+            file.write(f"#### 笔记与思考\n")
             file.write(f"{notes[i]}\n")
             file.write("\n")
 # 使用latex语法生成slide输出
