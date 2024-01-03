@@ -20,18 +20,16 @@ types=['']
 for i in range(len(typeline)):
     types.append(typeline[i].text.replace('\n',''))
 
-file=open('./dict/type.csv','w',newline='',encoding='utf-8')
+file=open('./base/type.csv','w',newline='',encoding='utf-8')
 writer=csv.writer(file)
 writer.writerow(types)
 
 rows=rows[2:len(rows)-1] #abandon the head and tail
 for line in rows:
     relations=line.find_all('td')
-    row=[types[rows.index(line)]]
+    row=[types[rows.index(line)+1]]
     for i in range(1,len(relations)):
         row.append(relations[i].text.replace('\n',''))
     writer.writerow(row)
-print(types)
-print(len(types))
 
 file.close()

@@ -14,3 +14,6 @@ def main():
     return 1
 if __name__ == '__main__':
     main()
+
+#if __name__ == '__main__':
+#    print(element("我在关都地区在遇到了一只宝可梦,是草系的,大概是21级,攻击力大于60"))

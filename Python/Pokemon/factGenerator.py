@@ -13,8 +13,10 @@ DEF_OWN=''
 SPA_OWN=''
 SPD_OWN=''
 SPE_OWN=''
+count_table=[]
 for item in db.areas_name:
     table=pd.read_csv(f'./base/{item}.csv')
+    count_table.append(table)
     for row in table.itertuples():
         LIVE_IN=LIVE_IN+f'live_in({row[1]},{db.areas_name[item]})\n'
         EN_TRANS=EN_TRANS+f'en_trans{row[2],row[1]}\n'
@@ -39,7 +41,10 @@ for item in db.areas_name:
         SPA_OWN=SPA_OWN+f'has_SPA({power[3]},{row[1]})\n'
         SPD_OWN=SPD_OWN+f'has_SPD({power[4]},{row[1]})\n'
         SPE_OWN=SPE_OWN+f'has_SPE({power[5]},{row[1]})\n'
+        
+
 file=open('./IE/pokemons.kfb','w')
+file=open('./IE/pokemons.txt','w')
 file.write(LIVE_IN)
 file.write(EN_TRANS)
 file.write(JP_TRANS)
@@ -53,6 +58,14 @@ file.write(SPA_OWN)
 file.write(SPD_OWN)
 file.write(SPE_OWN)
 
-file.write(f'next_to({db.areas_name["kanto"]},{db.areas_name["johto"]})')
-print(f'next_to({db.areas_name["kanto"]},{db.areas_name["johto"]})')
+file.write(f'next_to({db.areas_name["kanto"]},{db.areas_name["johto"]})\n')
+#print(f'next_to({db.areas_name["kanto"]},{db.areas_name["johto"]})')
 file.close()
+
+#import subprocess
+#subprocess.run(['/usr/local/bin/python3','FatchLevel.py'])
+import numpy as np
+total_table=pd.concat(count_table)
+total_table.drop_duplicates(keep='first',inplace=True)
+dictory=pd.DataFrame.to_dict(total_table,orient='records')
+np.save('./base/dictory.npy',dictory)
