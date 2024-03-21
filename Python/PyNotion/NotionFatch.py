@@ -5,12 +5,12 @@ import os
 from notion_client import Client  # 导入notion_client库，终端输入"pip install notion_client"进行安装
 from pprint import pprint
 # 从notion中获取数据
-notion = Client(auth="secret_rsEEx3ne1DapGydZdHit7289lrPXrEYYR53TmzfgcI7")  # 替换为自己的Token
+notion = Client(auth="secret_FjRVSfO5PmvIoh9ugzPNbn1OBghZ8FMj9ecm7SmpuYt")  # 替换为自己的Token
 db_name = "ReadingList"    # 替换为自己的DataBase名称
 db_id = "444bf12774544b1d842eed17083960f7"    # 替换为自己的DataBase ID
 page_id = "444bf127-7454-4b1d-842e-ed17083960f7"   # # 替换为自己的Page ID
-startDate='2023-12-25'
-endDate='2023-12-31' # 替换为自己的时间段
+startDate='2024-01-22'
+endDate='2024-01-28' # 替换为自己的时间段
 db_values = notion.databases.query(
         **{
             "database_id": db_id,
