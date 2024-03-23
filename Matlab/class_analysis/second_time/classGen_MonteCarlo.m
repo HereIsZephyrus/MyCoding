@@ -29,6 +29,8 @@ MDsex_class2 = zeros(round,2);
 MDcount_class1 = zeros(round,numclass1);
 MDcount_class2 = zeros(round,numclass2);
 MD_class = zeros(round,3);
+res1 = zeros(numclass1,1);
+res2 = zeros(numclass2,1);
 parfor i = 1 : round
     classCounting = size(X,2);
     xcur_class1 = zeros(numclass1,classCounting);
@@ -50,8 +52,36 @@ parfor i = 1 : round
     MDsex_class1(i,:) = CalcSexMeanDistance(disclass1,sex_class1);
     MDsex_class2(i,:) = CalcSexMeanDistance(disclass2,sex_class2);
     MD_class(i,:) = CalcClassMeanDistance(disclass1,class_class1);
+    res1 = res1 + rms(disclass1,2);
+    res2 = res2 + rms(disclass2,2);
 end
-save MonteCarloResult_bias.mat MDgroup_class1 MDgroup_class2 MDsex_class1 MDsex_class2 MD_class MDcount_class1 MDcount_class2 MD_class RAWgroup_class1 RAWsex_class2 RAWgroup_class2 RAW_class RAWsex_class1
+
+figure;
+dpi = 300;
+width =600;
+height = 600;
+figure('units', 'normalized', 'outerposition', [0 0 1 1]);
+tiledlayout(1, 2, "TileSpacing", "tight");
+position = [100, 100, width, height];
+set(gcf, 'Position', position);
+subplot(2,2,1);
+histfit(res1./round);
+xlabel("相对连接强度");
+ylabel("平均次数");
+title("114221/114222/220221-2随机模式连接强度直方图",FontSize=14);
+subplot(2,2,2);
+histfit(res2./round);
+xlabel("相对连接强度");
+ylabel("平均次数");
+title("114221/114222/220221-2随机模式连接强度直方图",FontSize=14);
+subplot(2,2,3);
+boxplot(res1./round);
+title("114221/114222/220221-2随机模式连接强度箱线图",FontSize=14);
+subplot(2,2,4);
+boxplot(res2./round);
+title("114221/114222/220221-2随机模式连接强度箱线图",FontSize=14);
+
+%save MonteCarloResult_bias.mat MDgroup_class1 MDgroup_class2 MDsex_class1 MDsex_class2 MD_class MDcount_class1 MDcount_class2 MD_class RAWgroup_class1 RAWsex_class2 RAWgroup_class2 RAW_class RAWsex_class1
 
 function [dis,count] = calc_dis(times,x,y)
     num = length(x);

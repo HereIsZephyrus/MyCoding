@@ -25,8 +25,10 @@ pd =  fitdist(MD_class(:,1),'Normal');
 [h(7),p(7)] = ztest(RAW_class(1),pd.mu,pd.sigma);
 pd =  fitdist(MD_class(:,2),'Normal');
 [h(8),p(8)] = ztest(RAW_class(2),pd.mu,pd.sigma);
-t = table(h,p);
-writetable(t,"hp.xlsx");
+t1 = table(h,p);
+writetable(t1,"hp.xlsx");
+t2 = table(RAW_class,E_class,RAWgroup_class1,Egroup_class1,RAWgroup_class2,Egroup_class2,RAWsex_class1,Esex_class1,RAWsex_class2,Esex_class2);
+writetable(t2,"cluster_data.xlsx");
 %%
 figure('units', 'normalized', 'outerposition', [0 0 1 1]);
 tiledlayout(2, 3, "TileSpacing", "tight");

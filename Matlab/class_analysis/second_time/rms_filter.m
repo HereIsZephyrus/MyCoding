@@ -2,7 +2,6 @@ clc;clear;close all;
 dpi = 300;
 width = 1300;
 height = 600;
-kth = 3;
 figure;
 position = [100, 100, width, height];
 set(gcf, 'Position', position);

@@ -2,7 +2,6 @@ clc;clear;close all;
 dpi = 300;
 width =600;
 height = 600;
-kth = 3;
 figure('units', 'normalized', 'outerposition', [0 0 1 1]);
 tiledlayout(1, 2, "TileSpacing", "tight");
 position = [100, 100, width, height];
