@@ -58,26 +58,14 @@ end
 
 figure;
 dpi = 300;
-width =600;
+width =1000;
 height = 600;
-figure('units', 'normalized', 'outerposition', [0 0 1 1]);
-tiledlayout(1, 2, "TileSpacing", "tight");
 position = [100, 100, width, height];
 set(gcf, 'Position', position);
-subplot(2,2,1);
-histfit(res1./round);
-xlabel("相对连接强度");
-ylabel("平均次数");
-title("114221/114222/220221-2随机模式连接强度直方图",FontSize=14);
-subplot(2,2,2);
-histfit(res2./round);
-xlabel("相对连接强度");
-ylabel("平均次数");
-title("114221/114222/220221-2随机模式连接强度直方图",FontSize=14);
-subplot(2,2,3);
+subplot(1,2,1);
 boxplot(res1./round);
 title("114221/114222/220221-2随机模式连接强度箱线图",FontSize=14);
-subplot(2,2,4);
+subplot(1,2,2);
 boxplot(res2./round);
 title("114221/114222/220221-2随机模式连接强度箱线图",FontSize=14);
 
