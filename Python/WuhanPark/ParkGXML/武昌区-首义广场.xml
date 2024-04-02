@@ -1,0 +1,22 @@
+<osm version="0.6" generator="CGImap 0.9.0 (533500 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="105570366" visible="true" version="3" changeset="63478905" timestamp="2018-10-13T07:35:17Z" user="John Bek" uid="3800987">
+<nd ref="1215728080"/>
+<nd ref="5980798515"/>
+<nd ref="5980798503"/>
+<nd ref="1215728322"/>
+<nd ref="1215728078"/>
+<nd ref="1215728253"/>
+<nd ref="1215728043"/>
+<nd ref="1215728313"/>
+<nd ref="1215728290"/>
+<nd ref="1215728316"/>
+<nd ref="1215728325"/>
+<nd ref="1215728319"/>
+<nd ref="1215728048"/>
+<nd ref="1215728297"/>
+<nd ref="1215728303"/>
+<nd ref="1215728080"/>
+<tag k="leisure" v="common"/>
+<tag k="name" v="首义广场"/>
+</way>
+</osm>

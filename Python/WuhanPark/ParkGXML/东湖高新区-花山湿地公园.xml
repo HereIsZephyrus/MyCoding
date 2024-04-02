@@ -1,0 +1,42 @@
+<osm version="0.6" generator="CGImap 0.9.0 (287948 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="881425139" visible="true" version="2" changeset="144077663" timestamp="2023-11-16T04:30:25Z" user="Saigyoujinoriko" uid="18672235">
+<nd ref="8197496280"/>
+<nd ref="8197496281"/>
+<nd ref="8197496282"/>
+<nd ref="8197496283"/>
+<nd ref="8197496284"/>
+<nd ref="8197496285"/>
+<nd ref="8197496286"/>
+<nd ref="11353381409"/>
+<nd ref="8197496287"/>
+<nd ref="8197496288"/>
+<nd ref="8197496289"/>
+<nd ref="8197496290"/>
+<nd ref="8197496291"/>
+<nd ref="8197496292"/>
+<nd ref="8197496293"/>
+<nd ref="8197496294"/>
+<nd ref="8197496295"/>
+<nd ref="8197496296"/>
+<nd ref="8197496297"/>
+<nd ref="8197496298"/>
+<nd ref="8197496299"/>
+<nd ref="8197496300"/>
+<nd ref="8197496301"/>
+<nd ref="8197496302"/>
+<nd ref="8197496303"/>
+<nd ref="8197496304"/>
+<nd ref="8197496305"/>
+<nd ref="8197496306"/>
+<nd ref="8197496307"/>
+<nd ref="8197496308"/>
+<nd ref="8197496309"/>
+<nd ref="8197496310"/>
+<nd ref="8197496311"/>
+<nd ref="8197496312"/>
+<nd ref="11353381410"/>
+<nd ref="8197496280"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="花山生态湿地公园"/>
+</way>
+</osm>

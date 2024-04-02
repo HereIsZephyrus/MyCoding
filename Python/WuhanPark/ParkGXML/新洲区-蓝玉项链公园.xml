@@ -1,0 +1,70 @@
+<osm version="0.6" generator="CGImap 0.9.0 (1333432 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="947969036" visible="true" version="2" changeset="105660255" timestamp="2021-06-01T07:10:16Z" user="CENTRALHUB" uid="6447498">
+<nd ref="8774450086"/>
+<nd ref="8774450085"/>
+<nd ref="8774450084"/>
+<nd ref="8774450083"/>
+<nd ref="8774450082"/>
+<nd ref="8774450079"/>
+<nd ref="8774450078"/>
+<nd ref="8774450077"/>
+<nd ref="8774450076"/>
+<nd ref="8774450075"/>
+<nd ref="8774450081"/>
+<nd ref="8774450074"/>
+<nd ref="8774450073"/>
+<nd ref="8774450072"/>
+<nd ref="8774450071"/>
+<nd ref="8774450080"/>
+<nd ref="8774450068"/>
+<nd ref="8774450067"/>
+<nd ref="8774450070"/>
+<nd ref="8774450066"/>
+<nd ref="8774450065"/>
+<nd ref="8774450069"/>
+<nd ref="8774450064"/>
+<nd ref="8774450061"/>
+<nd ref="8774450063"/>
+<nd ref="8774450060"/>
+<nd ref="8774450059"/>
+<nd ref="8774450062"/>
+<nd ref="8774450058"/>
+<nd ref="8774450055"/>
+<nd ref="8774450054"/>
+<nd ref="8774450053"/>
+<nd ref="8774450057"/>
+<nd ref="8774450052"/>
+<nd ref="8774450051"/>
+<nd ref="8774450056"/>
+<nd ref="8774450050"/>
+<nd ref="8774450049"/>
+<nd ref="8774450046"/>
+<nd ref="8774450045"/>
+<nd ref="8774450048"/>
+<nd ref="8774450044"/>
+<nd ref="8774450047"/>
+<nd ref="8774450041"/>
+<nd ref="8774450040"/>
+<nd ref="8774450043"/>
+<nd ref="8774450039"/>
+<nd ref="8774450038"/>
+<nd ref="8774450042"/>
+<nd ref="8774450035"/>
+<nd ref="8774450034"/>
+<nd ref="8774450037"/>
+<nd ref="8774450033"/>
+<nd ref="8774450032"/>
+<nd ref="8774450036"/>
+<nd ref="8774450029"/>
+<nd ref="8774450031"/>
+<nd ref="8774450028"/>
+<nd ref="8774450030"/>
+<nd ref="8774450027"/>
+<nd ref="8774450026"/>
+<nd ref="8774450086"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="蓝玉项链生态公园"/>
+<tag k="name:en" v="Lanyuxianglian Ecological Park"/>
+<tag k="name:zh" v="蓝玉项链生态公园"/>
+</way>
+</osm>

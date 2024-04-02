@@ -1,0 +1,35 @@
+<osm version="0.6" generator="CGImap 0.9.0 (4072194 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="132310036" visible="true" version="2" changeset="80278325" timestamp="2020-01-29T20:46:33Z" user="corrector_91" uid="3418742">
+<nd ref="1455685168"/>
+<nd ref="1455685102"/>
+<nd ref="1455685208"/>
+<nd ref="1455685128"/>
+<nd ref="1455685225"/>
+<nd ref="1455685121"/>
+<nd ref="1455685214"/>
+<nd ref="1455685130"/>
+<nd ref="1455685186"/>
+<nd ref="1455685217"/>
+<nd ref="1455685129"/>
+<nd ref="1455685122"/>
+<nd ref="1455685153"/>
+<nd ref="1455685193"/>
+<nd ref="1455685164"/>
+<nd ref="1455685107"/>
+<nd ref="1455685185"/>
+<nd ref="1455685114"/>
+<nd ref="7170382616"/>
+<nd ref="1455685172"/>
+<nd ref="1455685238"/>
+<nd ref="1455685204"/>
+<nd ref="1455685195"/>
+<nd ref="1455685226"/>
+<nd ref="1455685150"/>
+<nd ref="1455685112"/>
+<nd ref="1455685166"/>
+<nd ref="1455685168"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="菱角湖公园"/>
+<tag k="name:en" v="Lingjiaohu Park"/>
+</way>
+</osm>

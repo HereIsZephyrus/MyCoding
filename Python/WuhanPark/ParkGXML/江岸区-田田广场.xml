@@ -1,0 +1,16 @@
+<osm version="0.6" generator="CGImap 0.9.0 (1721164 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="131361924" visible="true" version="1" changeset="9398318" timestamp="2011-09-26T03:21:32Z" user="GeoSUN" uid="414582">
+<nd ref="1445955023"/>
+<nd ref="1445954961"/>
+<nd ref="1445954896"/>
+<nd ref="1445954868"/>
+<nd ref="1445954935"/>
+<nd ref="1445954902"/>
+<nd ref="1445954924"/>
+<nd ref="1445955097"/>
+<nd ref="1445955034"/>
+<nd ref="1445955023"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="田田广场"/>
+</way>
+</osm>

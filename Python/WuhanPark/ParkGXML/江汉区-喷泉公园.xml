@@ -1,0 +1,36 @@
+<osm version="0.6" generator="CGImap 0.9.0 (4075617 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="773689467" visible="true" version="1" changeset="81150773" timestamp="2020-02-18T05:50:53Z" user="XD346" uid="4892967">
+<nd ref="1891198608"/>
+<nd ref="7221765721"/>
+<nd ref="1891198650"/>
+<nd ref="1891198652"/>
+<nd ref="7221765729"/>
+<nd ref="1891198631"/>
+<nd ref="7221765730"/>
+<nd ref="1891198682"/>
+<nd ref="7221753461"/>
+<nd ref="7221765722"/>
+<nd ref="7221765723"/>
+<nd ref="1891198674"/>
+<nd ref="2393337384"/>
+<nd ref="2393337363"/>
+<nd ref="1891198675"/>
+<nd ref="7221765724"/>
+<nd ref="7221765725"/>
+<nd ref="1891198623"/>
+<nd ref="7221765728"/>
+<nd ref="2393337366"/>
+<nd ref="7221765720"/>
+<nd ref="7221765727"/>
+<nd ref="1891198685"/>
+<nd ref="1891198687"/>
+<nd ref="1891198635"/>
+<nd ref="1891198681"/>
+<nd ref="1891198656"/>
+<nd ref="1891198642"/>
+<nd ref="7221765726"/>
+<nd ref="1891198608"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="喷泉公园"/>
+</way>
+</osm>

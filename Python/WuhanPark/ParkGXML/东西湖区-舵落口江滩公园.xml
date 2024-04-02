@@ -1,0 +1,32 @@
+<osm version="0.6" generator="CGImap 0.9.0 (1333432 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="881922630" visible="true" version="2" changeset="143516834" timestamp="2023-11-02T08:37:48Z" user="Saigyoujinoriko" uid="18672235">
+<nd ref="8201673869"/>
+<nd ref="8201673870"/>
+<nd ref="8201673871"/>
+<nd ref="8201673872"/>
+<nd ref="8201673873"/>
+<nd ref="8201673874"/>
+<nd ref="8201673875"/>
+<nd ref="8201673876"/>
+<nd ref="8201673877"/>
+<nd ref="11306708957"/>
+<nd ref="11306708956"/>
+<nd ref="11306708955"/>
+<nd ref="11306708954"/>
+<nd ref="8201673880"/>
+<nd ref="8201673881"/>
+<nd ref="8201673882"/>
+<nd ref="8201673883"/>
+<nd ref="8201673884"/>
+<nd ref="8201673885"/>
+<nd ref="8201673886"/>
+<nd ref="8201673887"/>
+<nd ref="8201673888"/>
+<nd ref="8201673889"/>
+<nd ref="8201673890"/>
+<nd ref="8201673891"/>
+<nd ref="8201673869"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="舵落口江滩公园"/>
+</way>
+</osm>

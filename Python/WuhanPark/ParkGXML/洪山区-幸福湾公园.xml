@@ -1,0 +1,19 @@
+<osm version="0.6" generator="CGImap 0.9.0 (1445416 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="573575689" visible="true" version="3" changeset="63670889" timestamp="2018-10-19T08:37:28Z" user="bolo_2020" uid="542604">
+<nd ref="5508265167"/>
+<nd ref="5508265168"/>
+<nd ref="5508265169"/>
+<nd ref="5508265170"/>
+<nd ref="5508265171"/>
+<nd ref="5508265172"/>
+<nd ref="5508265173"/>
+<nd ref="5508265174"/>
+<nd ref="5508265175"/>
+<nd ref="5508265176"/>
+<nd ref="5508265177"/>
+<nd ref="5508265178"/>
+<nd ref="5508265167"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="南湖幸福湾水上公园"/>
+</way>
+</osm>

@@ -1,0 +1,38 @@
+<osm version="0.6" generator="CGImap 0.9.0 (1721164 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="220230537" visible="true" version="4" changeset="81150773" timestamp="2020-02-18T05:50:53Z" user="XD346" uid="4892967">
+<nd ref="2293590230"/>
+<nd ref="2293590225"/>
+<nd ref="2293590235"/>
+<nd ref="2293590222"/>
+<nd ref="2293590224"/>
+<nd ref="2293590236"/>
+<nd ref="2293590216"/>
+<nd ref="2293590228"/>
+<nd ref="2293590241"/>
+<nd ref="2293590256"/>
+<nd ref="2293590252"/>
+<nd ref="2293590246"/>
+<nd ref="2293590237"/>
+<nd ref="2393337415"/>
+<nd ref="2393337440"/>
+<nd ref="2393337409"/>
+<nd ref="2393337442"/>
+<nd ref="2393337432"/>
+<nd ref="2393337450"/>
+<nd ref="2293590217"/>
+<nd ref="2293590253"/>
+<nd ref="2293590254"/>
+<nd ref="2293590248"/>
+<nd ref="2293590249"/>
+<nd ref="2293590219"/>
+<nd ref="2293590238"/>
+<nd ref="2293590251"/>
+<nd ref="2293590233"/>
+<nd ref="2293590255"/>
+<nd ref="2293590221"/>
+<nd ref="2293590355"/>
+<nd ref="2293590230"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="小南湖公园"/>
+</way>
+</osm>

@@ -1,0 +1,22 @@
+<osm version="0.6" generator="CGImap 0.9.0 (416146 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="1208975181" visible="true" version="1" changeset="141450249" timestamp="2023-09-19T05:28:47Z" user="Saigyoujinoriko" uid="18672235">
+<nd ref="11201548357"/>
+<nd ref="11201548358"/>
+<nd ref="11201548359"/>
+<nd ref="11201548360"/>
+<nd ref="11201548361"/>
+<nd ref="11201548362"/>
+<nd ref="11201548363"/>
+<nd ref="11201548364"/>
+<nd ref="11201548365"/>
+<nd ref="11201548366"/>
+<nd ref="11201548367"/>
+<nd ref="11201548368"/>
+<nd ref="11201548369"/>
+<nd ref="11201548370"/>
+<nd ref="11201548371"/>
+<nd ref="11201548357"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="运铎公园"/>
+</way>
+</osm>

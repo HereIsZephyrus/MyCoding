@@ -1,0 +1,27 @@
+<osm version="0.6" generator="CGImap 0.9.0 (2837319 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="1125567145" visible="true" version="1" changeset="130633532" timestamp="2022-12-29T08:48:12Z" user="真川　華" uid="18035901">
+<nd ref="10292793485"/>
+<nd ref="10292793486"/>
+<nd ref="10292793487"/>
+<nd ref="10292793488"/>
+<nd ref="10292793489"/>
+<nd ref="4195019523"/>
+<nd ref="4195021098"/>
+<nd ref="4195019562"/>
+<nd ref="837956998"/>
+<nd ref="7787314144"/>
+<nd ref="4195021099"/>
+<nd ref="4195019566"/>
+<nd ref="4195019570"/>
+<nd ref="4195019572"/>
+<nd ref="7824812568"/>
+<nd ref="4183182691"/>
+<nd ref="7824812569"/>
+<nd ref="4183182690"/>
+<nd ref="7824812571"/>
+<nd ref="7824812574"/>
+<nd ref="10292793485"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="巡司河风情公园"/>
+</way>
+</osm>

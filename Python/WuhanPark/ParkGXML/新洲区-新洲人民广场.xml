@@ -1,0 +1,21 @@
+<osm version="0.6" generator="CGImap 0.9.0 (3568998 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="947987671" visible="true" version="2" changeset="105660255" timestamp="2021-06-01T07:10:16Z" user="CENTRALHUB" uid="6447498">
+<nd ref="8774801751"/>
+<nd ref="8774609016"/>
+<nd ref="8774609015"/>
+<nd ref="8774801750"/>
+<nd ref="8774608941"/>
+<nd ref="8774608940"/>
+<nd ref="8774801749"/>
+<nd ref="8774608939"/>
+<nd ref="8774608938"/>
+<nd ref="8774801748"/>
+<nd ref="8774608937"/>
+<nd ref="8774608936"/>
+<nd ref="8774801751"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="新洲人民广场"/>
+<tag k="name:en" v="Xinzhourenmin Square"/>
+<tag k="name:zh" v="新洲人民广场"/>
+</way>
+</osm>

@@ -1,0 +1,47 @@
+<osm version="0.6" generator="CGImap 0.9.0 (2837319 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="1053516206" visible="true" version="2" changeset="142799426" timestamp="2023-10-19T07:56:13Z" user="Taksine" uid="10348274">
+<nd ref="9681727841"/>
+<nd ref="9681727840"/>
+<nd ref="9681727839"/>
+<nd ref="9681727836"/>
+<nd ref="9681727835"/>
+<nd ref="9681727838"/>
+<nd ref="9681727834"/>
+<nd ref="9681727833"/>
+<nd ref="9681727837"/>
+<nd ref="9681727832"/>
+<nd ref="9681727831"/>
+<nd ref="9681727830"/>
+<nd ref="9681727829"/>
+<nd ref="9681727828"/>
+<nd ref="9681727825"/>
+<nd ref="9681727824"/>
+<nd ref="9681727827"/>
+<nd ref="9681727823"/>
+<nd ref="9681727826"/>
+<nd ref="9681727822"/>
+<nd ref="9681727819"/>
+<nd ref="9681727821"/>
+<nd ref="9681727818"/>
+<nd ref="9681727820"/>
+<nd ref="9681727815"/>
+<nd ref="9681727817"/>
+<nd ref="9681727814"/>
+<nd ref="9681727816"/>
+<nd ref="9681727813"/>
+<nd ref="9681727812"/>
+<nd ref="9681727811"/>
+<nd ref="9681727810"/>
+<nd ref="9681727809"/>
+<nd ref="9681727808"/>
+<nd ref="9681727805"/>
+<nd ref="9681727807"/>
+<nd ref="9681727804"/>
+<nd ref="11273859759"/>
+<nd ref="9681727806"/>
+<nd ref="9681727803"/>
+<nd ref="9681727841"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="黄鹤楼公园"/>
+</way>
+</osm>

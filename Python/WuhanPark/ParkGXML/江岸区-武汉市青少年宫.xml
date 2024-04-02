@@ -1,0 +1,53 @@
+<osm version="0.6" generator="CGImap 0.9.0 (3656326 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="773689478" visible="true" version="2" changeset="149394449" timestamp="2024-03-31T15:00:47Z" user="Cheeselover" uid="20350771">
+<nd ref="7221765847"/>
+<nd ref="7221765848"/>
+<nd ref="7221765849"/>
+<nd ref="7221765850"/>
+<nd ref="7221765851"/>
+<nd ref="7221765883"/>
+<nd ref="7221765889"/>
+<nd ref="7221765852"/>
+<nd ref="7221765853"/>
+<nd ref="7221765884"/>
+<nd ref="7221765854"/>
+<nd ref="7221765885"/>
+<nd ref="7221765886"/>
+<nd ref="7221765887"/>
+<nd ref="7221765855"/>
+<nd ref="7221765856"/>
+<nd ref="7221765876"/>
+<nd ref="11775528095"/>
+<nd ref="7221765857"/>
+<nd ref="7221765858"/>
+<nd ref="7221765859"/>
+<nd ref="7221765860"/>
+<nd ref="11775528094"/>
+<nd ref="7221765861"/>
+<nd ref="7221765862"/>
+<nd ref="7221765863"/>
+<nd ref="7221765864"/>
+<nd ref="7221765865"/>
+<nd ref="7221765896"/>
+<nd ref="11775528093"/>
+<nd ref="7221765866"/>
+<nd ref="7221765867"/>
+<nd ref="7221765892"/>
+<nd ref="7221765897"/>
+<nd ref="7221765868"/>
+<nd ref="7221765956"/>
+<nd ref="7221765869"/>
+<nd ref="7221765870"/>
+<nd ref="7221765871"/>
+<nd ref="7221765872"/>
+<nd ref="7221765873"/>
+<nd ref="7221765893"/>
+<nd ref="7221765874"/>
+<nd ref="7221765875"/>
+<nd ref="7221765847"/>
+<tag k="amenity" v="community_centre"/>
+<tag k="name" v="武汉市青少年宫"/>
+<tag k="name:en" v="Youth and Children's Palace of Wuhan"/>
+<tag k="name:zh" v="武汉市青少年宫"/>
+</way>
+</osm>

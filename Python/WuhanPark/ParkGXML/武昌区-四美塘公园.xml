@@ -1,0 +1,51 @@
+<osm version="0.6" generator="CGImap 0.9.0 (4075617 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="881027225" visible="true" version="3" changeset="143557732" timestamp="2023-11-03T05:09:31Z" user="Saigyoujinoriko" uid="18672235">
+<nd ref="8194368786"/>
+<nd ref="8194368787"/>
+<nd ref="8194368788"/>
+<nd ref="9052282602"/>
+<nd ref="8194368789"/>
+<nd ref="9052316844"/>
+<nd ref="8194368790"/>
+<nd ref="8194368791"/>
+<nd ref="8194368792"/>
+<nd ref="8194368793"/>
+<nd ref="8194368794"/>
+<nd ref="8194368795"/>
+<nd ref="8194368796"/>
+<nd ref="8194368797"/>
+<nd ref="8194368798"/>
+<nd ref="8194368799"/>
+<nd ref="8194368800"/>
+<nd ref="8194368801"/>
+<nd ref="8194368802"/>
+<nd ref="8194368803"/>
+<nd ref="8194368804"/>
+<nd ref="8194368805"/>
+<nd ref="8194368806"/>
+<nd ref="8194368807"/>
+<nd ref="8194368808"/>
+<nd ref="8194368809"/>
+<nd ref="8194368810"/>
+<nd ref="8194368811"/>
+<nd ref="8194368812"/>
+<nd ref="8194368813"/>
+<nd ref="8194368814"/>
+<nd ref="8194368815"/>
+<nd ref="8194368816"/>
+<nd ref="8194368817"/>
+<nd ref="8194368818"/>
+<nd ref="8194368819"/>
+<nd ref="8194368820"/>
+<nd ref="694063771"/>
+<nd ref="694063770"/>
+<nd ref="8194368821"/>
+<nd ref="8194368822"/>
+<nd ref="8194368823"/>
+<nd ref="8194368824"/>
+<nd ref="8194368825"/>
+<nd ref="8194368786"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="四美塘公园"/>
+</way>
+</osm>

@@ -1,0 +1,28 @@
+<osm version="0.6" generator="CGImap 0.9.0 (1945858 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="882038485" visible="true" version="2" changeset="147391457" timestamp="2024-02-13T03:36:40Z" user="Saigyoujinoriko" uid="18672235">
+<nd ref="8202702088"/>
+<nd ref="8202702089"/>
+<nd ref="8202702090"/>
+<nd ref="8202702091"/>
+<nd ref="8202702092"/>
+<nd ref="8202702093"/>
+<nd ref="8202702094"/>
+<nd ref="8202702095"/>
+<nd ref="8202702096"/>
+<nd ref="8202702097"/>
+<nd ref="8202702098"/>
+<nd ref="8202702099"/>
+<nd ref="8202702100"/>
+<nd ref="8202702101"/>
+<nd ref="8202702102"/>
+<nd ref="8202702103"/>
+<nd ref="8202702104"/>
+<nd ref="8202702105"/>
+<nd ref="8202702106"/>
+<nd ref="8202702107"/>
+<nd ref="8202702108"/>
+<nd ref="8202702088"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="汉广海棠公园"/>
+</way>
+</osm>

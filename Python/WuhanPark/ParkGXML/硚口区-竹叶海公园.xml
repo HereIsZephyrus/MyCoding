@@ -1,0 +1,32 @@
+<osm version="0.6" generator="CGImap 0.9.0 (1721164 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="977591936" visible="true" version="1" changeset="110423786" timestamp="2021-08-29T18:37:11Z" user="samsung galaxy s6" uid="3691120">
+<nd ref="9045691735"/>
+<nd ref="9045691736"/>
+<nd ref="9045691737"/>
+<nd ref="9045691738"/>
+<nd ref="9045691739"/>
+<nd ref="9045691740"/>
+<nd ref="9045691741"/>
+<nd ref="9045691742"/>
+<nd ref="9045691743"/>
+<nd ref="9045691744"/>
+<nd ref="9045691745"/>
+<nd ref="9045691746"/>
+<nd ref="9045691747"/>
+<nd ref="9045691748"/>
+<nd ref="9045691749"/>
+<nd ref="9045691750"/>
+<nd ref="9045691751"/>
+<nd ref="9045691752"/>
+<nd ref="9045691753"/>
+<nd ref="9045691754"/>
+<nd ref="9045691755"/>
+<nd ref="9045691756"/>
+<nd ref="9045691757"/>
+<nd ref="9045691758"/>
+<nd ref="9045691735"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="竹葉海公園"/>
+<tag k="name:zh" v="竹葉海公園"/>
+</way>
+</osm>

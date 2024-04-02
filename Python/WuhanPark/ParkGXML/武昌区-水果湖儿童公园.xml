@@ -1,0 +1,11 @@
+<osm version="0.6" generator="CGImap 0.9.0 (4075617 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="1149049611" visible="true" version="1" changeset="132952273" timestamp="2023-02-24T05:45:44Z" user="Ikuta" uid="2217888">
+<nd ref="10689933998"/>
+<nd ref="10689933999"/>
+<nd ref="10689934000"/>
+<nd ref="10689934001"/>
+<nd ref="10689933998"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="有隣児童公園"/>
+</way>
+</osm>

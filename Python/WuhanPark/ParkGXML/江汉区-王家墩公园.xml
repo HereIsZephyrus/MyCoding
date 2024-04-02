@@ -1,0 +1,34 @@
+<osm version="0.6" generator="CGImap 0.9.0 (287948 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="455529133" visible="true" version="5" changeset="112397644" timestamp="2021-10-12T03:44:53Z" user="XD346" uid="4892967">
+<nd ref="4519229821"/>
+<nd ref="5934019177"/>
+<nd ref="4519229819"/>
+<nd ref="5934018626"/>
+<nd ref="5934018627"/>
+<nd ref="5934018628"/>
+<nd ref="5934019176"/>
+<nd ref="4519229652"/>
+<nd ref="5934018685"/>
+<nd ref="5928761399"/>
+<nd ref="5934018631"/>
+<nd ref="5934018629"/>
+<nd ref="5934018630"/>
+<nd ref="4519229450"/>
+<nd ref="5934018684"/>
+<nd ref="5934018677"/>
+<nd ref="5934018664"/>
+<nd ref="4519229656"/>
+<nd ref="5928761404"/>
+<nd ref="4519229655"/>
+<nd ref="5928761400"/>
+<nd ref="5928761403"/>
+<nd ref="5928761401"/>
+<nd ref="5928761402"/>
+<nd ref="4519229821"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="王家墩公园"/>
+<tag k="name:en" v="Wangjiadun Park"/>
+<tag k="name:zh" v="王家墩公园"/>
+<tag k="source" v="Bing"/>
+</way>
+</osm>
