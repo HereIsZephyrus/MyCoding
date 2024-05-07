@@ -1,0 +1,17 @@
+<osm version="0.6" generator="CGImap 0.9.0 (1445416 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="372661287" visible="true" version="1" changeset="34295378" timestamp="2015-09-28T02:47:21Z" user="hanchao" uid="499500">
+<nd ref="3762099183"/>
+<nd ref="3762099180"/>
+<nd ref="3762099179"/>
+<nd ref="3762099175"/>
+<nd ref="3762099176"/>
+<nd ref="3762099177"/>
+<nd ref="3762099178"/>
+<nd ref="3762099182"/>
+<nd ref="3762099181"/>
+<nd ref="3762099184"/>
+<nd ref="3762099183"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="汉阳公园"/>
+</way>
+</osm>

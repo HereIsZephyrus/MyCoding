@@ -1,0 +1,17 @@
+<osm version="0.6" generator="CGImap 0.9.0 (1028334 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="1214477262" visible="true" version="1" changeset="142380119" timestamp="2023-10-10T07:48:15Z" user="Saigyoujinoriko" uid="18672235">
+<nd ref="11252388251"/>
+<nd ref="11252388252"/>
+<nd ref="11252388253"/>
+<nd ref="11252388254"/>
+<nd ref="11252388255"/>
+<nd ref="11252388256"/>
+<nd ref="11252388257"/>
+<nd ref="11252388258"/>
+<nd ref="11252388259"/>
+<nd ref="11252388260"/>
+<nd ref="11252388251"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="金银潭公园"/>
+</way>
+</osm>

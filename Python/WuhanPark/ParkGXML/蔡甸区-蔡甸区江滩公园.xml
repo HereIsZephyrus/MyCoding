@@ -1,0 +1,16 @@
+<osm version="0.6" generator="CGImap 0.9.0 (3465712 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="605323799" visible="true" version="2" changeset="81857775" timestamp="2020-03-06T08:11:35Z" user="sionstar" uid="7139444">
+<nd ref="5741587826"/>
+<nd ref="5741587827"/>
+<nd ref="5741587828"/>
+<nd ref="5741587829"/>
+<nd ref="5741587830"/>
+<nd ref="5741587831"/>
+<nd ref="5741587832"/>
+<nd ref="5741587833"/>
+<nd ref="5741587834"/>
+<nd ref="5741587826"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="杨柳堤江滩公园"/>
+</way>
+</osm>

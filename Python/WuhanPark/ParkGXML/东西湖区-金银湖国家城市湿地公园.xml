@@ -1,0 +1,31 @@
+<osm version="0.6" generator="CGImap 0.9.0 (846815 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<relation id="15354063" visible="true" version="3" changeset="131731440" timestamp="2023-01-26T12:50:41Z" user="blkatbyhh" uid="14128740">
+<member type="way" ref="1135423310" role="outer"/>
+<member type="way" ref="1135423311" role="outer"/>
+<member type="way" ref="1135423301" role="outer"/>
+<member type="way" ref="1135423304" role="outer"/>
+<member type="way" ref="725872391" role="outer"/>
+<member type="way" ref="1134712548" role="outer"/>
+<member type="way" ref="1134712547" role="outer"/>
+<member type="way" ref="1134712545" role="outer"/>
+<member type="way" ref="1134712544" role="outer"/>
+<member type="way" ref="1134712542" role="outer"/>
+<member type="way" ref="1134712541" role="outer"/>
+<member type="way" ref="1134712552" role="outer"/>
+<member type="way" ref="1134712540" role="outer"/>
+<member type="way" ref="1134712551" role="outer"/>
+<member type="way" ref="1134712538" role="outer"/>
+<member type="way" ref="1134712537" role="outer"/>
+<member type="way" ref="1134712535" role="outer"/>
+<member type="way" ref="1134712534" role="outer"/>
+<member type="way" ref="1134712530" role="outer"/>
+<member type="way" ref="1134712532" role="outer"/>
+<member type="way" ref="1135028250" role="outer"/>
+<member type="way" ref="1134712531" role="outer"/>
+<member type="way" ref="1135028249" role="outer"/>
+<member type="way" ref="1134712529" role="outer"/>
+<tag k="leisure" v="nature_reserve"/>
+<tag k="name" v="武汉金银湖国家城市湿地公园"/>
+<tag k="type" v="multipolygon"/>
+</relation>
+</osm>

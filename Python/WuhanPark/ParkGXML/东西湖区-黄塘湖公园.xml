@@ -1,0 +1,48 @@
+<osm version="0.6" generator="CGImap 0.9.0 (416146 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="1206052497" visible="true" version="3" changeset="142380119" timestamp="2023-10-10T07:48:15Z" user="Saigyoujinoriko" uid="18672235">
+<nd ref="11176062655"/>
+<nd ref="11176062656"/>
+<nd ref="11176062657"/>
+<nd ref="11176062658"/>
+<nd ref="5176390759"/>
+<nd ref="8114033174"/>
+<nd ref="5176390760"/>
+<nd ref="8114033205"/>
+<nd ref="8114033206"/>
+<nd ref="8114033211"/>
+<nd ref="11176062659"/>
+<nd ref="11176062660"/>
+<nd ref="11176062661"/>
+<nd ref="11176062662"/>
+<nd ref="11252388210"/>
+<nd ref="11176062663"/>
+<nd ref="11176062664"/>
+<nd ref="11176062665"/>
+<nd ref="11176062666"/>
+<nd ref="11252388052"/>
+<nd ref="11252388053"/>
+<nd ref="11176062667"/>
+<nd ref="11176062668"/>
+<nd ref="11176062669"/>
+<nd ref="11176062670"/>
+<nd ref="11176062671"/>
+<nd ref="11176062672"/>
+<nd ref="11176062673"/>
+<nd ref="11176062674"/>
+<nd ref="11176062675"/>
+<nd ref="11176062676"/>
+<nd ref="11176062677"/>
+<nd ref="11176062678"/>
+<nd ref="11176062679"/>
+<nd ref="11176062680"/>
+<nd ref="11176062681"/>
+<nd ref="11176062682"/>
+<nd ref="11176062683"/>
+<nd ref="11176062684"/>
+<nd ref="11176062685"/>
+<nd ref="11176062686"/>
+<nd ref="11176062655"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="黄塘湖公园"/>
+</way>
+</osm>

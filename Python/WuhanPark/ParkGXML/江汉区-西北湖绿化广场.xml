@@ -1,0 +1,58 @@
+<osm version="0.6" generator="CGImap 0.9.0 (4118140 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="977588990" visible="true" version="2" changeset="122469652" timestamp="2022-06-16T15:24:34Z" user="Dragonhk" uid="15230995">
+<nd ref="9045662718"/>
+<nd ref="9045662719"/>
+<nd ref="4859891732"/>
+<nd ref="1890730965"/>
+<nd ref="1890730939"/>
+<nd ref="5940068392"/>
+<nd ref="5940068393"/>
+<nd ref="5940068394"/>
+<nd ref="5940068395"/>
+<nd ref="5940068396"/>
+<nd ref="5940068397"/>
+<nd ref="5940068398"/>
+<nd ref="1890730942"/>
+<nd ref="1890730945"/>
+<nd ref="4859891723"/>
+<nd ref="5940068400"/>
+<nd ref="1890730947"/>
+<nd ref="5940068401"/>
+<nd ref="1890730960"/>
+<nd ref="5940068399"/>
+<nd ref="4859891724"/>
+<nd ref="5940068402"/>
+<nd ref="1890730962"/>
+<nd ref="5940068403"/>
+<nd ref="5940068404"/>
+<nd ref="5940068405"/>
+<nd ref="5940068406"/>
+<nd ref="1890730936"/>
+<nd ref="1890730932"/>
+<nd ref="4859891726"/>
+<nd ref="1890730935"/>
+<nd ref="4859891725"/>
+<nd ref="1890730958"/>
+<nd ref="1890730964"/>
+<nd ref="1890730969"/>
+<nd ref="9045662720"/>
+<nd ref="9045662721"/>
+<nd ref="9045662722"/>
+<nd ref="9045662723"/>
+<nd ref="9045662724"/>
+<nd ref="9045662725"/>
+<nd ref="9045662726"/>
+<nd ref="9045662727"/>
+<nd ref="9045662728"/>
+<nd ref="9045662729"/>
+<nd ref="9045662730"/>
+<nd ref="9045662731"/>
+<nd ref="9045662732"/>
+<nd ref="9045662718"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="西北湖绿化广场"/>
+<tag k="name:zh" v="西北湖绿化广场"/>
+<tag k="name:zh-Hans" v="西北湖绿化广场"/>
+<tag k="name:zh-Hant" v="西北湖綠化廣場"/>
+</way>
+</osm>

@@ -1,0 +1,100 @@
+<osm version="0.6" generator="CGImap 0.9.0 (3678058 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="988991396" visible="true" version="2" changeset="121251921" timestamp="2022-05-20T16:08:11Z" user="blkatbyhh" uid="14128740">
+<nd ref="9140982622"/>
+<nd ref="9140982623"/>
+<nd ref="9140982624"/>
+<nd ref="9140982625"/>
+<nd ref="9140982626"/>
+<nd ref="9140982627"/>
+<nd ref="9140982628"/>
+<nd ref="9140982629"/>
+<nd ref="9140982630"/>
+<nd ref="9140982631"/>
+<nd ref="9140982632"/>
+<nd ref="9140982633"/>
+<nd ref="9140982634"/>
+<nd ref="9140982635"/>
+<nd ref="9140982636"/>
+<nd ref="9140982637"/>
+<nd ref="9140982638"/>
+<nd ref="9140982639"/>
+<nd ref="9140982640"/>
+<nd ref="9140982641"/>
+<nd ref="9140982642"/>
+<nd ref="9140982643"/>
+<nd ref="9140982644"/>
+<nd ref="9140982645"/>
+<nd ref="9140982646"/>
+<nd ref="9140982647"/>
+<nd ref="9140982648"/>
+<nd ref="9140982649"/>
+<nd ref="9140982650"/>
+<nd ref="9140982651"/>
+<nd ref="9140982652"/>
+<nd ref="9140982653"/>
+<nd ref="9140982654"/>
+<nd ref="9140982655"/>
+<nd ref="9140982656"/>
+<nd ref="9140982657"/>
+<nd ref="9140982658"/>
+<nd ref="9140982659"/>
+<nd ref="9140982660"/>
+<nd ref="9140982661"/>
+<nd ref="9140982662"/>
+<nd ref="9140982663"/>
+<nd ref="9140982664"/>
+<nd ref="9140982665"/>
+<nd ref="9140982666"/>
+<nd ref="9140982667"/>
+<nd ref="9140982668"/>
+<nd ref="9140982669"/>
+<nd ref="9757726477"/>
+<nd ref="9757726478"/>
+<nd ref="9757726479"/>
+<nd ref="9757726480"/>
+<nd ref="9140982670"/>
+<nd ref="9140982671"/>
+<nd ref="9140982672"/>
+<nd ref="9140982673"/>
+<nd ref="9140982674"/>
+<nd ref="9140982675"/>
+<nd ref="9140982676"/>
+<nd ref="9140982677"/>
+<nd ref="9140982678"/>
+<nd ref="9140982679"/>
+<nd ref="9140982680"/>
+<nd ref="9140982681"/>
+<nd ref="9140982682"/>
+<nd ref="9140982683"/>
+<nd ref="9140982684"/>
+<nd ref="9140982685"/>
+<nd ref="9140982686"/>
+<nd ref="9140982687"/>
+<nd ref="9140982688"/>
+<nd ref="9140982689"/>
+<nd ref="9140982690"/>
+<nd ref="9140982691"/>
+<nd ref="9140982692"/>
+<nd ref="9140982693"/>
+<nd ref="9140982694"/>
+<nd ref="9140982695"/>
+<nd ref="9140982696"/>
+<nd ref="9140982697"/>
+<nd ref="9140982698"/>
+<nd ref="9140982699"/>
+<nd ref="9140982707"/>
+<nd ref="9140982706"/>
+<nd ref="9140982705"/>
+<nd ref="9140982704"/>
+<nd ref="9140982703"/>
+<nd ref="9140982700"/>
+<nd ref="9140982701"/>
+<nd ref="9140982702"/>
+<nd ref="9140982622"/>
+<tag k="area" v="yes"/>
+<tag k="boundary" v="national_park"/>
+<tag k="name" v="龟山公园"/>
+<tag k="name:zh" v="龟山公园"/>
+<tag k="name:zh-Hant" v="龜山公園"/>
+</way>
+</osm>

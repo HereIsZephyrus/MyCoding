@@ -1,0 +1,16 @@
+<osm version="0.6" generator="CGImap 0.9.0 (3696976 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="1219927674" visible="true" version="1" changeset="143453877" timestamp="2023-11-01T04:50:18Z" user="Saigyoujinoriko" uid="18672235">
+<nd ref="11303773503"/>
+<nd ref="11303773504"/>
+<nd ref="11303773505"/>
+<nd ref="11303773506"/>
+<nd ref="11303773507"/>
+<nd ref="11303773508"/>
+<nd ref="11303773509"/>
+<nd ref="11303773510"/>
+<nd ref="11303773511"/>
+<nd ref="11303773503"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="张之洞体育公园"/>
+</way>
+</osm>

@@ -1,0 +1,55 @@
+<osm version="0.6" generator="CGImap 0.9.0 (3842243 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="881437037" visible="true" version="2" changeset="143557679" timestamp="2023-11-03T05:06:40Z" user="Saigyoujinoriko" uid="18672235">
+<nd ref="8197551157"/>
+<nd ref="8197551158"/>
+<nd ref="8197551159"/>
+<nd ref="8197551160"/>
+<nd ref="8197551161"/>
+<nd ref="8197551162"/>
+<nd ref="8197551163"/>
+<nd ref="8197551164"/>
+<nd ref="8197551165"/>
+<nd ref="8197551166"/>
+<nd ref="8197551167"/>
+<nd ref="8197551168"/>
+<nd ref="8197551169"/>
+<nd ref="8197551170"/>
+<nd ref="8197551171"/>
+<nd ref="8197551172"/>
+<nd ref="8197551173"/>
+<nd ref="8197551174"/>
+<nd ref="8197551175"/>
+<nd ref="8197551176"/>
+<nd ref="8197551177"/>
+<nd ref="8197551178"/>
+<nd ref="8197551179"/>
+<nd ref="8197551180"/>
+<nd ref="8197551181"/>
+<nd ref="8197551182"/>
+<nd ref="8197551183"/>
+<nd ref="8197551184"/>
+<nd ref="8197551185"/>
+<nd ref="8197551186"/>
+<nd ref="8197551187"/>
+<nd ref="8197551188"/>
+<nd ref="8197551189"/>
+<nd ref="8197551190"/>
+<nd ref="8197551191"/>
+<nd ref="8197551192"/>
+<nd ref="8197551193"/>
+<nd ref="8197551194"/>
+<nd ref="8197551195"/>
+<nd ref="8197551196"/>
+<nd ref="8197551197"/>
+<nd ref="8197551198"/>
+<nd ref="8197551199"/>
+<nd ref="8197551200"/>
+<nd ref="8197551201"/>
+<nd ref="8197551202"/>
+<nd ref="8197551203"/>
+<nd ref="8197551204"/>
+<nd ref="8197551157"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="戴家湖公园"/>
+</way>
+</osm>

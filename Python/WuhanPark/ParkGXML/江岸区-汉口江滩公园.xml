@@ -1,0 +1,72 @@
+<osm version="0.6" generator="CGImap 0.9.0 (4073845 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="28842846" visible="true" version="10" changeset="122469652" timestamp="2022-06-16T15:24:34Z" user="Dragonhk" uid="15230995">
+<nd ref="656217822"/>
+<nd ref="1882021683"/>
+<nd ref="8196196847"/>
+<nd ref="8196196848"/>
+<nd ref="8196196846"/>
+<nd ref="1882021681"/>
+<nd ref="1882021684"/>
+<nd ref="1882021665"/>
+<nd ref="1882021672"/>
+<nd ref="1882021680"/>
+<nd ref="1882021667"/>
+<nd ref="1882021654"/>
+<nd ref="1882021669"/>
+<nd ref="1882021652"/>
+<nd ref="1882021679"/>
+<nd ref="1882021660"/>
+<nd ref="1882021691"/>
+<nd ref="1882021659"/>
+<nd ref="1882021670"/>
+<nd ref="1882021671"/>
+<nd ref="1882021666"/>
+<nd ref="1882021686"/>
+<nd ref="1882021677"/>
+<nd ref="1882021653"/>
+<nd ref="1882021661"/>
+<nd ref="5175028956"/>
+<nd ref="1882021678"/>
+<nd ref="1882021688"/>
+<nd ref="1882021676"/>
+<nd ref="1882021675"/>
+<nd ref="1882021682"/>
+<nd ref="1882021689"/>
+<nd ref="1882021673"/>
+<nd ref="1882021655"/>
+<nd ref="1882021668"/>
+<nd ref="1882021657"/>
+<nd ref="1882021687"/>
+<nd ref="1882021656"/>
+<nd ref="1882021685"/>
+<nd ref="1882021690"/>
+<nd ref="1882021664"/>
+<nd ref="1882021674"/>
+<nd ref="1882021692"/>
+<nd ref="1882021693"/>
+<nd ref="1882021651"/>
+<nd ref="1882021663"/>
+<nd ref="1882021662"/>
+<nd ref="1882021658"/>
+<nd ref="655651869"/>
+<nd ref="655651870"/>
+<nd ref="655651871"/>
+<nd ref="655651872"/>
+<nd ref="4069531932"/>
+<nd ref="5175028958"/>
+<nd ref="5175028959"/>
+<nd ref="5175030735"/>
+<nd ref="5175030734"/>
+<nd ref="5175028960"/>
+<nd ref="5175029009"/>
+<nd ref="5175028961"/>
+<nd ref="5175028957"/>
+<nd ref="8196196885"/>
+<nd ref="8196196886"/>
+<nd ref="656217821"/>
+<nd ref="656217822"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="汉口江滩公园"/>
+<tag k="name:zh" v="汉口江滩公园"/>
+</way>
+</osm>

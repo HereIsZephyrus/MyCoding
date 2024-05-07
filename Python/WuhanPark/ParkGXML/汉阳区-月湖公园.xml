@@ -1,0 +1,62 @@
+<osm version="0.6" generator="CGImap 0.9.0 (3697757 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="132691295" visible="true" version="5" changeset="117319791" timestamp="2022-02-12T12:40:20Z" user="blkatbyhh" uid="14128740">
+<nd ref="1459555782"/>
+<nd ref="1459555822"/>
+<nd ref="1459555768"/>
+<nd ref="4360488960"/>
+<nd ref="4360488959"/>
+<nd ref="4360488958"/>
+<nd ref="4360488957"/>
+<nd ref="1459555799"/>
+<nd ref="4360488955"/>
+<nd ref="4360488956"/>
+<nd ref="1459555731"/>
+<nd ref="1459555657"/>
+<nd ref="4360488954"/>
+<nd ref="4360488952"/>
+<nd ref="4360488953"/>
+<nd ref="4360488950"/>
+<nd ref="4360488951"/>
+<nd ref="4360488949"/>
+<nd ref="1459555720"/>
+<nd ref="4360488948"/>
+<nd ref="4360488947"/>
+<nd ref="1459555784"/>
+<nd ref="4360488946"/>
+<nd ref="1459555624"/>
+<nd ref="4360488945"/>
+<nd ref="2466035436"/>
+<nd ref="2466035439"/>
+<nd ref="1459555683"/>
+<nd ref="2466035447"/>
+<nd ref="2466035450"/>
+<nd ref="2466035451"/>
+<nd ref="2466035449"/>
+<nd ref="2466035444"/>
+<nd ref="2466035441"/>
+<nd ref="2466035440"/>
+<nd ref="2466035437"/>
+<nd ref="2466035438"/>
+<nd ref="2466035443"/>
+<nd ref="2466035446"/>
+<nd ref="1459555838"/>
+<nd ref="9500635161"/>
+<nd ref="2466035448"/>
+<nd ref="2466035445"/>
+<nd ref="2466035442"/>
+<nd ref="1459555793"/>
+<nd ref="2466035435"/>
+<nd ref="1459555623"/>
+<nd ref="2466035434"/>
+<nd ref="6421316610"/>
+<nd ref="2466035433"/>
+<nd ref="2466035432"/>
+<nd ref="1459555578"/>
+<nd ref="2466035431"/>
+<nd ref="1459555766"/>
+<nd ref="1459555710"/>
+<nd ref="1459555782"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="月湖公园"/>
+</way>
+</osm>

@@ -1,0 +1,30 @@
+<osm version="0.6" generator="CGImap 0.9.0 (1721164 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="945754186" visible="true" version="2" changeset="144195170" timestamp="2023-11-19T03:02:38Z" user="fishingboat" uid="19912668">
+<nd ref="8755495573"/>
+<nd ref="8755495574"/>
+<nd ref="8755495575"/>
+<nd ref="8755495576"/>
+<nd ref="8755495577"/>
+<nd ref="8755495578"/>
+<nd ref="8674018283"/>
+<nd ref="8674018282"/>
+<nd ref="8674018281"/>
+<nd ref="8674018280"/>
+<nd ref="8674018279"/>
+<nd ref="8674018278"/>
+<nd ref="8674018277"/>
+<nd ref="8674018276"/>
+<nd ref="8674018275"/>
+<nd ref="8674018274"/>
+<nd ref="8674018273"/>
+<nd ref="8674018272"/>
+<nd ref="8755495579"/>
+<nd ref="8755495580"/>
+<nd ref="8755495581"/>
+<nd ref="8755495582"/>
+<nd ref="8755495583"/>
+<nd ref="8755495573"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="谭鑫培公园"/>
+</way>
+</osm>

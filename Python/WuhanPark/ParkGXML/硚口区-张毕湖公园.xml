@@ -1,0 +1,42 @@
+<osm version="0.6" generator="CGImap 0.9.0 (2563464 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="1220212823" visible="true" version="1" changeset="143516834" timestamp="2023-11-02T08:37:48Z" user="Saigyoujinoriko" uid="18672235">
+<nd ref="9045699906"/>
+<nd ref="11306708903"/>
+<nd ref="11306708904"/>
+<nd ref="11306708905"/>
+<nd ref="11306708906"/>
+<nd ref="11306708907"/>
+<nd ref="11306708908"/>
+<nd ref="11306708909"/>
+<nd ref="11306708910"/>
+<nd ref="11306708911"/>
+<nd ref="11306708912"/>
+<nd ref="11306708913"/>
+<nd ref="11306708914"/>
+<nd ref="11306708915"/>
+<nd ref="11306708916"/>
+<nd ref="2383288951"/>
+<nd ref="2383288958"/>
+<nd ref="2383288976"/>
+<nd ref="11306708917"/>
+<nd ref="2383317107"/>
+<nd ref="2383317108"/>
+<nd ref="2383317110"/>
+<nd ref="2383317105"/>
+<nd ref="2383289006"/>
+<nd ref="2383289000"/>
+<nd ref="2383289007"/>
+<nd ref="2383289014"/>
+<nd ref="2383289023"/>
+<nd ref="2383289025"/>
+<nd ref="2383289043"/>
+<nd ref="2383289074"/>
+<nd ref="2383289103"/>
+<nd ref="2383289162"/>
+<nd ref="2383289176"/>
+<nd ref="2383317112"/>
+<nd ref="9045699906"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="張畢湖公園"/>
+</way>
+</osm>

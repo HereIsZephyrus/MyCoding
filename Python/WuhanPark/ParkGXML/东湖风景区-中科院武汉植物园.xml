@@ -1,0 +1,123 @@
+<osm version="0.6" generator="CGImap 0.9.0 (1028334 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="122895992" visible="true" version="10" changeset="120664696" timestamp="2022-05-07T11:36:08Z" user="blkatbyhh" uid="14128740">
+<nd ref="1371829132"/>
+<nd ref="1371829130"/>
+<nd ref="1195037131"/>
+<nd ref="1195036753"/>
+<nd ref="9722432413"/>
+<nd ref="1195036651"/>
+<nd ref="1195036757"/>
+<nd ref="1195036510"/>
+<nd ref="1195036904"/>
+<nd ref="1195037008"/>
+<nd ref="1195036816"/>
+<nd ref="1195036595"/>
+<nd ref="1195037130"/>
+<nd ref="1195036853"/>
+<nd ref="1195036492"/>
+<nd ref="1195037107"/>
+<nd ref="1195036628"/>
+<nd ref="1195036730"/>
+<nd ref="9722432409"/>
+<nd ref="1195036889"/>
+<nd ref="1195036778"/>
+<nd ref="9684882850"/>
+<nd ref="9722432408"/>
+<nd ref="9722432407"/>
+<nd ref="9684882851"/>
+<nd ref="9684882852"/>
+<nd ref="9684882853"/>
+<nd ref="9684882854"/>
+<nd ref="9684882856"/>
+<nd ref="9684882858"/>
+<nd ref="9684882859"/>
+<nd ref="1195036773"/>
+<nd ref="1195037018"/>
+<nd ref="1195037099"/>
+<nd ref="1195036645"/>
+<nd ref="1195037171"/>
+<nd ref="9684882860"/>
+<nd ref="9684882861"/>
+<nd ref="1195037046"/>
+<nd ref="1195036586"/>
+<nd ref="1195036624"/>
+<nd ref="1195036999"/>
+<nd ref="1195036551"/>
+<nd ref="1195036504"/>
+<nd ref="1195036596"/>
+<nd ref="1195036589"/>
+<nd ref="9722432406"/>
+<nd ref="1195037218"/>
+<nd ref="9722432404"/>
+<nd ref="1195036599"/>
+<nd ref="1195036573"/>
+<nd ref="1195037095"/>
+<nd ref="1195037022"/>
+<nd ref="1195036973"/>
+<nd ref="1195037181"/>
+<nd ref="1195036711"/>
+<nd ref="1195036488"/>
+<nd ref="1195037004"/>
+<nd ref="1195037196"/>
+<nd ref="1195037199"/>
+<nd ref="905065385"/>
+<nd ref="1195036597"/>
+<nd ref="1195036787"/>
+<nd ref="1195036960"/>
+<nd ref="1195036818"/>
+<nd ref="1195036608"/>
+<nd ref="1195036541"/>
+<nd ref="1195036824"/>
+<nd ref="1371829141"/>
+<nd ref="1371829017"/>
+<nd ref="1371829140"/>
+<nd ref="1371829102"/>
+<nd ref="1371829033"/>
+<nd ref="1371829031"/>
+<nd ref="1371829143"/>
+<nd ref="1371829026"/>
+<nd ref="1371829115"/>
+<nd ref="1371829062"/>
+<nd ref="1371829080"/>
+<nd ref="2442852254"/>
+<nd ref="1371829166"/>
+<nd ref="9722082900"/>
+<nd ref="1371829072"/>
+<nd ref="1371829039"/>
+<nd ref="1371829013"/>
+<nd ref="9722082903"/>
+<nd ref="1371829110"/>
+<nd ref="1371829082"/>
+<nd ref="9722082902"/>
+<nd ref="1371829084"/>
+<nd ref="9722082901"/>
+<nd ref="1371829090"/>
+<nd ref="9722082958"/>
+<nd ref="1371829047"/>
+<nd ref="9722082959"/>
+<nd ref="9722082960"/>
+<nd ref="1371829042"/>
+<nd ref="1371829044"/>
+<nd ref="1371829054"/>
+<nd ref="1371829176"/>
+<nd ref="1371829081"/>
+<nd ref="1371799452"/>
+<nd ref="9722432410"/>
+<nd ref="9684882849"/>
+<nd ref="9684882844"/>
+<nd ref="9684882843"/>
+<nd ref="1371829132"/>
+<tag k="access" v="yes"/>
+<tag k="addr:city" v="武汉市"/>
+<tag k="addr:district" v="洪山区"/>
+<tag k="addr:housenumber" v="特1号"/>
+<tag k="addr:postcode" v="430074"/>
+<tag k="addr:province" v="湖北省"/>
+<tag k="addr:street" v="植物园路"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="中国科学院武汉植物园"/>
+<tag k="name:en" v="Wuhan Botanical Garden, Chinese Academy of Sciences"/>
+<tag k="name:zh" v="中国科学院武汉植物园"/>
+<tag k="operator" v="中国科学院武汉植物园"/>
+</way>
+</osm>

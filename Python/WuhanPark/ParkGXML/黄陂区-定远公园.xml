@@ -1,0 +1,22 @@
+<osm version="0.6" generator="CGImap 0.9.0 (1334238 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="1029240568" visible="true" version="2" changeset="132111614" timestamp="2023-02-05T14:47:04Z" user="Bobo_alcazar" uid="10803749">
+<nd ref="9489057331"/>
+<nd ref="9489057332"/>
+<nd ref="9489057333"/>
+<nd ref="9489057334"/>
+<nd ref="9489057335"/>
+<nd ref="9489057336"/>
+<nd ref="9489057337"/>
+<nd ref="9489057338"/>
+<nd ref="9489057339"/>
+<nd ref="9489057340"/>
+<nd ref="9489057341"/>
+<nd ref="9489057342"/>
+<nd ref="9489057343"/>
+<nd ref="9489057344"/>
+<nd ref="9489057345"/>
+<nd ref="9489057331"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="定遠公園"/>
+</way>
+</osm>

@@ -1,0 +1,27 @@
+<osm version="0.6" generator="CGImap 0.9.0 (1721164 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="177262346" visible="true" version="1" changeset="12816253" timestamp="2012-08-22T05:34:19Z" user="GeoSUN" uid="414582">
+<nd ref="1877160159"/>
+<nd ref="1877160230"/>
+<nd ref="1877160225"/>
+<nd ref="1877160220"/>
+<nd ref="1877160218"/>
+<nd ref="1877160204"/>
+<nd ref="1877160196"/>
+<nd ref="1877160210"/>
+<nd ref="1877160186"/>
+<nd ref="1877160175"/>
+<nd ref="1877160217"/>
+<nd ref="1877160192"/>
+<nd ref="1877160195"/>
+<nd ref="1877160163"/>
+<nd ref="1877160178"/>
+<nd ref="1877160162"/>
+<nd ref="1877160206"/>
+<nd ref="1877160226"/>
+<nd ref="1877160156"/>
+<nd ref="1877160164"/>
+<nd ref="1877160159"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="龙王庙公园"/>
+</way>
+</osm>

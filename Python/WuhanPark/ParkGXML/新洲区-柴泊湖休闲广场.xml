@@ -1,0 +1,38 @@
+<osm version="0.6" generator="CGImap 0.9.0 (293518 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="947969013" visible="true" version="2" changeset="105660255" timestamp="2021-06-01T07:10:16Z" user="CENTRALHUB" uid="6447498">
+<nd ref="8774449841"/>
+<nd ref="8774188936"/>
+<nd ref="8774188935"/>
+<nd ref="8774449840"/>
+<nd ref="8774449839"/>
+<nd ref="8774449836"/>
+<nd ref="8774449838"/>
+<nd ref="8774449837"/>
+<nd ref="8774449768"/>
+<nd ref="8774449835"/>
+<nd ref="8774449834"/>
+<nd ref="8774449769"/>
+<nd ref="8774449833"/>
+<nd ref="8774517705"/>
+<nd ref="8774517703"/>
+<nd ref="8774517702"/>
+<nd ref="8774517701"/>
+<nd ref="8774517700"/>
+<nd ref="8774517704"/>
+<nd ref="8774517699"/>
+<nd ref="8774517698"/>
+<nd ref="8774517697"/>
+<nd ref="8774517696"/>
+<nd ref="8774517695"/>
+<nd ref="8774517694"/>
+<nd ref="8774517693"/>
+<nd ref="8774517692"/>
+<nd ref="8774449832"/>
+<nd ref="8774449831"/>
+<nd ref="8774449841"/>
+<tag k="leisure" v="park"/>
+<tag k="name" v="柴泊湖休闲广场"/>
+<tag k="name:en" v="Chaibohuxiuxian Square"/>
+<tag k="name:zh" v="柴泊湖休闲广场"/>
+</way>
+</osm>
