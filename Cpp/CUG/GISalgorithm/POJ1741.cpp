@@ -29,7 +29,6 @@ vector<int> build(int node,int limit,vector<shared_ptr<Edge>>& heads,vector<shar
     //bool length[limit+1];
     for (shared_ptr<Edge> edge = heads[node]; edge!=nullptr; edge = edge->getNext()){
         int v = edge->getNode();
-        //length[edge->getLength()] = true;
         subCounts.push_back(std::make_pair(build(v,limit,heads,edges),edge->getLength()));
     }
 
