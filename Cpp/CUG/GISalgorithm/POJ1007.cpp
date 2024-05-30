@@ -55,7 +55,6 @@ int main(){
     while(num--){
         std::string DNAstring;
         std::getline(std::cin,DNAstring);
-        //std::cout<<DNAstring<<std::endl;
         DNAs.push_back(DNA(len,DNAstring));
     }
     std::sort(DNAs.begin(),DNAs.end());

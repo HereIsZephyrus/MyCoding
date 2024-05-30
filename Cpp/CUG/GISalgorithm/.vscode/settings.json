@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.cpp": "cpp",
         "*.rmd": "markdown",
         "atomic": "cpp",
         "bit": "cpp",
@@ -63,6 +64,8 @@
         "string_view": "cpp",
         "variant": "cpp",
         "vector": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "__hash_table": "cpp",
+        "__tree": "cpp"
     }
 }
