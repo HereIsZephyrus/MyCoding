@@ -1,5 +1,16 @@
+/***
+ * @Author: ChanningTong Channing_TongCN@outlook.com
+ * @Date: 2024-05-30 15:40:00
+ * @LastEditors: ChanningTong Channing_TongCN@outlook.com
+ * @LastEditTime: 2024-05-30 16:48:06
+ * @FilePath: \GISalgorithm\POJ1164.cpp
+ * @Description:
+ * @
+ * @Copyright (c) 2024 by ChanningTong, All Rights Reserved.
+ */
 #include<iostream>
 #include<vector>
+#include<cmath>
 #define _DIRECTION 15
 
 struct node{
@@ -35,7 +46,7 @@ int DFS(std::vector<std::vector<node> > &mat,const int &n,const int &m,int x,int
 int main(){
     int n,m;
     std::cin>>n>>m;
-    std::vector<std::vector<node> > mat(n);
+    std::vector<std::vector<node> > mat(n,std::vector<node>(m));
     std::vector<int> roomSize;
     init(mat,n,m);
     for (int i = 0; i < n; i++)
@@ -43,6 +54,10 @@ int main(){
             if (!mat[i][j].visited)
                 roomSize.push_back(DFS(mat,n,m,i,j));
     std::cout<<roomSize.size()<<std::endl;
-    std::cout<<*std::max_element(roomSize.begin(),roomSize.end());
+    int maxElement = 0;
+    for (std::vector<int>::const_iterator i = roomSize.begin(); i != roomSize.end(); i++)
+        maxElement = std::max(maxElement, *i);
+    std::cout<<maxElement<<std::endl;
+    getchar();getchar();
     return 0;
 }

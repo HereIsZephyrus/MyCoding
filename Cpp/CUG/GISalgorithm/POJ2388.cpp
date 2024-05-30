@@ -6,24 +6,20 @@
 std::vector<int> calculateRank(const std::vector<int>& arr,int& rank) {
     std::vector<int> sortedArr = arr;
     std::sort(sortedArr.begin(), sortedArr.end());
-
     std::map<int, int> rankMap;
-
-    for (const int& num : sortedArr)
-        if (rankMap.find(num) == rankMap.end()) 
-            rankMap[num] = rank++;
-
+    for (std::vector<int>::const_iterator it = sortedArr.begin(); it != sortedArr.end(); it++)
+        if (rankMap.find(*it) == rankMap.end())
+            rankMap[*it] = rank++;
     std::vector<int> ranks;
     ranks.reserve(arr.size());
-
-    for (const int& num : arr)
-        ranks.push_back(rankMap[num]);
-
+    for (std::vector<int>::const_iterator it = arr.begin(); it != arr.end(); it++)
+        ranks.push_back(rankMap[*it]);
     return ranks;
 }
 
 int main(){
     int n;
+    std::cin>>n;
     std::vector<int> value(n);
     while (n--) {
         int x;

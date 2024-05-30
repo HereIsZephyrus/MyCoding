@@ -1,7 +1,7 @@
 {
     "files.associations": {
-        "*.cpp": "cpp",
         "*.rmd": "markdown",
+        "*.cpp": "cpp",
         "atomic": "cpp",
         "bit": "cpp",
         "cctype": "cpp",
@@ -66,6 +66,13 @@
         "vector": "cpp",
         "algorithm": "cpp",
         "__hash_table": "cpp",
-        "__tree": "cpp"
+        "__tree": "cpp",
+        "deque": "cpp",
+        "iomanip": "cpp",
+        "map": "cpp",
+        "queue": "cpp",
+        "xlocmon": "cpp",
+        "xloctime": "cpp",
+        "xtree": "cpp"
     }
 }

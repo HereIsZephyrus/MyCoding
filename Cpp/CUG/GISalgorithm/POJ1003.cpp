@@ -1,5 +1,15 @@
+/***
+ * @Author: ChanningTong Channing_TongCN@outlook.com
+ * @Date: 2024-05-30 15:40:00
+ * @LastEditors: ChanningTong Channing_TongCN@outlook.com
+ * @LastEditTime: 2024-05-30 15:42:10
+ * @FilePath: \undefinedc:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GISalgorithm\POJ1003.cpp
+ * @Description:
+ * @
+ * @Copyright (c) 2024 by ChanningTong, All Rights Reserved.
+ */
 #include<iostream>
-constexpr int MAXN = 300;
+const int MAXN = 300;
 
 int search(float cumsum[], float length){
     int left = 0;

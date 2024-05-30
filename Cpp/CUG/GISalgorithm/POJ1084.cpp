@@ -1,3 +1,13 @@
+/***
+ * @Author: ChanningTong Channing_TongCN@outlook.com
+ * @Date: 2024-05-30 15:40:00
+ * @LastEditors: ChanningTong Channing_TongCN@outlook.com
+ * @LastEditTime: 2024-05-30 16:46:27
+ * @FilePath: \GISalgorithm\POJ1084.cpp
+ * @Description:
+ * @
+ * @Copyright (c) 2024 by ChanningTong, All Rights Reserved.
+ */
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -34,6 +44,7 @@ void solve(){
         mat->update(id);
         count++;
     }
+    std::cout<<count;
     return;
 }
 

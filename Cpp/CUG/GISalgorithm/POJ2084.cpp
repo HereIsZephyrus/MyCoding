@@ -1,3 +1,13 @@
+/***
+ * @Author: ChanningTong Channing_TongCN@outlook.com
+ * @Date: 2024-05-30 15:40:00
+ * @LastEditors: ChanningTong Channing_TongCN@outlook.com
+ * @LastEditTime: 2024-05-30 20:15:26
+ * @FilePath: \GISalgorithm\POJ2084.cpp
+ * @Description:
+ * @
+ * @Copyright (c) 2024 by ChanningTong, All Rights Reserved.
+ */
 #include <iostream>
 #include <string>
 #include <vector>
@@ -37,10 +47,12 @@ public:
                 carry = product / 10;
             }
         }
+        while (result.size() > 1 && result.back() == 0) result.pop_back();
         return BigInteger(result);
     }
 
     friend std::ostream &operator<<(std::ostream &os, const BigInteger &bigint){
+        if (bigint.digits.empty())    os << 0;
         for (std::vector<int> ::const_reverse_iterator it = bigint.digits.rbegin(); it != bigint.digits.rend(); ++it)
             os << *it;
         return os;
@@ -52,9 +64,10 @@ int main()
     int n;
     for (int n = 0; n < MAXN; n++)
         C[n] = BigInteger(0);
+    C[0] = BigInteger(1); C[1] = BigInteger(1);
     for (int n = 2; n < MAXN; n++)
         for (int i = 1; i <= n; i++)
-            C[n] = C[n] + C[n - i] * C[i];
+            C[n] = C[n] + C[n - i] * C[i-1];
     while (cin >> n){
         if (n == -1)
             break;

@@ -1,3 +1,13 @@
+/***
+ * @Author: ChanningTong Channing_TongCN@outlook.com
+ * @Date: 2024-05-30 15:40:00
+ * @LastEditors: ChanningTong Channing_TongCN@outlook.com
+ * @LastEditTime: 2024-05-30 16:58:37
+ * @FilePath: \GISalgorithm\POJ1651.cpp
+ * @Description:
+ * @
+ * @Copyright (c) 2024 by ChanningTong, All Rights Reserved.
+ */
 #include<iostream>
 #include<vector>
 
@@ -15,5 +25,6 @@ int main(){
                 f[i][j] = std::min(f[i][j],f[i][k]+f[k][j]+a[i]*a[k]*a[j]);
         }
     std::cout<<f[0][n-1]<<std::endl;
+    getchar();getchar();
     return 0;
 }

@@ -1,4 +1,15 @@
+/***
+ * @Author: ChanningTong Channing_TongCN@outlook.com
+ * @Date: 2024-05-30 15:40:00
+ * @LastEditors: ChanningTong Channing_TongCN@outlook.com
+ * @LastEditTime: 2024-05-30 16:06:00
+ * @FilePath: \undefinedc:\Users\Administrator\GitHub\MyCoding\Cpp\CUG\GISalgorithm\POJ1017.cpp
+ * @Description:
+ * @
+ * @Copyright (c) 2024 by ChanningTong, All Rights Reserved.
+ */
 #include<iostream>
+#include<algorithm>
 #include<array>
 #include<queue>
 #include<cmath>
@@ -25,7 +36,7 @@ bool empty(const std::array<int,typeNum> &num){
     return true;
 }
 void update(std::priority_queue<Container> &q, int x, int y, int z, int numX, int numY, int numZ){
-    
+
 }
 int solve(std::array<int,typeNum> &num){
     int ans = 0;
@@ -67,6 +78,6 @@ int main(){
             std::cin>>num[i];
         std::reverse(num.begin(),num.end());
     }
-    
+
     return 0;
 }
