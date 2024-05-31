@@ -1,13 +1,3 @@
-/***
- * @Author: ChanningTong Channing_TongCN@outlook.com
- * @Date: 2024-05-30 15:40:00
- * @LastEditors: ChanningTong Channing_TongCN@outlook.com
- * @LastEditTime: 2024-05-30 16:48:06
- * @FilePath: \GISalgorithm\POJ1164.cpp
- * @Description:
- * @
- * @Copyright (c) 2024 by ChanningTong, All Rights Reserved.
- */
 #include<iostream>
 #include<vector>
 #include<cmath>
@@ -17,8 +7,8 @@ struct node{
     int avliable;
     bool visited;
 };
-const int dx[4] = {-1,0,1,0};
-const int dy[4] = {0,1,0,-1};
+const int dx[4] = {0,-1,0,1};
+const int dy[4] = {-1,0,1,0};
 
 void init(std::vector<std::vector<node> > &mat,const int n,const int m){
     for (int i = 0; i < n; i++){
@@ -29,16 +19,17 @@ void init(std::vector<std::vector<node> > &mat,const int n,const int m){
             mat[i][j].visited = false;
         }
     }
+    return;
 }
 int DFS(std::vector<std::vector<node> > &mat,const int &n,const int &m,int x,int y){
     mat[x][y].visited = true;
-    int res = 0;
+    int res = 1;
     for (int d = 0; d < 4; d++){
         int code = 1 << d;
         if (mat[x][y].avliable & code){
             int ox = x + dx[d], oy = y + dy[d];
             if (ox >= 0 && ox < n && oy >= 0 && oy < m && !mat[ox][oy].visited)
-                res += DFS(mat,n,m,ox,oy);
+                res += DFS(mat, n, m, ox, oy);
         }
     }
     return res;
@@ -58,6 +49,5 @@ int main(){
     for (std::vector<int>::const_iterator i = roomSize.begin(); i != roomSize.end(); i++)
         maxElement = std::max(maxElement, *i);
     std::cout<<maxElement<<std::endl;
-    getchar();getchar();
     return 0;
 }
