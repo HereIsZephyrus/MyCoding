@@ -101,20 +101,28 @@ int maxDamage(vector<AllowAttackLocation> &locations,int index,const int AA[],ve
     //take attack at this position
     Troop *casualty = locations[index].casualty;
     for (vector<Troop*>::iterator attacker = locations[index].attackers.begin(); attacker != locations[index].attackers.end(); attacker++){
-        if ((*attacker)->attacked || occupied[locations[index].x][locations[index].y]) continue;
-        //take attack
+        if ((*attacker)->attacked) continue;
+        bool isAdjacent = ((*attacker)->getX() == locations[index].x) && ((*attacker)->getY() == locations[index].y);
+        if (!isAdjacent && occupied[locations[index].x][locations[index].y])
+            continue;
+        // take attack
         (*attacker)->attacked = true;
-        occupied[locations[index].x][locations[index].y] = true;
         restAttacker--;
-        int attackerNumber = (*attacker)->getNumber(),multi = multiplier[(*attacker)->getType()][casualty->getType()];
-        int damage = std::min(multi *attackerNumber*AA[(*attacker)->getType()], casualty->number);
+        int attackerNumber = (*attacker)->getNumber();
+        int multi = multiplier[(*attacker)->getType()][casualty->getType()];
+        int damage = std::min((int)multi * attackerNumber * AA[(*attacker)->getType()], casualty->number);
         casualty->number -= damage;
+        //change occupied
+        occupied[locations[index].x][locations[index].y] = true;
+        occupied[(*attacker)->getX()][(*attacker)->getY()] = false;
         max = std::max(max,damage + maxDamage(locations,index+1,AA,occupied));
         //undo attack
         (*attacker)->attacked = false;
         restAttacker++;
         casualty->number += damage;
+        //change occupied
         occupied[locations[index].x][locations[index].y] = false;
+        occupied[(*attacker)->getX()][(*attacker)->getY()] = true;
     }
     return max;
 }
@@ -160,6 +168,10 @@ int main(){
             }
         }
         vector<vector<bool>> occupied(n, vector<bool>(m, false));
+        for (vector<Troop>::iterator it = troops.begin(); it != troops.end(); it++) {
+            if (it->getIsEnermy()) continue;
+            occupied[it->getX()][it->getY()] = true;
+        }
         std::cout << maxDamage(locations, 0, AA, occupied) << std::endl;
         //nextturn
         cin>>AM[SoldierType::lancer]>>AM[SoldierType::cavalier]>>AM[SoldierType::halberdiers];
