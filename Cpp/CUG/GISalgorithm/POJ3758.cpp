@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<queue>
+#include<algorithm>
 using std::vector;
 using std::queue;
 using std::cin;
@@ -30,17 +31,18 @@ public:
     Troop():type(SoldierType::lancer),number(0),x(0),y(0),isEnermy(false),attacked(false),id(0){}
     Troop(int type,int number,int x,int y,bool isEnermy,int count):type(type),number(number),x(x),y(y),isEnermy(isEnermy),attacked(false),id(count){}
     int getType() const {return type;}
-    int getNumber() const {return number;}
     int getX() const {return x;}
     int getY() const {return y;}
     bool getIsEnermy() const {return isEnermy;}
     int getID() const {return id;}
+    bool operator<(const Troop &rhs) const{return number > rhs.number;}
 };
 struct AllowAttackLocation{
     int x,y;
     vector<Troop*> attackers;
     Troop* casualty;
     AllowAttackLocation(int x, int y, vector<Troop*> attackers, Troop* casualty) :x(x), y(y), attackers(attackers), casualty(casualty) {}
+    bool operator<(const AllowAttackLocation &rhs) const{return casualty->number > rhs.casualty->number;}
 };
 struct Node{
     int x,y,step;
@@ -100,17 +102,20 @@ int maxDamage(vector<AllowAttackLocation> &locations,int index,const int AA[],ve
     int max = maxDamage(locations, index + 1, AA,occupied);
     //take attack at this position
     Troop *casualty = locations[index].casualty;
+    if (casualty->number == 0) return max; //shortcut case 2
+    std::sort(locations[index].attackers.begin(), locations[index].attackers.end());
     for (vector<Troop*>::iterator attacker = locations[index].attackers.begin(); attacker != locations[index].attackers.end(); attacker++){
         if ((*attacker)->attacked) continue;
         bool isAdjacent = ((*attacker)->getX() == locations[index].x) && ((*attacker)->getY() == locations[index].y);
         if (!isAdjacent && occupied[locations[index].x][locations[index].y])
             continue;
+        int attackerMaxDamage = (*attacker)->number * AA[(*attacker)->getType()];
+        int multi = multiplier[(*attacker)->getType()][casualty->getType()];
+        int damage = std::min((int)multi * attackerMaxDamage, casualty->number);
+        if (damage + (restAttacker - attackerMaxDamage)*2 < max)    continue; //shortcut case 1
         // take attack
         (*attacker)->attacked = true;
-        restAttacker--;
-        int attackerNumber = (*attacker)->getNumber();
-        int multi = multiplier[(*attacker)->getType()][casualty->getType()];
-        int damage = std::min((int)multi * attackerNumber * AA[(*attacker)->getType()], casualty->number);
+        restAttacker -= attackerMaxDamage;
         casualty->number -= damage;
         //change occupied
         occupied[locations[index].x][locations[index].y] = true;
@@ -118,7 +123,7 @@ int maxDamage(vector<AllowAttackLocation> &locations,int index,const int AA[],ve
         max = std::max(max,damage + maxDamage(locations,index+1,AA,occupied));
         //undo attack
         (*attacker)->attacked = false;
-        restAttacker++;
+        restAttacker += attackerMaxDamage;
         casualty->number += damage;
         //change occupied
         occupied[locations[index].x][locations[index].y] = false;
@@ -127,7 +132,7 @@ int maxDamage(vector<AllowAttackLocation> &locations,int index,const int AA[],ve
     return max;
 }
 
-void init(vector<vector<int> > &map,vector<Troop> &troops){
+void init(vector<vector<int> > &map,vector<Troop> &troops,const int AA[]){
     const int n = map.size(),m = map[0].size();
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++){
@@ -137,7 +142,7 @@ void init(vector<vector<int> > &map,vector<Troop> &troops){
             else{
                 Troop t = getTroop(c,i,j,troops.size());
                 troops.push_back(t);
-                if (!t.getIsEnermy()) restAttacker++;
+                if (!t.getIsEnermy()) restAttacker+=t.number*AA[t.getType()];
                 map[i][j] = t.getID();
             }
         }
@@ -153,7 +158,7 @@ int main(){
         cin>>n>>m;
         vector<vector<int> > map(n,vector<int>(m)); //-1 means not accessible, 0 means empty, other means the id of the troop
         vector<Troop> troops;
-        init(map,troops);
+        init(map,troops,AA);
         //solve
         vector<AllowAttackLocation> locations;
         for (vector<Troop>::iterator it = troops.begin(); it != troops.end(); it++){
@@ -167,6 +172,7 @@ int main(){
                     locations.push_back(AllowAttackLocation(x,y,reachableTroops(map,troops,x,y,AM),&(*it)));
             }
         }
+        std::sort(locations.begin(), locations.end()); //shortcut case 1
         vector<vector<bool>> occupied(n, vector<bool>(m, false));
         for (vector<Troop>::iterator it = troops.begin(); it != troops.end(); it++) {
             if (it->getIsEnermy()) continue;
