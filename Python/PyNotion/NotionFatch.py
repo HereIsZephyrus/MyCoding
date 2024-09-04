@@ -9,8 +9,8 @@ notion = Client(auth="secret_FjRVSfO5PmvIoh9ugzPNbn1OBghZ8FMj9ecm7SmpuYt")  # �
 db_name = "ReadingList"    # 替换为自己的DataBase名称
 db_id = "444bf12774544b1d842eed17083960f7"    # 替换为自己的DataBase ID
 page_id = "444bf127-7454-4b1d-842e-ed17083960f7"   # # 替换为自己的Page ID
-startDate='2024-01-22'
-endDate='2024-01-28' # 替换为自己的时间段
+startDate='2024-05-24'
+endDate='2024-06-08' # 替换为自己的时间段
 db_values = notion.databases.query(
         **{
             "database_id": db_id,
