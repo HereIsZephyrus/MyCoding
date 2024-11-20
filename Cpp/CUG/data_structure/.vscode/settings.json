@@ -1,0 +1,8 @@
+{
+    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.default.cStandard": "c17",
+    "C_Cpp.default.customConfigurationVariables": {},
+    "dotnet.inlayHints.enableInlayHintsForObjectCreationParameters": false,
+    "git.autofetch": true,
+    "latex-workshop.bibtex-fields.sort.enabled": true
+}
